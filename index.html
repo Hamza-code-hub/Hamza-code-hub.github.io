@@ -1,149 +1,626 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Muhammad Hamza | Official | Pattoki</title>
-  <meta name="description" content="Official portfolio of Muhammad Hamza from Pattoki. Explore biography, professional photos, and connect via social media.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Open Graph for social preview -->
-  <meta property="og:title" content="Muhammad Hamza | Official | Pattoki">
-  <meta property="og:description" content="Explore the official portfolio of Muhammad Hamza from pattoki. Biography, photos, and social links.">
-  <meta property="og:image" content="https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg">
-  <meta property="og:url" content="https://hamza-code-hub.github.io/">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Schema Markup for Google -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Muhammad Hamza",
-  "description": "Professional from Pattoki, showcasing portfolio and photos.",
-  "image": [
-    "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg",
-    "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki1.jpg",
-    "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg",
-    "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki11.jpg",
-    "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki9.jpg"
-  ],
-  "jobTitle": "Professional",
-  "url": "https://hamza-code-hub.github.io/",
-  "sameAs": [
-    "https://www.linkedin.com/in/hamzzaz",
-    "https://www.facebook.com/people/Muhammad-Hamza/61580252272534/",
-    "https://www.instagram.com/hmza_mahr/",
-    "https://scholar.google.com/citations?user=akj6QK0AAAAJ&hl=en",
-    "https://www.kaggle.com/muhammadhamzamaher",
-    "https://github.com/Hamza-code-hub"
-  ]
-}
-</script>
-
+  <meta charset="utf-8">
+  <title>Muhammad Hamza - Portfolio</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Muhammad Hamza Portfolio" name="keywords">
+  <meta content="Muhammad Hamza - Python & Django Developer | Research Author" name="description">
+   <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/favicon.ico">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
-  <style>
-    body { 
-      font-family: 'Poppins', sans-serif; 
-      margin: 0; padding: 0; 
-      background: #f9fbfd; 
-      color: #333; 
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(120deg, #0077b6, #0096c7);
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-    }
-    header h1 { font-size: 48px; margin-bottom: 10px; }
-    header p { font-size: 20px; opacity: 0.9; }
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="./css/carousel.css">
+  <link rel="stylesheet" href="./css/owl.css">
+  <link rel="stylesheet" href="./css/my.css">
+  <link id="theme-style" rel="stylesheet" href="./css/theme.css">
 
-    section { max-width: 1100px; margin: auto; padding: 10px 5px; text-align: center; }
-    section h2 { font-size: 32px; margin-bottom: 20px; color: #0077b6; }
+  <!-- FontAwesome -->
+  <script defer src="./js/all.js"></script>
 
-    .profile-pic img {
-      width: 200px; border-radius: 5%; 
-      box-shadow: 0px 6px 20px rgba(0,0,0,0.25); 
-      margin-bottom: 20px; 
-      transition: transform 0.3s ease;
-    }
-    .profile-pic img:hover { transform: scale(1.05); }
-
-    .gallery {
-      display: flex; flex-wrap: wrap; justify-content: center; 
-      gap: 20px; margin-top: 30px;
-    }
-    .gallery img {
-      width: 300px; border-radius: 12px; 
-      box-shadow: 0px 4px 15px rgba(0,0,0,0.2); 
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .gallery img:hover { 
-      transform: scale(1.05); 
-      box-shadow: 0px 6px 20px rgba(0,0,0,0.3); 
-    }
-
-    footer {
-      background: #222; color: #eee; 
-      text-align: center; padding: 30px 20px; 
-    }
-    footer p { margin: 10px 0; }
-    footer a {
-      color: #00aced; margin: 0 10px; 
-      text-decoration: none; font-weight: 500;
-    }
-    footer a:hover { text-decoration: underline; }
-  </style>
-  <!-- Favicon -->
-<link rel="icon" type="image/png" href="images/favicon.ico">
-<link rel="apple-touch-icon" href="images/favicon.ico">
-<meta name="google-site-verification" content="DBwfYbEsl9rO3UieFZl8qc7r6oB_8HUW3iR7nGoN8X8" />
+  <!-- ✅ Schema Markup for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad Hamza or Muhammad Hamza from pattoki",
+    "description": "Professional from Pattoki, showcasing portfolio and photos.",
+    "image": [
+      "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg",
+      "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki1.jpg",
+      "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg",
+      "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki11.jpg",
+      "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki9.jpg"
+    ],
+    "jobTitle": "Professional",
+    "url": "https://hamza-code-hub.github.io/",
+    "sameAs": [
+      "https://www.linkedin.com/in/hamzzaz",
+      "https://www.facebook.com/people/Muhammad-Hamza/61580252272534/",
+      "https://www.instagram.com/hmza_mahr/",
+      "https://scholar.google.com/citations?user=akj6QK0AAAAJ&hl=en",
+      "https://www.kaggle.com/muhammadhamzamaher",
+      "https://hamza-code-hub.github.io/",
+      "https://hamzza-git.github.io/"
+    ]
+  }
+  </script>
 </head>
-<body>
 
-  <header>
-    <div class="profile-pic">
-      <img src="images/Muhammad_Hamza_from_pattoki2.jpg" alt="Muhammad Hamza portrait in black suit">
+<body>
+  <header class="header text-center">
+    <div class="force-overflow">
+      <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a></h1>
+
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navigation" class="collapse navbar-collapse flex-column">
+          <div class="profile-section pt-3 pt-lg-0">
+            <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza">
+            <div class="bio mb-3">
+              Hi, I am <strong>Muhammad Hamza. </strong>| Python & Django Developer | Ai Engineer | Research Author (Elsevier) |     Welcome to my personal portfolio!
+            </div>
+
+            <ul class="social-list list-inline py-2 mx-auto">
+              <li class="list-inline-item"><a href="https://linkedin.com/in/hamzzaz" target="_blank"><i
+                    class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank"><i
+                    class="fab fa-github-alt fa-fw"></i></a></li>
+              <li class="list-inline-item"><a href="mailto:maherhamza4616@gmail.com"><i
+                    class="fas fa-envelope fa-fw"></i></a></li>
+            </ul>
+            <hr>
+          </div>
+
+          <!-- ✅ Dark Mode Toggle -->
+          <div class="dark-mode-toggle text-center w-100">
+            <hr class="mb-4">
+            <h4 class="toggle-name mb-3"><i class="fas fa-adjust mr-1"></i>Dark Mode</h4>
+            <input class="toggle" id="darkmode" type="checkbox">
+            <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
+          </div>
+
+          <ul class="navbar-nav flex-column text-left">
+            <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>About Me</a></li>
+            <li class="nav-item"><a class="nav-link" href="#services"><i class="fas fa-briefcase fa-fw mr-2"></i>Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="#whatido"><i class="fas fa-tasks fa-fw mr-2"></i>What I Do</a></li>
+            <li class="nav-item"><a class="nav-link" href="#gallery"><i class="fas fa-images fa-fw mr-2"></i>Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials"><i class="fas fa-comment-dots fa-fw mr-2"></i>Testimonials</a></li>
+            <li class="nav-item"><a class="nav-link" href="portfolio.html"><i class="fas fa-laptop-code fa-fw mr-2"></i>Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Contact</a></li>
+          </ul>
+
+          <div class="my-2">
+            <a class="btn btn-primary" href="contact.html"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a>
+          </div>
+        </div>
+      </nav>
     </div>
-    <h1>Muhammad Hamza</h1>
-    <p>From Pattoki | Official Page</p>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
+  <div class="main-wrapper">
+ 
+    <!-- About Section -->
+    <section class="about-me-section p-3 p-lg-5 theme-bg-light">
+      <div class="container">
+        <div class="profile-teaser media flex-column flex-lg-row">
+          <div class="media-body">
+            <h2 class="name font-weight-bold mb-1">Muhammad Hamza</h2>
+            <div class="tagline mb-3">Python & Django Developer | Research Author (Elsevier)</div>
+            <div class="bio mb-4">
+              I’m Muhammad Hamza a Python developer specializing in AI, deep learning, and web development using Django.  
+              My experience includes medical image analysis, automation, and 3D model processing.  
+              I’m passionate about creating efficient solutions that merge innovation with real-world applications.
+              <br><br>
+              Explore my <a class="theme-link" href="portfolio.html">projects</a> and 
+              <a class="theme-link" href="resume.html">resume</a> to learn more.
+            </div>
+            <div class="mb-4">
+              <a class="btn btn-primary mr-2 mb-3" href="portfolio.html"><i class="fas fa-arrow-alt-circle-right mr-2"></i>View Portfolio</a>
+              <a class="btn btn-secondary mb-3" href="resume.html"><i class="fas fa-file-alt mr-2"></i>View Resume</a>
+            </div>
+          </div>
+          <img class="profile-image mb-3 mb-lg-0 ml-lg-5" src="images/Muhammad Hamza from Pattoki.jpg" alt="Muhammad Hamza" style="width: 230px; height: auto; border-radius: 8px;">
+        </div>
+      </div>
+    </section>
+
+        <!-- ✅ Photo Gallery Section -->
+    <section id="gallery" class="overview-section p-3 p-lg-5">
+      <div class="container">
+        <h2 class="section-title font-weight-bold mb-3">Photo Gallery</h2>
+        <div class="gallery">
+          <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza casual office look" style="width:45%;border-radius:10px;">
+          <img src="images/Muhammad_Hamza_from_pattoki13.jpg" alt="Muhammad Hamza in white shirt" style="width:45%;border-radius:10px;">
+          <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza outdoor" style="width:45%;border-radius:10px;">
+          <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza side view" style="width:45%;border-radius:10px;">
+        </div>
+      </div>
+    </section>
+   <!-- About Me Section -->
+	  <section id="About ME" class="overview-section p-3 p-lg-5">
+	  <div class="container text-center">
+    <h2 class="section-title font-weight-bold mb-4">About Me</h2>
+    <p class="section-intro mb-5">
       I am Muhammad Hamza, a professional passionate about continuous growth, networking, and sharing knowledge. 
       This page showcases my photos and provides links to connect with me on social platforms.
       Muhammad Hamza from pattoki is a BS Software Engineering student at the University of Okara, Pakistan. 
       His research interests include 3D data modeling, data processing, image classification, and artificial intelligence applications in healthcare and technology. He is particularly focused on deep learning, machine learning, and data science, with experience in Python, TensorFlow, and Keras. His work emphasizes data preprocessing, feature engineering, and model evaluation, aiming to contribute impactful AI-driven solutions to real-world challenges.
-    </p>
+    </p>  </div>
   </section>
+	<!-- Work Platforms Section -->
+<section id="platforms" class="overview-section p-3 p-lg-5 theme-bg-light">
+  <div class="container text-center">
+    <h2 class="section-title font-weight-bold mb-4">Work Platforms</h2>
+    <p class="section-intro mb-5">You can find my professional profiles and research contributions on the platforms below:</p>
 
-  <section>
-    <h2>Photo Gallery</h2>
-    <div class="gallery">
-      <img src="images/Muhammad_Hamza_from_pattoki2.jpg" alt="Muhammad Hamza in formal suit">
-      <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza casual office look">
-      <img src="images/Muhammad_Hamza_from_pattoki13.jpg" alt="Muhammad Hamza in white shirt">
-      <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza sit outside">
-      <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza side view">
+    <div class="row justify-content-center">
+      <!-- Fiverr -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://www.fiverr.com/users/maher_hamza4616/" target="_blank" class="platform-card">
+          <img src="images/Fiverr.png" alt="Fiverr" class="platform-logo mb-2">
+          <h5 class="platform-name">Fiverr</h5>
+        </a>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://www.linkedin.com/in/hamzzaz" target="_blank" class="platform-card">
+          <img src="images/Linkedin.jpg" alt="LinkedIn" class="platform-logo mb-2">
+          <h5 class="platform-name">LinkedIn</h5>
+        </a>
+      </div>
+
+      <!-- Google Scholar -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://scholar.google.com/citations?user=akj6QK0AAAAJ&hl=en" target="_blank" class="platform-card">
+          <img src="images/Google_Scholar.png" alt="Google Scholar" class="platform-logo mb-2">
+          <h5 class="platform-name">Google Scholar</h5>
+        </a>
+      </div>
+
+      <!-- GitHub -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://github.com/Hamza-code-hub" target="_blank" class="platform-card">
+          <img src="images/githubb.png" alt="GitHub" class="platform-logo mb-2">
+          <h5 class="platform-name">GitHub</h5>
+        </a>
+      </div>
+
+      <!-- Kaggle -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" class="platform-card">
+          <img src="images/Kaggle.png" alt="Kaggle" class="platform-logo mb-2">
+          <h5 class="platform-name">Kaggle</h5>
+        </a>
+      </div>
+
+      <!-- Instagram -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://www.instagram.com/hmza_mahr/" target="_blank" class="platform-card">
+          <img src="images/Instagram_icon.png" alt="Instagram" class="platform-logo mb-2">
+          <h5 class="platform-name">Instagram</h5>
+        </a>
+      </div>
+
+      <!-- Facebook -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://www.facebook.com/people/Muhammad-Hamza/61580252272534/" target="_blank" class="platform-card">
+          <img src="images/Facebook.png" alt="Facebook" class="platform-logo mb-2">
+          <h5 class="platform-name">Facebook</h5>
+        </a>
+      </div>
+
+      <!-- Researchgate -->
+      <div class="col-6 col-md-3 mb-4">
+        <a href="https://www.researchgate.net/profile/Muhammad-Hamza-328" target="_blank" class="platform-card">
+          <img src="images/Researchgate.png" alt="Researchgate of Muhammad Hamza" class="platform-logo mb-2">
+          <h5 class="platform-name">Researchgate</h5>
+        </a>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <p>Connect with me:</p>
-    <a href="https://www.linkedin.com/in/hamzzaz">LinkedIn</a> |
-    <a href="https://www.instagram.com/hmza_mahr/">Instagram</a> |
-    <a href="https://www.kaggle.com/muhammadhamzamaher">Kaggle</a> |
-    <a href="https://www.facebook.com/people/Muhammad-Hamza/61580252272534/">Facebook</a> |
-    <a href="mailto:maherhamza4616@gmail.com">Email</a>
-  </footer>
 
+    <!-- Core Skills --> <section class="overview-section p-3 p-lg-5"> <div class="container"> <h2 class="section-title font-weight-bold mb-3">Core Skills</h2> <div class="section-intro mb-5"> My main technical areas of expertise include machine learning, web development, and AI research. </div> <div class="row"> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fab fa-python fa-3x"></i> <h3 class="item-title mt-3">Python</h3> <p>Advanced programming with libraries like NumPy, OpenCV, TensorFlow, and PyTorch.</p> </div> </div> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fas fa-brain fa-3x"></i> <h3 class="item-title mt-3">Deep Learning</h3> <p>Experience in CNNs, medical image segmentation, and model ensembling for histopathology tasks.</p> </div> </div> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fas fa-laptop-code fa-3x"></i> <h3 class="item-title mt-3">Django</h3> <p>Developing dynamic web applications and REST APIs with authentication and AI integration.</p> </div> </div> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fas fa-database fa-3x"></i> <h3 class="item-title mt-3">Data Science</h3> <p>Proficient in feature engineering, model tuning, and dataset visualization using Pandas & Matplotlib.</p> </div> </div> </div> </div> </section>
+
+    <!-- Services Section -->
+    <section id="services" class="overview-section p-3 p-lg-5">
+      <div class="container">
+        <h2 class="section-title font-weight-bold mb-3">Services</h2>
+        <div class="section-intro mb-5">I offer A.I based research methodologies, research paper publication, full-stack development and AI-driven solutions with modern, scalable approaches.</div>
+        <div class="row">
+          <div class="item col-dd-4">
+            <div class="item-inner text-center">
+              <i class="fas fa-code fa-3x"></i>
+              <h3 class="item-title mt-3">Web Development</h3>
+              <p>Custom Django websites and REST APIs with database integration and responsive front-end design.</p>
+            </div>
+          </div>
+          <div class="item col-dd-4">
+            <div class="item-inner text-center">
+              <i class="fas fa-robot fa-3x"></i>
+              <h3 class="item-title mt-3">AI & Automation</h3>
+              <p>Intelligent automation systems using Python, OpenCV, and TensorFlow for data-driven results.</p>
+            </div></div>
+			  <div class="item col-dd-4">
+            <div class="item-inner text-center">
+              <i class="fab fa-researchgate fa-3x"></i>
+              <h3 class="item-title mt-3">Research Work</h3>
+              <p>We provide research services for Master's and Ph.D. students, including research proposals, methodologies and assignments.</p>
+            </div>
+          </div>
+          <div class="item col-dd-4">
+            <div class="item-inner text-center">
+              <i class="fas fa-chart-line fa-3x"></i>
+              <h3 class="item-title mt-3">Data Analytics</h3>
+              <p>Insights through advanced data analysis, visualization, and predictive modeling using Pandas & Scikit-learn.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What I Do Section -->
+    <section id="whatido" class="do-section p-3 p-lg-5 theme-bg-light">
+      <div class="container">
+        <h2 class="section-title font-weight-bold mb-3">What I Do</h2>
+        <div class="section-intro mb-5">I specialize in building intelligent web systems that bridge research and real-world applications.</div>
+        <div class="row">
+          <!--//item-inner-->
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 45px;"
+										src="images/icons8-visual-studio-code-2019-512.png" /></div>
+								<h3 class="item-title">Visual Studio</h3>
+								<div class="item-desc">Visual Studio Code is a free source-code editor made by Microsoft
+									for Windows, Linux and macOS. Features include support for debugging, syntax
+									highlighting, snippets, code refactoring, and embedded Git. </div>
+							</div>
+							<!--//item-inner-->
+						</div>
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 45px;" src="images/githubb.png" /></div>
+								<h3 class="item-title">GitHub</h3>
+								<div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
+									for software development and version control using Git. It offers the distributed
+									version control and source code management (SCM) functionality of Git, plus its own
+									features. </div>
+							</div>
+						</div>
+			
+						<!--//item-inner-->
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 45px;" src="images/android-studio.png" /></div>
+								<h3 class="item-title">Android Studio</h3>
+								<div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
+									for software development and version control using Git. It offers the distributed
+									version control and source code management (SCM) functionality of Git, plus its own
+									features. </div>
+							</div></div>
+						<!--//item-inner-->
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 130px;" src="images/Kaggle.png" /></div>
+								<h3 class="item-title">Kaggle Platform</h3>
+								<div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
+									for software development and version control using Git. It offers the distributed
+									version control and source code management (SCM) functionality of Git, plus its own
+									features. </div>
+							</div></div>
+						<!--//item-inner-->
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 120px;" src="images/colab.png" /></div>
+								<h3 class="item-title">Google Colab</h3>
+								<div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
+									for software development and version control using Git. It offers the distributed
+									version control and source code management (SCM) functionality of Git, plus its own
+									features. </div>
+							</div></div>
+						<!--//item-inner-->
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 45px;" src="images/unity.png" /></div>
+								<h3 class="item-title">Unity For Game</h3>
+								<div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
+									for software development and version control using Git. It offers the distributed
+									version control and source code management (SCM) functionality of Git, plus its own
+									features. </div>
+							</div></div>
+						<!--//item-inner-->
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 60px;" src="images/arduino.png" /></div>
+								<h3 class="item-title">Ardino IDE</h3>
+								<div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
+									for software development and version control using Git. It offers the distributed
+									version control and source code management (SCM) functionality of Git, plus its own
+									features. </div>
+							</div></div>
+						<!--//item-inner-->
+						<div class="item col-dd-6 col-gg-3">
+							<div class="item-inner">
+								<div class="item-icon"><img style="width: 100px;" src="images/postman.png" /></div>
+								<h3 class="item-title">Postman</h3>
+								<div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
+									for software development and version control using Git. It offers the distributed
+									version control and source code management (SCM) functionality of Git, plus its own
+									features. </div>
+							</div></div>
+							<!--//item-inner-->
+						</div>
+						
+						
+      </div>
+    </section>
+
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="do-section p-3 p-lg-5 theme-bg-light">
+     	<div class="container">
+					<h2 class="section-title font-weight-bold mb-5">Testimonials</h2>
+					<div class="testimonial-carousel owl-carousel owl-theme">
+						<div class="item">
+							<div class="quote-holder">
+								<blockquote class="quote-content"> Muhammad Hamza is a great service provider and eager to learn new things. I have been in touch with him for the past few years on Fiver and consider him an intelligent person. And I admire his interest in ML.
+								</blockquote>
+								<i class="fas fa-quote-left"></i>
+							</div>
+							<!--//quote-holder-->
+							<div class="source-holder">
+								<div class="source-profile">
+									<img src="images/Fan Cutt.jpg" alt="image" />
+								</div>
+								<div class="meta">
+									<div class="name">Fan Cut</div>
+									<div class="info">United States, Fiverr</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="quote-holder">
+								<blockquote class="quote-content"> I am keisha Allen, CEO of Expert Solutions. Muhammad Hamza has received certified training from our organization. He has demonstrated excellent performance in his professional duties.
+								</blockquote>
+								<i class="fas fa-quote-left"></i>
+							</div>
+							<!--//quote-holder-->
+							<div class="source-holder">
+								<div class="source-profile">
+									<img src="images/keishaallen.jpeg" alt="image" />
+								</div>
+								<div class="meta">
+									<div class="name">keisha Allen</div>
+									<div class="info">United States</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="item">
+							<div class="quote-holder">
+								<blockquote class="quote-content">I knew him as a good student during my studies. He always showed great interest in Machine Learning and was not afraid to ask questions and explore new things in his area of ​​interest. </blockquote>
+								<i class="fas fa-quote-left"></i>
+							</div>
+							<!--//quote-holder-->
+							<div class="source-holder">
+								<div class="source-profile">
+									<img src="images/Adriana Fasano.jpg" alt="image" />
+								</div>
+								<div class="meta">
+									<div class="name">Adriana Fasano</div>
+									<div class="info">United States, Fiverr</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="quote-holder">
+								<blockquote class="quote-content"> I had a complicated issue and he went to great lengths to get it solved, which is amazing. I highly recommend his services. He constantly makes improvements which results in a better final product for us. </blockquote>
+								<i class="fas fa-quote-left"></i>
+							</div>
+							<!--//quote-holder-->
+							<div class="source-holder">
+								<div class="source-profile">
+									<img src="images/Review1.jpg" alt="image" />
+								</div>
+								<div class="meta">
+									<div class="name">Chrismk night</div>
+									<div class="info">Australia, Fiverr</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--//testimonial-carousel-->
+				</div>
+				<!--//container-->
+			</section>
+			<!--//testimonials-section-->
+			<div class="container">
+				<hr>
+			</div>
+<!-- Featured Projects Section -->
+	  <section class="featured-section p-3 p-lg-5">
+				<div class="container">
+					<h2 class="section-title font-weight-bold mb-5">Featured Projects</h2>
+					<div class="row">
+						<!--//col-->
+						<div class="col-hd-6 mb-5">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-hd-6 card-img-holder">
+										<img src="images/p3.png" class="card-img img-full m-3" alt="image">
+									</div>
+									<div class="col-hd-6">
+										<div class="card-body">
+											<h5 class="card-title"><a href="psdtohtml.html" class="theme-link">Aircraft Engine RLC</a></h5>
+											<p class="card-text">UAV, Drone and Aircraft Engine Falt prediction or remaining life cylcle Prediction.
+											</p>
+											<p class="card-text"><small class="text-muted">Open Source</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="psdtohtml.html"></a>
+									<div class="link-mask-text">
+										<a class="btn btn-secondary" href="psdtohtml.html">
+											<i class="fas fa-eye mr-2"></i>View Case Study </a>
+									</div>
+								</div>
+								<!--//link-mask-->
+							</div>
+							<!--//card-->
+						</div>
+						<!--//col-->
+						<div class="col-hd-6 mb-5">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-hd-6 card-img-holder">
+										<img src="images/Datascience.jpg"
+											class="card-img img-full m-3" alt="image">
+									</div>
+									<div class="col-hd-6">
+										<div class="card-body">
+											<h5 class="card-title"><a href="wpelementor.html"
+													class="theme-link">Data Preprocessing</a></h5>
+											<p class="card-text">Data Anylsis, preprocessing and Data Visulization.
+											</p>
+											<p class="card-text"><small class="text-muted">Open Source</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="wpelementor.html"></a>
+									<div class="link-mask-text">
+										<a class="btn btn-secondary" href="wpelementor.html">
+											<i class="fas fa-eye mr-2"></i>View Case Study </a>
+									</div>
+								</div>
+								<!--//link-mask-->
+							</div>
+							<!--//card-->
+						</div>
+						<!--//col-->
+						<div class="col-hd-6 mb-5">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-hd-6 card-img-holder">
+										<img  src="images/python.png" class="card-img img-full m-3"
+											alt="image">
+									</div>
+									<div class="col-hd-6">
+										<div class="card-body">
+											<h5 class="card-title"><a href="projectpage.html" class="theme-link">Python | Djnago</a></h5>
+											<p class="card-text">Different projects on Management, Yoga Performance (Api based), Timetable Management System for university and Research Experiments. </p>
+											<p class="card-text"><small class="text-muted">Open Source</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="react.html"></a>
+									<div class="link-mask-text">
+										<a class="btn btn-secondary" href="react.html">
+											<i class="fas fa-eye mr-2"></i>View Case Study </a>
+									</div>
+								</div>
+								<!--//link-mask-->
+							</div>
+							<!--//card-->
+						</div>
+						<!--//col-->
+						<div class="col-hd-6 mb-5">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-hd-6 card-img-holder">
+										<img src="images/resturent.jpg"
+											class="card-img img-full m-2" alt="image">
+									</div>
+									<div class="col-hd-6">
+										<div class="card-body">
+											<h5 class="card-title"><a href="fyp.html" class="theme-link">Restaurant
+													Management Solution</a></h5>
+											<p class="card-text">A Restaurant Management Solution with Admin Panel,
+												Tablet App and Kitchen Screen.</p>
+											<p class="card-text"><small class="text-muted">Final Year Project</small>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="fyp.html"></a>
+									<div class="link-mask-text">
+										<a class="btn btn-secondary" href="fyp.html">
+											<i class="fas fa-eye mr-2"></i>View Case Study </a>
+									</div>
+								</div>
+								<!--//link-mask-->
+							</div>
+							<!--//card-->
+						</div>
+					</div>
+					<!--//row-->
+					<div class="text-center py-3"><a href="portfolio.html" class="btn btn-primary"><i
+								class="fas fa-arrow-alt-circle-right mr-2"></i>View Portfolio</a></div>
+				</div>
+				<!--//container-->
+			</section>
+			<!--//featured-section-->
+			<div class="container">
+				<hr>
+			</div>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — Python Developer | Research Author</small>
+    </footer>
+  </div>
+
+  <!-- JS Files -->
+  <script src="./js/jquery.js"></script>
+  <script src="./js/proper.js"></script>
+  <script src="./js/bootstrap.js"></script>
+  <script src="./js/m.js"></script>
+  <script src="./js/testimo.js"></script>
+  <script src="./js/cookie.js"></script>
+  <script src="./js/dark.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
