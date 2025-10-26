@@ -169,3 +169,40 @@ section, header, footer {
   font-weight: 600;
   font-size: 1.1rem;
 }
+/* Publications Section */
+.publication-item {
+  background-color: #fff;
+  border-left: 5px solid seagreen;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.publication-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pub-title {
+  font-weight: 600;
+  color: #222;
+}
+
+.pub-authors,
+.pub-details {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.dark-mode .publication-item {
+  background-color: #1e1e1e !important;
+  border-left-color: #0ff;
+  color: #e0e0e0;
+}
+
+.dark-mode .pub-title {
+  color: #fff;
+}
+
+.dark-mode .pub-authors,
+.dark-mode .pub-details {
+  color: #ccc;
+}
