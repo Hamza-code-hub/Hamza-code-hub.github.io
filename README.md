@@ -1,1 +1,2 @@
-# muhammadhamza.github.io
+Muhammad Hamza - Portfolio
+Muhammad Hamza from pattoki is a BS Software Engineering student at the University of Okara, Pakistan. His research interests include 3D data modeling, data processing, image classification, and artificial intelligence applications in healthcare and technology. He is particularly focused on deep learning, machine learning, and data science, with experience in Python, TensorFlow, and Keras. His work emphasizes data preprocessing, feature engineering, and model evaluation, aiming to contribute impactful AI-driven solutions to real-world challenges.
