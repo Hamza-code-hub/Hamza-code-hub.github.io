@@ -102,37 +102,32 @@
 					</div>
 					<!--//container-->
 			</section>
-			<section class="contact-section px-3 py-5 p-md-5">
-				<div class="container">
-					<form id="contact-form" class="contact-form col-lg-8 mx-lg-auto" method="post"
-						action="mailto:iamali62426@gmail.com">
-						<h3 class="text-center mb-3">Get In Touch</h3>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label class="sr-only" for="cname">Name</label>
-								<input type="text" class="form-control" id="cname" name="name" placeholder="Name"
-									minlength="2" required="" aria-required="true">
-							</div>
-							<div class="form-group col-md-6">
-								<label class="sr-only" for="cemail">Email</label>
-								<input type="email" class="form-control" id="cemail" name="email" placeholder="Email"
-									required="" aria-required="true">
-							</div>
-							<div class="form-group col-12">
-								<label class="sr-only" for="cmessage">Your message</label>
-								<textarea class="form-control" id="cmessage" name="message"
-									placeholder="Enter your message" rows="10" required=""
-									aria-required="true"></textarea>
-							</div>
-							<div class="form-group col-12">
-								<button type="submit" class="btn btn-block btn-primary py-2">Send Now</button>
-							</div>
-						</div>
-						<!--//form-row-->
-					</form>
-				</div>
-				<!--//container-->
-			</section>
+			<!-- Contact Section -->
+<section id="contact" class="contact-section p-3 p-lg-5 theme-bg-light">
+  <div class="container text-center">
+    <h2 class="section-title font-weight-bold mb-4">Contact Me</h2>
+    <p class="section-intro mb-5">Interested in collaborating or have a question? Feel free to reach out!</p>
+
+    <form id="contact-form" action="https://formspree.io/f/meopoqez" method="POST" class="contact-form mx-auto" style="max-width:600px;">
+      <div class="form-group">
+        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" name="_replyto" class="form-control" placeholder="Your Email" required>
+      </div>
+      <div class="form-group">
+        <input type="text" name="subject" class="form-control" placeholder="Subject">
+      </div>
+      <div class="form-group">
+        <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">
+        <i class="fas fa-paper-plane mr-2"></i>Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
 			<footer class="footer text-center py-4">
       <small class="copyright">© 2025 Muhammad Hamza — Python Developer | Research Author</small>
     </footer>
@@ -150,6 +145,12 @@
 		<script src="./js/dark.js"></script>
 		<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 		<script src="./js/switcher.js"></script>
+		<script>
+document.getElementById('contact-form').addEventListener('submit', function() {
+  alert('✅ Your message has been sent successfully!');
+});
+</script>
+
 	</body>
 
 </html>
