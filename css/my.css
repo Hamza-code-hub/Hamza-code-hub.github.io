@@ -1,0 +1,171 @@
+.profile-image{
+    border: 1px solid seagreen;
+}
+#do{
+    width: 90px;
+    height: 40px;
+}
+a.resume-link {
+    font-size: 16px;
+    font-weight: 600;
+}
+.profile-section .profile-image{
+    width: 160px;
+    height: 170px;
+}
+/* --- Prevent horizontal overflow globally --- */
+html, body {
+  overflow-x: hidden; /* hides accidental horizontal overflow */
+  width: 100%;
+}
+
+/* Force-overflow guard (Ali's wrapper) */
+.force-overflow {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Ensure rows and main-wrapper don't expand past viewport */
+.main-wrapper, .container, .row {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Optional: ensure sections don't use 100vw (which includes scrollbar) */
+section, header, footer {
+  width: 100%;
+  box-sizing: border-box;
+}
+.about-me-section .profile-image {
+  width: 230px;
+  height: auto;
+  border-radius: 8px;
+}
+ .gallery {
+      display: flex; flex-wrap: wrap; justify-content: center; 
+      gap: 10px; margin-top: 30px;
+    }
+    .gallery img {
+      width: 300px; border-radius: 12px; 
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2); 
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery img:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.3); 
+    }
+/* --- Dark Mode Fixes for New Sections --- */
+.dark-mode .gallery,
+.dark-mode .overview-section {
+  background-color: #121212 !important;
+  color: #ffc107 !important;
+}
+
+.dark-mode .testimonials-section,
+.dark-mode .do-section{
+  background-color: #121212 !important;
+  color: #0a0a0a !important;
+}
+
+.dark-mode .gallery img {
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .quote-holder,
+.dark-mode .project-card {
+  background-color: #1e1e1e !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+}
+.dark-mode .section-intro{
+    color: #ffffff;
+}
+.dark-mode .section-title {
+  color: #fff !important;
+}
+
+.dark-mode .item-desc,
+.dark-mode .bio,
+.dark-mode .quote-content {
+  color: #cfcfcf !important;
+}
+.col-hd-6 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-dd-6 {
+    position: relative;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-dd-4 {
+    position: relative;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-gg-3 {
+    width: 50%;
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.img-full {
+  max-width: 100%;
+}
+.img-small {
+  max-width: 45%;
+}
+@media (min-width: 768px) {
+    .col-hd-6 {
+        -webkit-box-flex: 0;
+        flex: 0 0 50%;
+    }
+}
+/* @media (max-width: 767px) {
+  .project-card .row {
+    flex-direction: column;
+  }
+} */
+@media (min-width: 768px) {
+    .col-dd-4 {
+        -webkit-box-flex: 0;
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+    }
+}
+
+/* Work Platforms Section */
+.platform-card {
+  display: block;
+  background: var(--theme-bg-light, #fff);
+  border-radius: 12px;
+  padding: 20px 10px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.platform-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.platform-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.platform-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
