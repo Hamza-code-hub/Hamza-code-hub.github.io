@@ -310,4 +310,55 @@ section, header, footer {
     font-size: 1rem;
   }
 }
+/* --- Modern Responsive Grid for "What I Do" section --- */
+#do, 
+#whatido {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 30px;
+}
+
+#do .item-inner,
+#whatido .item-inner {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 20px 15px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#do .item-inner:hover,
+#whatido .item-inner:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure title and icon row remains inline */
+#do .do-row,
+#whatido .do-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Optional: Center grid items on mobile */
+@media (max-width: 768px) {
+  #do, 
+  #whatido {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #do, 
+  #whatido {
+    grid-template-columns: 1fr;
+  }
+}
 
