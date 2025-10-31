@@ -20,6 +20,13 @@
   <link rel="stylesheet" href="./css/my.css">
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
 
+	<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- Typed.js for typing animation -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
   <!-- FontAwesome -->
   <script defer src="./js/all.js"></script>
 
@@ -67,7 +74,7 @@
           <div class="profile-section pt-3 pt-lg-0">
             <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza">
             <div class="bio mb-3">
-              Hi, I am <strong>Muhammad Hamza. </strong>| Python & Django Developer | Ai Engineer | Research Author (Elsevier) |     Welcome to my personal portfolio!
+              Hi, I am <strong>Muhammad Hamza. </strong> <span id="typed-text2"></span>
             </div>
 
             <ul class="social-list list-inline py-2 mx-auto">
@@ -118,8 +125,10 @@
       <div class="container">
         <div class="profile-teaser media flex-column flex-lg-row">
           <div class="media-body">
-            <h2 class="name font-weight-bold mb-1">Muhammad Hamza</h2>
-            <div class="tagline mb-3">Python & Django Developer | Research Author (Elsevier)</div>
+            <h2 class="blog-name pt-lg-4 mb-0">
+  <a href="index.html"><span id="typed-text1"></span></a>
+</h2>
+        <div class="tagline mb-3"><span id="typed-text2"></span></div>
             <div class="bio mb-4">
               I’m Muhammad Hamza a Python developer specializing in AI, deep learning, and web development using Django.  
               My experience includes medical image analysis, automation, and 3D model processing.  
@@ -672,8 +681,38 @@
   <script src="./js/testimo.js"></script>
   <script src="./js/cookie.js"></script>
   <script src="./js/dark.js"></script>
+	<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var typed = new Typed("#typed-text1", {
+      strings: [" Muhammad Hamza "],
+      typeSpeed: 40,      // speed of typing
+      backSpeed: 20,      // speed of backspacing
+      backDelay: 1000,    // pause before deleting
+      startDelay: 300,    // small delay before start
+      loop: true,         // repeat infinitely
+      showCursor: true,   // blinking cursor
+      cursorChar: "|"
+    });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var typed = new Typed("#typed-text2", {
+      strings: [ "Python - Django Developer", "AI - Machine Learning Engineer", "Research Author (Elsevier Q1)"],
+      typeSpeed: 50,      // speed of typing
+      backSpeed: 25,      // speed of backspacing
+      backDelay: 1000,    // pause before deleting
+      startDelay: 300,    // small delay before start
+      loop: true,         // repeat infinitely
+      showCursor: true,   // blinking cursor
+      cursorChar: "|"
+    });
+  });
+</script>
+
 </body>
 </html>
+
 
 
 
