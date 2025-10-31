@@ -310,3 +310,8 @@ section, header, footer {
     font-size: 1rem;
   }
 }
+/* --- Dark Mode Fix for "What I Do" titles --- */
+.dark-mode #whatido .do-title {
+  color: #e7b00f !important; /* Gold tone for dark mode */
+}
+
