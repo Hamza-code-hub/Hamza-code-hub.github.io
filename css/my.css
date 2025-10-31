@@ -304,7 +304,7 @@ section, header, footer {
 /* Optional mobile adjustment */
 @media (max-width: 768px) {
   .do-row img {
-    width: 65px;
+    width: 35px;
   }
   .do-row .do-title {
     font-size: 1rem;
