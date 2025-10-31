@@ -236,11 +236,10 @@ section, header, footer {
 /* --- What I Do Section (Modern & Responsive) --- */
 .item-icon {
   margin-bottom: 15px;
-  text-align: center;
 }
 
 .item-icon img {
-  width: 180px;
+  width: 400px;
   max-width: 100%;
   height: auto;
   display: inline-block;
@@ -257,7 +256,7 @@ section, header, footer {
 
 /* Optional classes for different logo widths */
 .logo-wide {
-  width: 200px;
+  width: 400px;
 }
 
 .logo-medium {
@@ -265,7 +264,7 @@ section, header, footer {
 }
 
 .logo-small {
-  width: 100px;
+  width: 400px;
 }
 
 /* Responsive adjustments */
