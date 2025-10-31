@@ -314,4 +314,8 @@ section, header, footer {
 .dark-mode #whatido .do-title {
   color: #e7b00f !important; /* Gold tone for dark mode */
 }
+.dark-mode #whatido .do-row img:hover {
+  filter: drop-shadow(0px 4px 10px #e7b00f);
+  transform: scale(1.08);
+}
 
