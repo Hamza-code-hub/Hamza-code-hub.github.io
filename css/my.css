@@ -280,3 +280,47 @@ section, header, footer {
   }
 }
 
+/* --- WHAT I DO Section: Image + Title Inline --- */
+#do .item-inner {
+  text-align: left;
+}
+
+#do .item-icon {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#do .item-icon img {
+  width: 60px;
+  height: auto;
+  margin-right: 12px;
+  object-fit: contain;
+}
+
+#do .item-title {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+#do .item-desc {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ✅ Mobile optimization */
+@media (max-width: 768px) {
+  #do .item-icon img {
+    width: 75px;
+  }
+  #do .item-title {
+    font-size: 1rem;
+  }
+  #do .item-desc {
+    font-size: 0.9rem;
+  }
+}
