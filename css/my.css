@@ -318,4 +318,24 @@ section, header, footer {
   filter: drop-shadow(0px 4px 10px #e7b00f);
   transform: scale(1.08);
 }
+/* Responsive fix for "About Me" section */
+@media (max-width: 768px) {
+  .about-me-section .profile-teaser {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .about-me-section .profile-image {
+    width: 70% !important;
+    max-width: 250px;
+    height: auto;
+    margin: 20px auto 0;
+    border-radius: 10px;
+  }
+
+  .about-me-section .media-body {
+    padding: 0 10px;
+  }
+}
 
