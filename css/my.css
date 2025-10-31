@@ -280,4 +280,34 @@ section, header, footer {
   }
 }
 
+/* --- What I Do section: Row layout for icon + title (isolated) --- */
+.do-row {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* spacing between image and title */
+  margin-bottom: 10px;
+}
+
+.do-row img {
+  width: 55px; /* for your 600x80 PNGs */
+  height: auto;
+  object-fit: contain;
+}
+
+.do-row .do-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+/* Optional mobile adjustment */
+@media (max-width: 768px) {
+  .do-row img {
+    width: 65px;
+  }
+  .do-row .do-title {
+    font-size: 1rem;
+  }
+}
 
