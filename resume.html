@@ -1,323 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Muhammad Hamza - Official Website</title>
-  <!-- Meta -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Muhammad Hamza - AI Engineer | Python & Django Developer | Research Author">
-  <meta name="author" content="Muhammad Hamza">
-  <link rel="shortcut icon" href="images/favicon.ico">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-  <!-- FontAwesome JS -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Muhammad Hamza — AI Engineer | LLM & RAG Specialist | Cybersecurity AI</title>
+
+  <!-- Primary SEO meta -->
+  <meta name="description" content="Muhammad Hamza — AI Engineer specializing in LLM systems, Retrieval-Augmented Generation (RAG), agentic AI workflows, and cybersecurity AI. Research publication in medical imaging (3D-MobiBrainNet). CGPA 3.75. Based in Pakistan." />
+  <meta name="keywords" content="Muhammad Hamza, AI Engineer, LLM, RAG, LangChain, agentic AI, cybersecurity AI, deep learning, medical imaging, Alzheimer's MRI, MobiBrainNet, Kaggle Notebook Expert" />
+  <meta name="author" content="Muhammad Hamza" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Muhammad Hamza — AI Engineer | LLM & RAG Specialist" />
+  <meta property="og:description" content="AI Engineer focused on LLM-powered systems, Retrieval-Augmented Generation (RAG), agentic AI workflows, and AI-driven cybersecurity solutions." />
+  <meta property="og:type" content="profile" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://yourdomain.com/images/Muhammad_Hamza.png" />
+  <meta property="og:url" content="https://yourdomain.com/resume.html" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Muhammad Hamza — AI Engineer" />
+  <meta name="twitter:description" content="LLM, RAG, agentic AI, and cybersecurity-focused AI engineer. Research on Alzheimer's MRI (3D-MobiBrainNet)." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://yourdomain.com/resume.html" />
+
+  <!-- Favicons & fonts -->
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet" />
+
+  <!-- CSS & icons (keep your existing CSS paths) -->
+  <link id="theme-style" rel="stylesheet" href="./css/theme.css" />
   <script defer src="./js/all.js"></script>
-  <!-- Theme CSS -->
-  <link id="theme-style" rel="stylesheet" href="./css/theme.css">
+
+  <!-- JSON-LD structured data (Person + Publication) for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Muhammad Hamza",
+        "jobTitle": "AI Engineer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "CyberZeus Software Systems"
+        },
+        "email": "mailto:hamza.ai.official@gmail.com",
+        "telephone": "+92 302 4842593",
+        "sameAs": [
+          "https://www.linkedin.com/in/hamzzaz",
+          "https://github.com/Hamza-code-hub",
+          "https://www.kaggle.com/muhammadhamzamaher"
+        ],
+        "knowsAbout": ["Large Language Models", "Retrieval-Augmented Generation", "LangChain", "Agentic AI", "Cybersecurity", "Deep Learning", "Medical Imaging"]
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "headline": "3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D brain magnetic resonance imaging",
+        "author": {
+          "@type": "Person",
+          "name": "Muhammad Hamza"
+        },
+        "datePublished": "2025",
+        "isPartOf": {
+          "@type": "Periodical",
+          "name": "Ain Shams Engineering Journal (Elsevier)"
+        },
+        "url": "https://doi.org/10.1016/j.asej.2025.103714",
+        "identifier": "https://doi.org/10.1016/j.asej.2025.103714"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Minimal accessibility & SEO-friendly small tweaks */
+    h1,h2,h3,h4{line-height:1.15;}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+  </style>
 </head>
 
 <body>
-  <header class="header text-center">
+  <header class="header text-center" role="banner">
     <div class="force-overflow">
-      <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a></h1>
-      <nav class="navbar navbar-expand-lg navbar-dark">
+      <h1 class="blog-name pt-lg-4 mb-0">
+        <a href="index.html">Muhammad Hamza</a>
+      </h1>
+
+      <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Primary Navigation">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div id="navigation" class="collapse navbar-collapse flex-column">
           <div class="profile-section pt-3 pt-lg-0">
-            <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza">
-            <div class="bio mb-3">
-              Hi, I am <strong>Muhammad Hamza. </strong> | AI & Python Developer | ML Engineer | Research Author (Elsevier) | Kaggle Expert.
-            </div>
-            <ul class="social-list list-inline py-2 mx-auto">
-              <li class="list-inline-item"><a href="https://linkedin.com/in/hamzzaz" target="_blank"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank"><i class="fab fa-github-alt fa-fw"></i></a></li>
-              <li class="list-inline-item"><a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank"><i class="fab fa-kaggle fa-fw"></i></a></li>
-              <li class="list-inline-item"><a href="mailto:maherhamza4616@gmail.com"><i class="fas fa-envelope fa-fw"></i></a></li>
+            <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza — AI Engineer" width="160" height="160" loading="lazy">
+            <p class="bio mb-3">
+              Hi, I am <strong>Muhammad Hamza</strong> — AI Engineer specializing in LLM systems, Retrieval-Augmented Generation (RAG), agentic AI workflows, and cybersecurity AI.
+            </p>
+
+            <ul class="social-list list-inline py-2 mx-auto" aria-label="Social links">
+              <li class="list-inline-item"><a href="https://linkedin.com/in/hamzzaz" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener">GitHub</a></li>
+              <li class="list-inline-item"><a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" rel="noopener">Kaggle</a></li>
+              <li class="list-inline-item"><a href="mailto:hamza.ai.official@gmail.com">Email</a></li>
             </ul>
             <hr>
           </div>
 
           <ul class="navbar-nav flex-column text-left">
-            <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="portfolio.html"><i class="fas fa-laptop-code fa-fw mr-2"></i>Portfolio</a></li>
-            <li class="nav-item"><a class="nav-link active" href="resume.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link active" href="resume.html">Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           </ul>
-          
 
           <div class="my-2">
-            <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a>
+            <a class="btn btn-primary" href="contact.html" target="_blank" rel="noopener">Hire Me</a>
           </div>
 
-          <div class="dark-mode-toggle text-center w-100">
-            <hr class="mb-4">
-            <h4 class="toggle-name mb-3"><i class="fas fa-adjust mr-1"></i>Dark Mode</h4>
-            <input class="toggle" id="darkmode" type="checkbox">
-            <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-          </div>
         </div>
       </nav>
     </div>
   </header>
 
-  <div class="main-wrapper">
-
-    <!-- PAGE 1 -->
-    <section class="cta-section theme-bg-light py-5">
+  <main class="main-wrapper" role="main" aria-labelledby="resume-heading">
+    <section class="cta-section theme-bg-light py-5" aria-hidden="false">
       <div class="container text-center single-col-max-width">
-        <h2 class="heading mb-3">Online Resume</h2>
-        <a class="btn btn-primary" href="Muhammad Hamza_CV.pdf" target="_blank"><i class="fas fa-file-pdf mr-2"></i>Download PDF Version</a>
+        <h2 id="resume-heading" class="heading mb-3">Online Resume</h2>
+        <a class="btn btn-primary" href="Muhammad Hamza_CV.pdf" target="_blank" rel="noopener">
+          Download PDF Version
+        </a>
       </div>
     </section>
 
     <div class="container px-3 px-lg-5">
-      <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
-        <div class="resume-header">
+      <!-- Header / Contact -->
+      <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg" itemprop="mainEntity" itemscope itemtype="https://schema.org/Person">
+        <header class="resume-header">
           <div class="row align-items-center">
             <div class="resume-title col-12 col-md-6 col-lg-8 col-xl-9">
-              <h2 class="resume-name mb-0 text-uppercase">Muhammad Hamza</h2>
-              <div class="resume-tagline mb-3 mb-md-0">AI & Python Developer | ML Engineer | Research Author</div>
+              <h2 class="resume-name mb-0 text-uppercase" itemprop="name">Muhammad Hamza</h2>
+              <p class="resume-tagline mb-3 mb-md-0" itemprop="jobTitle">AI Engineer — LLM & RAG Specialist | Cybersecurity AI</p>
             </div>
-            <div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3">
+
+            <div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3" aria-label="Contact information">
               <ul class="list-unstyled mb-0">
-                <li class="mb-2"><i class="fas fa-phone-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="tel:+923417215920">+92 341 7215920</a></li>
-                <li class="mb-2"><i class="fas fa-envelope-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="mailto:hamza.ai.official@gmail.com">Hamza.ai.official@gmail.com</a></li>
-                <li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg mr-2"></i>Lahore, Pakistan</li>
+                <li><strong>Phone:</strong> <a class="resume-link" href="tel:+923024842593">+92 302 4842593</a></li>
+                <li><strong>Email:</strong> <a class="resume-link" href="mailto:hamza.ai.official@gmail.com">hamza.ai.official@gmail.com</a></li>
+                <li><strong>Location:</strong> Lahore, Pakistan</li>
               </ul>
             </div>
           </div>
-        </div>
+        </header>
+
         <hr>
 
-        <div class="resume-intro py-3">
+        <!-- Intro -->
+        <section class="resume-intro py-3" aria-labelledby="intro-heading">
+          <h3 id="intro-heading" class="sr-only">Professional Summary</h3>
           <div class="media flex-column flex-md-row align-items-center">
-            <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza">
+            <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto" src="images/Muhammad_Hamza.png" alt="Profile photo — Muhammad Hamza" width="140" height="140" loading="lazy">
             <div class="media-body text-left">
-              <p class="mb-0">I’m an AI Engineer specializing in LLM-powered systems, Retrieval-Augmented Generation (RAG), and agentic AI workflows. Currently developing enterprise AI solutions at CyberZeus Software Systems, including AI-driven cybersecurity systems, intelligent automation, and scalable ML pipelines. Experienced in designing end-to-end AI systems from data preprocessing and model training to deployment and backend integration. Research background in medical imaging AI and anomaly detection, with published work on deep learning for Alzheimer’s disease detection.</p>
+              <p class="mb-0" itemprop="description">
+                I’m an AI Engineer specializing in LLM-powered systems, Retrieval-Augmented Generation (RAG), and agentic AI workflows. I build enterprise AI solutions at CyberZeus Software Systems including AI-driven cybersecurity, intelligent automation, and scalable ML pipelines. Experienced end-to-end (data preprocessing → model training → deployment → backend integration). Research background in medical imaging and anomaly detection with a publication on multi-class Alzheimer's detection (3D-MobiBrainNet).
+              </p>
             </div>
           </div>
-        </div>
+        </section>
+
         <hr>
 
-        <div class="resume-body">
+        <!-- Experience -->
+        <section class="resume-body">
           <div class="row">
             <div class="resume-main col-12 col-lg-8 col-xl-9 pr-0 pr-lg-5">
-              <section class="work-section py-3">
-                <h3 class="text-uppercase resume-section-heading mb-4">EXPERIENCE</h3>
-                <div class="item mb-3">
+              <section class="work-section py-3" aria-labelledby="experience-heading">
+                <h2 id="experience-heading" class="text-uppercase resume-section-heading mb-4">Experience</h2>
+
+                <!-- CyberZeus -->
+                <div class="item mb-3" itemscope itemtype="https://schema.org/JobPosting">
                   <div class="item-heading row align-items-center mb-2">
-                    <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Freelance Python Developer & ML Engineer</h4>
-                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Fiverr | 2023 – Present</div>
+                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Developer — CyberZeus Software Systems</h3>
+                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Jan 2026 – Present | Lahore</div>
                   </div>
                   <div class="item-content">
                     <ul>
-                      <li>Develop AI systems for data analysis, image recognition, and automation.</li>
-                      <li>Built predictive models for healthcare and UAV fault detection.</li>
-                      <li>Delivered 50+ successful client projects globally with 5★ feedback.</li>
+                      <li>Design and implement enterprise AI/ML solutions for web and backend platforms.</li>
+                      <li>Build LLM-powered systems and RAG pipelines using LangChain and other frameworks.</li>
+                      <li>Develop multi-agent / agentic AI workflows to automate security operations and reporting.</li>
+                      <li>Design anomaly detection and intelligent threat analysis models for cybersecurity use-cases.</li>
+                      <li>Deploy, monitor, and maintain ML models in production; integrate with APIs and backend services.</li>
                     </ul>
                   </div>
                 </div>
-                <div class="item mb-3">
+
+                <!-- Efaida -->
+                <div class="item mb-3" itemscope itemtype="https://schema.org/JobPosting">
                   <div class="item-heading row align-items-center mb-2">
-                    <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI & Research Developer (Intern)</h4>
-                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Freelance | 2022 – 2023</div>
+                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Software Engineer Intern — Efaida Software House</h3>
+                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Aug 2025 – Dec 2025 | Okara</div>
                   </div>
                   <div class="item-content">
                     <ul>
-                      <li>Implemented CNN and LSTM architectures for medical imaging and IoT datasets.</li>
-                      <li>Automated preprocessing and data pipelines for academic research.</li>
+                      <li>Built AI-driven automation tools using Zapier, n8n and Make.com to streamline workflows.</li>
+                      <li>Developed ML models for text classification and object detection and integrated them into pipelines.</li>
+                      <li>Orchestrated five API integrations with Python utilities to automate data entry and reporting — saving ~2 hours/week for the sales team.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Independent -->
+                <div class="item mb-3">
+                  <div class="item-heading row align-items-center mb-2">
+                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Developer (Part-Time / Independent Projects)</h3>
+                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Apr 2024 – Dec 2025 | Remote</div>
+                  </div>
+                  <div class="item-content">
+                    <ul>
+                      <li>Designed and trained deep learning models for medical imaging (Alzheimer's MRI) and lung cancer detection.</li>
+                      <li>Implemented robust preprocessing, augmentation, and evaluation pipelines (ROC-AUC, F1, confusion matrices).</li>
+                      <li>Collaborated on research projects resulting in peer-reviewed publication(s).</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Fiverr -->
+                <div class="item mb-3">
+                  <div class="item-heading row align-items-center mb-2">
+                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Freelance Python Developer & ML Engineer — Fiverr</h3>
+                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">2023 – Present | Remote</div>
+                  </div>
+                  <div class="item-content">
+                    <ul>
+                      <li>Fiverr Level 1 Seller — completed 12+ international projects in automation, ML, and data analysis.</li>
+                      <li>Delivered end-to-end ML solutions including data pipelines, model training, evaluation and deployment.</li>
                     </ul>
                   </div>
                 </div>
               </section>
 
-              <section class="project-section py-3">
-                <h3 class="text-uppercase resume-section-heading mb-4">CERTIFICATIONS & ACHIEVEMENTS</h3>
-                <div class="item mb-3">
-                  <ul>
-                    <li>Kaggle <strong>Expert Badge</strong> — Competitions & Notebooks.</li>
-                    <li>Coursera — <strong>Google Data Analytics Professional Certificate</strong>.</li>
-                    <li>Fiverr <strong>Level 1 Seller</strong> — 5★ Rating.</li>
-                  </ul>
-                </div>
+              <!-- Projects -->
+              <section class="project-section py-3" aria-labelledby="projects-heading">
+                <h2 id="projects-heading" class="text-uppercase resume-section-heading mb-4">Key Projects</h2>
+
+                <article class="item mb-3">
+                  <h3 class="item-title">Agentic Cybersecurity AI Assistant (RAG + Multi-Agent System)</h3>
+                  <p>Enterprise AI assistant using Retrieval-Augmented Generation and multi-agent orchestration to automate vulnerability analysis, security-tool orchestration, scheduled monitoring, and PDF reporting. Integrates vulnerability knowledge bases and security APIs for fast triage and reporting.</p>
+                </article>
+
+                <article class="item mb-3">
+                  <h3 class="item-title">AI-Based Ticket Scalping Prevention System</h3>
+                  <p>Pricing & anomaly-detection system designed to detect bot activity, high-frequency transactions and abnormal purchase patterns; includes intelligent pricing adjustments and mitigation rules to prevent scalping.</p>
+                </article>
+
+                <article class="item mb-3">
+                  <h3 class="item-title">AI-Driven Intrusion Detection for Critical Systems</h3>
+                  <p>Hybrid deep learning model (TabNet + Transformer + Cross-Attention) trained on CIC-IDS 2017 data to detect network threats with strong precision/recall across varied attack vectors.</p>
+                </article>
+
+                <article class="item mb-3">
+                  <h3 class="item-title">Alzheimer's Disease Detection from 3D MRI — MobiBrainNet</h3>
+                  <p>3D CNN (MobiBrainNet) for multi-class Alzheimer's detection using volumetric MRI and multi-plane feature fusion. Focus on efficiency (fewer parameters) with strong accuracy and generalization (published in Ain Shams Engineering Journal).</p>
+                </article>
+
+                <article class="item mb-3">
+                  <h3 class="item-title">Technical Support Chatbot (NLP)</h3>
+                  <p>Intent-classification based chatbot for automated product support, combining rule-based handling with learned intent models for high-precision routing and responses.</p>
+                </article>
+
               </section>
+
+              <!-- Certifications & Achievements -->
+              <section class="project-section py-3" aria-labelledby="certs-heading">
+                <h2 id="certs-heading" class="text-uppercase resume-section-heading mb-4">Certifications & Achievements</h2>
+                <ul>
+                  <li>Kaggle Notebook Expert Badge — Ranked in Top 2,100 out of ~60,000+ contributors.</li>
+                  <li>Data Analytics & EDA — Coursera</li>
+                  <li>Python (Basic to Advanced) — Coursera</li>
+                  <li>Introduction to Data Analysis — IBM</li>
+                </ul>
+              </section>
+
             </div>
 
-            <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4">
+            <!-- Sidebar: Skills, Education, Contact -->
+            <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4" aria-labelledby="skills-heading">
               <section class="skills-section py-3">
-                <h3 class="text-uppercase resume-section-heading mb-4">Skills</h3>
-                <div class="item">
-                  <h4 class="item-title">Programming</h4>
-                  <ul class="list-unstyled resume-skills-list">
-                    <li class="mb-2">Python /  HTML&CSS</li>
-                    <li class="mb-2">Django / Flask Api</li>
-                     <li class="mb-2">TensorFlow / PyTorch</li>
-                    <li class="mb-2">NumPy / Pandas </li>                    
-                    <li class="mb-2">Keras / OpenCV</li>
-                    <li class="mb-2">Matplotlib / Scikit-learn</li>
-                  </ul>
-                  <h4 class="item-title">Tools</h4>
-                  <ul class="list-unstyled resume-skills-list">
-                    <li class="mb-2">VS Code / Google Colab</li>
-                    <li class="mb-2">Git / GitHub / Postman</li>
-                    <li class="mb-2">Jupyter Notebook / Kaggle</li>
-                  </ul>
-                  <h4 class="item-title">Databases</h4>
-                  <ul class="list-unstyled resume-skills-list">
-                    <li class="mb-2">SQLite / PostgreSQL</li>
-                  </ul>
-                  <h4 class="item-title">Languages</h4>
-                  <ul class="list-unstyled resume-skills-list">
-                    <li class="mb-2">English (Professional)</li>
-                    <li class="mb-2">Urdu (Native)</li>
-                  </ul>
-                </div>
+                <h2 id="skills-heading" class="text-uppercase resume-section-heading mb-4">Skills</h2>
+
+                <h4 class="item-title">Programming</h4>
+                <ul class="list-unstyled resume-skills-list">
+                  <li>Python</li>
+                  <li>C++ (Basic)</li>
+                </ul>
+
+                <h4 class="item-title">AI & ML</h4>
+                <ul class="list-unstyled resume-skills-list">
+                  <li>Large Language Models (LLMs)</li>
+                  <li>Retrieval-Augmented Generation (RAG)</li>
+                  <li>Agentic AI Workflows</li>
+                  <li>Deep Learning (TensorFlow)</li>
+                  <li>Model evaluation (ROC-AUC, F1, confusion matrix)</li>
+                </ul>
+
+                <h4 class="item-title">Frameworks & Tools</h4>
+                <ul class="list-unstyled resume-skills-list">
+                  <li>Django, Flask</li>
+                  <li>LangChain</li>
+                  <li>Git / GitHub / Postman / Jupyter Notebook</li>
+                </ul>
+
+                <h4 class="item-title">Data & Libraries</h4>
+                <ul class="list-unstyled resume-skills-list">
+                  <li>NumPy, Pandas, Scikit-learn, TensorFlow</li>
+                </ul>
+
+                <h4 class="item-title">Languages</h4>
+                <ul class="list-unstyled resume-skills-list">
+                  <li>English (Professional)</li>
+                  <li>Urdu (Native)</li>
+                </ul>
+
+                <hr>
+
+                <section aria-labelledby="education-heading">
+                  <h3 id="education-heading" class="text-uppercase resume-section-heading mb-3">Education</h3>
+                  <p><strong>BS Software Engineering</strong><br>University of Okara (2022 – 2026)<br>CGPA: <strong>3.75 / 4.00</strong></p>
+                </section>
               </section>
             </aside>
           </div>
-        </div>
+        </section>
 
         <hr>
-         <!-- Footer -->
-        <div class="resume-footer text-center">
-          <ul class="resume-social-list list-inline mx-auto mb-0 d-inline-block text-muted">
-            <li class="list-inline-item mr-3"><a href="https://github.com/Hamza-code-hub"><i class="fab fa-github fa-2x"></i></a></li>
-            <li class="list-inline-item mr-3"><a href="https://www.linkedin.com/in/hamzzaz"><i class="fab fa-linkedin fa-2x"></i></a></li>
-            <li class="list-inline-item mr-3"><a href="https://www.kaggle.com/muhammadhamzamaher"><i class="fab fa-kaggle fa-2x"></i></a></li>
-            <li class="list-inline-item mr-3"><a href="mailto:maherhamza4616@gmail.com"><i class="fas fa-envelope fa-2x"></i></a></li>
+
+        <!-- Publications & Research -->
+        <section class="project-section py-3" aria-labelledby="publications-heading">
+          <h2 id="publications-heading" class="text-uppercase resume-section-heading mb-4">Publications</h2>
+          <article class="item mb-3">
+            <h3 class="item-title">3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D MRI</h3>
+            <p>Published in Ain Shams Engineering Journal (Elsevier Q1). DOI: <a href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank" rel="noopener">10.1016/j.asej.2025.103714</a></p>
+            <p>Summary: 3D-MobiBrainNet uses volumetric MRI multi-plane feature fusion to improve multi-class AD classification while maintaining computational efficiency.</p>
+          </article>
+        </section>
+
+        <hr>
+
+        <section class="project-section py-3" aria-labelledby="interests-heading">
+          <h2 id="interests-heading" class="text-uppercase resume-section-heading mb-4">Interests</h2>
+          <ul>
+            <li>Artificial Intelligence & Deep Learning</li>
+            <li>UAV & Embedded Systems</li>
+            <li>Backend Development with Django</li>
+            <li>Academic Research & Writing</li>
           </ul>
-        </div>
-      </article>
+        </section>
 
-      <!-- PAGE 2 -->
-      <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
-        <div class="resume-body">
-          <section class="work-section py-3">
-            <h3 class="text-uppercase resume-section-heading mb-4">KEY PROJECTS</h3>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Aircraft Engine Fault Prediction</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Machine Learning</div>
-              </div>
-              <div class="item-content">
-                <p>Remaining useful life prediction using CNN-LSTM architecture on NASA C-MAPSS dataset.</p>
-              </div>
-            </div>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Satellite Image Classification</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Deep Learning</div>
-              </div>
-              <div class="item-content">
-                <p>Land-cover classification using Transfer Learning (EfficientNet) on remote sensing datasets.</p>
-              </div>
-            </div>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI-Based Intrusion Detection</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Cybersecurity</div>
-              </div>
-              <div class="item-content">
-                <p>Network intrusion detection system using hybrid deep learning models on NSL-KDD dataset.</p>
-              </div>
-            </div>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">University Timetable System</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Django Project</div>
-              </div>
-              <div class="item-content">
-                <p>Automated scheduling web application for faculty and classes using constraint-based optimization.</p>
-              </div>
-            </div>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">LinkedIn Automation Bot</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Web Automation</div>
-              </div>
-              <div class="item-content">
-                <p>Automated profile scraping and connection tasks using Selenium and BeautifulSoup for data collection.</p>
-              </div>
-            </div>
-          </section>
-
-          <section class="project-section py-3">
-            <h3 class="text-uppercase resume-section-heading mb-4">EDUCATION</h3>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">BS Software Engineering</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">University of Okara | 2022 – 2026</div>
-              </div>
-              <div class="item-content">
-                <p>CGPA 3.74 / 4.00</p>
-              </div>
-            </div>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Intermediate (Pre-Engineering)</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">PGC | 2019 – 2021</div>
-              </div>
-              <div class="item-content">
-                <p>909 / 1100 Marks</p>
-              </div>
-            </div>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Matriculation (Science)</h4>
-                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Govt. High School | 2017 – 2019</div>
-              </div>
-              <div class="item-content">
-                <p>935 / 1100 Marks</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </article>
-
-      <!-- PAGE 3 -->
-      <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
-        <div class="resume-body">
-          <section class="project-section py-3">
-            <h3 class="text-uppercase resume-section-heading mb-4">PUBLICATIONS</h3>
-            <div class="item mb-3">
-              <div class="item-heading row align-items-center mb-2">
-                <h4 class="item-title col-12 col-md-9 mb-2 mb-md-0">
-                 3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D brain magnetic resonance imaging
-                </h4>
-                <div class="item-meta col-12 col-md-3 text-muted text-left text-md-right">
-                  <a href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank">Ain Shams Engineering Journal (Elsevier Q1)</a>
-                </div>
-                <div class="item-content col-12 col-md-9 mb-2 mb-md-0">
-                <p>Alzheimer’s disease (AD) is the predominant form of dementia for which no curative treatment currently exists. The accelerated aging progression necessitates precise detection of initial AD for effective patient management and illness delay. Earlier research generally used two-dimensional (2D) imaging, which used a single slice that caused loss of spatial information. Most of the previous techniques concentrated on binary classification; however, they encountered difficulties. Which ultimately leads to more parameters and higher computational costs. Compared to binary classification, little work has been done with multi-class classification with 3D images, but that research had low accuracies. To address these limitations, this research proposes 3D-MobiBrainNet, a novel deep learning framework designed to enhance the multi-class classification of AD by leveraging 3D MRI and multi-plane feature fusion. The model processes volumetric data across the axial, coronal, and sagittal planes, ensuring a more comprehensive understanding of brain abnormalities. This method comprised three main steps: (i) Plane-specific extraction of features employs a bottleneck block which comprises depth-wise separable convolutions for every MRI plane to optimize feature extraction and reduce computation complexities; (ii) feature enhancement and selection utilized a feature recalibration strategy to emphasizes important characteristics and a ReLU6 (Rectified Linear Unit) activation function to improve computing efficiency; and (iii) 3D feature integration and classification combine features from each of the three planes into a unified 3D space of features. Experimental results demonstrate that 3D-MobiBrainNet achieves state-of-the-art classification performance using Alzheimer’s disease Neuroimaging Initiative (ADNI) dataset with an accuracy of 97.33 %, recall of 97.33 %, F1-score of 97.33 %, and an area under the curve (AUC) of 99.92 %. Another metric under evaluation was the model’s parameters. Compared to other implemented techniques, the proposed model had fewer parameters (34,145,099), enhancing its prediction performance and requiring fewer processing resources and memory. Additionally, the five-fold cross-validation method was used to check the model’s ability to work well on unseen data and make sure it does not over fit. The results were promising, with a 90.162 % success rate, which showed the good generalizability performance of the model.</p>
-              </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="project-section py-3">
-            <h3 class="text-uppercase resume-section-heading mb-4">INTERESTS</h3>
-            <ul>
-              <li>Artificial Intelligence & Deep Learning</li>
-              <li>UAV and Embedded Systems</li>
-              <li>Backend Development with Django</li>
-              <li>Academic Research & Writing</li>
-            </ul>
-          </section>
-        </div>
+        <footer class="resume-footer text-center">
+          <ul class="resume-social-list list-inline mx-auto mb-0 d-inline-block text-muted">
+            <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="list-inline-item"><a href="https://www.linkedin.com/in/hamzzaz" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li class="list-inline-item"><a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" rel="noopener">Kaggle</a></li>
+            <li class="list-inline-item"><a href="mailto:hamza.ai.official@gmail.com">Email</a></li>
+          </ul>
+        </footer>
       </article>
     </div>
+  </main>
 
-    <footer class="footer text-center py-4">
-      <small class="copyright">© Muhammad Hamza — AI & Python Developer</small>
-    </footer>
-  </div>
+  <footer class="footer text-center py-4" role="contentinfo">
+    <small>© Muhammad Hamza — AI Engineer</small>
+  </footer>
 
-  <!-- JS -->
+  <!-- Scripts (keep existing JS files) -->
   <script src="./js/jquery.js"></script>
   <script src="./js/popper.js"></script>
   <script src="./js/bootstrap.js"></script>
