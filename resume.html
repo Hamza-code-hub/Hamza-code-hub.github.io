@@ -77,18 +77,51 @@
   </script>
 
   <style>
-    /* Minimal accessibility & SEO-friendly small tweaks */
-    h1,h2,h3,h4{line-height:1.15;}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+    /* Small accessibility & layout improvements */
+    h1,h2,h3,h4 { line-height: 1.15; }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+
+    /* PDF / print friendly rules used during generation */
+    /* These rules trigger when the class "generate-pdf" is set on body (applied briefly by JS) */
+    body.generate-pdf .navbar,
+    body.generate-pdf .social-list,
+    body.generate-pdf .btn-primary,
+    body.generate-pdf .dark-mode-toggle,
+    body.generate-pdf .cookie-consent,
+    body.generate-pdf .navbar-toggler { display: none !important; }
+
+    body.generate-pdf .resume-wrapper { box-shadow: none !important; background: #fff !important; }
+    body.generate-pdf .resume-profile-image { width:120px !important; height:120px !important; object-fit:cover; }
+
+    /* Avoid breaking individual items across pages */
+    .item, .item-content, .project-section, .work-section { page-break-inside: avoid; -webkit-column-break-inside: avoid; -moz-column-break-inside: avoid; }
+
+    /* Force page breaks between the top-level resume article pages (if used) */
+    .page-break { display:block; page-break-after:always; }
+
+    /* Improve printed font sizes */
+    @media print {
+      body { -webkit-print-color-adjust: exact; color-adjust: exact; }
+      .resume-name { font-size: 20pt; }
+      .resume-tagline { font-size: 11pt; color: #333; }
+    }
+
+    /* Floating download button */
+    #download-pdf {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
   </style>
 </head>
 
 <body>
   <header class="header text-center" role="banner">
     <div class="force-overflow">
-      <h1 class="blog-name pt-lg-4 mb-0">
-        <a href="index.html">Muhammad Hamza</a>
-      </h1>
+      <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a></h1>
 
       <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Primary Navigation">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
@@ -104,9 +137,9 @@
             </p>
 
             <ul class="social-list list-inline py-2 mx-auto" aria-label="Social links">
-              <li class="list-inline-item"><a href="https://linkedin.com/in/hamzzaz" target="_blank" rel="noopener">LinkedIn</a></li>
-              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener">GitHub</a></li>
-              <li class="list-inline-item"><a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" rel="noopener">Kaggle</a></li>
+              <li class="list-inline-item"><a href="https://linkedin.com/in/hamzzaz" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li class="list-inline-item"><a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" rel="noopener noreferrer">Kaggle</a></li>
               <li class="list-inline-item"><a href="mailto:hamza.ai.official@gmail.com">Email</a></li>
             </ul>
             <hr>
@@ -120,7 +153,7 @@
           </ul>
 
           <div class="my-2">
-            <a class="btn btn-primary" href="contact.html" target="_blank" rel="noopener">Hire Me</a>
+            <a class="btn btn-primary" href="contact.html" target="_blank" rel="noopener noreferrer">Hire Me</a>
           </div>
 
         </div>
@@ -129,253 +162,282 @@
   </header>
 
   <main class="main-wrapper" role="main" aria-labelledby="resume-heading">
-    <section class="cta-section theme-bg-light py-5" aria-hidden="false">
+    <section class="cta-section theme-bg-light py-5">
       <div class="container text-center single-col-max-width">
         <h2 id="resume-heading" class="heading mb-3">Online Resume</h2>
-        <a class="btn btn-primary" href="Muhammad Hamza_CV.pdf" target="_blank" rel="noopener">
-          Download PDF Version
-        </a>
+        <a class="btn btn-primary" href="Muhammad Hamza_CV.pdf" target="_blank" rel="noopener noreferrer">Download PDF Version (original)</a>
       </div>
     </section>
 
     <div class="container px-3 px-lg-5">
-      <!-- Header / Contact -->
-      <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg" itemprop="mainEntity" itemscope itemtype="https://schema.org/Person">
-        <header class="resume-header">
-          <div class="row align-items-center">
-            <div class="resume-title col-12 col-md-6 col-lg-8 col-xl-9">
-              <h2 class="resume-name mb-0 text-uppercase" itemprop="name">Muhammad Hamza</h2>
-              <p class="resume-tagline mb-3 mb-md-0" itemprop="jobTitle">AI Engineer — LLM & RAG Specialist | Cybersecurity AI</p>
-            </div>
-
-            <div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3" aria-label="Contact information">
-              <ul class="list-unstyled mb-0">
-                <li><strong>Phone:</strong> <a class="resume-link" href="tel:+923024842593">+92 302 4842593</a></li>
-                <li><strong>Email:</strong> <a class="resume-link" href="mailto:hamza.ai.official@gmail.com">hamza.ai.official@gmail.com</a></li>
-                <li><strong>Location:</strong> Lahore, Pakistan</li>
-              </ul>
-            </div>
-          </div>
-        </header>
-
-        <hr>
-
-        <!-- Intro -->
-        <section class="resume-intro py-3" aria-labelledby="intro-heading">
-          <h3 id="intro-heading" class="sr-only">Professional Summary</h3>
-          <div class="media flex-column flex-md-row align-items-center">
-            <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto" src="images/Muhammad_Hamza.png" alt="Profile photo — Muhammad Hamza" width="140" height="140" loading="lazy">
-            <div class="media-body text-left">
-              <p class="mb-0" itemprop="description">
-                I’m an AI Engineer specializing in LLM-powered systems, Retrieval-Augmented Generation (RAG), and agentic AI workflows. I build enterprise AI solutions at CyberZeus Software Systems including AI-driven cybersecurity, intelligent automation, and scalable ML pipelines. Experienced end-to-end (data preprocessing → model training → deployment → backend integration). Research background in medical imaging and anomaly detection with a publication on multi-class Alzheimer's detection (3D-MobiBrainNet).
-              </p>
+      <!-- WRAP ALL RESUME CONTENT IN ONE ELEMENT (TARGET FOR PDF) -->
+      <div id="resume-content">
+        <!-- PAGE 1 -->
+        <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
+          <div class="resume-header">
+            <div class="row align-items-center">
+              <div class="resume-title col-12 col-md-6 col-lg-8 col-xl-9">
+                <h2 class="resume-name mb-0 text-uppercase">Muhammad Hamza</h2>
+                <div class="resume-tagline mb-3 mb-md-0">AI Engineer — LLM & RAG Specialist | Cybersecurity AI</div>
+              </div>
+              <div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3">
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><strong>Phone:</strong> <a class="resume-link" href="tel:+923024842593">+92 302 4842593</a></li>
+                  <li class="mb-2"><strong>Email:</strong> <a class="resume-link" href="mailto:hamza.ai.official@gmail.com">hamza.ai.official@gmail.com</a></li>
+                  <li class="mb-0"><strong>Location:</strong> Lahore, Pakistan</li>
+                </ul>
+              </div>
             </div>
           </div>
-        </section>
 
-        <hr>
+          <hr>
 
-        <!-- Experience -->
-        <section class="resume-body">
-          <div class="row">
-            <div class="resume-main col-12 col-lg-8 col-xl-9 pr-0 pr-lg-5">
-              <section class="work-section py-3" aria-labelledby="experience-heading">
-                <h2 id="experience-heading" class="text-uppercase resume-section-heading mb-4">Experience</h2>
-
-                <!-- CyberZeus -->
-                <div class="item mb-3" itemscope itemtype="https://schema.org/JobPosting">
-                  <div class="item-heading row align-items-center mb-2">
-                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Developer — CyberZeus Software Systems</h3>
-                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Jan 2026 – Present | Lahore</div>
-                  </div>
-                  <div class="item-content">
-                    <ul>
-                      <li>Design and implement enterprise AI/ML solutions for web and backend platforms.</li>
-                      <li>Build LLM-powered systems and RAG pipelines using LangChain and other frameworks.</li>
-                      <li>Develop multi-agent / agentic AI workflows to automate security operations and reporting.</li>
-                      <li>Design anomaly detection and intelligent threat analysis models for cybersecurity use-cases.</li>
-                      <li>Deploy, monitor, and maintain ML models in production; integrate with APIs and backend services.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <!-- Efaida -->
-                <div class="item mb-3" itemscope itemtype="https://schema.org/JobPosting">
-                  <div class="item-heading row align-items-center mb-2">
-                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Software Engineer Intern — Efaida Software House</h3>
-                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Aug 2025 – Dec 2025 | Okara</div>
-                  </div>
-                  <div class="item-content">
-                    <ul>
-                      <li>Built AI-driven automation tools using Zapier, n8n and Make.com to streamline workflows.</li>
-                      <li>Developed ML models for text classification and object detection and integrated them into pipelines.</li>
-                      <li>Orchestrated five API integrations with Python utilities to automate data entry and reporting — saving ~2 hours/week for the sales team.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <!-- Independent -->
-                <div class="item mb-3">
-                  <div class="item-heading row align-items-center mb-2">
-                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Developer (Part-Time / Independent Projects)</h3>
-                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Apr 2024 – Dec 2025 | Remote</div>
-                  </div>
-                  <div class="item-content">
-                    <ul>
-                      <li>Designed and trained deep learning models for medical imaging (Alzheimer's MRI) and lung cancer detection.</li>
-                      <li>Implemented robust preprocessing, augmentation, and evaluation pipelines (ROC-AUC, F1, confusion matrices).</li>
-                      <li>Collaborated on research projects resulting in peer-reviewed publication(s).</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <!-- Fiverr -->
-                <div class="item mb-3">
-                  <div class="item-heading row align-items-center mb-2">
-                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Freelance Python Developer & ML Engineer — Fiverr</h3>
-                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">2023 – Present | Remote</div>
-                  </div>
-                  <div class="item-content">
-                    <ul>
-                      <li>Fiverr Level 1 Seller — completed 12+ international projects in automation, ML, and data analysis.</li>
-                      <li>Delivered end-to-end ML solutions including data pipelines, model training, evaluation and deployment.</li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              <!-- Projects -->
-              <section class="project-section py-3" aria-labelledby="projects-heading">
-                <h2 id="projects-heading" class="text-uppercase resume-section-heading mb-4">Key Projects</h2>
-
-                <article class="item mb-3">
-                  <h3 class="item-title">Agentic Cybersecurity AI Assistant (RAG + Multi-Agent System)</h3>
-                  <p>Enterprise AI assistant using Retrieval-Augmented Generation and multi-agent orchestration to automate vulnerability analysis, security-tool orchestration, scheduled monitoring, and PDF reporting. Integrates vulnerability knowledge bases and security APIs for fast triage and reporting.</p>
-                </article>
-
-                <article class="item mb-3">
-                  <h3 class="item-title">AI-Based Ticket Scalping Prevention System</h3>
-                  <p>Pricing & anomaly-detection system designed to detect bot activity, high-frequency transactions and abnormal purchase patterns; includes intelligent pricing adjustments and mitigation rules to prevent scalping.</p>
-                </article>
-
-                <article class="item mb-3">
-                  <h3 class="item-title">AI-Driven Intrusion Detection for Critical Systems</h3>
-                  <p>Hybrid deep learning model (TabNet + Transformer + Cross-Attention) trained on CIC-IDS 2017 data to detect network threats with strong precision/recall across varied attack vectors.</p>
-                </article>
-
-                <article class="item mb-3">
-                  <h3 class="item-title">Alzheimer's Disease Detection from 3D MRI — MobiBrainNet</h3>
-                  <p>3D CNN (MobiBrainNet) for multi-class Alzheimer's detection using volumetric MRI and multi-plane feature fusion. Focus on efficiency (fewer parameters) with strong accuracy and generalization (published in Ain Shams Engineering Journal).</p>
-                </article>
-
-                <article class="item mb-3">
-                  <h3 class="item-title">Technical Support Chatbot (NLP)</h3>
-                  <p>Intent-classification based chatbot for automated product support, combining rule-based handling with learned intent models for high-precision routing and responses.</p>
-                </article>
-
-              </section>
-
-              <!-- Certifications & Achievements -->
-              <section class="project-section py-3" aria-labelledby="certs-heading">
-                <h2 id="certs-heading" class="text-uppercase resume-section-heading mb-4">Certifications & Achievements</h2>
-                <ul>
-                  <li>Kaggle Notebook Expert Badge — Ranked in Top 2,100 out of ~60,000+ contributors.</li>
-                  <li>Data Analytics & EDA — Coursera</li>
-                  <li>Python (Basic to Advanced) — Coursera</li>
-                  <li>Introduction to Data Analysis — IBM</li>
-                </ul>
-              </section>
-
+          <div class="resume-intro py-3">
+            <div class="media flex-column flex-md-row align-items-center">
+              <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza" width="140" height="140" loading="lazy">
+              <div class="media-body text-left">
+                <p class="mb-0">I’m an AI Engineer specializing in LLM-powered systems, Retrieval-Augmented Generation (RAG), and agentic AI workflows. Currently developing enterprise AI solutions at CyberZeus Software Systems, including AI-driven cybersecurity systems, intelligent automation, and scalable ML pipelines. Experienced in designing end-to-end AI systems from data preprocessing and model training to deployment and backend integration. Research background in medical imaging AI and anomaly detection, with published work on deep learning for Alzheimer’s disease detection.</p>
+              </div>
             </div>
+          </div>
+        </article>
 
-            <!-- Sidebar: Skills, Education, Contact -->
-            <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4" aria-labelledby="skills-heading">
-              <section class="skills-section py-3">
-                <h2 id="skills-heading" class="text-uppercase resume-section-heading mb-4">Skills</h2>
+        <div class="page-break"></div>
 
-                <h4 class="item-title">Programming</h4>
-                <ul class="list-unstyled resume-skills-list">
-                  <li>Python</li>
-                  <li>C++ (Basic)</li>
-                </ul>
+        <!-- PAGE 2 -->
+        <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
+          <div class="resume-body">
+            <div class="row">
+              <div class="resume-main col-12 col-lg-8 col-xl-9 pr-0 pr-lg-5">
+                <section class="work-section py-3">
+                  <h3 class="text-uppercase resume-section-heading mb-4">Experience</h3>
 
-                <h4 class="item-title">AI & ML</h4>
-                <ul class="list-unstyled resume-skills-list">
-                  <li>Large Language Models (LLMs)</li>
-                  <li>Retrieval-Augmented Generation (RAG)</li>
-                  <li>Agentic AI Workflows</li>
-                  <li>Deep Learning (TensorFlow)</li>
-                  <li>Model evaluation (ROC-AUC, F1, confusion matrix)</li>
-                </ul>
+                  <div class="item mb-3">
+                    <div class="item-heading row align-items-center mb-2">
+                      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Developer — CyberZeus Software Systems</h4>
+                      <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Jan 2026 – Present</div>
+                    </div>
+                    <div class="item-content">
+                      <ul>
+                        <li>Design and implement enterprise AI/ML solutions for web and backend platforms.</li>
+                        <li>Build LLM-powered systems and RAG pipelines using LangChain and other frameworks.</li>
+                        <li>Develop multi-agent / agentic AI workflows to automate security operations and reporting.</li>
+                        <li>Design anomaly detection and intelligent threat analysis models for cybersecurity use-cases.</li>
+                        <li>Deploy, monitor, and maintain ML models in production; integrate with APIs and backend services.</li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="item-title">Frameworks & Tools</h4>
-                <ul class="list-unstyled resume-skills-list">
-                  <li>Django, Flask</li>
-                  <li>LangChain</li>
-                  <li>Git / GitHub / Postman / Jupyter Notebook</li>
-                </ul>
+                  <div class="item mb-3">
+                    <div class="item-heading row align-items-center mb-2">
+                      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Software Engineer Intern — Efaida Software House</h4>
+                      <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Aug 2025 – Dec 2025</div>
+                    </div>
+                    <div class="item-content">
+                      <ul>
+                        <li>Built AI-driven automation tools using Zapier, n8n and Make.com to streamline workflows.</li>
+                        <li>Developed ML models for text classification and object detection and integrated them into pipelines.</li>
+                        <li>Orchestrated five API integrations with Python utilities to automate data entry and reporting — saving ~2 hours/week for the sales team.</li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="item-title">Data & Libraries</h4>
-                <ul class="list-unstyled resume-skills-list">
-                  <li>NumPy, Pandas, Scikit-learn, TensorFlow</li>
-                </ul>
+                  <div class="item mb-3">
+                    <div class="item-heading row align-items-center mb-2">
+                      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">AI Developer (Part-Time / Independent Projects)</h4>
+                      <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">Apr 2024 – Dec 2025</div>
+                    </div>
+                    <div class="item-content">
+                      <ul>
+                        <li>Built deep learning models for Alzheimer’s MRI classification and lung cancer detection.</li>
+                        <li>Implemented data preprocessing pipelines and augmentation strategies.</li>
+                        <li>Evaluated models using ROC-AUC, F1-score, and confusion matrices.</li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="item-title">Languages</h4>
-                <ul class="list-unstyled resume-skills-list">
-                  <li>English (Professional)</li>
-                  <li>Urdu (Native)</li>
-                </ul>
+                  <div class="item mb-3">
+                    <div class="item-heading row align-items-center mb-2">
+                      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Freelance Python Developer & ML Engineer — Fiverr</h4>
+                      <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">2023 – Present</div>
+                    </div>
+                    <div class="item-content">
+                      <ul>
+                        <li>Fiverr Level 1 Seller — completed 12+ international projects in automation, ML, and data analysis.</li>
+                        <li>Delivered end-to-end ML solutions including data pipelines, model training, evaluation and deployment.</li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <hr>
-
-                <section aria-labelledby="education-heading">
-                  <h3 id="education-heading" class="text-uppercase resume-section-heading mb-3">Education</h3>
-                  <p><strong>BS Software Engineering</strong><br>University of Okara (2022 – 2026)<br>CGPA: <strong>3.75 / 4.00</strong></p>
                 </section>
-              </section>
-            </aside>
+              </div>
+
+              <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4">
+                <section class="skills-section py-3">
+                  <h3 class="text-uppercase resume-section-heading mb-4">Skills</h3>
+                  <div class="item">
+                    <h4 class="item-title">Programming</h4>
+                    <ul class="list-unstyled resume-skills-list">
+                      <li class="mb-2">Python</li>
+                      <li class="mb-2">C++ (Basic)</li>
+                    </ul>
+
+                    <h4 class="item-title">AI / ML</h4>
+                    <ul class="list-unstyled resume-skills-list">
+                      <li class="mb-2">LLMs / RAG</li>
+                      <li class="mb-2">Agentic AI Workflows</li>
+                      <li class="mb-2">TensorFlow / Scikit-learn</li>
+                    </ul>
+
+                    <h4 class="item-title">Tools</h4>
+                    <ul class="list-unstyled resume-skills-list">
+                      <li class="mb-2">LangChain</li>
+                      <li class="mb-2">Django / Flask</li>
+                      <li class="mb-2">Git / GitHub / Postman</li>
+                    </ul>
+
+                    <h4 class="item-title">Languages</h4>
+                    <ul class="list-unstyled resume-skills-list">
+                      <li class="mb-2">English (Professional)</li>
+                      <li class="mb-2">Urdu (Native)</li>
+                    </ul>
+                  </div>
+                </section>
+              </aside>
+            </div>
           </div>
-        </section>
+        </article>
 
-        <hr>
+        <div class="page-break"></div>
 
-        <!-- Publications & Research -->
-        <section class="project-section py-3" aria-labelledby="publications-heading">
-          <h2 id="publications-heading" class="text-uppercase resume-section-heading mb-4">Publications</h2>
-          <article class="item mb-3">
-            <h3 class="item-title">3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D MRI</h3>
-            <p>Published in Ain Shams Engineering Journal (Elsevier Q1). DOI: <a href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank" rel="noopener">10.1016/j.asej.2025.103714</a></p>
-            <p>Summary: 3D-MobiBrainNet uses volumetric MRI multi-plane feature fusion to improve multi-class AD classification while maintaining computational efficiency.</p>
-          </article>
-        </section>
+        <!-- PAGE 3 -->
+        <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
+          <section class="project-section py-3">
+            <h3 class="text-uppercase resume-section-heading mb-4">Key Projects</h3>
 
-        <hr>
+            <div class="item mb-3">
+              <h4 class="item-title">Agentic Cybersecurity AI Assistant (RAG + Multi-Agent System)</h4>
+              <div class="item-content">
+                <p>Enterprise AI assistant that automates vulnerability analysis, security-tool orchestration, scheduled monitoring, and PDF reporting. Integrates vulnerability KBs and security APIs to boost triage and reporting.</p>
+              </div>
+            </div>
 
-        <section class="project-section py-3" aria-labelledby="interests-heading">
-          <h2 id="interests-heading" class="text-uppercase resume-section-heading mb-4">Interests</h2>
-          <ul>
-            <li>Artificial Intelligence & Deep Learning</li>
-            <li>UAV & Embedded Systems</li>
-            <li>Backend Development with Django</li>
-            <li>Academic Research & Writing</li>
-          </ul>
-        </section>
+            <div class="item mb-3">
+              <h4 class="item-title">AI-Based Ticket Scalping Prevention System</h4>
+              <div class="item-content">
+                <p>Detects bot activity and abnormal purchasing patterns, implements intelligent pricing adjustments and mitigation rules to prevent scalping.</p>
+              </div>
+            </div>
 
-        <footer class="resume-footer text-center">
-          <ul class="resume-social-list list-inline mx-auto mb-0 d-inline-block text-muted">
-            <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener">GitHub</a></li>
-            <li class="list-inline-item"><a href="https://www.linkedin.com/in/hamzzaz" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li class="list-inline-item"><a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" rel="noopener">Kaggle</a></li>
-            <li class="list-inline-item"><a href="mailto:hamza.ai.official@gmail.com">Email</a></li>
-          </ul>
-        </footer>
-      </article>
-    </div>
+            <div class="item mb-3">
+              <h4 class="item-title">AI-Driven Intrusion Detection</h4>
+              <div class="item-content">
+                <p>Hybrid model (TabNet + Transformer + Cross-Attention) trained on CIC-IDS 2017 for robust intrusion detection.</p>
+              </div>
+            </div>
+
+            <div class="item mb-3">
+              <h4 class="item-title">Alzheimer's Detection — 3D-MobiBrainNet</h4>
+              <div class="item-content">
+                <p>3D CNN model using multi-plane feature fusion for multi-class Alzheimer's detection — published in Ain Shams Engineering Journal (DOI included below).</p>
+              </div>
+            </div>
+
+            <div class="item mb-3">
+              <h4 class="item-title">Technical Support Chatbot (NLP)</h4>
+              <div class="item-content">
+                <p>Intent-classification focused chatbot for product support that combines rule-based handling with learned intent models.</p>
+              </div>
+            </div>
+          </section>
+
+          <hr>
+
+          <section class="project-section py-3">
+            <h3 class="text-uppercase resume-section-heading mb-4">Publications</h3>
+            <div class="item mb-3">
+              <h4 class="item-title">3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D MRI</h4>
+              <p>Published in Ain Shams Engineering Journal (Elsevier Q1). DOI: <a href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank" rel="noopener noreferrer">10.1016/j.asej.2025.103714</a></p>
+            </div>
+          </section>
+
+          <hr>
+
+          <section class="project-section py-3">
+            <h3 class="text-uppercase resume-section-heading mb-4">Education</h3>
+            <div class="item mb-3">
+              <p><strong>BS Software Engineering</strong><br>University of Okara (2022 – 2026)<br>CGPA: <strong>3.75 / 4.00</strong></p>
+            </div>
+          </section>
+
+          <hr>
+
+          <section class="project-section py-3">
+            <h3 class="text-uppercase resume-section-heading mb-4">Certifications & Achievements</h3>
+            <ul>
+              <li>Kaggle Notebook Expert Badge — Top 2,100 out of ~60,000 contributors</li>
+              <li>Data Analytics & EDA — Coursera</li>
+              <li>Python (Basic to Advanced) — Coursera</li>
+              <li>Introduction to Data Analysis — IBM</li>
+            </ul>
+          </section>
+
+        </article>
+      </div> <!-- /#resume-content -->
+    </div> <!-- /.container -->
   </main>
+
+  <!-- floating download button -->
+  <button id="download-pdf" class="btn btn-primary" title="Download resume as PDF">Download PDF</button>
 
   <footer class="footer text-center py-4" role="contentinfo">
     <small>© Muhammad Hamza — AI Engineer</small>
   </footer>
+
+  <!-- html2pdf (client-side) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+  <script>
+    // PDF generation handler
+    document.getElementById('download-pdf').addEventListener('click', async function () {
+      const btn = this;
+      btn.disabled = true;
+      const originalText = btn.innerText;
+      btn.innerText = 'Preparing PDF...';
+
+      try {
+        // Add class to body so CSS for PDF generation applies
+        document.body.classList.add('generate-pdf');
+
+        // Element to convert (the entire resume content)
+        const element = document.getElementById('resume-content');
+
+        const opt = {
+          margin: [12, 10, 12, 10], // top, left, bottom, right in mm
+          filename: 'Muhammad_Hamza_Resume.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, logging: false, allowTaint: false },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['css', 'legacy'] }
+        };
+
+        // Wait a short moment so fonts / images adjust after applying the class
+        await new Promise(r => setTimeout(r, 250));
+
+        // Generate and save PDF
+        await html2pdf().set(opt).from(element).save();
+
+      } catch (err) {
+        console.error('PDF generation error:', err);
+        alert('PDF generation failed — check the console for details.');
+      } finally {
+        // remove the class so page returns to normal
+        document.body.classList.remove('generate-pdf');
+        btn.disabled = false;
+        btn.innerText = originalText;
+      }
+    });
+  </script>
 
   <!-- Scripts (keep existing JS files) -->
   <script src="./js/jquery.js"></script>
