@@ -1020,4 +1020,131 @@ body.generate-pdf .resume-wrapper {
    ========================= */
 hr { border: none; border-top: 1px solid rgba(0,0,0,0.06); margin: 12px 0; }
 small { font-size: 0.9rem; color: #666; }
+/* Resume helpers */
 
+.resume-wrapper{
+  background:var(--theme-bg-light,#fff);
+  padding:1.6rem;
+  margin:1.5rem auto;
+  max-width:900px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  border-radius:8px;
+}
+
+.resume-profile-image{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+}
+
+
+/* Floating PDF button */
+
+#download-pdf{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  border-radius:6px;
+  padding:10px 14px;
+  background:#0a7c6b;
+  color:#fff;
+  border:none;
+}
+
+#download-pdf:hover{
+  transform:translateY(-3px);
+}
+
+/* =========================
+   Mobile Responsive Fixes
+   ========================= */
+
+@media (max-width: 992px){
+
+  /* What I Do icons */
+  .item-icon img{
+    width:150px;
+  }
+
+}
+
+@media (max-width: 768px){
+
+  /* Resume wrapper full width */
+  .resume-wrapper{
+    margin:10px;
+    padding:20px;
+  }
+
+  /* Profile image smaller */
+  .profile-section .profile-image{
+    width:120px;
+    height:120px;
+  }
+
+  /* Gallery images responsive */
+  .gallery img{
+    width:100%;
+    max-width:100%;
+  }
+
+  /* Platform cards spacing */
+  .platform-card{
+    padding:15px;
+  }
+
+  /* Publication items spacing */
+  .publication-item{
+    padding:12px;
+  }
+
+  /* What I Do icons */
+  .item-icon img{
+    width:120px;
+  }
+
+  /* Do-row layout stack */
+  .do-row{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .do-row img{
+    width:45px;
+  }
+
+}
+
+@media (max-width: 576px){
+
+  /* Reduce heading size */
+  h1{font-size:26px;}
+  h2{font-size:22px;}
+  h3{font-size:20px;}
+
+  /* Profile bio padding */
+  .bio{
+    padding:0 10px;
+  }
+
+  /* Contact form spacing */
+  .contact-form .form-control{
+    padding:10px;
+  }
+
+  /* Buttons full width */
+  .review-btn{
+    width:100%;
+    text-align:center;
+  }
+
+  /* Floating PDF button mobile */
+  #download-pdf{
+    right:12px;
+    bottom:12px;
+    padding:8px 12px;
+    font-size:14px;
+  }
+
+}
