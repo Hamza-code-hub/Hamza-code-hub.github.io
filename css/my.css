@@ -702,4 +702,322 @@ section, header, footer {
 }
 
 }
+/* =========================
+   Muhammad Hamza — main CSS
+   Consolidated & cleaned
+   ========================= */
+
+/* Basic typography / helpers */
+h1, h2, h3, h4 { line-height: 1.15; margin: 0 0 6px 0; }
+p { margin: 0 0 10px 0; }
+ul { margin: 6px 0 12px 18px; padding: 0; }
+a { color: inherit; text-decoration: none; }
+
+/* Accessibility helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* =========================
+   Layout / overflow guards
+   ========================= */
+
+/* Prevent horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #111;
+  background: var(--page-bg, #f6f8fb);
+}
+
+/* Force-overflow guard (wrapper) */
+.force-overflow {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Ensure rows and main-wrapper don't expand past viewport */
+.main-wrapper, .container, .row {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sections sizing safety */
+section, header, footer {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =========================
+   Profile / Header
+   ========================= */
+
+.profile-section .profile-image,
+.profile-image {
+  width: 160px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid seagreen;
+  display: block;
+}
+
+/* Alternate bigger profile for "about-me" */
+.about-me-section .profile-image {
+  width: 230px;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Contact / link styling */
+a.resume-link {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* small id used in snippet */
+#do {
+  width: 90px;
+  height: 40px;
+}
+
+/* =========================
+   Grid-ish helpers (small custom utilities)
+   ========================= */
+
+.col-hd-6 { position: relative; width: 100%; padding: 0 15px; box-sizing: border-box; }
+.col-dd-6 { position: relative; width: 50%; padding: 0 15px; box-sizing: border-box; }
+.col-dd-4 { position: relative; width: 50%; padding: 0 15px; box-sizing: border-box; }
+.col-gg-3 { width: 50%; position: relative; padding: 0 15px; box-sizing: border-box; }
+
+.img-full { max-width: 100%; height: auto; }
+.img-small { max-width: 45%; height: auto; }
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .col-hd-6 { flex: 0 0 50%; -webkit-box-flex: 0; }
+  .col-dd-4 { flex: 0 0 33.3333333%; max-width: 33.3333333%; -webkit-box-flex: 0; }
+}
+@media (max-width: 768px) {
+  .about-me-section .profile-teaser { flex-direction: column !important; align-items: center !important; text-align: center; }
+  .about-me-section .profile-image { width: 70% !important; max-width: 250px; height: auto; margin: 20px auto 0; border-radius: 10px; }
+  .review-btn { width: 100%; text-align: center; padding: 12px; font-size: 15px; }
+}
+
+/* =========================
+   Visual components
+   ========================= */
+
+/* Gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+.gallery img {
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Cards for platforms */
+.platform-card {
+  display: block;
+  background: var(--theme-bg-light, #fff);
+  border-radius: 12px;
+  padding: 20px 10px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.platform-card:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.platform-logo { width: 60px; height: 60px; object-fit: contain; }
+.platform-name { font-weight: 600; font-size: 1.1rem; }
+
+/* Publication block */
+.publication-item {
+  background-color: #fff;
+  border-left: 5px solid seagreen;
+  padding: 12px 14px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.publication-item:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+.pub-title { font-weight: 600; color: #222; }
+.pub-authors, .pub-details { color: #555; font-size: .95rem; }
+
+/* Contact form */
+.contact-form .form-control {
+  border-radius: 10px;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  transition: all .2s ease-in-out;
+}
+.contact-form .form-control:focus { border-color: seagreen; box-shadow: 0 0 5px rgba(46,139,87,0.3); }
+.contact-form button { border-radius: 8px; padding: 10px 25px; }
+
+/* "What I Do" / icon rows */
+.item-icon { margin-bottom: 15px; }
+.item-icon img { max-width: 100%; height: auto; display: inline-block; object-fit: contain; transition: transform .3s ease, filter .3s ease; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25)); }
+.item-icon img:hover { transform: scale(1.08); filter: drop-shadow(0 5px 10px rgba(0,0,0,0.35)); }
+.logo-wide { width: 400px; } .logo-medium { width: 150px; } .logo-small { width: 400px; }
+
+.do-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.do-row img { width:55px; height:auto; object-fit:contain; }
+.do-row .do-title { font-size:1.05rem; font-weight:600; margin:0; color:#222; }
+@media (max-width:768px) {
+  .do-row img { width:35px; }
+  .do-row .do-title { font-size:1rem; }
+}
+
+/* Review button */
+.review-btn {
+  display:inline-block; margin-top:12px; padding:10px 18px;
+  background:#0a7c6b; color:#fff; border-radius:6px; font-size:14px; font-weight:600; text-decoration:none;
+  transition: .3s ease;
+}
+.review-btn:hover { background:#095e52; transform: translateY(-2px); }
+
+/* Small responsive tweaks for project logos */
+@media (max-width: 992px) { .item-icon img { width: 150px; } }
+@media (max-width: 576px) { .item-icon img { width: 120px; } }
+
+/* =========================
+   Resume-specific helpers
+   (keeps theme look while enabling print)
+   ========================= */
+
+/* Ensure resume-wrapper will keep theme background & shadows on screen */
+.resume-wrapper {
+  background: var(--theme-bg-light, #fff); /* retains your theme-bg-light variable or default */
+  padding: 1.6rem;
+  margin: 1.5rem auto;
+  max-width: 900px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Keep profile image consistent in resume */
+.resume-profile-image { width: 140px; height: 140px; object-fit: cover; border-radius: 50%; }
+
+/* Prevent breaking inside important content blocks */
+.item, .item-content, .project-section, .work-section { page-break-inside: avoid; -webkit-column-break-inside: avoid; -moz-column-break-inside: avoid; }
+
+/* Manual page-break helper for html2pdf / print */
+.page-break { display: block; page-break-after: always; }
+
+/* =========================
+   Print / PDF rules
+   - ensures same background style during PDF generation
+   - enforces A4 page size for resume-wrapper on print
+   ========================= */
+
+/* Hide interactive UI while generating PDF */
+body.generate-pdf .navbar,
+body.generate-pdf .social-list,
+body.generate-pdf .btn-primary,
+body.generate-pdf .dark-mode-toggle,
+body.generate-pdf .cookie-consent,
+body.generate-pdf .navbar-toggler,
+body.generate-pdf #download-pdf {
+  display: none !important;
+}
+
+/* Remove heavy shadows for print, but keep background color */
+body.generate-pdf .resume-wrapper {
+  box-shadow: none !important;
+  background: var(--theme-bg-light, #fff) !important;
+}
+
+/* Print-specific adjustments (A4) */
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { width: 210mm; height: 297mm; }
+  body { -webkit-print-color-adjust: exact; color-adjust: exact; }
+
+  /* Make each top-level resume-wrapper occupy one A4 page */
+  .resume-wrapper {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 18mm; /* inner padding that will appear as page margin */
+    page-break-after: always;
+    border-radius: 0;
+  }
+  /* last page shouldn't force an extra blank */
+  .resume-wrapper:last-child { page-break-after: auto; }
+
+  /* Keep font sizes readable */
+  .resume-name { font-size: 20pt; }
+  .resume-tagline { font-size: 11pt; color: #333; }
+
+  /* suppress elements that should not print */
+  .no-print, .no-print * { display: none !important; }
+}
+
+/* =========================
+   Dark-mode overrides
+   ========================= */
+
+.dark-mode {
+  --page-bg: #0b0f12;
+  color: #e8e8e8;
+}
+.dark-mode .resume-wrapper { background: #0f1720; box-shadow: none; color: #e6e6e6; }
+.dark-mode .profile-image { border-color: rgba(255,255,255,0.08); }
+.dark-mode .gallery, .dark-mode .overview-section { background-color: #121212 !important; color: #ffc107 !important; }
+.dark-mode .testimonials-section, .dark-mode .do-section { background-color: #121212 !important; color: #0a0a0a !important; }
+.dark-mode .gallery img { box-shadow: 0px 4px 15px rgba(255,255,255,0.05); }
+.dark-mode .quote-holder, .dark-mode .project-card { background-color: #1e1e1e !important; border: 1px solid rgba(255,255,255,0.08); color: #e0e0e0; }
+.dark-mode .section-intro, .dark-mode .section-title { color: #ffffff; }
+.dark-mode .item-desc, .dark-mode .bio, .dark-mode .quote-content { color: #cfcfcf !important; }
+.dark-mode .publication-item { background-color: #1e1e1e !important; border-left-color: #0ff; color: #e0e0e0; }
+.dark-mode .pub-title { color: #fff; }
+.dark-mode .pub-authors, .dark-mode .pub-details { color: #ccc; }
+.dark-mode .contact-form .form-control { background-color: #1e1e1e; border-color: #555; color: #fff; }
+.dark-mode .contact-form .form-control::placeholder { color: #aaa; }
+
+/* =========================
+   Floating download button
+   (keeps visible on screen; hidden during PDF generation)
+   ========================= */
+#download-pdf {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  border-radius: 6px;
+  padding: 10px 14px;
+  background: #0a7c6b;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+#download-pdf:hover { transform: translateY(-3px); }
+
+/* =========================
+   Small finishing touches
+   ========================= */
+hr { border: none; border-top: 1px solid rgba(0,0,0,0.06); margin: 12px 0; }
+small { font-size: 0.9rem; color: #666; }
 
