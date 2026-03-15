@@ -1,351 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Muhammad Hamza — AI Engineer | LLM & RAG Specialist | Cybersecurity AI</title>
 
-  <!-- Primary SEO meta -->
-  <meta name="description" content="Muhammad Hamza — AI Engineer specializing in LLM systems, Retrieval-Augmented Generation (RAG), agentic AI workflows, and cybersecurity AI. Research publication in medical imaging (3D-MobiBrainNet). CGPA 3.75. Based in Pakistan." />
-  <meta name="keywords" content="Muhammad Hamza, AI Engineer, LLM, RAG, LangChain, agentic AI, cybersecurity AI, deep learning, medical imaging, Alzheimer's MRI, MobiBrainNet, Kaggle Notebook Expert" />
-  <meta name="author" content="Muhammad Hamza" />
-  <meta name="robots" content="index, follow" />
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-  <!-- Favicons & fonts -->
-  <link rel="shortcut icon" href="images/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet" />
+<title>Muhammad Hamza — AI Engineer | LLM & RAG Specialist</title>
 
-  <!-- CSS & icons (keep your existing CSS paths) -->
-  <link id="theme-style" rel="stylesheet" href="./css/theme.css" />
-  <script defer src="./js/all.js"></script>
+<meta name="description" content="Muhammad Hamza — AI Engineer specializing in LLM systems, Retrieval-Augmented Generation (RAG), and Cybersecurity AI."/>
 
-  <style>
-    /* Basic print/A4 layout for two-page PDF generation */
-    :root { --a4-width: 210mm; --a4-height: 297mm; --page-padding: 18mm; }
+<meta name="keywords" content="Muhammad Hamza, AI Engineer, LLM, RAG, LangChain, AI Developer, Cybersecurity AI"/>
 
-    /* Ensure two a4 pages are centered and sized correctly */
-    .a4page {
-      width: var(--a4-width);
-      min-height: var(--a4-height);
-      box-sizing: border-box;
-      padding: var(--page-padding);
-      margin: 0 auto 10mm auto;
-      background: #ffffff;
-      color: #111;
-      /* remove shadows for print */
-    }
-    .a4page .resume-name { font-size: 18pt; font-weight:700; }
-    .a4page .resume-tagline { font-size: 10.5pt; color: #333; margin-bottom: 6px; }
+<meta name="author" content="Muhammad Hamza"/>
 
-    /* Hide UI controls during PDF generation */
-    body.generate-pdf .navbar,
-    body.generate-pdf .social-list,
-    body.generate-pdf .btn-primary,
-    body.generate-pdf .dark-mode-toggle,
-    body.generate-pdf .cookie-consent,
-    body.generate-pdf .navbar-toggler,
-    body.generate-pdf #download-pdf { display: none !important; }
+<meta name="robots" content="index,follow"/>
 
-    /* Profile image sizing for print */
-    .resume-profile-image { width:120px; height:120px; object-fit:cover; border-radius:50%; }
+<link rel="shortcut icon" href="images/favicon.ico"/>
 
-    /* Avoid breaking small blocks */
-    .item, .item-content, .work-section, .project-section { page-break-inside: avoid; -webkit-column-break-inside: avoid; -moz-column-break-inside: avoid; }
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet"/>
 
-    /* Force page breaks between .a4page elements */
-    .a4page { page-break-after: always; }
-    .a4page:last-child { page-break-after: auto; }
+<link id="theme-style" rel="stylesheet" href="./css/theme.css"/>
 
-    /* Print media tweaks */
-    @media print {
-      @page { size: A4; margin: 0; }
-      html, body { width: var(--a4-width); height: var(--a4-height); }
-      body { -webkit-print-color-adjust: exact; color-adjust: exact; }
-      /* reduce element spacing slightly to fit content */
-      .a4page { padding: 16mm; }
-    }
+<script defer src="./js/all.js"></script>
 
-    /* Floating download button */
-    #download-pdf {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 9999;
-      border-radius: 6px;
-      padding: 10px 14px;
-    }
+<style>
 
-    /* Small responsive fallback when viewing on small screens */
-    @media (max-width: 860px) {
-      .a4page { width: 100%; min-height: auto; padding: 18px; }
-    }
+/* A4 page layout but keep theme style */
 
-    /* Simple typography spacing */
-    h2,h3,h4 { margin: 6px 0; }
-    ul { margin: 6px 0 12px 18px; }
-  </style>
+.resume-page{
+width:210mm;
+min-height:297mm;
+margin:auto;
+box-sizing:border-box;
+padding:22mm;
+}
+
+/* ensure theme card style */
+
+.resume-page.resume-wrapper{
+background:var(--theme-bg-light,#fff);
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+border-radius:6px;
+}
+
+/* force page break */
+
+.resume-page{
+page-break-after:always;
+}
+
+.resume-page:last-child{
+page-break-after:auto;
+}
+
+/* hide UI during PDF */
+
+body.generate-pdf header,
+body.generate-pdf footer,
+body.generate-pdf #download-pdf{
+display:none!important;
+}
+
+/* avoid section breaking */
+
+.item,
+.work-section,
+.project-section{
+page-break-inside:avoid;
+}
+
+/* profile image */
+
+.resume-profile-image{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+}
+
+/* download button */
+
+#download-pdf{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:9999;
+padding:10px 16px;
+border-radius:6px;
+}
+
+</style>
+
 </head>
 
 <body>
-  <header class="header text-center" role="banner">
-    <div class="force-overflow">
-      <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a></h1>
 
-      <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Primary Navigation">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<header class="header text-center">
 
-        <div id="navigation" class="collapse navbar-collapse flex-column">
-          <div class="profile-section pt-3 pt-lg-0">
-            <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza — AI Engineer" width="160" height="160" loading="lazy">
-            <p class="bio mb-3">
-              Hi, I am <strong>Muhammad Hamza</strong> — AI Engineer specializing in LLM systems, Retrieval-Augmented Generation (RAG), agentic AI workflows, and cybersecurity AI.
-            </p>
-            <ul class="social-list list-inline py-2 mx-auto" aria-label="Social links">
-              <li class="list-inline-item"><a href="https://linkedin.com/in/hamzzaz" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li class="list-inline-item"><a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" rel="noopener noreferrer">Kaggle</a></li>
-              <li class="list-inline-item"><a href="mailto:hamza.ai.official@gmail.com">Email</a></li>
-            </ul>
-            <hr>
-          </div>
+<div class="force-overflow">
 
-          <ul class="navbar-nav flex-column text-left">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-            <li class="nav-item"><a class="nav-link active" href="resume.html">Resume</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          </ul>
+<h1 class="blog-name pt-lg-4 mb-0">
+<a href="index.html">Muhammad Hamza</a>
+</h1>
 
-          <div class="my-2">
-            <a class="btn btn-primary" href="contact.html" target="_blank" rel="noopener noreferrer">Hire Me</a>
-          </div>
+</div>
 
-        </div>
-      </nav>
-    </div>
-  </header>
+</header>
 
-  <main class="main-wrapper" role="main">
-    <div class="container px-3 px-lg-5">
 
-      <!-- IMPORTANT: Two A4 pages only -->
-      <div id="resume-content">
-        <!-- A4 PAGE 1 -->
-        <section class="a4page" id="page-1" aria-label="Resume page 1">
-          <header style="display:flex; justify-content:space-between; align-items:flex-start;">
-            <div style="flex:1; padding-right:12px;">
-              <h2 class="resume-name">Muhammad Hamza</h2>
-              <div class="resume-tagline">AI Engineer — LLM & RAG Specialist | Cybersecurity AI</div>
-              <p style="margin-top:8px; max-width:520px;">
-                AI Engineer specializing in LLM-powered systems, Retrieval-Augmented Generation (RAG), and agentic AI workflows. Currently developing enterprise AI solutions at CyberZeus Software Systems, including AI-driven cybersecurity systems, intelligent automation, and scalable ML pipelines. Experienced in designing end-to-end AI systems from data preprocessing and model training to deployment and backend integration. Research background in medical imaging AI and anomaly detection, with published work on deep learning for Alzheimer’s disease detection.
-              </p>
-            </div>
+<main class="main-wrapper">
 
-            <div style="width:180px; text-align:right;">
-              <img class="resume-profile-image" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza">
-              <div style="margin-top:8px; font-size:12px; text-align:right;">
-                <div><strong>Email:</strong> hamza.ai.official@gmail.com</div>
-                <div><strong>Phone:</strong> +92 302 4842593</div>
-                <div><strong>Location:</strong> Lahore, Pakistan</div>
-              </div>
-            </div>
-          </header>
+<div class="container px-3 px-lg-5">
 
-          <hr style="margin:12px 0 10px 0; border:none; border-top:1px solid #ddd;">
+<div id="resume-content">
 
-          <section style="display:flex; gap:18px;">
-            <div style="flex:2;">
-              <h3 style="margin-bottom:6px;">Experience</h3>
+<!-- ================= PAGE 1 ================= -->
 
-              <div class="item" style="margin-bottom:8px;">
-                <h4 style="margin:0;">AI Developer — CyberZeus Software Systems</h4>
-                <div style="color:#666; font-size:12px; margin-bottom:6px;">Jan 2026 – Present | Lahore</div>
-                <ul>
-                  <li>Design and implement enterprise AI/ML solutions for web and backend platforms.</li>
-                  <li>Build LLM-powered systems and RAG pipelines using LangChain and other frameworks.</li>
-                  <li>Develop multi-agent / agentic AI workflows to automate security operations and reporting.</li>
-                </ul>
-              </div>
+<article class="resume-wrapper theme-bg-light shadow-lg resume-page">
 
-              <div class="item" style="margin-bottom:8px;">
-                <h4 style="margin:0;">AI Software Engineer Intern — Efaida Software House</h4>
-                <div style="color:#666; font-size:12px; margin-bottom:6px;">Aug 2025 – Dec 2025 | Okara</div>
-                <ul>
-                  <li>Built AI-driven automation tools using Zapier, n8n and Make.com to streamline workflows.</li>
-                  <li>Developed ML models for text classification and object detection and integrated them into pipelines.</li>
-                  <li>Orchestrated five API integrations with Python utilities to automate data entry and reporting — saving ~2 hours/week for the sales team.</li>
-                </ul>
-              </div>
+<header class="resume-header">
 
-              <!-- Keep remaining experience on page 2 if it would overflow.
-                   We place the next role at the bottom of page 1 only if space remains.
-                   Otherwise page 2 will continue with the rest. -->
-            </div>
+<div class="row align-items-center">
 
-            <aside style="flex:1;">
-              <h3 style="margin-bottom:6px;">Skills</h3>
-              <div style="font-size:13px;">
-                <strong>Programming:</strong>
-                <div>Python, C++ (Basic)</div>
-                <strong style="margin-top:8px; display:block;">AI & ML:</strong>
-                <div>LLMs, RAG, Agentic AI, TensorFlow, Scikit-learn</div>
-                <strong style="margin-top:8px; display:block;">Frameworks:</strong>
-                <div>LangChain, Django, Flask</div>
-                <strong style="margin-top:8px; display:block;">Tools:</strong>
-                <div>Git, GitHub, Postman, Jupyter</div>
-                <strong style="margin-top:8px; display:block;">Languages:</strong>
-                <div>English (Professional), Urdu (Native)</div>
-              </div>
-            </aside>
-          </section>
+<div class="resume-title col-12 col-md-8">
 
-          <!-- small spacer to use remaining space nicely -->
-          <div style="flex-basis:1px; height:18px;"></div>
+<h2 class="resume-name text-uppercase">Muhammad Hamza</h2>
 
-          <!-- We continue experience on page 2 -->
-        </section>
+<div class="resume-tagline">
+AI Engineer — LLM & RAG Specialist | Cybersecurity AI
+</div>
 
-        <!-- A4 PAGE 2 -->
-        <section class="a4page" id="page-2" aria-label="Resume page 2">
-          <!-- Continue Experience -->
-          <h3 style="margin-bottom:6px;">Experience (continued)</h3>
+<p class="mt-3">
 
-          <div class="item" style="margin-bottom:8px;">
-            <h4 style="margin:0;">AI Developer (Part-Time / Independent Projects)</h4>
-            <div style="color:#666; font-size:12px; margin-bottom:6px;">Apr 2024 – Dec 2025 | Remote</div>
-            <ul>
-              <li>Built deep learning models for Alzheimer’s MRI classification and lung cancer detection.</li>
-              <li>Implemented data preprocessing pipelines and augmentation strategies.</li>
-              <li>Evaluated models using ROC-AUC, F1-score, and confusion matrices.</li>
-            </ul>
-          </div>
+AI Engineer specializing in LLM-powered systems, Retrieval-Augmented Generation (RAG),
+and agentic AI workflows. Currently developing enterprise AI solutions at CyberZeus Software Systems.
 
-          <div class="item" style="margin-bottom:8px;">
-            <h4 style="margin:0;">Freelance Python Developer & ML Engineer — Fiverr</h4>
-            <div style="color:#666; font-size:12px; margin-bottom:6px;">2023 – Present | Remote</div>
-            <ul>
-              <li>Fiverr Level 1 Seller — completed 12+ international projects in automation, ML, and data analysis.</li>
-              <li>Delivered end-to-end ML solutions including data pipelines, model training, evaluation and deployment.</li>
-            </ul>
-          </div>
+</p>
 
-          <hr style="margin:8px 0 12px 0; border:none; border-top:1px solid #ddd;">
+</div>
 
-          <!-- Projects -->
-          <h3 style="margin-bottom:6px;">Key Projects</h3>
+<div class="col-md-4 text-center">
 
-          <div style="margin-bottom:8px;">
-            <strong>Agentic Cybersecurity AI Assistant (RAG + Multi-Agent System)</strong>
-            <p style="margin:6px 0;">Enterprise AI assistant that automates vulnerability analysis, security-tool orchestration, scheduled monitoring, and PDF reporting. Integrates vulnerability KBs and security APIs to boost triage and reporting.</p>
-          </div>
+<img class="resume-profile-image" src="images/Muhammad_Hamza.png">
 
-          <div style="margin-bottom:8px;">
-            <strong>AI-Based Ticket Scalping Prevention System</strong>
-            <p style="margin:6px 0;">Detects bot activity and abnormal purchasing patterns, implements intelligent pricing adjustments and mitigation rules to prevent scalping.</p>
-          </div>
+<div class="mt-2 small">
 
-          <div style="margin-bottom:8px;">
-            <strong>AI-Driven Intrusion Detection</strong>
-            <p style="margin:6px 0;">Hybrid model (TabNet + Transformer + Cross-Attention) trained on CIC-IDS 2017 for robust intrusion detection.</p>
-          </div>
+<div><strong>Email:</strong> hamza.ai.official@gmail.com</div>
+<div><strong>Phone:</strong> +92 302 4842593</div>
+<div><strong>Location:</strong> Lahore, Pakistan</div>
 
-          <div style="margin-bottom:8px;">
-            <strong>Alzheimer's Detection — 3D-MobiBrainNet</strong>
-            <p style="margin:6px 0;">3D CNN model using multi-plane feature fusion for multi-class Alzheimer's detection — published in Ain Shams Engineering Journal.</p>
-          </div>
+</div>
 
-          <div style="margin-bottom:8px;">
-            <strong>Technical Support Chatbot (NLP)</strong>
-            <p style="margin:6px 0;">Intent-classification focused chatbot for product support that combines rule-based handling with learned intent models.</p>
-          </div>
+</div>
 
-          <hr style="margin:8px 0 12px 0; border:none; border-top:1px solid #ddd;">
+</div>
 
-          <!-- Publications / Education / Certifications -->
-          <h3 style="margin-bottom:6px;">Publications</h3>
-          <div style="margin-bottom:10px;">
-            <strong>3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D MRI</strong>
-            <p style="margin:6px 0;">Published in Ain Shams Engineering Journal (Elsevier Q1). DOI: <a href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank" rel="noopener noreferrer">10.1016/j.asej.2025.103714</a></p>
-          </div>
+</header>
 
-          <h3 style="margin-bottom:6px;">Education</h3>
-          <div style="margin-bottom:10px;">
-            <strong>BS Software Engineering</strong><br>
-            University of Okara (2022 – 2026)<br>
-            CGPA: <strong>3.75 / 4.00</strong>
-          </div>
+<hr/>
 
-          <h3 style="margin-bottom:6px;">Certifications & Achievements</h3>
-          <ul style="margin-bottom:4px;">
-            <li>Kaggle Notebook Expert Badge — Top 2,100 out of ~60,000 contributors</li>
-            <li>Data Analytics & EDA — Coursera</li>
-            <li>Python (Basic to Advanced) — Coursera</li>
-            <li>Introduction to Data Analysis — IBM</li>
-          </ul>
+<div class="row">
 
-        </section>
-      </div>
-    </div>
-  </main>
+<div class="col-lg-8">
 
-  <!-- floating download button -->
-  <button id="download-pdf" class="btn btn-primary" title="Download resume as PDF">Download PDF</button>
+<section class="work-section">
 
-  <footer class="footer text-center py-4" role="contentinfo">
-    <small>© Muhammad Hamza — AI Engineer</small>
-  </footer>
+<h3 class="resume-section-heading text-uppercase">Experience</h3>
 
-  <!-- html2pdf (client-side) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<div class="item">
 
-  <script>
-    // PDF generation handler - generates two A4 pages because the content is split into two .a4page sections
-    document.getElementById('download-pdf').addEventListener('click', async function () {
-      const btn = this;
-      btn.disabled = true;
-      const originalText = btn.innerText;
-      btn.innerText = 'Preparing PDF...';
+<h4>AI Developer — CyberZeus Software Systems</h4>
 
-      try {
-        // Add class to body so print-specific CSS hides UI elements
-        document.body.classList.add('generate-pdf');
+<div class="text-muted small mb-1">Jan 2026 – Present</div>
 
-        // Target the container that holds the two .a4page sections
-        const element = document.getElementById('resume-content');
+<ul>
+<li>Design enterprise AI/ML systems.</li>
+<li>Build LLM + RAG pipelines using LangChain.</li>
+<li>Create agentic AI security automation systems.</li>
+</ul>
 
-        const opt = {
-          margin:       [0,0,0,0], // we size each page exactly using .a4page padding
-          filename:     'Muhammad_Hamza_Resume.pdf',
-          image:        { type: 'jpeg', quality: 0.98 },
-          html2canvas:  { scale: 2, useCORS: true, logging: false, allowTaint: false },
-          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-          pagebreak:    { mode: ['css','legacy'] }
-        };
+</div>
 
-        // small delay to let layout settle
-        await new Promise(r => setTimeout(r, 200));
+<div class="item">
 
-        // Force html2pdf to respect the CSS page sizes and break between .a4page blocks
-        await html2pdf().set(opt).from(element).save();
-      } catch (err) {
-        console.error('PDF generation error:', err);
-        alert('PDF generation failed — check the console for details.');
-      } finally {
-        document.body.classList.remove('generate-pdf');
-        btn.disabled = false;
-        btn.innerText = originalText;
-      }
-    });
-  </script>
+<h4>AI Software Engineer Intern — Efaida</h4>
 
-  <!-- Keep existing JS files for site behavior -->
-  <script src="./js/jquery.js"></script>
-  <script src="./js/popper.js"></script>
-  <script src="./js/bootstrap.js"></script>
-  <script src="./js/cookie.js"></script>
-  <script src="./js/dark.js"></script>
+<div class="text-muted small mb-1">Aug 2025 – Dec 2025</div>
+
+<ul>
+<li>Built AI workflow automation tools.</li>
+<li>Developed ML models for text classification.</li>
+<li>Integrated multiple APIs for automation.</li>
+</ul>
+
+</div>
+
+</section>
+
+</div>
+
+<div class="col-lg-4">
+
+<section class="skills-section">
+
+<h3 class="resume-section-heading text-uppercase">Skills</h3>
+
+<strong>Programming</strong>
+<div>Python, C++</div>
+
+<strong class="mt-2 d-block">AI / ML</strong>
+<div>LLMs, RAG, Agentic AI</div>
+
+<strong class="mt-2 d-block">Frameworks</strong>
+<div>LangChain, Django, Flask</div>
+
+<strong class="mt-2 d-block">Tools</strong>
+<div>Git, GitHub, Postman</div>
+
+</section>
+
+</div>
+
+</div>
+
+</article>
+
+<!-- ================= PAGE 2 ================= -->
+
+<article class="resume-wrapper theme-bg-light shadow-lg resume-page">
+
+<section class="project-section">
+
+<h3 class="resume-section-heading text-uppercase">Projects</h3>
+
+<div class="item">
+
+<strong>Agentic Cybersecurity AI Assistant</strong>
+
+<p>
+Enterprise AI assistant automating vulnerability analysis and reporting using RAG and multi-agent systems.
+</p>
+
+</div>
+
+<div class="item">
+
+<strong>AI Ticket Scalping Detection</strong>
+
+<p>
+Detects bots and abnormal purchasing patterns to prevent ticket scalping.
+</p>
+
+</div>
+
+<div class="item">
+
+<strong>AI Intrusion Detection System</strong>
+
+<p>
+Hybrid deep learning system trained on CIC-IDS dataset.
+</p>
+
+</div>
+
+</section>
+
+<hr/>
+
+<section>
+
+<h3 class="resume-section-heading text-uppercase">Education</h3>
+
+<p>
+
+<strong>BS Software Engineering</strong><br>
+University of Okara (2022-2026)<br>
+CGPA: <strong>3.75</strong>
+
+</p>
+
+</section>
+
+<hr/>
+
+<section>
+
+<h3 class="resume-section-heading text-uppercase">Publications</h3>
+
+<p>
+
+<strong>3D-MobiBrainNet</strong><br>
+
+Alzheimer's disease classification using 3D MRI.
+
+<br>
+
+<a href="https://doi.org/10.1016/j.asej.2025.103714">
+doi.org/10.1016/j.asej.2025.103714
+</a>
+
+</p>
+
+</section>
+
+</article>
+
+</div>
+
+</div>
+
+</main>
+
+
+<button id="download-pdf" class="btn btn-primary">
+Download PDF
+</button>
+
+
+<footer class="footer text-center py-4">
+<small>© Muhammad Hamza — AI Engineer</small>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+<script>
+
+document.getElementById("download-pdf").addEventListener("click",async function(){
+
+document.body.classList.add("generate-pdf")
+
+const element=document.getElementById("resume-content")
+
+const opt={
+margin:0,
+filename:"Muhammad_Hamza_Resume.pdf",
+image:{type:"jpeg",quality:0.98},
+html2canvas:{scale:2,useCORS:true},
+jsPDF:{unit:"mm",format:"a4",orientation:"portrait"},
+pagebreak:{mode:["css","legacy"]}
+}
+
+await html2pdf().set(opt).from(element).save()
+
+document.body.classList.remove("generate-pdf")
+
+})
+
+</script>
+
+
+<script src="./js/jquery.js"></script>
+<script src="./js/popper.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script src="./js/cookie.js"></script>
+<script src="./js/dark.js"></script>
+
 </body>
 </html>
