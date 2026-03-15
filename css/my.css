@@ -333,6 +333,341 @@ section, header, footer {
     margin: 20px auto 0;
     border-radius: 10px;
   }
+.profile-image{
+    border: 1px solid seagreen;
+}
+#do{
+    width: 90px;
+    height: 40px;
+}
+a.resume-link {
+    font-size: 16px;
+    font-weight: 600;
+}
+.profile-section .profile-image{
+    width: 160px;
+    height: 170px;
+}
+/* --- Prevent horizontal overflow globally --- */
+html, body {
+  overflow-x: hidden; /* hides accidental horizontal overflow */
+  width: 100%;
+}
+
+/* Force-overflow guard (Ali's wrapper) */
+.force-overflow {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Ensure rows and main-wrapper don't expand past viewport */
+.main-wrapper, .container, .row {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Optional: ensure sections don't use 100vw (which includes scrollbar) */
+section, header, footer {
+  width: 100%;
+  box-sizing: border-box;
+}
+.about-me-section .profile-image {
+  width: 230px;
+  height: auto;
+  border-radius: 8px;
+}
+ .gallery {
+      display: flex; flex-wrap: wrap; justify-content: center; 
+      gap: 10px; margin-top: 30px;
+    }
+    .gallery img {
+      width: 300px; border-radius: 12px; 
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2); 
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery img:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.3); 
+    }
+/* --- Dark Mode Fixes for New Sections --- */
+.dark-mode .gallery,
+.dark-mode .overview-section {
+  background-color: #121212 !important;
+  color: #ffc107 !important;
+}
+
+.dark-mode .testimonials-section,
+.dark-mode .do-section{
+  background-color: #121212 !important;
+  color: #0a0a0a !important;
+}
+
+.dark-mode .gallery img {
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .quote-holder,
+.dark-mode .project-card {
+  background-color: #1e1e1e !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+}
+.dark-mode .section-intro{
+    color: #ffffff;
+}
+.dark-mode .section-title {
+  color: #fff !important;
+}
+
+.dark-mode .item-desc,
+.dark-mode .bio,
+.dark-mode .quote-content {
+  color: #cfcfcf !important;
+}
+.col-hd-6 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-dd-6 {
+    position: relative;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-dd-4 {
+    position: relative;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-gg-3 {
+    width: 50%;
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.img-full {
+  max-width: 100%;
+}
+.img-small {
+  max-width: 45%;
+}
+@media (min-width: 768px) {
+    .col-hd-6 {
+        -webkit-box-flex: 0;
+        flex: 0 0 50%;
+    }
+}
+/* @media (max-width: 767px) {
+  .project-card .row {
+    flex-direction: column;
+  }
+} */
+@media (min-width: 768px) {
+    .col-dd-4 {
+        -webkit-box-flex: 0;
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+    }
+}
+
+/* Work Platforms Section */
+.platform-card {
+  display: block;
+  background: var(--theme-bg-light, #fff);
+  border-radius: 12px;
+  padding: 20px 10px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.platform-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.platform-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.platform-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+/* Publications Section */
+.publication-item {
+  background-color: #fff;
+  border-left: 5px solid seagreen;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.publication-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pub-title {
+  font-weight: 600;
+  color: #222;
+}
+
+.pub-authors,
+.pub-details {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.dark-mode .publication-item {
+  background-color: #1e1e1e !important;
+  border-left-color: #0ff;
+  color: #e0e0e0;
+}
+
+.dark-mode .pub-title {
+  color: #fff;
+}
+
+.dark-mode .pub-authors,
+.dark-mode .pub-details {
+  color: #ccc;
+}
+/* Contact Form */
+.contact-form .form-control {
+  border-radius: 10px;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease-in-out;
+}
+
+.contact-form .form-control:focus {
+  border-color: seagreen;
+  box-shadow: 0 0 5px rgba(46, 139, 87, 0.3);
+}
+
+.contact-form button {
+  border-radius: 8px;
+  padding: 10px 25px;
+}
+
+.dark-mode .contact-form .form-control {
+  background-color: #1e1e1e;
+  border-color: #555;
+  color: #fff;
+}
+
+.dark-mode .contact-form .form-control::placeholder {
+  color: #aaa;
+}
+/* --- What I Do Section (Modern & Responsive) --- */
+.item-icon {
+  margin-bottom: 15px;
+}
+
+.item-icon img {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* Hover animation for logos */
+.item-icon img:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.35));
+}
+
+/* Optional classes for different logo widths */
+.logo-wide {
+  width: 400px;
+}
+
+.logo-medium {
+  width: 150px;
+}
+
+.logo-small {
+  width: 400px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .item-icon img {
+    width: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  .item-icon img {
+    width: 120px;
+  }
+}
+
+/* --- What I Do section: Row layout for icon + title (isolated) --- */
+.do-row {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* spacing between image and title */
+  margin-bottom: 10px;
+}
+
+.do-row img {
+  width: 55px; /* for your 600x80 PNGs */
+  height: auto;
+  object-fit: contain;
+}
+
+.do-row .do-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+/* Optional mobile adjustment */
+@media (max-width: 768px) {
+  .do-row img {
+    width: 35px;
+  }
+  .do-row .do-title {
+    font-size: 1rem;
+  }
+}
+/* --- Dark Mode Fix for "What I Do" titles --- */
+.dark-mode #whatido .do-title {
+  color: #e7b00f !important; /* Gold tone for dark mode */
+}
+.dark-mode #whatido .do-row img:hover {
+  filter: drop-shadow(0px 4px 10px #e7b00f);
+  transform: scale(1.08);
+}
+/* Responsive fix for "About Me" section */
+@media (max-width: 768px) {
+  .about-me-section .profile-teaser {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .about-me-section .profile-image {
+    width: 70% !important;
+    max-width: 250px;
+    height: auto;
+    margin: 20px auto 0;
+    border-radius: 10px;
+  }
 .review-btn{
     display:inline-block;
     margin-top:12px;
@@ -354,5 +689,17 @@ section, header, footer {
   .about-me-section .media-body {
     padding: 0 10px;
   }
+}
+
+/* Mobile testimonial button */
+@media (max-width:768px){
+
+.review-btn{
+    width:100%;
+    text-align:center;
+    padding:12px;
+    font-size:15px;
+}
+
 }
 
