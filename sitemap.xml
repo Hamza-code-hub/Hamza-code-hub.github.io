@@ -3,24 +3,19 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- 🔹 Home Page -->
+  <!-- HOME PAGE -->
   <url>
     <loc>https://hamza-code-hub.github.io/</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg</image:loc>
-      <image:caption>Muhammad Hamza in formal suit</image:caption>
+      <image:caption>Muhammad Hamza - AI and Python Developer</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki1.jpg</image:loc>
       <image:caption>Muhammad Hamza casual office look</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg</image:loc>
-      <image:caption>Muhammad Hamza in white shirt</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki11.jpg</image:loc>
@@ -30,65 +25,71 @@
       <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki9.jpg</image:loc>
       <image:caption>Muhammad Hamza side view</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai1.jpeg</image:loc>
+      <image:caption>Muhammad Hamza with MacBook</image:caption>
+    </image:image>
   </url>
 
-  <!-- 🔹 Portfolio Page -->
+  <!-- PORTFOLIO PAGE -->
   <url>
     <loc>https://hamza-code-hub.github.io/portfolio.html</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- 🔹 Resume Page -->
+  <!-- RESUME PAGE -->
   <url>
     <loc>https://hamza-code-hub.github.io/resume.html</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- 🔹 Contact Page -->
+  <!-- CONTACT PAGE -->
   <url>
     <loc>https://hamza-code-hub.github.io/contact.html</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FYP PROJECT PAGE -->
+  <url>
+    <loc>https://hamza-code-hub.github.io/fyp.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- 🔹 Gallery Section -->
+  <!-- PROJECT PAGES -->
   <url>
-    <loc>https://hamza-code-hub.github.io/index.html#gallery</loc>
+    <loc>https://hamza-code-hub.github.io/psdtohtml.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- 🔹 Services Section -->
   <url>
-    <loc>https://hamza-code-hub.github.io/index.html#services</loc>
+    <loc>https://hamza-code-hub.github.io/wpelementor.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- 🔹 testimonials Section -->
   <url>
-    <loc>https://hamza-code-hub.github.io/index.html#testimonials</loc>
+    <loc>https://hamza-code-hub.github.io/projectpage.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
 
-  <!-- 🔹 What I Do Section -->
   <url>
-    <loc>https://hamza-code-hub.github.io/index.html#whatido</loc>
+    <loc>https://hamza-code-hub.github.io/react.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-   <!-- 🔹 Project Section -->
-  <url>
-    <loc>https://hamza-code-hub.github.io/fyp.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
