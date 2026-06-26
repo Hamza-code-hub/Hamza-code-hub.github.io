@@ -166,6 +166,286 @@
     ]
   }
   </script>
+
+  <!-- Photo Slider Custom CSS -->
+  <style>
+    .photo-gallery-heading .section-intro {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .ai-photo-slider {
+      position: relative;
+      width: min(100%, 1120px);
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(255, 224, 153, 0.18), transparent 35%),
+        linear-gradient(135deg, #0b0b0d 0%, #151515 100%);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
+      isolation: isolate;
+    }
+
+    .photo-slider-viewport {
+      overflow: hidden;
+      width: 100%;
+      border-radius: 28px;
+    }
+
+    .photo-slider-track {
+      display: flex;
+      width: 100%;
+      transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .photo-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      min-height: clamp(430px, 56vw, 620px);
+    }
+
+    .photo-slide.single {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-slide.portrait-pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .photo-card {
+      position: relative;
+      min-height: inherit;
+      overflow: hidden;
+      border-radius: 24px;
+      background: #111;
+    }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.52));
+      opacity: 0;
+      transition: opacity 280ms ease;
+      pointer-events: none;
+    }
+
+    .photo-card:hover::after {
+      opacity: 1;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      min-height: clamp(430px, 56vw, 620px);
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1.001);
+      transition: transform 700ms ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .photo-slide.portrait-pair .photo-card img {
+      object-position: center top;
+    }
+
+    .photo-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      margin: 0;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.54);
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 280ms ease, transform 280ms ease;
+    }
+
+    .photo-card:hover .photo-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .photo-slider-counter {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      z-index: 5;
+      min-width: 70px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.58);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .photo-slider-btn {
+      position: absolute;
+      top: 50%;
+      z-index: 6;
+      width: 64px;
+      height: 64px;
+      border: 2px solid rgba(255, 255, 255, 0.86);
+      border-radius: 50%;
+      transform: translateY(-50%);
+      background: rgba(214, 185, 111, 0.92);
+      color: #fff;
+      font-size: 42px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .photo-slider-btn:hover,
+    .photo-slider-btn:focus {
+      background: #d8ba70;
+      transform: translateY(-50%) scale(1.06);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
+      outline: none;
+    }
+
+    .photo-slider-btn.prev {
+      left: 18px;
+    }
+
+    .photo-slider-btn.next {
+      right: 18px;
+    }
+
+    .photo-slider-dots {
+      width: min(100%, 1120px);
+      margin: 18px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .photo-slider-dot {
+      width: 10px;
+      height: 10px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.55);
+      cursor: pointer;
+      transition: width 260ms ease, background 260ms ease, transform 260ms ease;
+    }
+
+    .photo-slider-dot.active {
+      width: 34px;
+      background: #d8ba70;
+      transform: translateY(-1px);
+    }
+
+    .photo-noscript-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .photo-noscript-grid img {
+      width: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 991px) {
+      .photo-slide {
+        min-height: clamp(360px, 70vw, 560px);
+      }
+
+      .photo-card img {
+        min-height: clamp(360px, 70vw, 560px);
+      }
+
+      .photo-slider-btn {
+        width: 54px;
+        height: 54px;
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .ai-photo-slider,
+      .photo-slider-viewport {
+        border-radius: 22px;
+      }
+
+      .photo-slide.portrait-pair {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .photo-slide.portrait-pair .photo-card,
+      .photo-slide.portrait-pair .photo-card img {
+        min-height: 410px;
+      }
+
+      .photo-slider-counter {
+        top: 14px;
+        right: 14px;
+        font-size: 14px;
+        min-width: 62px;
+      }
+
+      .photo-slider-btn {
+        width: 46px;
+        height: 46px;
+        font-size: 32px;
+      }
+
+      .photo-slider-btn.prev {
+        left: 12px;
+      }
+
+      .photo-slider-btn.next {
+        right: 12px;
+      }
+
+      .photo-caption {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .photo-slider-track,
+      .photo-card img,
+      .photo-caption,
+      .photo-slider-btn,
+      .photo-slider-dot {
+        transition: none !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -257,130 +537,50 @@
     </section>
 
      <!-- ✅ Photo Gallery Section -->
-    <section id="gallery" class="overview-section p-3 p-lg-5" aria-label="Photo Gallery">
+    <section id="gallery" class="overview-section p-3 p-lg-5" aria-label="Muhammad Hamza Photo Gallery">
       <div class="container">
-        <h2 class="section-title font-weight-bold mb-3">Photo Gallery</h2>
-        <div class="gallery">
+        <div class="photo-gallery-heading text-center mb-4">
+          <h2 class="section-title font-weight-bold mb-2">Photo Gallery</h2>
+          <p class="section-intro mb-0">Professional moments, AI development work, achievements, and portfolio photos of Muhammad Hamza.</p>
+        </div>
 
-          <!--
-            ================================================================
-            PHOTO SLIDER — Smart layout:
-              • Landscape images → 1 image per slide (full width)
-              • Portrait  images → 2 images per slide (side by side)
+        <!--
+          Responsive Photo Slider
+          Rule:
+          - Portrait images are automatically grouped 2 per slide.
+          - Landscape/wide images are shown as 1 image per slide.
+          - To add/remove photos, edit only the galleryImages array in the bottom script.
+        -->
+        <div class="ai-photo-slider" data-photo-slider role="region" aria-label="Muhammad Hamza Photo Gallery Slider">
+          <div class="photo-slider-counter" data-photo-counter>1 / 1</div>
 
-            HOW TO ADD A NEW IMAGE IN FUTURE:
-              1. Add a new <div class="slide single|pair"> block below
-              2. Add the matching <button class="photo-slider-dot"> in the dots row
-              3. No JS changes needed — counter updates automatically
-            ================================================================
-          -->
-
-          <div class="photo-slider-wrapper" role="region" aria-label="Photo Gallery Slider" tabindex="0">
-            <div class="photo-slider-counter">1 / 6</div>
-            <div class="photo-slider-track" id="photoSliderTrack">
-
-              <!-- ── Slide 1: Landscape solo ── -->
-              <div class="slide single" role="group" aria-label="Slide 1 of 6">
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai1.jpeg"
-                       alt="Muhammad Hamza AI Developer working on MacBook"
-                       loading="eager"
-                       style="object-position:center top;">
-                  <div class="photo-caption">Muhammad Hamza AI Developer working on MacBook</div>
-                </div>
-              </div>
-
-              <!-- ── Slide 2: Landscape solo ── -->
-              <div class="slide single" role="group" aria-label="Slide 2 of 6">
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai3.jpeg"
-                       alt="Muhammad Hamza professional profile photo"
-                       loading="lazy"
-                       style="object-position:center top;">
-                  <div class="photo-caption">Muhammad Hamza professional profile photo</div>
-                </div>
-              </div>
-
-              <!-- ── Slide 3: Portrait pair ── -->
-              <div class="slide pair" role="group" aria-label="Slide 3 of 6">
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_from_pattoki1.jpg"
-                       alt="Muhammad Hamza AI engineer office profile"
-                       loading="lazy"
-                       style="object-position:center top;">
-                  <div class="photo-caption">Muhammad Hamza AI engineer office profile</div>
-                </div>
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai2.jpg"
-                       alt="Muhammad Hamza portfolio photo"
-                       loading="lazy"
-                       style="object-position:center top;">
-                  <div class="photo-caption">Muhammad Hamza portfolio photo</div>
-                </div>
-              </div>
-
-              <!-- ── Slide 4: Portrait pair ── -->
-              <div class="slide pair" role="group" aria-label="Slide 4 of 6">
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai4.jpg"
-                       alt="Muhammad Hamza laptop achievement from Head of Department"
-                       loading="lazy"
-                       style="object-position:center top;">
-                  <div class="photo-caption">Muhammad Hamza laptop achievement from Head of Department</div>
-                </div>
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_from_pattoki11.jpg"
-                       alt="Muhammad Hamza from Pattoki professional outdoor photo"
-                       loading="lazy"
-                       style="object-position:center top;">
-                  <div class="photo-caption">Muhammad Hamza from Pattoki professional outdoor photo</div>
-                </div>
-              </div>
-
-              <!-- ── Slide 5: Portrait solo ── -->
-              <div class="slide single" role="group" aria-label="Slide 5 of 6">
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_from_pattoki9.jpg"
-                       alt="Muhammad Hamza professional profile photo"
-                       loading="lazy"
-                       style="object-position:50% 15%;">
-                  <div class="photo-caption">Muhammad Hamza professional profile photo</div>
-                </div>
-              </div>
-
-              <!-- ── Slide 6: Landscape solo (stored sideways — rotated -90° via CSS) ── -->
-              <div class="slide single" role="group" aria-label="Slide 6 of 6">
-                <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai.jpeg"
-                       alt="Muhammad Hamza with software development team in office"
-                       loading="lazy"
-                       class="img-rotate-fix"
-                       style="object-position:center center;">
-                  <div class="photo-caption">Muhammad Hamza with software development team in office</div>
-                </div>
-              </div>
-
-            </div><!-- /photo-slider-track -->
-
-            <button class="photo-slider-btn prev" aria-label="Previous slide">&#8249;</button>
-            <button class="photo-slider-btn next" aria-label="Next slide">&#8250;</button>
-          </div><!-- /photo-slider-wrapper -->
-
-          <!-- One dot per slide — add a new dot when you add a new slide -->
-          <div class="photo-slider-dots">
-            <button class="photo-slider-dot active" aria-label="Go to slide 1"></button>
-            <button class="photo-slider-dot"        aria-label="Go to slide 2"></button>
-            <button class="photo-slider-dot"        aria-label="Go to slide 3"></button>
-            <button class="photo-slider-dot"        aria-label="Go to slide 4"></button>
-            <button class="photo-slider-dot"        aria-label="Go to slide 5"></button>
-            <button class="photo-slider-dot"        aria-label="Go to slide 6"></button>
+          <div class="photo-slider-viewport">
+            <div class="photo-slider-track" id="photoSliderTrack" aria-live="polite"></div>
           </div>
 
-        </div><!-- /gallery -->
-      </div><!-- /container -->
+          <button class="photo-slider-btn prev" type="button" data-photo-prev aria-label="Previous photo slide">&#8249;</button>
+          <button class="photo-slider-btn next" type="button" data-photo-next aria-label="Next photo slide">&#8250;</button>
+        </div>
+
+        <div class="photo-slider-dots" data-photo-dots aria-label="Photo slider controls"></div>
+
+        <noscript>
+          <div class="photo-noscript-grid">
+            <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza AI Developer working on MacBook">
+            <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza professional profile photo">
+            <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza AI engineer office profile">
+            <img src="images/Muhammad_Hamza_ai2.jpg" alt="Muhammad Hamza portfolio photo">
+            <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza laptop achievement from Head of Department">
+            <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza from Pattoki professional outdoor photo">
+            <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza professional profile photo">
+            <img src="images/Muhammad_Hamza_ai.jpeg" alt="Muhammad Hamza with software development team in office">
+          </div>
+        </noscript>
+      </div>
     </section>
 
-    <!-- About Me Section -->
+
+   <!-- About Me Section -->
 	  <section id="aboutme" class="overview-section p-1">
     <div class="container text-center">
       <h2 class="section-title font-weight-bold mb-4">About Muhammad Hamza</h2>
@@ -1056,111 +1256,244 @@
 
 
   <!-- ============================================================
-       PHOTO SLIDER SCRIPT — Modular & auto-pairs images
+       PHOTO SLIDER SCRIPT — Auto layout:
+       Portrait images = 2 per slide, landscape images = 1 per slide
        ============================================================ -->
   <script id="photo-slider-script">
-  (function initPhotoSlider() {
-    const track = document.getElementById('photoSliderTrack');
-    if (!track) return;
+  document.addEventListener("DOMContentLoaded", function () {
+    const galleryImages = [
+      {
+        src: "images/Muhammad_Hamza_ai1.jpeg",
+        alt: "Muhammad Hamza AI Developer working on MacBook",
+        caption: "AI development work on MacBook"
+      },
+      {
+        src: "images/Muhammad_Hamza_ai3.jpeg",
+        alt: "Muhammad Hamza professional profile photo",
+        caption: "Professional profile photo"
+      },
+      {
+        src: "images/Muhammad_Hamza_from_pattoki1.jpg",
+        alt: "Muhammad Hamza AI engineer office profile",
+        caption: "AI engineer office profile"
+      },
+      {
+        src: "images/Muhammad_Hamza_ai2.jpg",
+        alt: "Muhammad Hamza portfolio photo",
+        caption: "Portfolio photo"
+      },
+      {
+        src: "images/Muhammad_Hamza_ai4.jpg",
+        alt: "Muhammad Hamza laptop achievement from Head of Department",
+        caption: "Laptop achievement from Head of Department"
+      },
+      {
+        src: "images/Muhammad_Hamza_from_pattoki11.jpg",
+        alt: "Muhammad Hamza from Pattoki professional outdoor photo",
+        caption: "Professional outdoor photo"
+      },
+      {
+        src: "images/Muhammad_Hamza_from_pattoki9.jpg",
+        alt: "Muhammad Hamza professional profile photo",
+        caption: "Professional profile photo"
+      },
+      {
+        src: "images/Muhammad_Hamza_ai.jpeg",
+        alt: "Muhammad Hamza with software development team in office",
+        caption: "Software development team moment"
+      }
+    ];
 
-    const wrapper   = track.closest('.photo-slider-wrapper');
-    const gallery   = wrapper.closest('.gallery');
-    const dots      = gallery.querySelectorAll('.photo-slider-dot');
-    const counter   = wrapper.querySelector('.photo-slider-counter');
-    const slides    = track.querySelectorAll('.slide');
-    const total     = slides.length;
-    let current     = 0;
-    let timer       = null;
+    const slider = document.querySelector("[data-photo-slider]");
+    const track = document.getElementById("photoSliderTrack");
+    if (!slider || !track || !galleryImages.length) return;
 
-    // Update counter total dynamically
-    counter.textContent = '1 / ' + total;
+    const prevBtn = slider.querySelector("[data-photo-prev]");
+    const nextBtn = slider.querySelector("[data-photo-next]");
+    const counter = slider.querySelector("[data-photo-counter]");
+    const dotsWrap = document.querySelector("[data-photo-dots]");
 
-    function goTo(idx) {
-      current = ((idx % total) + total) % total;
-      track.style.transform = 'translateX(-' + (current * 100) + '%)';
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
-      counter.textContent = (current + 1) + ' / ' + total;
+    let current = 0;
+    let total = 0;
+    let autoplay = null;
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
     }
 
-    wrapper.querySelector('.prev').addEventListener('click', function() { reset(); goTo(current - 1); });
-    wrapper.querySelector('.next').addEventListener('click', function() { reset(); goTo(current + 1); });
-    dots.forEach(function(d, i) { d.addEventListener('click', function() { reset(); goTo(i); }); });
-
-    // Keyboard support
-    wrapper.setAttribute('tabindex', '0');
-    wrapper.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowLeft')  { reset(); goTo(current - 1); }
-      if (e.key === 'ArrowRight') { reset(); goTo(current + 1); }
-    });
-
-    // Touch / swipe
-    var tx = 0;
-    wrapper.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
-    wrapper.addEventListener('touchend',   function(e) {
-      var diff = tx - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) { reset(); goTo(current + (diff > 0 ? 1 : -1)); }
-    }, { passive: true });
-
-    // Autoplay (4.5s per slide)
-    function start() { timer = setInterval(function() { goTo(current + 1); }, 4500); }
-    function reset() { clearInterval(timer); start(); }
-    wrapper.addEventListener('mouseenter', function() { clearInterval(timer); });
-    wrapper.addEventListener('mouseleave', function() { start(); });
-
-    goTo(0);
-    start();
-  })();
-  </script>
-
-  <!-- ================================================================
-       PHOTO SLIDER SCRIPT — works with .single (1 image) and .pair (2 images) slides
-       Counter and dots auto-read from DOM — just add slides + dots to update
-       ================================================================ -->
-  <script id="photo-slider-script">
-  (function initPhotoSlider() {
-    var track = document.getElementById('photoSliderTrack');
-    if (!track) return;
-    var wrapper = track.closest('.photo-slider-wrapper');
-    var gallery = wrapper.closest('.gallery');
-    var dots    = gallery.querySelectorAll('.photo-slider-dot');
-    var counter = wrapper.querySelector('.photo-slider-counter');
-    var slides  = track.querySelectorAll('.slide');
-    var total   = slides.length;
-    var current = 0, timer = null;
-
-    counter.textContent = '1 / ' + total;
-
-    function goTo(idx) {
-      current = ((idx % total) + total) % total;
-      track.style.transform = 'translateX(-' + (current * 100) + '%)';
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
-      counter.textContent = (current + 1) + ' / ' + total;
+    function getImageSize(src) {
+      return new Promise(function (resolve) {
+        const img = new Image();
+        img.onload = function () {
+          resolve({ width: img.naturalWidth || 1, height: img.naturalHeight || 1 });
+        };
+        img.onerror = function () {
+          resolve({ width: 16, height: 9 });
+        };
+        img.src = src;
+      });
     }
 
-    wrapper.querySelector('.prev').addEventListener('click', function() { reset(); goTo(current - 1); });
-    wrapper.querySelector('.next').addEventListener('click', function() { reset(); goTo(current + 1); });
-    dots.forEach(function(d, i) { d.addEventListener('click', function() { reset(); goTo(i); }); });
+    function createSlideHTML(items) {
+      const slideClass = items.length === 2 ? "portrait-pair" : "single";
+      const cards = items.map(function (item, index) {
+        return `
+          <div class="photo-card">
+            <img src="${escapeHtml(item.src)}"
+                 alt="${escapeHtml(item.alt)}"
+                 loading="${index === 0 && current === 0 ? "eager" : "lazy"}">
+            <p class="photo-caption">${escapeHtml(item.caption || item.alt)}</p>
+          </div>
+        `;
+      }).join("");
 
-    wrapper.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowLeft')  { reset(); goTo(current - 1); }
-      if (e.key === 'ArrowRight') { reset(); goTo(current + 1); }
-    });
+      return `<div class="photo-slide ${slideClass}" role="group">${cards}</div>`;
+    }
 
-    var tx = 0;
-    wrapper.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
-    wrapper.addEventListener('touchend',   function(e) {
-      var diff = tx - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) { reset(); goTo(current + (diff > 0 ? 1 : -1)); }
-    }, { passive: true });
+    async function buildSlides() {
+      const slides = [];
+      let portraitBuffer = [];
 
-    function start() { timer = setInterval(function() { goTo(current + 1); }, 4500); }
-    function reset() { clearInterval(timer); start(); }
-    wrapper.addEventListener('mouseenter', function() { clearInterval(timer); });
-    wrapper.addEventListener('mouseleave', function() { start(); });
+      for (const item of galleryImages) {
+        const size = await getImageSize(item.src);
+        const isPortrait = size.height > size.width * 1.05;
 
-    goTo(0);
-    start();
-  })();
+        if (isPortrait) {
+          portraitBuffer.push(item);
+
+          if (portraitBuffer.length === 2) {
+            slides.push(portraitBuffer);
+            portraitBuffer = [];
+          }
+        } else {
+          if (portraitBuffer.length) {
+            slides.push(portraitBuffer);
+            portraitBuffer = [];
+          }
+
+          slides.push([item]);
+        }
+      }
+
+      if (portraitBuffer.length) {
+        slides.push(portraitBuffer);
+      }
+
+      track.innerHTML = slides.map(createSlideHTML).join("");
+      total = slides.length;
+
+      if (dotsWrap) {
+        dotsWrap.innerHTML = slides.map(function (_, index) {
+          return `<button class="photo-slider-dot" type="button" aria-label="Go to photo slide ${index + 1}"></button>`;
+        }).join("");
+      }
+
+      const slideEls = track.querySelectorAll(".photo-slide");
+      slideEls.forEach(function (slide, index) {
+        slide.setAttribute("aria-label", "Slide " + (index + 1) + " of " + total);
+      });
+
+      bindControls();
+      goTo(0);
+      startAutoplay();
+    }
+
+    function goTo(index) {
+      if (!total) return;
+      current = ((index % total) + total) % total;
+      track.style.transform = "translateX(-" + (current * 100) + "%)";
+
+      if (counter) {
+        counter.textContent = (current + 1) + " / " + total;
+      }
+
+      if (dotsWrap) {
+        dotsWrap.querySelectorAll(".photo-slider-dot").forEach(function (dot, index) {
+          dot.classList.toggle("active", index === current);
+          dot.setAttribute("aria-current", index === current ? "true" : "false");
+        });
+      }
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplay = window.setInterval(function () {
+        goTo(current + 1);
+      }, 5000);
+    }
+
+    function stopAutoplay() {
+      if (autoplay) {
+        window.clearInterval(autoplay);
+        autoplay = null;
+      }
+    }
+
+    function resetAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    function bindControls() {
+      if (prevBtn) {
+        prevBtn.onclick = function () {
+          goTo(current - 1);
+          resetAutoplay();
+        };
+      }
+
+      if (nextBtn) {
+        nextBtn.onclick = function () {
+          goTo(current + 1);
+          resetAutoplay();
+        };
+      }
+
+      if (dotsWrap) {
+        dotsWrap.querySelectorAll(".photo-slider-dot").forEach(function (dot, index) {
+          dot.onclick = function () {
+            goTo(index);
+            resetAutoplay();
+          };
+        });
+      }
+
+      slider.setAttribute("tabindex", "0");
+      slider.onkeydown = function (event) {
+        if (event.key === "ArrowLeft") {
+          goTo(current - 1);
+          resetAutoplay();
+        }
+
+        if (event.key === "ArrowRight") {
+          goTo(current + 1);
+          resetAutoplay();
+        }
+      };
+
+      let touchStartX = 0;
+      slider.ontouchstart = function (event) {
+        touchStartX = event.touches[0].clientX;
+      };
+
+      slider.ontouchend = function (event) {
+        const diff = touchStartX - event.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+          goTo(current + (diff > 0 ? 1 : -1));
+          resetAutoplay();
+        }
+      };
+
+      slider.onmouseenter = stopAutoplay;
+      slider.onmouseleave = startAutoplay;
+    }
+
+    buildSlides();
+  });
   </script>
 </body>
 </html>
