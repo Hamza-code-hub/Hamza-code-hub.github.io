@@ -262,86 +262,125 @@
         <h2 class="section-title font-weight-bold mb-3">Photo Gallery</h2>
         <div class="gallery">
 
-          <!-- ============================================================
-               PHOTO SLIDER — 2 images per slide
-               HOW TO ADD A NEW IMAGE:
-               1. Add a new <img> entry in the images[] array in the <script>
-               2. The slider JS automatically rebuilds all slides in pairs
-               ============================================================ -->
+          <!--
+            ================================================================
+            PHOTO SLIDER — Smart layout:
+              • Landscape images → 1 image per slide (full width)
+              • Portrait  images → 2 images per slide (side by side)
 
-          <div class="photo-slider-wrapper" role="region" aria-label="Photo Gallery Slider">
-            <div class="photo-slider-counter">1 / 4</div>
+            HOW TO ADD A NEW IMAGE IN FUTURE:
+              1. Add a new <div class="slide single|pair"> block below
+              2. Add the matching <button class="photo-slider-dot"> in the dots row
+              3. No JS changes needed — counter updates automatically
+            ================================================================
+          -->
+
+          <div class="photo-slider-wrapper" role="region" aria-label="Photo Gallery Slider" tabindex="0">
+            <div class="photo-slider-counter">1 / 6</div>
             <div class="photo-slider-track" id="photoSliderTrack">
 
-              <!-- Slide 1: images 1 & 2 -->
-              <div class="slide" role="group" aria-label="Slide 1 of 4">
+              <!-- ── Slide 1: Landscape solo ── -->
+              <div class="slide single" role="group" aria-label="Slide 1 of 6">
                 <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza AI Developer working on MacBook" loading="eager" style="object-position:center top;">
+                  <img src="images/Muhammad_Hamza_ai1.jpeg"
+                       alt="Muhammad Hamza AI Developer working on MacBook"
+                       loading="eager"
+                       style="object-position:center top;">
                   <div class="photo-caption">Muhammad Hamza AI Developer working on MacBook</div>
                 </div>
+              </div>
+
+              <!-- ── Slide 2: Landscape solo ── -->
+              <div class="slide single" role="group" aria-label="Slide 2 of 6">
                 <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza professional profile photo" loading="lazy" style="object-position:center top;">
+                  <img src="images/Muhammad_Hamza_ai3.jpeg"
+                       alt="Muhammad Hamza professional profile photo"
+                       loading="lazy"
+                       style="object-position:center top;">
                   <div class="photo-caption">Muhammad Hamza professional profile photo</div>
                 </div>
               </div>
 
-              <!-- Slide 2: images 3 & 4 -->
-              <div class="slide" role="group" aria-label="Slide 2 of 4">
+              <!-- ── Slide 3: Portrait pair ── -->
+              <div class="slide pair" role="group" aria-label="Slide 3 of 6">
                 <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza AI engineer office profile" loading="lazy" style="object-position:center top;">
+                  <img src="images/Muhammad_Hamza_from_pattoki1.jpg"
+                       alt="Muhammad Hamza AI engineer office profile"
+                       loading="lazy"
+                       style="object-position:center top;">
                   <div class="photo-caption">Muhammad Hamza AI engineer office profile</div>
                 </div>
                 <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai2.jpg" alt="Muhammad Hamza portfolio photo" loading="lazy" style="object-position:center top;">
+                  <img src="images/Muhammad_Hamza_ai2.jpg"
+                       alt="Muhammad Hamza portfolio photo"
+                       loading="lazy"
+                       style="object-position:center top;">
                   <div class="photo-caption">Muhammad Hamza portfolio photo</div>
                 </div>
               </div>
 
-              <!-- Slide 3: images 5 & 6 -->
-              <div class="slide" role="group" aria-label="Slide 3 of 4">
+              <!-- ── Slide 4: Portrait pair ── -->
+              <div class="slide pair" role="group" aria-label="Slide 4 of 6">
                 <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza laptop achievement from Head of Department" loading="lazy" style="object-position:center top;">
+                  <img src="images/Muhammad_Hamza_ai4.jpg"
+                       alt="Muhammad Hamza laptop achievement from Head of Department"
+                       loading="lazy"
+                       style="object-position:center top;">
                   <div class="photo-caption">Muhammad Hamza laptop achievement from Head of Department</div>
                 </div>
                 <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza from Pattoki professional outdoor photo" loading="lazy" style="object-position:center top;">
+                  <img src="images/Muhammad_Hamza_from_pattoki11.jpg"
+                       alt="Muhammad Hamza from Pattoki professional outdoor photo"
+                       loading="lazy"
+                       style="object-position:center top;">
                   <div class="photo-caption">Muhammad Hamza from Pattoki professional outdoor photo</div>
                 </div>
               </div>
 
-              <!-- Slide 4: images 7 & 8 -->
-              <div class="slide" role="group" aria-label="Slide 4 of 4">
+              <!-- ── Slide 5: Portrait solo ── -->
+              <div class="slide single" role="group" aria-label="Slide 5 of 6">
                 <div class="img-slot">
-                  <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza professional profile photo" loading="lazy" style="object-position:center top;">
+                  <img src="images/Muhammad_Hamza_from_pattoki9.jpg"
+                       alt="Muhammad Hamza professional profile photo"
+                       loading="lazy"
+                       style="object-position:50% 15%;">
                   <div class="photo-caption">Muhammad Hamza professional profile photo</div>
                 </div>
+              </div>
+
+              <!-- ── Slide 6: Landscape solo (stored sideways — rotated -90° via CSS) ── -->
+              <div class="slide single" role="group" aria-label="Slide 6 of 6">
                 <div class="img-slot">
-                  <!-- Image 8: rotated 90° CCW to fix sideways orientation -->
-                  <img src="images/Muhammad_Hamza_ai.jpeg" alt="Muhammad Hamza with software development team in office" loading="lazy" class="img-rotate-fix" style="object-position:center center;">
+                  <img src="images/Muhammad_Hamza_ai.jpeg"
+                       alt="Muhammad Hamza with software development team in office"
+                       loading="lazy"
+                       class="img-rotate-fix"
+                       style="object-position:center center;">
                   <div class="photo-caption">Muhammad Hamza with software development team in office</div>
                 </div>
               </div>
 
-            </div><!-- /track -->
+            </div><!-- /photo-slider-track -->
 
             <button class="photo-slider-btn prev" aria-label="Previous slide">&#8249;</button>
             <button class="photo-slider-btn next" aria-label="Next slide">&#8250;</button>
-          </div><!-- /wrapper -->
+          </div><!-- /photo-slider-wrapper -->
 
-          <!-- Dot indicators — add one dot per slide pair -->
+          <!-- One dot per slide — add a new dot when you add a new slide -->
           <div class="photo-slider-dots">
             <button class="photo-slider-dot active" aria-label="Go to slide 1"></button>
-            <button class="photo-slider-dot" aria-label="Go to slide 2"></button>
-            <button class="photo-slider-dot" aria-label="Go to slide 3"></button>
-            <button class="photo-slider-dot" aria-label="Go to slide 4"></button>
+            <button class="photo-slider-dot"        aria-label="Go to slide 2"></button>
+            <button class="photo-slider-dot"        aria-label="Go to slide 3"></button>
+            <button class="photo-slider-dot"        aria-label="Go to slide 4"></button>
+            <button class="photo-slider-dot"        aria-label="Go to slide 5"></button>
+            <button class="photo-slider-dot"        aria-label="Go to slide 6"></button>
           </div>
 
         </div><!-- /gallery -->
       </div><!-- /container -->
     </section>
 
-    
-   <!-- About Me Section -->
+    <!-- About Me Section -->
 	  <section id="aboutme" class="overview-section p-1">
     <div class="container text-center">
       <h2 class="section-title font-weight-bold mb-4">About Muhammad Hamza</h2>
@@ -1063,6 +1102,57 @@
     }, { passive: true });
 
     // Autoplay (4.5s per slide)
+    function start() { timer = setInterval(function() { goTo(current + 1); }, 4500); }
+    function reset() { clearInterval(timer); start(); }
+    wrapper.addEventListener('mouseenter', function() { clearInterval(timer); });
+    wrapper.addEventListener('mouseleave', function() { start(); });
+
+    goTo(0);
+    start();
+  })();
+  </script>
+
+  <!-- ================================================================
+       PHOTO SLIDER SCRIPT — works with .single (1 image) and .pair (2 images) slides
+       Counter and dots auto-read from DOM — just add slides + dots to update
+       ================================================================ -->
+  <script id="photo-slider-script">
+  (function initPhotoSlider() {
+    var track = document.getElementById('photoSliderTrack');
+    if (!track) return;
+    var wrapper = track.closest('.photo-slider-wrapper');
+    var gallery = wrapper.closest('.gallery');
+    var dots    = gallery.querySelectorAll('.photo-slider-dot');
+    var counter = wrapper.querySelector('.photo-slider-counter');
+    var slides  = track.querySelectorAll('.slide');
+    var total   = slides.length;
+    var current = 0, timer = null;
+
+    counter.textContent = '1 / ' + total;
+
+    function goTo(idx) {
+      current = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+      counter.textContent = (current + 1) + ' / ' + total;
+    }
+
+    wrapper.querySelector('.prev').addEventListener('click', function() { reset(); goTo(current - 1); });
+    wrapper.querySelector('.next').addEventListener('click', function() { reset(); goTo(current + 1); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { reset(); goTo(i); }); });
+
+    wrapper.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { reset(); goTo(current - 1); }
+      if (e.key === 'ArrowRight') { reset(); goTo(current + 1); }
+    });
+
+    var tx = 0;
+    wrapper.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+    wrapper.addEventListener('touchend',   function(e) {
+      var diff = tx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { reset(); goTo(current + (diff > 0 ? 1 : -1)); }
+    }, { passive: true });
+
     function start() { timer = setInterval(function() { goTo(current + 1); }, 4500); }
     function reset() { clearInterval(timer); start(); }
     wrapper.addEventListener('mouseenter', function() { clearInterval(timer); });
