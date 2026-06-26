@@ -546,10 +546,10 @@
 
         <!--
           Responsive Photo Slider
-          Rule:
-          - Portrait images are automatically grouped 2 per slide.
-          - Landscape/wide images are shown as 1 image per slide.
-          - To add/remove photos, edit only the galleryImages array in the bottom script.
+          Manual control:
+          - Change image order by moving objects inside the galleryImages array in the bottom script.
+          - Set orientation: "portrait" for 2 images per slide, "landscape" for 1 image per slide.
+          - Use forceSingle: true when you want a portrait image to appear alone.
         -->
         <div class="ai-photo-slider" data-photo-slider role="region" aria-label="Muhammad Hamza Photo Gallery Slider">
           <div class="photo-slider-counter" data-photo-counter>1 / 1</div>
@@ -566,12 +566,12 @@
 
         <noscript>
           <div class="photo-noscript-grid">
-            <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza professional profile photo">
-            <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza AI Developer working on MacBook">
-            <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza  professional outdoor photo">
+            <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza AI Developer working on MacBook">
+            <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza professional profile photo">
+            <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza AI engineer office profile">
             <img src="images/Muhammad_Hamza_ai2.jpg" alt="Muhammad Hamza portfolio photo">
             <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza laptop achievement from Head of Department">
-            <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza from Pattoki AI engineer office profile">
+            <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza from Pattoki professional outdoor photo">
             <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza professional profile photo">
             <img src="images/Muhammad_Hamza_ai.jpeg" alt="Muhammad Hamza with software development team in office">
           </div>
@@ -1256,51 +1256,86 @@
 
 
   <!-- ============================================================
-       PHOTO SLIDER SCRIPT — Auto layout:
-       Portrait images = 2 per slide, landscape images = 1 per slide
+       PHOTO SLIDER SCRIPT — Manual layout control
+       Change order + orientation only from galleryImages[] below.
+       orientation: "portrait"  = grouped 2 per slide
+       orientation: "landscape" = single image per slide
+       forceSingle: true         = single image even if portrait
        ============================================================ -->
   <script id="photo-slider-script">
   document.addEventListener("DOMContentLoaded", function () {
+    /*
+      HOW TO CHANGE IMAGE ORDER:
+      Move any full object up or down in this galleryImages array.
+
+      HOW TO MANUALLY TAG ORIENTATION:
+      orientation: "landscape" => one big image per slide
+      orientation: "portrait"  => two portrait images per slide
+
+      Example:
+      {
+        src: "images/example.jpg",
+        orientation: "portrait",
+        alt: "SEO alt text here",
+        caption: "Caption here"
+      }
+    */
     const galleryImages = [
       {
-        src: "images/Muhammad_Hamza_ai1.jpeg",
-        alt: "Muhammad Hamza AI Developer working on MacBook",
-        caption: "AI development work on MacBook"
+        src: "images/Muhammad_Hamza_ai.jpeg",
+        orientation: "landscape",
+        alt: "Muhammad Hamza with software development team in office",
+        caption: "Software development team moment",
+        objectPosition: "center center"
       },
       {
-        src: "images/Muhammad_Hamza_ai3.jpeg",
-        alt: "Muhammad Hamza professional profile photo",
-        caption: "Professional profile photo"
+        src: "images/Muhammad_Hamza_ai1.jpeg",
+        orientation: "landscape",
+        alt: "Muhammad Hamza AI Developer working on MacBook",
+        caption: "AI development work on MacBook",
+        objectPosition: "center center"
       },
       {
         src: "images/Muhammad_Hamza_from_pattoki1.jpg",
+        orientation: "portrait",
         alt: "Muhammad Hamza AI engineer office profile",
-        caption: "AI engineer office profile"
+        caption: "AI engineer office profile",
+        objectPosition: "center top"
       },
       {
         src: "images/Muhammad_Hamza_ai2.jpg",
+        orientation: "portrait",
         alt: "Muhammad Hamza portfolio photo",
-        caption: "Portfolio photo"
+        caption: "Portfolio photo",
+        objectPosition: "center top"
       },
       {
-        src: "images/Muhammad_Hamza_ai4.jpg",
-        alt: "Muhammad Hamza laptop achievement from Head of Department",
-        caption: "Laptop achievement from Head of Department"
+        src: "images/Muhammad_Hamza_ai3.jpeg",
+        orientation: "portrait",
+        alt: "Muhammad Hamza professional profile photo",
+        caption: "Professional profile photo",
+        objectPosition: "center top"
       },
       {
         src: "images/Muhammad_Hamza_from_pattoki11.jpg",
+        orientation: "portrait",
         alt: "Muhammad Hamza from Pattoki professional outdoor photo",
-        caption: "Professional outdoor photo"
+        caption: "Professional outdoor photo",
+        objectPosition: "center top"
+      },
+      {
+        src: "images/Muhammad_Hamza_ai4.jpg",
+        orientation: "landscape",
+        alt: "Muhammad Hamza laptop achievement from Head of Department",
+        caption: "Laptop achievement from Head of Department",
+        objectPosition: "center center"
       },
       {
         src: "images/Muhammad_Hamza_from_pattoki9.jpg",
+        orientation: "portrait",
         alt: "Muhammad Hamza professional profile photo",
-        caption: "Professional profile photo"
-      },
-      {
-        src: "images/Muhammad_Hamza_ai.jpeg",
-        alt: "Muhammad Hamza with software development team in office",
-        caption: "Software development team moment"
+        caption: "Professional profile photo",
+        objectPosition: "center top"
       }
     ];
 
@@ -1318,34 +1353,24 @@
     let autoplay = null;
 
     function escapeHtml(value) {
-      return String(value)
+      return String(value || "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
     }
 
-    function getImageSize(src) {
-      return new Promise(function (resolve) {
-        const img = new Image();
-        img.onload = function () {
-          resolve({ width: img.naturalWidth || 1, height: img.naturalHeight || 1 });
-        };
-        img.onerror = function () {
-          resolve({ width: 16, height: 9 });
-        };
-        img.src = src;
-      });
-    }
-
-    function createSlideHTML(items) {
+    function createSlideHTML(items, slideIndex) {
       const slideClass = items.length === 2 ? "portrait-pair" : "single";
-      const cards = items.map(function (item, index) {
+      const cards = items.map(function (item, itemIndex) {
+        const loadMode = slideIndex === 0 && itemIndex === 0 ? "eager" : "lazy";
+        const position = item.objectPosition || (item.orientation === "portrait" ? "center top" : "center center");
         return `
-          <div class="photo-card">
+          <div class="photo-card ${escapeHtml(item.orientation || "landscape")}">
             <img src="${escapeHtml(item.src)}"
                  alt="${escapeHtml(item.alt)}"
-                 loading="${index === 0 && current === 0 ? "eager" : "lazy"}">
+                 loading="${loadMode}"
+                 style="object-position:${escapeHtml(position)};">
             <p class="photo-caption">${escapeHtml(item.caption || item.alt)}</p>
           </div>
         `;
@@ -1354,13 +1379,13 @@
       return `<div class="photo-slide ${slideClass}" role="group">${cards}</div>`;
     }
 
-    async function buildSlides() {
+    function buildSlides() {
       const slides = [];
       let portraitBuffer = [];
 
-      for (const item of galleryImages) {
-        const size = await getImageSize(item.src);
-        const isPortrait = size.height > size.width * 1.05;
+      galleryImages.forEach(function (item) {
+        const orientation = String(item.orientation || "landscape").toLowerCase();
+        const isPortrait = orientation === "portrait" && item.forceSingle !== true;
 
         if (isPortrait) {
           portraitBuffer.push(item);
@@ -1377,13 +1402,16 @@
 
           slides.push([item]);
         }
-      }
+      });
 
       if (portraitBuffer.length) {
         slides.push(portraitBuffer);
       }
 
-      track.innerHTML = slides.map(createSlideHTML).join("");
+      track.innerHTML = slides.map(function (items, index) {
+        return createSlideHTML(items, index);
+      }).join("");
+
       total = slides.length;
 
       if (dotsWrap) {
@@ -1392,8 +1420,7 @@
         }).join("");
       }
 
-      const slideEls = track.querySelectorAll(".photo-slide");
-      slideEls.forEach(function (slide, index) {
+      track.querySelectorAll(".photo-slide").forEach(function (slide, index) {
         slide.setAttribute("aria-label", "Slide " + (index + 1) + " of " + total);
       });
 
