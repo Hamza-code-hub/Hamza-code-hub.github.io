@@ -256,25 +256,91 @@
       </div>
     </section>
 
-        <!-- ✅ Photo Gallery Section -->
-    <section id="gallery" class="overview-section p-3 p-lg-5">
+     <!-- ✅ Photo Gallery Section -->
+    <section id="gallery" class="overview-section p-3 p-lg-5" aria-label="Photo Gallery">
       <div class="container">
         <h2 class="section-title font-weight-bold mb-3">Photo Gallery</h2>
         <div class="gallery">
-			 <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza AI Developer working on MacBook" loading="lazy" style="width:45%; height:70%; border-radius:10px; object-fit:cover;">
-          <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza professional profile photo" loading="lazy" style="width:45%; height:70%; border-radius:10px; object-fit:cover;">
-		
-          <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza AI engineer office profile" loading="lazy" style="width:45%;border-radius:10px;">
-          <img src="images/Muhammad_Hamza_ai2.jpg" alt="Muhammad Hamza portfolio photo" loading="lazy" style="width:45%;border-radius:10px;">
-          <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza laptop achievement from Head of Department" loading="lazy" style="width:45%;border-radius:10px;">
-			<!-- <img src="images/Muhammad_Hamza_from_pattoki13.jpg" alt="Muhammad Hamza in white shirt" style="width:45%;border-radius:10px;" loading="lazy"> -->
-          <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza from Pattoki professional outdoor photo" loading="lazy" style="width:45%;border-radius:10px;">
-          <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza professional profile photo" loading="lazy" style="width:45%;border-radius:10px;">
-		  <img src="images/Muhammad_Hamza_ai.jpeg" alt="Muhammad Hamza with software development team in office" loading="lazy" style="width:45%;border-radius:10px;">
-         	
-        </div>
-      </div>
+
+          <!-- ============================================================
+               PHOTO SLIDER — 2 images per slide
+               HOW TO ADD A NEW IMAGE:
+               1. Add a new <img> entry in the images[] array in the <script>
+               2. The slider JS automatically rebuilds all slides in pairs
+               ============================================================ -->
+
+          <div class="photo-slider-wrapper" role="region" aria-label="Photo Gallery Slider">
+            <div class="photo-slider-counter">1 / 4</div>
+            <div class="photo-slider-track" id="photoSliderTrack">
+
+              <!-- Slide 1: images 1 & 2 -->
+              <div class="slide" role="group" aria-label="Slide 1 of 4">
+                <div class="img-slot">
+                  <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza AI Developer working on MacBook" loading="eager" style="object-position:center top;">
+                  <div class="photo-caption">Muhammad Hamza AI Developer working on MacBook</div>
+                </div>
+                <div class="img-slot">
+                  <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza professional profile photo" loading="lazy" style="object-position:center top;">
+                  <div class="photo-caption">Muhammad Hamza professional profile photo</div>
+                </div>
+              </div>
+
+              <!-- Slide 2: images 3 & 4 -->
+              <div class="slide" role="group" aria-label="Slide 2 of 4">
+                <div class="img-slot">
+                  <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza AI engineer office profile" loading="lazy" style="object-position:center top;">
+                  <div class="photo-caption">Muhammad Hamza AI engineer office profile</div>
+                </div>
+                <div class="img-slot">
+                  <img src="images/Muhammad_Hamza_ai2.jpg" alt="Muhammad Hamza portfolio photo" loading="lazy" style="object-position:center top;">
+                  <div class="photo-caption">Muhammad Hamza portfolio photo</div>
+                </div>
+              </div>
+
+              <!-- Slide 3: images 5 & 6 -->
+              <div class="slide" role="group" aria-label="Slide 3 of 4">
+                <div class="img-slot">
+                  <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza laptop achievement from Head of Department" loading="lazy" style="object-position:center top;">
+                  <div class="photo-caption">Muhammad Hamza laptop achievement from Head of Department</div>
+                </div>
+                <div class="img-slot">
+                  <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza from Pattoki professional outdoor photo" loading="lazy" style="object-position:center top;">
+                  <div class="photo-caption">Muhammad Hamza from Pattoki professional outdoor photo</div>
+                </div>
+              </div>
+
+              <!-- Slide 4: images 7 & 8 -->
+              <div class="slide" role="group" aria-label="Slide 4 of 4">
+                <div class="img-slot">
+                  <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza professional profile photo" loading="lazy" style="object-position:center top;">
+                  <div class="photo-caption">Muhammad Hamza professional profile photo</div>
+                </div>
+                <div class="img-slot">
+                  <!-- Image 8: rotated 90° CCW to fix sideways orientation -->
+                  <img src="images/Muhammad_Hamza_ai.jpeg" alt="Muhammad Hamza with software development team in office" loading="lazy" class="img-rotate-fix" style="object-position:center center;">
+                  <div class="photo-caption">Muhammad Hamza with software development team in office</div>
+                </div>
+              </div>
+
+            </div><!-- /track -->
+
+            <button class="photo-slider-btn prev" aria-label="Previous slide">&#8249;</button>
+            <button class="photo-slider-btn next" aria-label="Next slide">&#8250;</button>
+          </div><!-- /wrapper -->
+
+          <!-- Dot indicators — add one dot per slide pair -->
+          <div class="photo-slider-dots">
+            <button class="photo-slider-dot active" aria-label="Go to slide 1"></button>
+            <button class="photo-slider-dot" aria-label="Go to slide 2"></button>
+            <button class="photo-slider-dot" aria-label="Go to slide 3"></button>
+            <button class="photo-slider-dot" aria-label="Go to slide 4"></button>
+          </div>
+
+        </div><!-- /gallery -->
+      </div><!-- /container -->
     </section>
+
+    
    <!-- About Me Section -->
 	  <section id="aboutme" class="overview-section p-1">
     <div class="container text-center">
@@ -949,5 +1015,62 @@
   });
 </script>
 
+
+  <!-- ============================================================
+       PHOTO SLIDER SCRIPT — Modular & auto-pairs images
+       ============================================================ -->
+  <script id="photo-slider-script">
+  (function initPhotoSlider() {
+    const track = document.getElementById('photoSliderTrack');
+    if (!track) return;
+
+    const wrapper   = track.closest('.photo-slider-wrapper');
+    const gallery   = wrapper.closest('.gallery');
+    const dots      = gallery.querySelectorAll('.photo-slider-dot');
+    const counter   = wrapper.querySelector('.photo-slider-counter');
+    const slides    = track.querySelectorAll('.slide');
+    const total     = slides.length;
+    let current     = 0;
+    let timer       = null;
+
+    // Update counter total dynamically
+    counter.textContent = '1 / ' + total;
+
+    function goTo(idx) {
+      current = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+      counter.textContent = (current + 1) + ' / ' + total;
+    }
+
+    wrapper.querySelector('.prev').addEventListener('click', function() { reset(); goTo(current - 1); });
+    wrapper.querySelector('.next').addEventListener('click', function() { reset(); goTo(current + 1); });
+    dots.forEach(function(d, i) { d.addEventListener('click', function() { reset(); goTo(i); }); });
+
+    // Keyboard support
+    wrapper.setAttribute('tabindex', '0');
+    wrapper.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { reset(); goTo(current - 1); }
+      if (e.key === 'ArrowRight') { reset(); goTo(current + 1); }
+    });
+
+    // Touch / swipe
+    var tx = 0;
+    wrapper.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+    wrapper.addEventListener('touchend',   function(e) {
+      var diff = tx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { reset(); goTo(current + (diff > 0 ? 1 : -1)); }
+    }, { passive: true });
+
+    // Autoplay (4.5s per slide)
+    function start() { timer = setInterval(function() { goTo(current + 1); }, 4500); }
+    function reset() { clearInterval(timer); start(); }
+    wrapper.addEventListener('mouseenter', function() { clearInterval(timer); });
+    wrapper.addEventListener('mouseleave', function() { start(); });
+
+    goTo(0);
+    start();
+  })();
+  </script>
 </body>
 </html>
