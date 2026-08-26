@@ -1,50 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- HOME PAGE -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://hamza-code-hub.github.io/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg</image:loc>
-      <image:caption>Muhammad Hamza - AI Developer and Engineer</image:caption>
-    </image:image>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/hamza%20black%20suite.jpeg</image:loc></image:image>
   </url>
-
-  <!-- SERVICES PAGE -->
   <url>
     <loc>https://hamza-code-hub.github.io/services.html</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg</image:loc></image:image>
   </url>
-
-  <!-- PORTFOLIO PAGE -->
   <url>
     <loc>https://hamza-code-hub.github.io/portfolio.html</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/dashboard.png</image:loc></image:image>
   </url>
-
-  <!-- RESUME PAGE -->
+  <url>
+    <loc>https://hamza-code-hub.github.io/gallery.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai1.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai3.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki11.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki10.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki9.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki6.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki5.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki12.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki8.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki7.jpg</image:loc></image:image>
+  </url>
   <url>
     <loc>https://hamza-code-hub.github.io/resume/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza.png</image:loc></image:image>
   </url>
-
-  <!-- CONTACT PAGE -->
   <url>
     <loc>https://hamza-code-hub.github.io/contact.html</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/hamza%20black%20suite.jpeg</image:loc></image:image>
   </url>
-
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/3d-mobibrainnet.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/3d-mobibrainnet-dashboard.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/agentic-cybersecurity-ai-assistant.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/AI_cybersec.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/agentic-rag-support-assistant.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/technical%20chatbot.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/ai-intrusion-detection.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/introsion%20detection.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/aircraft-engine-rul-prediction.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/aerorul-ai-dashboard.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/ai-ticket-scalping-prevention.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Ticketdrop.jfif</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/ai-virtual-painter.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/computervison.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/attendance-management-system.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/ams1.jpeg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/drone-flight-simulation.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/drone-simulation-hero.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/flood-prediction-lightgbm.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/flood-prediction-lightgbm-hero.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/linkedin-automation-bot.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/linkedin%20automation%20bot.jfif</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/neuroinsight-ai.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/neuroinsigt11.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/satellite-image-classification.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/land.png</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/university-timetable-system.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/Timetable.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hamza-code-hub.github.io/projects/visionguard-ai.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image><image:loc>https://hamza-code-hub.github.io/images/hero%20%281%29.png</image:loc></image:image>
+  </url>
 </urlset>
