@@ -6,10 +6,30 @@ $(document).ready(function() {
     // init Isotope    
     var $container = $('.isotope');
     
-    $container.imagesLoaded(function () {
-        $('.isotope').isotope({
+    function isMobileLayout() {
+        return window.matchMedia && window.matchMedia('(max-width: 767.98px)').matches;
+    }
+
+    function layoutOptions() {
+        return {
             itemSelector: '.isotope-item',
-            layoutMode: 'fitRows',
+            layoutMode: isMobileLayout() ? 'vertical' : 'fitRows',
+            vertical: { horizontalAlignment: 0.5 }
+        };
+    }
+
+    $container.imagesLoaded(function () {
+        $container.isotope(layoutOptions());
+    });
+
+    var mobileLayoutActive = isMobileLayout();
+    $(window).on('resize', function () {
+        var nextMobileLayout = isMobileLayout();
+        if (nextMobileLayout === mobileLayoutActive || !$container.data('isotope')) return;
+        mobileLayoutActive = nextMobileLayout;
+        $container.isotope({
+            layoutMode: nextMobileLayout ? 'vertical' : 'fitRows',
+            vertical: { horizontalAlignment: 0.5 }
         });
     });
     

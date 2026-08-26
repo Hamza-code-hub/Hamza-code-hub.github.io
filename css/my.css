@@ -3376,3 +3376,73 @@ body.dark-mode .testimonial-carousel .quote-content {
   padding-top:1.5rem !important;
   text-align:center;
 }
+
+/* Centered single-column content on phone screens. */
+@media (max-width:767.98px) {
+  #gallery .container {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  #gallery .photo-hero,
+  #gallery .photo-grid {
+    width:min(100%,430px);
+    margin-left:auto;
+    margin-right:auto;
+  }
+  #gallery .photo-hero__space {
+    align-items:center;
+    text-align:center;
+  }
+  #gallery .photo-grid {
+    grid-template-columns:minmax(0,1fr);
+    grid-auto-rows:260px;
+    justify-content:center;
+  }
+  #gallery .photo-tile.featured {
+    grid-column:span 1;
+    grid-row:span 1;
+  }
+
+  .projects-list { padding-left:.85rem !important; padding-right:.85rem !important; }
+  .projects-list .project-cards {
+    width:100%;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  .projects-list .portfolio-system-card {
+    width:calc(100% - 1rem) !important;
+    max-width:430px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  #services-list .row {
+    justify-content:center;
+    margin-left:0;
+    margin-right:0;
+  }
+  #services-list .row > [class*="col-"] {
+    width:100%;
+    max-width:430px;
+    flex:0 1 430px;
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .contact-section .container { padding-left:1rem; padding-right:1rem; }
+  .contact-section .contact-form {
+    width:min(100%,600px);
+    margin-left:auto !important;
+    margin-right:auto !important;
+    text-align:left;
+  }
+  .contact-section .contact-form .btn {
+    display:flex;
+    width:max-content;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
