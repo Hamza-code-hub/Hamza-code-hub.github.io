@@ -1806,12 +1806,12 @@ body::-webkit-scrollbar-thumb:hover { background:var(--accent-strong); }
 .typed-cursor { display:inline-block; margin-left:.1em; color:var(--accent); line-height:1; vertical-align:baseline; }
 .role-rotator { min-height:3.1rem; padding:0 .55rem; line-height:1.45; }
 .role-rotator .typed-cursor { margin-left:2px; }
-.hero-trust-wrap { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
-.hero-trust-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); flex:1 1 auto; width:100%; max-width:760px; margin:0; }
+.hero-trust-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); width:100%; max-width:760px; margin:0; }
 .hero-trust-row > div { width:100%; min-width:0; }
 .hero-trust-row strong { white-space:nowrap; }
-.hero-trust-mark { flex:0 0 auto; color:var(--accent-soft); font:500 clamp(.7rem,1.1vw,1.05rem) "DM Mono",monospace; letter-spacing:.15em; white-space:nowrap; }
-@media (max-width:1199.98px) { .hero-trust-mark { display:none; } }
+.hero-image-col { display:flex; flex-direction:column; align-items:flex-start; }
+.hero-trust-mark { display:block; margin-top:1.75rem; color:var(--accent-soft); font:500 clamp(.85rem,1.15vw,1.1rem) "DM Mono",monospace; letter-spacing:.09em; text-align:left; white-space:nowrap; }
+@media (max-width:1199.98px) { .hero-image-col { align-items:center; } .hero-trust-mark { display:none; } }
 
 #projects > .container > .row { align-items:stretch; }
 #projects .showcase-project { align-self:stretch; }
@@ -1918,7 +1918,7 @@ body::-webkit-scrollbar-thumb:hover { background:var(--accent-strong); }
   display:grid !important;
   grid-template-columns:minmax(0,1.3fr) minmax(310px,.7fr);
   gap:clamp(2.5rem,5vw,5rem);
-  align-items:center;
+  align-items:end;
 }
 .about-me-section .profile-teaser .media-body { width:100%; min-width:0; }
 .about-me-section .profile-image {
@@ -2317,13 +2317,25 @@ body.dark-mode .testimonial-carousel .quote-content {
 .visual-linkedin .scan-line { position:absolute; left:0; right:0; top:0; height:2px; background:linear-gradient(90deg,transparent,var(--signal),transparent); box-shadow:0 0 8px var(--signal); animation:pvScanDown 2.4s linear infinite; }
 @keyframes pvScanDown { 0%{ top:0; opacity:1; } 92%{ opacity:1; } 100%{ top:100%; opacity:0; } }
 
-/* ---- visual-satellite: land-cover classification grid ---- */
-.visual-satellite .sat-grid { position:absolute; inset:44px 10% 34%; z-index:2; display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
-.visual-satellite .sat-grid i { border-radius:4px; opacity:.5; background:var(--accent); animation:pvClassify 4.5s ease-in-out infinite; }
-.visual-satellite .sat-grid i:nth-child(3n+1){ animation-delay:0s; }
-.visual-satellite .sat-grid i:nth-child(3n+2){ background:var(--signal); animation-delay:.5s; }
-.visual-satellite .sat-grid i:nth-child(3n+3){ background:var(--warm); animation-delay:1s; }
-@keyframes pvClassify { 0%,100%{ opacity:.3; } 50%{ opacity:.85; } }
+/* ---- visual-satellite: orbiting scan + land-cover classification ---- */
+.visual-satellite .sat-orbit { position:absolute; top:38px; left:6%; z-index:1; width:46px; height:46px; }
+.visual-satellite .sat-ring { position:absolute; inset:0; border:1px dashed var(--border); border-radius:50%; }
+.visual-satellite .sat-ring::after { content:""; position:absolute; inset:-9px; border:1px dashed var(--border); border-radius:50%; opacity:.6; }
+.visual-satellite .sat-dot { position:absolute; top:50%; left:50%; z-index:2; width:6px; height:6px; margin:-3px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); animation:pvOrbitSmall 4.5s linear infinite; }
+@keyframes pvOrbitSmall { from{ transform:rotate(0deg) translateX(23px) rotate(0deg); } to{ transform:rotate(360deg) translateX(23px) rotate(-360deg); } }
+.visual-satellite .sat-readout { position:absolute; top:38px; right:6%; z-index:2; text-align:right; }
+.visual-satellite .sat-readout strong { display:block; color:var(--heading); font-size:1.25rem; animation:pvMetricPulse 2.6s ease-in-out infinite; }
+.visual-satellite .sat-readout small { color:var(--subtle); font:600 .5rem "DM Mono",monospace; letter-spacing:.04em; }
+.visual-satellite .sat-stage { position:absolute; left:6%; right:6%; top:92px; bottom:32%; z-index:2; overflow:hidden; border-radius:8px; }
+.visual-satellite .sat-grid { position:absolute; inset:0; display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(2,1fr); gap:4px; }
+.visual-satellite .sat-grid i { border-radius:4px; opacity:.55; background:var(--accent); animation:pvClassify 4.5s ease-in-out infinite; }
+.visual-satellite .sat-grid i:nth-child(4n+1){ background:var(--accent); animation-delay:0s; }
+.visual-satellite .sat-grid i:nth-child(4n+2){ background:var(--signal); animation-delay:.4s; }
+.visual-satellite .sat-grid i:nth-child(4n+3){ background:var(--warm); animation-delay:.8s; }
+.visual-satellite .sat-grid i:nth-child(4n){ background:var(--accent-strong); animation-delay:1.2s; }
+@keyframes pvClassify { 0%,100%{ opacity:.32; } 50%{ opacity:.9; } }
+.visual-satellite .sat-scan { position:absolute; left:0; right:0; top:0; z-index:3; height:2px; background:linear-gradient(90deg,transparent,var(--signal),transparent); box-shadow:0 0 8px var(--signal); animation:pvSatScan 3.2s ease-in-out infinite; }
+@keyframes pvSatScan { 0%,100%{ top:0; } 50%{ top:100%; } }
 
 @media (prefers-reduced-motion: reduce) {
   .project-visual, .project-visual * { animation:none !important; }
