@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Agentic Cybersecurity AI Assistant | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agentic Cybersecurity AI Assistant: an enterprise-grade multi-agent RAG system by Muhammad Hamza built with LangChain and LangGraph for automated vulnerability analysis and reporting.">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="../js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">Agentic Cybersecurity AI Assistant</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">Enterprise-grade multi-agent RAG system that automates vulnerability analysis, security tool orchestration and reporting.</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">LangChain</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">LangGraph</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">RAG</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.26s">FAISS / ChromaDB</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.33s">Docker</span>
+        </div>
+        <a class="btn btn-primary" href="../portfolio.html" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-arrow-left mr-2"></i>Back to Portfolio</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/AI_cybersec.png" alt="Agentic Cybersecurity AI Assistant" data-aos="zoom-in" data-aos-delay="0">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>An enterprise-grade AI cybersecurity assistant built with <strong>LangChain</strong> and <strong>LangGraph</strong>, combining multi-agent orchestration, Retrieval-Augmented Generation (RAG), vector search, external security tools, and automated reporting to support vulnerability analysis and continuous monitoring.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why This Project Exists</h3>
+            <p>Security teams drown in vulnerability scan output — triaging it manually is slow and inconsistent across analysts. This assistant exists to turn raw scan data into context-grounded, reasoned analysis automatically: specialized agents plan, retrieve relevant vulnerability knowledge, and generate reports, so human analysts spend their time on judgment calls instead of manual lookup.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Workflow</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">Scan Input</div>
+                  <div class="step-desc">Vulnerability scan / monitoring data ingested.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Planner Agent</div>
+                  <div class="step-desc">Breaks the task into an analysis plan.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">Retriever Agent</div>
+                  <div class="step-desc">RAG pulls context from FAISS/ChromaDB knowledge bases.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">Analyst Agent</div>
+                  <div class="step-desc">Reasons over findings with retrieved evidence.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Fallback Handling</div>
+                  <div class="step-desc">Failed tool calls / partial retrieval handled gracefully.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                  <div class="step-num">6</div>
+                  <div class="step-title">Automated Report</div>
+                  <div class="step-desc">Findings compiled into a shareable security report.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-sitemap text-primary mr-2"></i><strong>Multi-Agent Workflows</strong> — specialized planner, retriever and analyst agents for automated vulnerability analysis and reporting.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-search text-primary mr-2"></i><strong>RAG Pipeline</strong> — FAISS/ChromaDB, embeddings and semantic search over vulnerability knowledge bases.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-shield-alt text-primary mr-2"></i><strong>Fallback &amp; Error Handling</strong> — strategies for failed tool calls and incomplete retrieval results.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="180"><i class="fas fa-tachometer-alt text-primary mr-2"></i><strong>Optimized Inference</strong> — context-window management, selective retrieval and efficient prompt construction.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="240"><i class="fas fa-memory text-primary mr-2"></i><strong>Persistent Session Memory</strong> — contextual state maintained across multi-step agent workflows.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300"><i class="fab fa-docker text-primary mr-2"></i><strong>CI/CD &amp; Containers</strong> — GitHub Actions pipelines with Docker-containerized agent services.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-stopwatch benefit-icon"></i>
+                  <div class="benefit-title">Faster Triage</div>
+                  <p class="benefit-desc">Automates the first pass of vulnerability analysis, not just detection.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-book benefit-icon"></i>
+                  <div class="benefit-title">Context-Grounded</div>
+                  <p class="benefit-desc">Every conclusion is backed by retrieved vulnerability knowledge, not guesswork.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-life-ring benefit-icon"></i>
+                  <div class="benefit-title">Resilient by Design</div>
+                  <p class="benefit-desc">Graceful fallback logic keeps workflows running through tool failures.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card"><i class="fas fa-eye benefit-icon"></i>
+                  <div class="benefit-title">Continuous Monitoring</div>
+                  <p class="benefit-desc">Built to run as an ongoing watch, not a one-off scan report.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">LangChain</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">LangGraph</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">Python</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.14s">FAISS</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.18s">ChromaDB</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.22s">Docker</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.26s">GitHub Actions</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary" href="../portfolio.html"><i class="fas fa-arrow-left mr-2"></i>Back to Portfolio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Agentic AI &amp; Cybersecurity</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

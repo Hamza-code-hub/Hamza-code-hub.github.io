@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>University Timetable System | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="University Timetable System: a constraint-based automated scheduling web app by Muhammad Hamza for faculty and class allocation, built with Django.">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="../js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">University Timetable System</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">A constraint-based automated scheduling web app for faculty and class allocation, built with Django.</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">Python</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">Django</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">Constraint Scheduling</span>
+        </div>
+        <a class="btn btn-primary" href="../portfolio.html" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-arrow-left mr-2"></i>Back to Portfolio</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/Timetable.jpg" alt="University Timetable System" data-aos="zoom-in" data-aos-delay="0">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>A constraint-based automated scheduling web application for faculty and class allocation, built with <strong>Django</strong>. Instead of manually juggling faculty availability, room capacity and course requirements on a spreadsheet, the system solves for a conflict-free timetable automatically.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why This Project Exists</h3>
+            <p>Manually building a university timetable means reconciling dozens of overlapping constraints — faculty availability, room capacity, course sections and time-slot clashes — which is slow and error-prone every single term. This system exists to encode those constraints once and let an automated solver produce a conflict-free schedule instead of redoing the puzzle by hand each semester.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Workflow</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">Input Constraints</div>
+                  <div class="step-desc">Faculty availability, rooms and course sections entered.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Conflict Detection</div>
+                  <div class="step-desc">Overlapping time-slot and resource clashes identified.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">Constraint Solving</div>
+                  <div class="step-desc">Scheduling algorithm searches for a valid allocation.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">Optimized Timetable</div>
+                  <div class="step-desc">A conflict-free schedule is generated.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Admin Review</div>
+                  <div class="step-desc">Faculty/admin review and publish via the Django panel.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-calendar-check text-primary mr-2"></i><strong>Constraint-Based Scheduling</strong> — automatically resolves faculty, room and course conflicts.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-chalkboard-teacher text-primary mr-2"></i><strong>Faculty &amp; Class Allocation</strong> — assigns instructors and sections to conflict-free slots.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-server text-primary mr-2"></i><strong>Django Backend</strong> — admin panel for managing courses, rooms and schedules.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-check-circle benefit-icon"></i>
+                  <div class="benefit-title">No More Manual Conflicts</div>
+                  <p class="benefit-desc">Automated solving replaces spreadsheet-based scheduling.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-hourglass-half benefit-icon"></i>
+                  <div class="benefit-title">Faster Term Setup</div>
+                  <p class="benefit-desc">Generates a full timetable in minutes, not days.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-user-shield benefit-icon"></i>
+                  <div class="benefit-title">Centralized Admin Control</div>
+                  <p class="benefit-desc">One Django panel manages courses, rooms and faculty.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">Python</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">Django</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">SQL</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary" href="../portfolio.html"><i class="fas fa-arrow-left mr-2"></i>Back to Portfolio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Django &amp; Web Applications</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

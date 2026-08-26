@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>VisionGuard AI — Warehouse Safety Intelligence | Muhammad Hamza</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VisionGuard: an AI-powered warehouse safety system by Muhammad Hamza that detects, tracks and predicts forklift-pedestrian collision risk using YOLO, ByteTrack, real-world distance estimation and explainable risk scoring.">
+  <meta name="author" content="Muhammad Hamza">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <!-- Scroll animation library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- FontAwesome JS -->
+  <script defer src="../js/all.js"></script>
+  <!-- Theme CSS -->
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">VisionGuard</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">AI-powered warehouse safety intelligence for detecting, tracking, analyzing and explaining forklift–pedestrian risk.</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">Python</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">Ultralytics YOLO</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">OpenCV</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.26s">ByteTrack</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.33s">TTC Risk Prediction</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.40s">Advanced Prototype</span>
+        </div>
+        <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/visionguard-ai" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="150"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/hero (1).png" alt="VisionGuard hero preview" data-aos="zoom-in" data-aos-delay="0">
+          <img src="../images/dashboard.png" alt="VisionGuard dashboard" data-aos="zoom-in" data-aos-delay="60">
+          <img src="../images/livemonitring.png" alt="VisionGuard live monitoring" data-aos="zoom-in" data-aos-delay="120">
+          <img src="../images/events.png" alt="VisionGuard event investigation" data-aos="zoom-in" data-aos-delay="180">
+          <img src="../images/analytics.png" alt="VisionGuard analytics" data-aos="zoom-in" data-aos-delay="240">
+          <img src="../images/zone-configuration.png" alt="VisionGuard safety zone configuration" data-aos="zoom-in" data-aos-delay="0">
+          <img src="../images/architecture.png" alt="VisionGuard core pipeline architecture" data-aos="zoom-in" data-aos-delay="60">
+          <img src="../images/near-miss-replay.png" alt="VisionGuard explainable near-miss replay" data-aos="zoom-in" data-aos-delay="120">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>Most YOLO demos stop at detection and a bounding box. VisionGuard goes further — it transforms ordinary warehouse CCTV video into <strong>explainable safety events</strong> by chaining detection, multi-object tracking, ground-plane calibration, trajectory analysis, time-to-collision (TTC) prediction and a transparent, multi-signal risk score into one pipeline.</p>
+            <p>A detection alone is not an incident — an incident requires context. VisionGuard supplies that context through zones, real-world distance, motion history, closing speed and exposure duration, then automatically saves a video clip, snapshot and JSON explanation for every critical event.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why VisionGuard Exists</h3>
+            <p>Forklift–pedestrian near-misses are one of the most common warehouse safety incidents, and manual review of hundreds of camera hours can't scale and rarely catches risk before it becomes an accident. VisionGuard exists to close that gap: it watches every camera continuously, understands warehouse geometry, and flags a dangerous moment <em>before</em> or as it happens — with evidence a safety officer can actually act on, not just a raw alarm.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Pipeline</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">Video Input</div>
+                  <div class="step-desc">Warehouse CCTV / camera feed ingested frame by frame.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Detection</div>
+                  <div class="step-desc">YOLO detects people and forklifts in each frame.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">Tracking</div>
+                  <div class="step-desc">ByteTrack assigns persistent IDs across frames.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">Real-World Mapping</div>
+                  <div class="step-desc">Homography converts pixels to ground-plane meters.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Risk Engine</div>
+                  <div class="step-desc">TTC, closing speed, zones and exposure feed a weighted score.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                  <div class="step-num">6</div>
+                  <div class="step-title">Event Evidence</div>
+                  <div class="step-desc">Critical events save a clip, snapshot and JSON explanation.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-draw-polygon text-primary mr-2"></i><strong>Virtual Safety Zones</strong> — polygon-defined walkways, forklift lanes and restricted/danger areas per camera.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-ruler-combined text-primary mr-2"></i><strong>Real-World Distance</strong> — pixel positions converted to meters via ground-plane homography calibration.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-route text-primary mr-2"></i><strong>Trajectory &amp; Speed</strong> — per-track motion history drives velocity, direction and closing-speed estimates.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="180"><i class="fas fa-stopwatch text-primary mr-2"></i><strong>TTC / Closest-Approach</strong> — constant-velocity heuristic predicts whether two objects will breach a safety radius.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="240"><i class="fas fa-balance-scale text-primary mr-2"></i><strong>Explainable Risk Scoring</strong> — a weighted 0–100 score combines distance, TTC, closing speed, shared zone and exposure duration.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-video text-primary mr-2"></i><strong>Automatic Event Evidence</strong> — rolling pre/post buffer saves an MP4 clip, snapshot and JSON metadata per critical event.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-heartbeat benefit-icon"></i>
+                  <div class="benefit-title">Fewer Accidents</div>
+                  <p class="benefit-desc">Flags dangerous forklift–pedestrian proximity before it becomes a collision.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-file-contract benefit-icon"></i>
+                  <div class="benefit-title">Objective Evidence</div>
+                  <p class="benefit-desc">Every event ships with a clip, snapshot and JSON — no more he-said/she-said reviews.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-expand-arrows-alt benefit-icon"></i>
+                  <div class="benefit-title">Scales Across Cameras</div>
+                  <p class="benefit-desc">One pipeline monitors many cameras continuously without extra staff.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card"><i class="fas fa-chart-pie benefit-icon"></i>
+                  <div class="benefit-title">Actionable Analytics</div>
+                  <p class="benefit-desc">Turns raw footage into hotspot and near-miss trend data for safety teams.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Risk Model Weighting</h3>
+            <div data-aos="fade-up">
+              <div class="progress-row" data-value="30">
+                <div class="progress-label"><span>Distance</span><span>30%</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+              </div>
+              <div class="progress-row" data-value="25">
+                <div class="progress-label"><span>TTC</span><span>25%</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+              </div>
+              <div class="progress-row" data-value="15">
+                <div class="progress-label"><span>Closing Speed</span><span>15%</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+              </div>
+              <div class="progress-row" data-value="15">
+                <div class="progress-label"><span>Shared Danger Zone</span><span>15%</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+              </div>
+              <div class="progress-row" data-value="10">
+                <div class="progress-label"><span>Exposure Duration</span><span>10%</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+              </div>
+              <div class="progress-row" data-value="5">
+                <div class="progress-label"><span>Detection Confidence</span><span>5%</span></div>
+                <div class="progress"><div class="progress-bar"></div></div>
+              </div>
+            </div>
+            <p class="text-muted mt-2 mb-0">Severity bands: 0–34 Low · 35–59 Medium · 60–79 High · 80–100 Critical.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">Python 3.10+</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">Ultralytics YOLO</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">ByteTrack</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.14s">OpenCV</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.18s">NumPy</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.22s">OpenCV Homography</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.26s">Streamlit (planned)</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.30s">FastAPI (planned)</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.34s">Docker (planned)</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/visionguard-ai" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i>Explore the Repository</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Computer Vision &amp; Research Author</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

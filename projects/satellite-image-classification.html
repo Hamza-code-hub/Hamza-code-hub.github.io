@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Satellite Image Classification — EuroSAT + ResNet18 | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Satellite Image Classification: a deep learning project by Muhammad Hamza using EuroSAT and a transfer-learned ResNet18 to classify satellite imagery into 10 land-cover types.">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="../js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">Satellite Image Classification</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">Transfer-learned ResNet18 trained on EuroSAT to classify satellite imagery into 10 land-cover types — for earth observation, UAV and disaster-response applications.</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">PyTorch</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">ResNet18</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">Transfer Learning</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.26s">EuroSAT</span>
+        </div>
+        <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/Satellite-Image-Classification" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="150"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/land.png" alt="Satellite land-cover classification" data-aos="zoom-in" data-aos-delay="0">
+          <img src="../images/stalite image cls.jpg" alt="Satellite image classification sample predictions" data-aos="zoom-in" data-aos-delay="80">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>This deep learning project trains a <strong>ResNet18</strong> convolutional neural network, pretrained on ImageNet and fine-tuned on the <strong>EuroSAT</strong> dataset, to categorize satellite imagery across 10 land-cover types. It demonstrates practical applications in earth observation, UAV operations, disaster response and terrain analysis through an automated, reproducible pipeline.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why This Project Exists</h3>
+            <p>Manually labeling land cover from satellite imagery does not scale to the volume of imagery captured daily — agriculture monitoring, urban planning and disaster response all need automated, fast, repeatable classification instead. This project shows how transfer learning turns a general-purpose ImageNet model into an accurate land-cover classifier with a fraction of the training data and compute a from-scratch model would need.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Pipeline</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">Satellite Image</div>
+                  <div class="step-desc">EuroSAT imagery loaded for training/inference.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Preprocessing</div>
+                  <div class="step-desc">Resize, normalize, random crop and flip augmentation.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">ResNet18 (Transfer)</div>
+                  <div class="step-desc">ImageNet-pretrained backbone loaded.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">Fine-Tuning</div>
+                  <div class="step-desc">CrossEntropy loss + Adam optimizer on EuroSAT.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Evaluation</div>
+                  <div class="step-desc">Confusion matrix, ROC curves, accuracy metrics.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                  <div class="step-num">6</div>
+                  <div class="step-title">Land-Cover Prediction</div>
+                  <div class="step-desc">Real-time classification into 10 terrain classes.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-satellite text-primary mr-2"></i><strong>Transfer Learning</strong> — ImageNet-pretrained ResNet18 fine-tuned on EuroSAT.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-chart-area text-primary mr-2"></i><strong>Comprehensive Evaluation</strong> — confusion matrices, ROC curves, training visualizations.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-images text-primary mr-2"></i><strong>Data Preprocessing</strong> — normalization, resizing, random crops and flips.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="180"><i class="fas fa-tachometer-alt text-primary mr-2"></i><strong>Real-Time Inference</strong> — with performance benchmarking.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="240"><i class="fas fa-layer-group text-primary mr-2"></i><strong>Extensible Architecture</strong> — supports multispectral <code>.tif</code> imagery and NDVI analysis.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-sync-alt text-primary mr-2"></i><strong>Reproducible Pipeline</strong> — modular <code>train.py</code>, <code>evaluate.py</code>, <code>make_gif.py</code> scripts.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-tachometer-alt benefit-icon"></i>
+                  <div class="benefit-title">Rapid Mapping</div>
+                  <p class="benefit-desc">Classifies land cover at a speed manual labeling can't match.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-brain benefit-icon"></i>
+                  <div class="benefit-title">Cheaper to Train</div>
+                  <p class="benefit-desc">Transfer learning cuts the data and compute needed versus training from scratch.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-expand benefit-icon"></i>
+                  <div class="benefit-title">Extensible</div>
+                  <p class="benefit-desc">Architecture supports multispectral <code>.tif</code> imagery and NDVI analysis.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card"><i class="fas fa-check-circle benefit-icon"></i>
+                  <div class="benefit-title">Clearly Evaluated</div>
+                  <p class="benefit-desc">Confusion matrix and ROC curves make model quality easy to verify.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Evaluation Metrics</h3>
+            <p class="text-muted mb-0">Accuracy, Precision, Recall, F1-score, per-class ROC curves, confusion matrix, training/validation loss curves and inference-time benchmarking.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">Python</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">PyTorch</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">ResNet18</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.14s">ImageNet Pretraining</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.18s">CrossEntropy Loss</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.22s">Adam Optimizer</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/Satellite-Image-Classification" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i>Explore the Repository</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Deep Learning &amp; Research</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

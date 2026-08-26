@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>3D-MobiBrainNet — Alzheimer's MRI Classification | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="3D-MobiBrainNet: a peer-reviewed multi-plane 3D CNN by Muhammad Hamza for multi-class Alzheimer's disease classification from brain MRI, published in Ain Shams Engineering Journal (Elsevier).">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="../js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">3D-MobiBrainNet</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">Multi-class Alzheimer's disease classification from 3D brain MRI, fusing axial, coronal and sagittal planes — published in Ain Shams Engineering Journal (Elsevier).</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">PyTorch</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">3D CNN</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">Medical Imaging</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.26s">Peer-Reviewed Research</span>
+        </div>
+        <a class="btn btn-primary mr-2" href="https://github.com/Hamza-code-hub/3D-MobiBrainNet-Alzheimers-Classification" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="150"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+        <a class="btn btn-secondary" href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="220"><i class="fas fa-file-alt mr-2"></i>Read the Paper</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/3d-mobibrainnet-dashboard.png" alt="3D-MobiBrainNet model overview" data-aos="zoom-in" data-aos-delay="0">
+          <img src="../images/alzheimer's desiease.jpg" alt="3D-MobiBrainNet Alzheimer's MRI classification" data-aos="zoom-in" data-aos-delay="80">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>This peer-reviewed research implements volumetric brain MRI analysis to distinguish Alzheimer's disease, mild cognitive impairment and cognitively normal states. Rather than analyzing isolated 2D slices, the network processes three anatomical planes — axial, coronal and sagittal — through separate feature branches, then fuses them to preserve spatial context while staying computationally efficient.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why This Research Matters</h3>
+            <p>Most Alzheimer's imaging models only do binary classification (disease vs. no disease) from single 2D slices, throwing away 3D spatial context that matters for early staging. Catching <em>mild cognitive impairment</em> — not just full-blown disease — is what actually enables timely intervention. 3D-MobiBrainNet was built to classify all three clinically relevant stages from true volumetric MRI, while staying lightweight enough for practical, real-world inference.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Architecture Flow</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">3D MRI Volume</div>
+                  <div class="step-desc">Full volumetric brain scan loaded via NiBabel.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Multi-Plane Extraction</div>
+                  <div class="step-desc">Axial, coronal and sagittal views extracted.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">Feature Branches</div>
+                  <div class="step-desc">Depth-wise separable convs per plane.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">Feature Fusion</div>
+                  <div class="step-desc">Recalibration merges the three branches.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Classification Head</div>
+                  <div class="step-desc">Multi-class prediction across disease states.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                  <div class="step-num">6</div>
+                  <div class="step-title">Diagnosis Output</div>
+                  <div class="step-desc">AD / MCI / Cognitively Normal, with confidence.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-cube text-primary mr-2"></i><strong>True 3D volumetric processing</strong> of brain MRI rather than isolated 2D slices.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-layer-group text-primary mr-2"></i><strong>Multi-plane feature fusion</strong> across axial, coronal and sagittal views.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-microchip text-primary mr-2"></i><strong>Depth-wise separable convolutions</strong> for reduced computational complexity.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="180"><i class="fas fa-crosshairs text-primary mr-2"></i><strong>Feature recalibration</strong> emphasizing the most informative representations.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="240"><i class="fas fa-th-large text-primary mr-2"></i><strong>Multi-class classification</strong> distinguishing three disease states simultaneously.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-check-double text-primary mr-2"></i><strong>Efficient architecture</strong> — 34.1M parameters, far fewer than comparable models, with 5-fold cross-validation.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-stethoscope benefit-icon"></i>
+                  <div class="benefit-title">Earlier Staging</div>
+                  <p class="benefit-desc">Distinguishes MCI from full Alzheimer's, not just disease vs. healthy.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-cubes benefit-icon"></i>
+                  <div class="benefit-title">True 3D Context</div>
+                  <p class="benefit-desc">Multi-plane fusion keeps spatial context 2D-slice models lose.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-feather benefit-icon"></i>
+                  <div class="benefit-title">Lightweight &amp; Fast</div>
+                  <p class="benefit-desc">Far fewer parameters than comparable 3D CNNs, easing real deployment.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card"><i class="fas fa-award benefit-icon"></i>
+                  <div class="benefit-title">Peer-Reviewed</div>
+                  <p class="benefit-desc">Published in Ain Shams Engineering Journal (Elsevier) — independently validated.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Results</h3>
+            <div class="row">
+              <div class="col-6 col-md-2 stat-block">
+                <div class="stat-number" data-count="97.33" data-suffix="%">0%</div>
+                <div class="stat-label">Accuracy</div>
+              </div>
+              <div class="col-6 col-md-2 stat-block">
+                <div class="stat-number" data-count="97.41" data-suffix="%">0%</div>
+                <div class="stat-label">Precision</div>
+              </div>
+              <div class="col-6 col-md-2 stat-block">
+                <div class="stat-number" data-count="97.33" data-suffix="%">0%</div>
+                <div class="stat-label">Recall</div>
+              </div>
+              <div class="col-6 col-md-2 stat-block">
+                <div class="stat-number" data-count="97.33" data-suffix="%">0%</div>
+                <div class="stat-label">F1-Score</div>
+              </div>
+              <div class="col-6 col-md-2 stat-block">
+                <div class="stat-number" data-count="99.92" data-suffix="%">0%</div>
+                <div class="stat-label">AUC</div>
+              </div>
+              <div class="col-6 col-md-2 stat-block">
+                <div class="stat-number" data-count="34.1" data-suffix="M">0M</div>
+                <div class="stat-label">Parameters</div>
+              </div>
+            </div>
+            <p class="text-muted mt-2 mb-0 text-center">Evaluated on the Alzheimer's Disease Neuroimaging Initiative (ADNI) 3D MRI dataset.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Publication</h3>
+            <p><strong>Journal:</strong> Ain Shams Engineering Journal (Elsevier) &middot; <strong>Year:</strong> 2025 &middot; <strong>Volume:</strong> 16 &middot; <strong>Issue:</strong> 11 &middot; <strong>Article:</strong> 103714<br>
+            <strong>DOI:</strong> <a class="theme-link" href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank" rel="noopener noreferrer">10.1016/j.asej.2025.103714</a> &middot; Open Access, Peer-Reviewed</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">Python 3.10+</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">PyTorch</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">3D CNN</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.14s">NiBabel</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.18s">Scikit-learn</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.22s">Matplotlib</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.26s">Jupyter</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary mr-2" href="https://github.com/Hamza-code-hub/3D-MobiBrainNet-Alzheimers-Classification" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i>Explore the Repository</a>
+            <a class="btn btn-secondary" href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-alt mr-2"></i>Read the Paper</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Medical AI &amp; Research Author</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

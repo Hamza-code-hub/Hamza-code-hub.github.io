@@ -1,37 +1,45 @@
-/* Dependency: js-cookie plugin - Ref: https://github.com/js-cookie/js-cookie */
+(function () {
+  "use strict";
+  var storageKey = "portfolio-theme";
+  var root = document.documentElement;
 
-$(document).ready(function() {
+  function storedTheme() {
+    try { return window.localStorage.getItem(storageKey); } catch (error) { return null; }
+  }
 
-    setThemeFromCookie();
+  function preferredTheme() {
+    var saved = storedTheme();
+    if (saved === "light" || saved === "dark") return saved;
+    return "light";
+  }
 
-	function setThemeFromCookie() {
-		// Check if the cookie is set 
-		if (typeof Cookies.get('mode') !== "undefined" ) {
-			$('body').addClass("dark-mode");
-			$('#darkmode').attr('checked', true); // toggle change
-			console.log('Cookie: dark mode' );
-		} else {
-			$('body').removeClass("dark-mode");
-			$('#darkmode').attr('checked', false); // toggle change
-			console.log('Cookie: light mode' );
-		}
-	}
-	
-	$('#darkmode').on('change', function(e){
+  function applyTheme(theme, persist) {
+    var dark = theme === "dark";
+    root.dataset.theme = theme;
+    document.body.classList.toggle("dark-mode", dark);
+    var toggle = document.getElementById("darkmode");
+    if (toggle) {
+      toggle.checked = dark;
+      toggle.setAttribute("aria-checked", String(dark));
+    }
+    var label = document.querySelector(".toggle-name");
+    if (label) label.innerHTML = '<i class="fas fa-adjust mr-1"></i>' + (dark ? "Dark theme" : "Light theme");
+    if (persist) {
+      try { window.localStorage.setItem(storageKey, theme); } catch (error) { /* Storage may be disabled. */ }
+    }
+    window.dispatchEvent(new CustomEvent("portfolio:theme", { detail: { theme: theme } }));
+  }
 
-		if ($(this).is(':checked')) {
-			$('body').addClass('dark-mode');
-			//Set cookies for 7 days 
-			Cookies.set('mode', 'dark-mode', { expires: 7 });
-			
-		} else {
-			$('body').removeClass('dark-mode');
-			//Remove cookies
-			Cookies.remove('mode');
-		}
+  function bindToggle() {
+    applyTheme(preferredTheme(), false);
+    var toggle = document.getElementById("darkmode");
+    if (!toggle || toggle.dataset.themeBound) return;
+    toggle.dataset.themeBound = "true";
+    toggle.setAttribute("role", "switch");
+    toggle.addEventListener("change", function () { applyTheme(toggle.checked ? "dark" : "light", true); });
+  }
 
-	});
-	
-	
-	
-});	
+  root.dataset.theme = preferredTheme();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindToggle);
+  else bindToggle();
+})();

@@ -22,23 +22,23 @@
   <meta property="og:url" content="https://hamza-code-hub.github.io/">
   <meta property="og:title" content="Muhammad Hamza | AI Developer, LLM &amp; RAG Engineer">
   <meta property="og:description" content="Official portfolio of Muhammad Hamza, AI Developer focused on LLM applications, RAG pipelines, agentic AI workflows, Python, machine learning, and AI automation.">
-  <meta property="og:image" content="https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg">
+  <meta property="og:image" content="https://hamza-code-hub.github.io/images/hamza%20black%20suite.jpeg">
   <meta property="profile:first_name" content="Muhammad">
   <meta property="profile:last_name" content="Hamza">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Muhammad Hamza | AI Developer &amp; LLM Engineer">
   <meta name="twitter:description" content="AI Developer specializing in LLM systems, RAG pipelines, agentic AI workflows, Python, computer vision, and AI automation.">
-  <meta name="twitter:image" content="https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg">
+  <meta name="twitter:image" content="https://hamza-code-hub.github.io/images/hamza%20black%20suite.jpeg">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- CSS Files -->
   <link rel="stylesheet" href="./css/carousel.css">
   <link rel="stylesheet" href="./css/owl.css">
-  <link rel="stylesheet" href="./css/my.css">
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/my.css?v=7">
 
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -75,7 +75,7 @@
           "Hamza-code-hub"
         ],
         "description": "AI Developer and engineer specializing in LLM-powered applications, RAG pipelines, agentic AI workflows, computer vision, NLP, Python, Django, FastAPI, and machine learning systems.",
-        "image": "https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki2.jpg",
+        "image": "https://hamza-code-hub.github.io/images/hamza%20black%20suite.jpeg",
         "jobTitle": "AI Developer and LLM Engineer",
         "url": "https://hamza-code-hub.github.io/",
         "email": "mailto:maherhamza4616@gmail.com",
@@ -167,285 +167,6 @@
   }
   </script>
 
-  <!-- Photo Slider Custom CSS -->
-  <style>
-    .photo-gallery-heading .section-intro {
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    .ai-photo-slider {
-      position: relative;
-      width: min(100%, 1120px);
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at top left, rgba(255, 224, 153, 0.18), transparent 35%),
-        linear-gradient(135deg, #0b0b0d 0%, #151515 100%);
-      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.34);
-      isolation: isolate;
-    }
-
-    .photo-slider-viewport {
-      overflow: hidden;
-      width: 100%;
-      border-radius: 28px;
-    }
-
-    .photo-slider-track {
-      display: flex;
-      width: 100%;
-      transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    .photo-slide {
-      flex: 0 0 100%;
-      min-width: 100%;
-      display: grid;
-      gap: 10px;
-      padding: 0;
-      min-height: clamp(430px, 56vw, 620px);
-    }
-
-    .photo-slide.single {
-      grid-template-columns: 1fr;
-    }
-
-    .photo-slide.portrait-pair {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .photo-card {
-      position: relative;
-      min-height: inherit;
-      overflow: hidden;
-      border-radius: 24px;
-      background: #111;
-    }
-
-    .photo-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.52));
-      opacity: 0;
-      transition: opacity 280ms ease;
-      pointer-events: none;
-    }
-
-    .photo-card:hover::after {
-      opacity: 1;
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      min-height: clamp(430px, 56vw, 620px);
-      display: block;
-      object-fit: cover;
-      object-position: center center;
-      transform: scale(1.001);
-      transition: transform 700ms ease;
-    }
-
-    .photo-card:hover img {
-      transform: scale(1.035);
-    }
-
-    .photo-slide.portrait-pair .photo-card img {
-      object-position: center top;
-    }
-
-    .photo-caption {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      z-index: 2;
-      margin: 0;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.54);
-      color: #fff;
-      font-size: 14px;
-      line-height: 1.4;
-      text-align: center;
-      backdrop-filter: blur(8px);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 280ms ease, transform 280ms ease;
-    }
-
-    .photo-card:hover .photo-caption {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .photo-slider-counter {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      z-index: 5;
-      min-width: 70px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.58);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-
-    .photo-slider-btn {
-      position: absolute;
-      top: 50%;
-      z-index: 6;
-      width: 64px;
-      height: 64px;
-      border: 2px solid rgba(255, 255, 255, 0.86);
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: rgba(214, 185, 111, 0.92);
-      color: #fff;
-      font-size: 42px;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
-      transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
-    }
-
-    .photo-slider-btn:hover,
-    .photo-slider-btn:focus {
-      background: #d8ba70;
-      transform: translateY(-50%) scale(1.06);
-      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
-      outline: none;
-    }
-
-    .photo-slider-btn.prev {
-      left: 18px;
-    }
-
-    .photo-slider-btn.next {
-      right: 18px;
-    }
-
-    .photo-slider-dots {
-      width: min(100%, 1120px);
-      margin: 18px auto 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .photo-slider-dot {
-      width: 10px;
-      height: 10px;
-      border: 0;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.55);
-      cursor: pointer;
-      transition: width 260ms ease, background 260ms ease, transform 260ms ease;
-    }
-
-    .photo-slider-dot.active {
-      width: 34px;
-      background: #d8ba70;
-      transform: translateY(-1px);
-    }
-
-    .photo-noscript-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .photo-noscript-grid img {
-      width: 100%;
-      border-radius: 18px;
-      object-fit: cover;
-    }
-
-    @media (max-width: 991px) {
-      .photo-slide {
-        min-height: clamp(360px, 70vw, 560px);
-      }
-
-      .photo-card img {
-        min-height: clamp(360px, 70vw, 560px);
-      }
-
-      .photo-slider-btn {
-        width: 54px;
-        height: 54px;
-        font-size: 36px;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .ai-photo-slider,
-      .photo-slider-viewport {
-        border-radius: 22px;
-      }
-
-      .photo-slide.portrait-pair {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .photo-slide.portrait-pair .photo-card,
-      .photo-slide.portrait-pair .photo-card img {
-        min-height: 410px;
-      }
-
-      .photo-slider-counter {
-        top: 14px;
-        right: 14px;
-        font-size: 14px;
-        min-width: 62px;
-      }
-
-      .photo-slider-btn {
-        width: 46px;
-        height: 46px;
-        font-size: 32px;
-      }
-
-      .photo-slider-btn.prev {
-        left: 12px;
-      }
-
-      .photo-slider-btn.next {
-        right: 12px;
-      }
-
-      .photo-caption {
-        display: none;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .photo-slider-track,
-      .photo-card img,
-      .photo-caption,
-      .photo-slider-btn,
-      .photo-slider-dot {
-        transition: none !important;
-      }
-    }
-  </style>
-
 </head>
 
 <body>
@@ -463,8 +184,8 @@
           <div class="profile-section pt-3 pt-lg-0">
             <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza AI Developer" width="160" height="160" loading="eager">
             <div class="bio mb-3">
-              Hi, I am <strong>Muhammad Hamza. </strong> 
-            </div><div class="bio mb-3"><span id="typed-text2"></span></div>
+              Hi, I am <strong>Muhammad Hamza.</strong>
+            </div><div class="bio role-rotator mb-3"><span id="typed-text2"></span></div>
 
             <ul class="social-list list-inline py-2 mx-auto">
               <li class="list-inline-item"><a href="https://linkedin.com/in/hamzzaz" target="_blank" rel="noopener noreferrer"><i
@@ -477,11 +198,10 @@
             <hr>
           </div>
 
-         
+
 
           <ul class="navbar-nav flex-column text-left">
             <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#gallery"><i class="fas fa-images fa-fw mr-2"></i>Gallery</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#aboutme"><i class="fas fa-address-card fa-fw mr-2"></i>About Me</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#platforms"><i class="fas fa-briefcase fa-fw mr-2"></i>Work Platforms</a></li>
             <li class="nav-item"><a class="nav-link" href="services.html"><i class="fas fa-cogs fa-fw mr-2"></i>AI Services</a></li>
@@ -490,7 +210,8 @@
             <li class="nav-item"><a class="nav-link" href="index.html#whatido"><i class="fas fa-tools fa-fw mr-2"></i>Development Tools</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#testimonials"><i class="fas fa-comment-dots fa-fw mr-2"></i>Testimonials</a></li>
             <li class="nav-item"><a class="nav-link" href="portfolio.html"><i class="fas fa-laptop-code fa-fw mr-2"></i>Portfolio</a></li>
-            <li class="nav-item"><a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="resume/index.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html"><i class="fas fa-images fa-fw mr-2"></i>Gallery</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Contact</a></li>
           </ul>
 
@@ -500,84 +221,55 @@
 			 <!-- ✅ Dark Mode Toggle -->
           <div class="dark-mode-toggle text-center w-100">
             <hr class="mb-4">
-            <h4 class="toggle-name mb-3"><i class="fas fa-adjust mr-1"></i>Dark Mode</h4>
+            <h4 class="toggle-name mb-3"><i class="fas fa-adjust mr-1"></i>Theme</h4>
             <input class="toggle" id="darkmode" type="checkbox">
             <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
           </div>
+
         </div>
       </nav>
     </div>
   </header>
 
   <div class="main-wrapper">
- 
+
     <!-- About Section -->
     <section class="about-me-section p-3 p-lg-5 theme-bg-light">
       <div class="container">
         <div class="profile-teaser media flex-column flex-lg-row">
           <div class="media-body">
             <h2 class="blog-name pt-lg-4 mb-0">
-  <a href="index.html"><span id="typed-text1"></span></a>
+  <a href="index.html">Muhammad Hamza</a>
 </h2>
-        <div class="tagline mb-3">AI Developer | LLM &amp; RAG Engineer | Research Author (Elsevier)</div>
+            <div class="tagline mb-2">AI Developer | LLM &amp; RAG Engineer | Research Author (Elsevier)</div>
+            <div class="hero-role-rotator" aria-label="Areas of specialization">
+              <span class="hero-role-label">Building</span>
+              <span id="hero-role-text">production AI systems</span>
+            </div>
             <div class="bio mb-4">
               I am <strong>Muhammad Hamza</strong>, an AI and Python developer specializing in LLM-powered applications, Retrieval-Augmented Generation (RAG), agentic AI workflows, computer vision, NLP, machine learning, and AI automation. I build practical AI solutions using Python, Django/FastAPI, OpenAI integrations, data pipelines, and scalable backend systems.
               <br><br>
-              Explore my <a class="theme-link" href="portfolio.html">AI projects</a>, <a class="theme-link" href="services.html">AI development services</a>, and 
-              <a class="theme-link" href="resume.html">resume</a> to learn more.
+              Explore my <a class="theme-link" href="portfolio.html">AI projects</a>, <a class="theme-link" href="services.html">AI development services</a>, and
+              <a class="theme-link" href="resume/index.html">resume</a> to learn more.
             </div>
-            <div class="mb-4">
-              <a class="btn btn-primary mr-2 mb-3" href="portfolio.html"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Portfolio</a>
-              <a class="btn btn-secondary mb-3" href="resume.html"><i class="fas fa-file-alt mr-2"></i>Resume</a>
+            <div class="hero-actions mb-4">
+              <a class="btn btn-primary" href="portfolio.html"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Portfolio</a>
+              <a class="btn btn-secondary" href="resume/index.html"><i class="fas fa-file-alt mr-2"></i>Resume</a>
+            </div>
+            <div class="hero-trust-wrap">
+              <div class="hero-trust-row" aria-label="Professional highlights">
+                <div><strong>15+</strong><span>AI &amp; software systems</span></div>
+                <div><strong>Q1</strong><span>Elsevier research author</span></div>
+                <div><strong>End-to-end</strong><span>Research to deployment</span></div>
+              </div>
+              <span class="hero-trust-mark" aria-hidden="true">AI / ENGINEER / RESEARCH</span>
             </div>
           </div>
-          <img class="profile-image mb-3 mb-lg-0 ml-lg-5" src="images/Muhammad_Hamza_from_pattoki2.jpg" alt="Muhammad Hamza AI Developer and LLM Engineer" width="230" loading="eager" style="width: 230px; height: auto; border-radius: 8px;">
+          <img class="profile-image" src="images/hamza black suite.jpeg" alt="Muhammad Hamza AI Developer and LLM Engineer in a black suit" width="460" loading="eager">
         </div>
       </div>
     </section>
 
-     <!-- ✅ Photo Gallery Section -->
-    <section id="gallery" class="overview-section p-3 p-lg-5" aria-label="Muhammad Hamza Photo Gallery">
-      <div class="container">
-        <div class="photo-gallery-heading text-center mb-4">
-          <h2 class="section-title font-weight-bold mb-2">Photo Gallery</h2>
-          <p class="section-intro mb-0">Professional moments, AI development work, achievements, and portfolio photos of Muhammad Hamza.</p>
-        </div>
-
-        <!--
-          Responsive Photo Slider
-          Rule:
-          - Portrait images are automatically grouped 2 per slide.
-          - Landscape/wide images are shown as 1 image per slide.
-          - To add/remove photos, edit only the galleryImages array in the bottom script.
-        -->
-        <div class="ai-photo-slider" data-photo-slider role="region" aria-label="Muhammad Hamza Photo Gallery Slider">
-          <div class="photo-slider-counter" data-photo-counter>1 / 1</div>
-
-          <div class="photo-slider-viewport">
-            <div class="photo-slider-track" id="photoSliderTrack" aria-live="polite"></div>
-          </div>
-
-          <button class="photo-slider-btn prev" type="button" data-photo-prev aria-label="Previous photo slide">&#8249;</button>
-          <button class="photo-slider-btn next" type="button" data-photo-next aria-label="Next photo slide">&#8250;</button>
-        </div>
-
-        <div class="photo-slider-dots" data-photo-dots aria-label="Photo slider controls"></div>
-
-        <noscript>
-          <div class="photo-noscript-grid">
-            <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza AI Developer working on MacBook">
-            <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza professional profile photo">
-            <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza AI engineer office profile">
-            <img src="images/Muhammad_Hamza_ai2.jpg" alt="Muhammad Hamza portfolio photo">
-            <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza laptop achievement from Head of Department">
-            <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza from Pattoki professional outdoor photo">
-            <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza professional profile photo">
-            <img src="images/Muhammad_Hamza_ai.jpeg" alt="Muhammad Hamza with software development team in office">
-          </div>
-        </noscript>
-      </div>
-    </section>
 
 
    <!-- About Me Section -->
@@ -726,7 +418,25 @@
   </div>
 </section>
 
-    <!-- Core Skills --> <section class="overview-section p-3 p-lg-5"> <div class="container"> <h2 class="section-title font-weight-bold mb-3">Core Skills</h2> <div class="section-intro mb-5"> My core AI development skills include LLM engineering, RAG systems, Python backend development, machine learning, data science, and research-based AI implementation. </div> <div class="row"> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fab fa-python fa-3x"></i> <h3 class="item-title mt-3">Python</h3> <p>Python development for AI applications, APIs, automation, data pipelines, OpenCV, TensorFlow, PyTorch, NumPy, and production workflows.</p> </div> </div> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fas fa-brain fa-3x"></i> <h3 class="item-title mt-3">Deep Learning</h3> <p>Deep learning experience with CNNs, medical imaging, computer vision, model experimentation, and AI research implementation.</p> </div> </div> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fas fa-laptop-code fa-3x"></i> <h3 class="item-title mt-3">Django</h3> <p>Django and FastAPI backend development for AI-powered web applications, REST APIs, dashboards, authentication, and integrations.</p> </div> </div> <div class="item col-6 col-lg-3"> <div class="item-inner text-center"> <i class="fas fa-database fa-3x"></i> <h3 class="item-title mt-3">Data Science</h3> <p>Data preprocessing, feature engineering, model evaluation, dataset visualization, analytics, and machine learning experiments using Pandas, Scikit-learn, and Matplotlib.</p> </div> </div> </div> </div> </section>
+    <!-- Core Skills --> <section id="skills" class="overview-section p-3 p-lg-5"> <div class="container"> <h2 class="section-title font-weight-bold mb-3" data-aos="fade-up">Core Skills</h2> <div class="section-intro mb-5" data-aos="fade-up" data-aos-delay="60">AI/ML Engineer specializing in Generative AI, Agentic Systems and RAG — hands-on with multi-agent workflows (LangChain, LangGraph), production RAG pipelines over vector databases, and end-to-end deep learning, backed by cloud and DevOps delivery.</div> <div class="row">
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="0"> <div class="item-inner text-center"> <i class="fas fa-robot fa-3x"></i> <h3 class="item-title mt-3">Agentic AI &amp; LLM Orchestration</h3> <p>LangChain, LangGraph (multi-agent workflows, state machines, tool use), Model Context Protocol (MCP), LLM application development and prompt engineering.</p> </div> </div>
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="80"> <div class="item-inner text-center"> <i class="fas fa-search fa-3x"></i> <h3 class="item-title mt-3">RAG &amp; Vector Search</h3> <p>RAG pipeline architecture with LlamaIndex and Haystack, vector databases (FAISS, ChromaDB), embedding generation, semantic search and document chunking &amp; indexing.</p> </div> </div>
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="160"> <div class="item-inner text-center"> <i class="fas fa-brain fa-3x"></i> <h3 class="item-title mt-3">Machine Learning &amp; Deep Learning</h3> <p>Model training and evaluation, data preprocessing, and deep learning architectures including CNNs, TabNet and Transformers for NLP and computer vision.</p> </div> </div>
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="240"> <div class="item-inner text-center"> <i class="fas fa-cloud fa-3x"></i> <h3 class="item-title mt-3">Programming, Cloud &amp; DevOps</h3> <p>Python and C++ with NumPy, Pandas, Matplotlib and Seaborn, deployed via AWS, Docker and Kubernetes with GitHub Actions / Jenkins CI/CD pipelines.</p> </div> </div>
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="0"> <div class="item-inner text-center"> <i class="fas fa-shield-alt fa-3x"></i> <h3 class="item-title mt-3">AI Cybersecurity</h3> <p>AI-driven anomaly detection and intelligent threat analysis systems, evaluated on accuracy, precision, recall and F1-score for enterprise security operations.</p> </div> </div>
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="80"> <div class="item-inner text-center"> <i class="fas fa-eye fa-3x"></i> <h3 class="item-title mt-3">Computer Vision</h3> <p>Real-time detection, tracking and classification pipelines built with OpenCV, YOLO and PyTorch for safety, medical imaging and automation use cases.</p> </div> </div>
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="160"> <div class="item-inner text-center"> <i class="fas fa-project-diagram fa-3x"></i> <h3 class="item-title mt-3">Workflow Automation</h3> <p>AI-driven automation connecting Python ML pipelines with Zapier, n8n and Make.com to speed up reporting and operational workflows.</p> </div> </div>
+
+<div class="item col-6 col-lg-3" data-aos="fade-up" data-aos-delay="240"> <div class="item-inner text-center"> <i class="fas fa-microscope fa-3x"></i> <h3 class="item-title mt-3">Research &amp; Publications</h3> <p>Published research author (Ain Shams Engineering Journal, Elsevier) in 3D deep learning for medical imaging, with a focus on efficient, explainable model design.</p> </div> </div>
+
+</div> </div> </section>
 
     <!-- Services Section -->
     <section id="services" class="overview-section p-3 p-lg-5">
@@ -759,6 +469,20 @@
               <i class="fas fa-chart-line fa-3x"></i>
               <h3 class="item-title mt-3">Data Analytics</h3>
               <p>Data analysis, visualization, predictive modeling, feature engineering, reporting dashboards, and ML workflows using Pandas, Scikit-learn, and Matplotlib.</p>
+            </div>
+          </div>
+          <div class="item col-dd-4">
+            <div class="item-inner text-center">
+              <i class="fas fa-brain fa-3x"></i>
+              <h3 class="item-title mt-3">LLM &amp; RAG Systems</h3>
+              <p>Grounded assistants, semantic search, vector databases, document ingestion, evaluation, guardrails, and production-ready retrieval pipelines.</p>
+            </div>
+          </div>
+          <div class="item col-dd-4">
+            <div class="item-inner text-center">
+              <i class="fas fa-eye fa-3x"></i>
+              <h3 class="item-title mt-3">Computer Vision</h3>
+              <p>Real-time detection, tracking, classification, visual analytics, and explainable monitoring systems using YOLO, OpenCV, and PyTorch.</p>
             </div>
           </div>
         </div>
@@ -799,7 +523,7 @@
 									features. </div>
 							</div>
 						</div>
-			
+
 						<!--//item-inner-->
 						<div class="item col-dd-6 col-gg-3">
  <div class="item-inner">
@@ -831,7 +555,7 @@
     <h3 class="do-title">Google colab</h3>
   </div>
   <div class="item-desc">
-    
+
       Google Colab is a cloud-based Jupyter Notebook service that allows you to write and execute Python code for data analysis and machine learning using free GPU and TPU resources.
     </div>
   </div>
@@ -871,8 +595,8 @@
 </div>
 							<!--//item-inner-->
 						</div>
-						
-						
+
+
       </div>
     </section>
 
@@ -880,7 +604,7 @@
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="do-section p-3 p-lg-5 theme-bg-light">
-     	<div class="container">
+			<div class="container">
 					<h2 class="section-title font-weight-bold mb-5">Testimonials</h2>
 					<div class="testimonial-carousel owl-carousel owl-theme">
 						<div class="item">
@@ -923,7 +647,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="item">
 							<div class="quote-holder">
 								<blockquote class="quote-content">I knew him as a good student during my studies. He always showed great interest in Machine Learning and was not afraid to ask questions and explore new things in his area of ​​interest. </blockquote>
@@ -974,16 +698,129 @@
 <!-- Featured Projects Section -->
 	  <section id="projects" class="featured-section p-3 p-lg-5">
 				<div class="container">
-					<h2 class="section-title font-weight-bold mb-5">Featured AI, Python &amp; Django Projects</h2>
+					<p class="section-kicker">Selected work / 01–08</p>
+					<h2 class="section-title font-weight-bold mb-3">Selected AI systems</h2>
+					<p class="section-intro mb-5">Eight complete case studies spanning production computer vision, clinical intelligence, predictive machine learning, retrieval-augmented generation, AI security analytics, and agentic automation.</p>
 					<div class="row">
-						<!-- AI/International Project Cards -->
-						<div class="col-hd-6 mb-5">
+						<!-- Latest Projects -->
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
-										<img src="images/technical chatbot.png" class="card-img img-full m-3" alt="Enterprise RAG chatbot project by Muhammad Hamza" loading="lazy">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-vision" role="img" aria-label="Animated warehouse safety detection interface"><div class="visual-top"><span>VISIONGUARD / LIVE</span><b>RISK 28</b></div><div class="vision-zone"></div><i class="vision-person"></i><i class="vision-forklift"></i><i class="vision-beam"></i><div class="visual-footer"><span>YOLO</span><span>TRACKING</span><span>TTC</span></div></div>
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-success mb-2">Computer Vision</span>
+											<h5 class="card-title"><a href="projects/visionguard-ai.html" class="theme-link">VisionGuard — Warehouse Safety AI</a></h5>
+											<p class="card-text">YOLO + ByteTrack system detecting forklift–pedestrian collision risk with real-world distance, TTC and explainable risk scoring.</p>
+											<p class="card-text"><small class="text-muted">YOLO | ByteTrack | Computer Vision</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/visionguard-ai.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/visionguard-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-neuro" role="img" aria-label="Animated neuroimaging intelligence network"><div class="visual-top"><span>NEURO / MRI</span><b>CASE 042</b></div><div class="brain-core"><i></i><i></i><i></i><i></i><strong>3D</strong></div><div class="neuro-wave"></div><div class="visual-footer"><span>RAG</span><span>XAI</span><span>BIOMARKERS</span></div></div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-primary mb-2">Medical AI</span>
+											<h5 class="card-title"><a href="projects/neuroinsight-ai.html" class="theme-link">NeuroInsight AI</a></h5>
+											<p class="card-text">Agentic Flutter clinical intelligence platform exploring 3D neuroimaging, explainable AI and case-aware RAG for Alzheimer's MRI analysis.</p>
+											<p class="card-text"><small class="text-muted">Agentic AI | RAG | Flutter</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/neuroinsight-ai.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/neuroinsight-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-flood" role="img" aria-label="Animated flood prediction analytics"><div class="visual-top"><span>FLOOD / FORECAST</span><b>LIVE MODEL</b></div><div class="flood-chart"><i></i><i></i><i></i><i></i><i></i><i></i><span></span></div><div class="flood-metric"><strong>0.97</strong><small>MODEL SCORE</small></div><div class="visual-footer"><span>LIGHTGBM</span><span>REGRESSION</span></div></div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-success mb-2">Machine Learning</span>
+											<h5 class="card-title"><a href="projects/flood-prediction-lightgbm.html" class="theme-link">Flood Prediction with LightGBM</a></h5>
+											<p class="card-text">End-to-end regression pipeline predicting flood-related outcomes from environmental data, with full feature-importance analysis.</p>
+											<p class="card-text"><small class="text-muted">LightGBM | Regression | Kaggle</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/flood-prediction-lightgbm.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/flood-prediction-lightgbm.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-drone" role="img" aria-label="Animated autonomous drone route simulation"><div class="visual-top"><span>AERONAV / SIM</span><b>AUTONOMOUS</b></div><div class="drone-map"><span class="route-one"></span><span class="route-two"></span><i class="drone-marker">&#10022;</i><b></b><em></em></div><div class="visual-footer"><span>A*</span><span>PID</span><span>MULTI-UAV</span></div></div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-primary mb-2">Robotics / Simulation</span>
+											<h5 class="card-title"><a href="projects/drone-flight-simulation.html" class="theme-link">AeroNav Sim — Drone Flight Simulation</a></h5>
+											<p class="card-text">Autonomous UAV simulation with A* path planning, PID flight control and multi-drone coordination, built toward ROS/PX4/Gazebo.</p>
+											<p class="card-text"><small class="text-muted">Python | ROS | A* | PID</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/drone-flight-simulation.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/drone-flight-simulation.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-painter" role="img" aria-label="Animated gesture-controlled painting canvas"><div class="visual-top"><span>GESTURE / CANVAS</span><b>TRACKING</b></div><div class="paint-canvas"><span></span><span></span><span></span><i></i></div><div class="gesture-hand"><b></b><b></b><b></b></div><div class="visual-footer"><span>MEDIAPIPE</span><span>OPENCV</span></div></div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-success mb-2">Computer Vision</span>
+											<h5 class="card-title"><a href="projects/ai-virtual-painter.html" class="theme-link">AI Virtual Painter</a></h5>
+											<p class="card-text">MediaPipe hand-tracking app turning a webcam into a gesture-controlled drawing canvas — no physical input device required.</p>
+											<p class="card-text"><small class="text-muted">OpenCV | MediaPipe | Python</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/ai-virtual-painter.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/ai-virtual-painter.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- AI/International Project Cards -->
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-rag" role="img" aria-label="Animated retrieval augmented generation knowledge hub"><div class="visual-top"><span>RAG / KNOWLEDGE SYSTEM</span><b>READY</b></div><div class="rag-query">query: find grounded answer</div><div class="rag-hub"><strong>RAG</strong><small>RETRIEVE&#8594;ANSWER</small></div><span class="rag-doc d1">POLICIES.PDF</span><span class="rag-doc d2">SUPPORT KB</span><span class="rag-doc d3">API DOCS</span><i class="rag-link l1"></i><i class="rag-link l2"></i><i class="rag-link l3"></i><i class="rag-packet p1"></i><i class="rag-packet p2"></i><i class="rag-packet p3"></i><div class="visual-footer"><span>LLM</span><span>RETRIEVAL</span><span>VECTOR SEARCH</span></div></div>
+									</div>
+									<div class="col-md-6">
 										<div class="card-body">
 											<span class="badge badge-success mb-2">International AI Solution</span>
 											<h5 class="card-title"><a href="portfolio.html" class="theme-link">Enterprise RAG Chatbot Platform</a></h5>
@@ -999,13 +836,13 @@
 							</div>
 						</div>
 
-						<div class="col-hd-6 mb-5">
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
-										<img src="images/AI_cybersec.png" class="card-img img-full m-3" alt="AI cybersecurity threat detection project by Muhammad Hamza" loading="lazy">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-cybersec" role="img" aria-label="Animated AI security analytics radar and threat shield"><div class="visual-top"><span>AI / SECURITY ANALYTICS</span><b>ACTIVE</b></div><div class="sec-stage"><div class="sec-radar"><i class="sec-sweep"></i><i class="sec-blip b1"></i><i class="sec-blip b2"></i></div><div class="sec-shield"><strong>AI</strong></div></div><div class="visual-footer"><span>ANOMALY DETECT</span><span>NLP</span><span>ML PIPELINES</span></div></div>
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
 										<div class="card-body">
 											<span class="badge badge-success mb-2">Enterprise AI</span>
 											<h5 class="card-title"><a href="portfolio.html" class="theme-link">AI Cybersecurity Threat Detection</a></h5>
@@ -1021,13 +858,13 @@
 							</div>
 						</div>
 
-						<div class="col-hd-6 mb-5">
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
-										<img src="images/linkedin automation bot.jfif" class="card-img img-full m-3" alt="Agentic AI workflow automation project by Muhammad Hamza" loading="lazy">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-agentflow" role="img" aria-label="Animated agentic AI workflow orchestration"><div class="visual-top"><span>AGENT / ORCHESTRATION</span><b>RUNNING</b></div><div class="agent-stage"><span class="agent-node node-input">INPUT<small>QUERY</small></span><span class="agent-node node-plan">PLAN<small>TOOLS</small></span><span class="agent-node node-memory">MEMORY<small>CONTEXT</small></span><span class="agent-node node-action">ACTION<small>RESULT</small></span><span class="agent-core">AGENT</span><i class="agent-link k1"></i><i class="agent-link k2"></i><i class="agent-link k3"></i><i class="agent-link k4"></i><i class="agent-dot g1"></i><i class="agent-dot g2"></i><i class="agent-dot g3"></i><i class="agent-dot g4"></i></div><div class="visual-footer"><span>LANGGRAPH</span><span>TOOL CALLING</span><span>AUTOMATION</span></div></div>
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
 										<div class="card-body">
 											<span class="badge badge-success mb-2">International Automation</span>
 											<h5 class="card-title"><a href="portfolio.html" class="theme-link">Agentic AI Workflow Automation</a></h5>
@@ -1043,13 +880,13 @@
 							</div>
 						</div>
 
-						<div class="col-hd-6 mb-5">
+						<div class="col-md-6 mb-5" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
+									<div class="col-md-6 card-img-holder">
 										<img src="images/alzheimer's desiease.jpg" class="card-img img-full m-3" alt="Medical AI Alzheimer disease detection research project by Muhammad Hamza" loading="lazy">
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
 										<div class="card-body">
 											<span class="badge badge-primary mb-2">Published Research</span>
 											<h5 class="card-title"><a href="https://www.sciencedirect.com/science/article/pii/S2090447925004551" target="_blank" rel="noopener noreferrer" class="theme-link">Medical AI — Alzheimer’s Detection</a></h5>
@@ -1065,13 +902,13 @@
 							</div>
 						</div>
 
-						<div class="col-hd-6 mb-5">
+						<div class="col-md-6 mb-5" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
+									<div class="col-md-6 card-img-holder">
 										<img src="images/stalite image cls.jpg" class="card-img img-full m-3" alt="Computer vision quality control AI project by Muhammad Hamza" loading="lazy">
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
 										<div class="card-body">
 											<span class="badge badge-success mb-2">AI Vision Solution</span>
 											<h5 class="card-title"><a href="portfolio.html" class="theme-link">Computer Vision QC System</a></h5>
@@ -1088,25 +925,25 @@
 						</div>
 
 						<!--//col-->
-						<div class="col-hd-6 mb-5">
+						<div class="col-md-6 mb-5" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
-										<img src="images/p3.png" class="card-img img-full m-3" alt="Aircraft engine remaining life cycle machine learning project by Muhammad Hamza" loading="lazy">
+									<div class="col-md-6 card-img-holder">
+										<img src="images/aerorul-ai-dashboard.png" class="card-img img-full m-3" alt="Aircraft Engine RUL Prediction AI project by Muhammad Hamza" loading="lazy">
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
 										<div class="card-body">
-											<h5 class="card-title"><a href="psdtohtml.html" class="theme-link">Aircraft Engine RLC</a></h5>
-											<p class="card-text">UAV, drone, and aircraft engine fault prediction with remaining life cycle analysis using Python and machine learning models.
+											<h5 class="card-title"><a href="projects/aircraft-engine-rul-prediction.html" class="theme-link">Aircraft Engine RUL Prediction AI</a></h5>
+											<p class="card-text">Predictive-maintenance ML system estimating turbofan engine Remaining Useful Life from NASA C-MAPSS sensor data.
 											</p>
-											<p class="card-text"><small class="text-muted">Open Source</small></p>
+											<p class="card-text"><small class="text-muted">Research Project</small></p>
 										</div>
 									</div>
 								</div>
 								<div class="link-mask">
-									<a class="link-mask-link" href="psdtohtml.html"></a>
+									<a class="link-mask-link" href="projects/aircraft-engine-rul-prediction.html"></a>
 									<div class="link-mask-text">
-										<a class="btn btn-secondary" href="psdtohtml.html">
+										<a class="btn btn-secondary" href="projects/aircraft-engine-rul-prediction.html">
 											<i class="fas fa-eye mr-2"></i>View Case Study </a>
 									</div>
 								</div>
@@ -1115,16 +952,16 @@
 							<!--//card-->
 						</div>
 						<!--//col-->
-						<div class="col-hd-6 mb-5">
+						<div class="col-md-6 mb-5" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
+									<div class="col-md-6 card-img-holder">
 										<img src="images/Datascience.jpg"
 											class="card-img img-full m-3" alt="Data preprocessing and data science project by Muhammad Hamza" loading="lazy">
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
 										<div class="card-body">
-											<h5 class="card-title"><a href="wpelementor.html"
+											<h5 class="card-title"><a href="projects/flood-prediction-lightgbm.html"
 													class="theme-link">Data Preprocessing</a></h5>
 											<p class="card-text">Data analysis, preprocessing, feature engineering, and data visualization workflows using Python, Pandas, and machine learning libraries.
 											</p>
@@ -1133,9 +970,9 @@
 									</div>
 								</div>
 								<div class="link-mask">
-									<a class="link-mask-link" href="wpelementor.html"></a>
+									<a class="link-mask-link" href="projects/flood-prediction-lightgbm.html"></a>
 									<div class="link-mask-text">
-										<a class="btn btn-secondary" href="wpelementor.html">
+										<a class="btn btn-secondary" href="projects/flood-prediction-lightgbm.html">
 											<i class="fas fa-eye mr-2"></i>View Case Study </a>
 									</div>
 								</div>
@@ -1144,25 +981,25 @@
 							<!--//card-->
 						</div>
 						<!--//col-->
-						<div class="col-hd-6 mb-5">
+						<div class="col-md-6 mb-5" data-aos="fade-up">
 							<div class="card project-card">
 								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
+									<div class="col-md-6 card-img-holder">
 										<img  src="images/python.png" class="card-img img-full m-3"
 											alt="Python Django software projects by Muhammad Hamza" loading="lazy">
 									</div>
-									<div class="col-hd-6">
+									<div class="col-md-6">
 										<div class="card-body">
-											<h5 class="card-title"><a href="projectpage.html" class="theme-link">Python | Django</a></h5>
+											<h5 class="card-title"><a href="projects/university-timetable-system.html" class="theme-link">Python | Django</a></h5>
 											<p class="card-text">Django and Python projects including management systems, API-based applications, university timetable systems, AI experiments, and research-focused software. </p>
 											<p class="card-text"><small class="text-muted">Open Source</small></p>
 										</div>
 									</div>
 								</div>
 								<div class="link-mask">
-									<a class="link-mask-link" href="react.html"></a>
+									<a class="link-mask-link" href="projects/university-timetable-system.html"></a>
 									<div class="link-mask-text">
-										<a class="btn btn-secondary" href="react.html">
+										<a class="btn btn-secondary" href="projects/university-timetable-system.html">
 											<i class="fas fa-eye mr-2"></i>View Case Study </a>
 									</div>
 								</div>
@@ -1171,34 +1008,6 @@
 							<!--//card-->
 						</div>
 						<!--//col-->
-						<div class="col-hd-6 mb-5">
-							<div class="card project-card">
-								<div class="row no-gutters">
-									<div class="col-hd-6 card-img-holder">
-										<img src="images/resturent.jpg"
-											class="card-img img-full m-2" alt="Restaurant management solution Django project by Muhammad Hamza" loading="lazy">
-									</div>
-									<div class="col-hd-6">
-										<div class="card-body">
-											<h5 class="card-title"><a href="fyp.html" class="theme-link">Restaurant
-													Management Solution</a></h5>
-											<p class="card-text">A restaurant management solution with an admin panel, tablet ordering app, kitchen display screen, and Django backend.</p>
-											<p class="card-text"><small class="text-muted">Final Year Project</small>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="link-mask">
-									<a class="link-mask-link" href="fyp.html"></a>
-									<div class="link-mask-text">
-										<a class="btn btn-secondary" href="fyp.html">
-											<i class="fas fa-eye mr-2"></i>View Case Study </a>
-									</div>
-								</div>
-								<!--//link-mask-->
-							</div>
-							<!--//card-->
-						</div>
 					</div>
 					<!--//row-->
 					<div class="text-center py-3"><a href="portfolio.html" class="btn btn-primary"><i
@@ -1225,275 +1034,27 @@
   <script src="./js/testimo.js"></script>
   <script src="./js/cookie.js"></script>
   <script src="./js/dark.js"></script>
+  <script src="./js/site-effects.js?v=3"></script>
   <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var typed = new Typed("#typed-text1", {
-      strings: ["Muhammad Hamza", "AI Developer", "LLM & RAG Engineer", "Agentic AI Specialist"],
-      typeSpeed: 80,      // speed of typing
-      backSpeed: 40,      // speed of backspacing
-      backDelay: 1000,    // pause before deleting
-      startDelay: 300,    // small delay before start
-      loop: true,         // repeat infinitely
-      showCursor: true,   // blinking cursor
-      cursorChar: "|"
-    });
-  });
-</script>
+    if (window.AOS) { AOS.init({ duration: 700, once: true, offset: 60 }); }
+  </script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    var typed = new Typed("#typed-text2", {
-      strings: ["AI & Python Developer", "LLM & RAG Engineer", "Agentic AI Developer", "Research Author (Elsevier Q1)"],
-      typeSpeed: 60,      // speed of typing
-      backSpeed: 30,      // speed of backspacing
-      backDelay: 1000,    // pause before deleting
-      startDelay: 300,    // small delay before start
-      loop: true,         // repeat infinitely
-      showCursor: true,   // blinking cursor
-      cursorChar: "|"
+    var target = document.querySelector("#hero-role-text");
+    if (!target || !window.Typed || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+    new Typed("#hero-role-text", {
+      strings: ["production AI systems", "LLM &amp; RAG platforms", "agentic AI workflows", "computer vision intelligence"],
+      typeSpeed: 48,
+      backSpeed: 24,
+      backDelay: 1450,
+      startDelay: 350,
+      loop: true,
+      showCursor: true,
+      cursorChar: "_"
     });
   });
 </script>
 
 
-  <!-- ============================================================
-       PHOTO SLIDER SCRIPT — Auto layout:
-       Portrait images = 2 per slide, landscape images = 1 per slide
-       ============================================================ -->
-  <script id="photo-slider-script">
-  document.addEventListener("DOMContentLoaded", function () {
-    const galleryImages = [
-      {
-        src: "images/Muhammad_Hamza_ai3.jpeg",
-        alt: "Muhammad Hamza AI Developer working on MacBook",
-        caption: "AI development work on MacBook"
-      },
-      {
-        src: "images/Muhammad_Hamza_ai1.jpeg",
-        alt: "Muhammad Hamza professional profile photo",
-        caption: "Professional profile photo"
-      },
-      {
-        src: "images/Muhammad_Hamza_from_pattoki11.jpg",
-        alt: "Muhammad Hamza AI engineer office profile",
-        caption: "AI engineer office profile"
-      },
-      {
-        src: "images/Muhammad_Hamza_ai2.jpg",
-        alt: "Muhammad Hamza portfolio photo",
-        caption: "Portfolio photo"
-      },
-      {
-        src: "images/Muhammad_Hamza_ai4.jpg",
-        alt: "Muhammad Hamza laptop achievement from Head of Department",
-        caption: "Laptop achievement from Head of Department"
-      },
-      {
-        src: "images/Muhammad_Hamza_from_pattoki1.jpg",
-        alt: "Muhammad Hamza from Pattoki professional outdoor photo",
-        caption: "Professional outdoor photo"
-      },
-      {
-        src: "images/Muhammad_Hamza_from_pattoki9.jpg",
-        alt: "Muhammad Hamza professional profile photo",
-        caption: "Professional profile photo"
-      },
-      {
-        src: "images/Muhammad_Hamza_ai.jpeg",
-        alt: "Muhammad Hamza with software development team in office",
-        caption: "Software development team moment"
-      }
-    ];
-
-    const slider = document.querySelector("[data-photo-slider]");
-    const track = document.getElementById("photoSliderTrack");
-    if (!slider || !track || !galleryImages.length) return;
-
-    const prevBtn = slider.querySelector("[data-photo-prev]");
-    const nextBtn = slider.querySelector("[data-photo-next]");
-    const counter = slider.querySelector("[data-photo-counter]");
-    const dotsWrap = document.querySelector("[data-photo-dots]");
-
-    let current = 0;
-    let total = 0;
-    let autoplay = null;
-
-    function escapeHtml(value) {
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function getImageSize(src) {
-      return new Promise(function (resolve) {
-        const img = new Image();
-        img.onload = function () {
-          resolve({ width: img.naturalWidth || 1, height: img.naturalHeight || 1 });
-        };
-        img.onerror = function () {
-          resolve({ width: 16, height: 9 });
-        };
-        img.src = src;
-      });
-    }
-
-    function createSlideHTML(items) {
-      const slideClass = items.length === 2 ? "portrait-pair" : "single";
-      const cards = items.map(function (item, index) {
-        return `
-          <div class="photo-card">
-            <img src="${escapeHtml(item.src)}"
-                 alt="${escapeHtml(item.alt)}"
-                 loading="${index === 0 && current === 0 ? "eager" : "lazy"}">
-            <p class="photo-caption">${escapeHtml(item.caption || item.alt)}</p>
-          </div>
-        `;
-      }).join("");
-
-      return `<div class="photo-slide ${slideClass}" role="group">${cards}</div>`;
-    }
-
-    async function buildSlides() {
-      const slides = [];
-      let portraitBuffer = [];
-
-      for (const item of galleryImages) {
-        const size = await getImageSize(item.src);
-        const isPortrait = size.height > size.width * 1.05;
-
-        if (isPortrait) {
-          portraitBuffer.push(item);
-
-          if (portraitBuffer.length === 2) {
-            slides.push(portraitBuffer);
-            portraitBuffer = [];
-          }
-        } else {
-          if (portraitBuffer.length) {
-            slides.push(portraitBuffer);
-            portraitBuffer = [];
-          }
-
-          slides.push([item]);
-        }
-      }
-
-      if (portraitBuffer.length) {
-        slides.push(portraitBuffer);
-      }
-
-      track.innerHTML = slides.map(createSlideHTML).join("");
-      total = slides.length;
-
-      if (dotsWrap) {
-        dotsWrap.innerHTML = slides.map(function (_, index) {
-          return `<button class="photo-slider-dot" type="button" aria-label="Go to photo slide ${index + 1}"></button>`;
-        }).join("");
-      }
-
-      const slideEls = track.querySelectorAll(".photo-slide");
-      slideEls.forEach(function (slide, index) {
-        slide.setAttribute("aria-label", "Slide " + (index + 1) + " of " + total);
-      });
-
-      bindControls();
-      goTo(0);
-      startAutoplay();
-    }
-
-    function goTo(index) {
-      if (!total) return;
-      current = ((index % total) + total) % total;
-      track.style.transform = "translateX(-" + (current * 100) + "%)";
-
-      if (counter) {
-        counter.textContent = (current + 1) + " / " + total;
-      }
-
-      if (dotsWrap) {
-        dotsWrap.querySelectorAll(".photo-slider-dot").forEach(function (dot, index) {
-          dot.classList.toggle("active", index === current);
-          dot.setAttribute("aria-current", index === current ? "true" : "false");
-        });
-      }
-    }
-
-    function startAutoplay() {
-      stopAutoplay();
-      autoplay = window.setInterval(function () {
-        goTo(current + 1);
-      }, 5000);
-    }
-
-    function stopAutoplay() {
-      if (autoplay) {
-        window.clearInterval(autoplay);
-        autoplay = null;
-      }
-    }
-
-    function resetAutoplay() {
-      stopAutoplay();
-      startAutoplay();
-    }
-
-    function bindControls() {
-      if (prevBtn) {
-        prevBtn.onclick = function () {
-          goTo(current - 1);
-          resetAutoplay();
-        };
-      }
-
-      if (nextBtn) {
-        nextBtn.onclick = function () {
-          goTo(current + 1);
-          resetAutoplay();
-        };
-      }
-
-      if (dotsWrap) {
-        dotsWrap.querySelectorAll(".photo-slider-dot").forEach(function (dot, index) {
-          dot.onclick = function () {
-            goTo(index);
-            resetAutoplay();
-          };
-        });
-      }
-
-      slider.setAttribute("tabindex", "0");
-      slider.onkeydown = function (event) {
-        if (event.key === "ArrowLeft") {
-          goTo(current - 1);
-          resetAutoplay();
-        }
-
-        if (event.key === "ArrowRight") {
-          goTo(current + 1);
-          resetAutoplay();
-        }
-      };
-
-      let touchStartX = 0;
-      slider.ontouchstart = function (event) {
-        touchStartX = event.touches[0].clientX;
-      };
-
-      slider.ontouchend = function (event) {
-        const diff = touchStartX - event.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) {
-          goTo(current + (diff > 0 ? 1 : -1));
-          resetAutoplay();
-        }
-      };
-
-      slider.onmouseenter = stopAutoplay;
-      slider.onmouseleave = startAutoplay;
-    }
-
-    buildSlides();
-  });
-  </script>
 </body>
 </html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Aircraft Engine RUL Prediction AI | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aircraft Engine RUL Prediction AI: a predictive-maintenance machine learning system by Muhammad Hamza estimating turbofan engine Remaining Useful Life from NASA C-MAPSS sensor data.">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="../js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">Aircraft Engine RUL Prediction AI</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">A predictive-maintenance system estimating the Remaining Useful Life of turbofan aircraft engines from NASA C-MAPSS sensor data.</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">Python</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">XGBoost</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">LightGBM</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.26s">Random Forest</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.33s">Predictive Maintenance</span>
+        </div>
+        <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/Aircraft-Engine-RUL-Prediction-AI" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="150"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/aerorul-ai-dashboard.png" alt="Aircraft Engine RUL Prediction AI dashboard" data-aos="zoom-in" data-aos-delay="0">
+          <img src="../images/p3.png" alt="Aircraft Engine Remaining Life Cycle prediction" data-aos="zoom-in" data-aos-delay="80">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>This machine learning project estimates the <strong>Remaining Useful Life (RUL)</strong> of turbofan aircraft engines using NASA's C-MAPSS simulated degradation dataset. It demonstrates how multivariate sensor measurements and operational cycles can predict how many cycles remain before engine failure — enabling proactive maintenance planning instead of reactive repair.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why This Project Exists</h3>
+            <p>Unscheduled engine failures are expensive, disruptive and dangerous, while fixed-interval servicing wastes good component life. This project shows how airlines can shift toward <em>condition-based</em> maintenance — using real sensor trends instead of a calendar to decide when an engine actually needs attention — by comparing several regression models on real NASA degradation data.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Pipeline</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">Sensor Data</div>
+                  <div class="step-desc">C-MAPSS temperature, pressure &amp; speed readings.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Preprocessing</div>
+                  <div class="step-desc">Cleaning and normalizing run-to-failure trajectories.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">Feature Engineering</div>
+                  <div class="step-desc">Degradation-relevant features extracted per cycle.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">Model Training</div>
+                  <div class="step-desc">Random Forest, XGBoost and LightGBM compared.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Evaluation</div>
+                  <div class="step-desc">RMSE, R², learning curves and error analysis.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                  <div class="step-num">6</div>
+                  <div class="step-title">RUL Prediction</div>
+                  <div class="step-desc">Cycles remaining until failure, per engine.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-thermometer-half text-primary mr-2"></i><strong>Multivariate Sensor Analysis</strong> — temperature, pressure, rotational speed and other engine parameters.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-code-branch text-primary mr-2"></i><strong>Multiple ML Models</strong> — Random Forest, XGBoost and LightGBM regression compared side by side.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-chart-line text-primary mr-2"></i><strong>Comprehensive Evaluation</strong> — RMSE, R², feature importance, learning curves and error analysis.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="180"><i class="fas fa-cubes text-primary mr-2"></i><strong>Modular Codebase</strong> — separate data loading, preprocessing, training and evaluation modules.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="240"><i class="fas fa-database text-primary mr-2"></i><strong>NASA C-MAPSS Dataset</strong> — authentic turbofan run-to-failure simulation data.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-tools text-primary mr-2"></i><strong>Predictive Maintenance Focus</strong> — bridges sensor data with maintenance decision-making.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-plane-slash benefit-icon"></i>
+                  <div class="benefit-title">Less Downtime</div>
+                  <p class="benefit-desc">Predicts failures before they ground an aircraft unexpectedly.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-coins benefit-icon"></i>
+                  <div class="benefit-title">Extends Component Life</div>
+                  <p class="benefit-desc">Condition-based scheduling avoids servicing parts that still have life left.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-balance-scale-right benefit-icon"></i>
+                  <div class="benefit-title">Model Reliability</div>
+                  <p class="benefit-desc">Three models compared side by side so the best performer wins.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card"><i class="fas fa-database benefit-icon"></i>
+                  <div class="benefit-title">Real Degradation Data</div>
+                  <p class="benefit-desc">Trained on authentic NASA run-to-failure engine trajectories.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Evaluation Metrics</h3>
+            <p class="text-muted mb-0">RMSE (Root Mean Squared Error) and R² Score are used to measure prediction accuracy and how well each model explains RUL variation.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">Python</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">Pandas</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">NumPy</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.14s">Scikit-learn</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.18s">XGBoost</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.22s">LightGBM</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.26s">Matplotlib</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.30s">Seaborn</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.34s">Kaggle</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/Aircraft-Engine-RUL-Prediction-AI" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i>Explore the Repository</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Machine Learning &amp; Research Author</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

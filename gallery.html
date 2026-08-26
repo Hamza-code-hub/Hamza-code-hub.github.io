@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Photo Gallery | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo gallery of Muhammad Hamza — AI Developer: professional moments, AI development work, team collaboration, and career milestones.">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="canonical" href="https://hamza-code-hub.github.io/gallery.html"/>
+  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="./js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/my.css?v=7">
+
+  <!-- Photo Grid + Lightbox CSS -->
+  <style>
+    .photo-hero {
+      display: flex;
+      align-items: stretch;
+      min-height: 360px;
+      margin-bottom: 22px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(120deg, var(--panel-solid), var(--page-alt));
+      box-shadow: var(--shadow);
+    }
+
+    .photo-hero__media {
+      position: relative;
+      flex: 0 0 56%;
+      overflow: hidden;
+    }
+
+    .photo-hero__media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 22%;
+    }
+
+    .photo-hero__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 62%, var(--page-alt) 100%);
+    }
+
+    .photo-hero__space {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.75rem 2.75rem 2.75rem 1.75rem;
+    }
+
+    .photo-hero__space .eyebrow {
+      margin: 0 0 .6rem;
+      color: var(--fx-cyan, #38e8ff);
+      font: 600 .68rem "DM Mono",monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .photo-hero__space h3 {
+      margin: 0 0 .75rem;
+      color: var(--heading);
+      font: 700 clamp(1.4rem,2.6vw,2.1rem)/1.15 "Space Grotesk",sans-serif;
+      letter-spacing: -.02em;
+    }
+
+    .photo-hero__space p {
+      margin: 0;
+      color: var(--subtle);
+      font-size: .92rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    @media (max-width: 767px) {
+      .photo-hero { flex-direction: column; min-height: 0; }
+      .photo-hero__media { flex: 0 0 240px; }
+      .photo-hero__media::after { background: linear-gradient(180deg, transparent 60%, var(--page-alt) 100%); }
+      .photo-hero__space { padding: 1.6rem; }
+      .photo-hero__space p { max-width: none; }
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      grid-auto-rows: 220px;
+      grid-auto-flow: dense;
+      gap: 18px;
+    }
+
+    .photo-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
+    }
+
+    .photo-tile.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .photo-tile:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 28px 60px var(--accent-soft, rgba(56,232,255,.12));
+    }
+
+    .photo-tile img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform .7s ease;
+    }
+
+    .photo-tile:hover img {
+      transform: scale(1.06);
+    }
+
+    .photo-tile .photo-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(5,10,19,.72);
+      backdrop-filter: blur(6px);
+      color: var(--fx-cyan, #38e8ff);
+      font: 600 .62rem "DM Mono",monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .photo-tile .photo-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      margin: 0;
+      padding: 26px 14px 12px;
+      background: linear-gradient(180deg, transparent, rgba(2,6,12,.86));
+      color: #fff;
+      font-size: .82rem;
+      line-height: 1.35;
+    }
+
+    /* Lightbox */
+    .photo-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 4vh 4vw;
+      background: rgba(2,4,9,.92);
+      backdrop-filter: blur(6px);
+    }
+
+    .photo-lightbox.is-open { display: flex; }
+
+    .photo-lightbox figure {
+      position: relative;
+      max-width: min(92vw, 1000px);
+      max-height: 90vh;
+      margin: 0;
+    }
+
+    .photo-lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: 82vh;
+      border-radius: 16px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.5);
+    }
+
+    .photo-lightbox figcaption {
+      margin-top: 14px;
+      color: #cfe9ff;
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    .photo-lightbox-close,
+    .photo-lightbox-nav {
+      position: fixed;
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      background: rgba(10,16,28,.72);
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background .25s, transform .25s;
+    }
+
+    .photo-lightbox-close:hover,
+    .photo-lightbox-nav:hover { background: rgba(56,232,255,.22); transform: scale(1.06); }
+
+    .photo-lightbox-close { top: 22px; right: 24px; }
+    .photo-lightbox-nav.prev { left: 20px; top: 50%; transform: translateY(-50%); }
+    .photo-lightbox-nav.next { right: 20px; top: 50%; transform: translateY(-50%); }
+
+    @media (max-width: 767px) {
+      .photo-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); grid-auto-rows: 160px; }
+      .photo-tile.featured { grid-column: span 2; grid-row: span 2; }
+      .photo-lightbox-nav { width: 38px; height: 38px; font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .photo-tile, .photo-tile img { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <script src="./js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">Photo Gallery</h2>
+        <p class="lead mb-0" data-aos="fade-up" data-aos-delay="80">Professional moments, AI development work, team collaboration, and career milestones.</p>
+      </div>
+    </section>
+
+    <section id="gallery" class="overview-section p-3 p-lg-5" aria-label="Muhammad Hamza Photo Gallery">
+      <div class="container">
+
+        <!--
+          Hero banner: real "AI development" photo on the left, deliberate
+          empty space on the right for breathing room / text.
+        -->
+        <div class="photo-hero" data-aos="fade-up">
+          <div class="photo-hero__media">
+            <img src="images/Muhammad_Hamza_ai1.jpeg" alt="Muhammad Hamza AI Developer working on a laptop" loading="eager">
+          </div>
+          <div class="photo-hero__space">
+            <p class="eyebrow">Featured</p>
+            <h3>AI development, day to day</h3>
+            <p>Professional moments, team collaboration, and career milestones from building AI systems.</p>
+          </div>
+        </div>
+
+        <!--
+          Static animated photo grid (no slider).
+          Professional / team / achievement photos are marked "featured" and
+          shown larger. To add/remove photos, edit the .photo-tile
+          items below — each is a plain <figure> the lightbox script picks up.
+        -->
+        <div class="photo-grid" data-photo-grid>
+
+          <figure class="photo-tile featured" data-aos="fade-up" data-aos-delay="0">
+            <span class="photo-tag">Team</span>
+            <img src="images/Muhammad_Hamza_ai3.jpeg" alt="Muhammad Hamza with the development team" loading="eager">
+            <figcaption class="photo-caption">With the development team</figcaption>
+          </figure>
+
+          <figure class="photo-tile featured" data-aos="fade-up" data-aos-delay="60">
+            <span class="photo-tag">Achievement</span>
+            <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza receiving a laptop under the Prime Minister's Youth Laptop Scheme 2025" loading="eager">
+            <figcaption class="photo-caption">Prime Minister's Youth Laptop Scheme 2025</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="0">
+            <img src="images/Muhammad_Hamza_from_pattoki11.jpg" alt="Muhammad Hamza AI engineer office profile" loading="lazy">
+            <figcaption class="photo-caption">AI engineer office profile</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="180">
+            <img src="images/Muhammad_Hamza_from_pattoki10.jpeg" alt="Muhammad Hamza casual portrait" loading="lazy">
+            <figcaption class="photo-caption">Casual portrait</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="120">
+            <img src="images/Muhammad_Hamza_from_pattoki2.jpg" alt="Muhammad Hamza professional business portrait" loading="lazy">
+            <figcaption class="photo-caption">Professional business portrait</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="180">
+            <img src="images/Muhammad_Hamza_from_pattoki9.jpg" alt="Muhammad Hamza professional profile photo" loading="lazy">
+            <figcaption class="photo-caption">Professional profile photo</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="0">
+            <img src="images/Muhammad_Hamza_ai2.jpg" alt="Muhammad Hamza casual outdoor portrait" loading="lazy">
+            <figcaption class="photo-caption">Casual outdoor portrait</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="60">
+            <img src="images/Muhammad_Hamza_from_pattoki1.jpg" alt="Muhammad Hamza professional outdoor photo" loading="lazy">
+            <figcaption class="photo-caption">Professional outdoor photo</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="0">
+            <img src="images/Muhammad_Hamza_from_pattoki6.jpg" alt="Muhammad Hamza with a colleague at a formal event" loading="lazy">
+            <figcaption class="photo-caption">Formal event with a colleague</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="60">
+            <img src="images/Muhammad_Hamza_from_pattoki5.jpg" alt="Muhammad Hamza at a university convocation event" loading="lazy">
+            <figcaption class="photo-caption">University convocation event</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="120">
+            <img src="images/Muhammad_Hamza_from_pattoki12.jpg" alt="Muhammad Hamza at an award recognition ceremony" loading="lazy">
+            <figcaption class="photo-caption">Award recognition ceremony</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="180">
+            <img src="images/Muhammad_Hamza_from_pattoki13.jpg" alt="Muhammad Hamza casual indoor portrait" loading="lazy">
+            <figcaption class="photo-caption">Casual portrait</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="0">
+            <img src="images/Muhammad_Hamza_from_pattoki8.jpg" alt="Muhammad Hamza relaxed indoor portrait" loading="lazy">
+            <figcaption class="photo-caption">Relaxed portrait</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="60">
+            <img src="images/Muhammad_Hamza_from_pattoki3.jpg" alt="Muhammad Hamza casual outdoor portrait" loading="lazy">
+            <figcaption class="photo-caption">Casual outdoor portrait</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="120">
+            <img src="images/Muhammad_Hamza_from_pattoki7.jpg" alt="Muhammad Hamza casual outdoor moment" loading="lazy">
+            <figcaption class="photo-caption">Casual outdoor moment</figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Python Engineer | Research Author</small>
+    </footer>
+  </div>
+
+  <!-- Lightweight click-to-enlarge lightbox for the grid above -->
+  <div class="photo-lightbox" data-photo-lightbox aria-hidden="true">
+    <button class="photo-lightbox-close" type="button" data-lightbox-close aria-label="Close">&times;</button>
+    <button class="photo-lightbox-nav prev" type="button" data-lightbox-prev aria-label="Previous photo">&#8249;</button>
+    <figure>
+      <img data-lightbox-img src="" alt="">
+      <figcaption data-lightbox-caption></figcaption>
+    </figure>
+    <button class="photo-lightbox-nav next" type="button" data-lightbox-next aria-label="Next photo">&#8250;</button>
+  </div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var grid = document.querySelector("[data-photo-grid]");
+    var lightbox = document.querySelector("[data-photo-lightbox]");
+    if (!grid || !lightbox) return;
+
+    var tiles = Array.prototype.slice.call(grid.querySelectorAll(".photo-tile"));
+    var lbImg = lightbox.querySelector("[data-lightbox-img]");
+    var lbCaption = lightbox.querySelector("[data-lightbox-caption]");
+    var current = 0;
+
+    function open(index) {
+      current = (index + tiles.length) % tiles.length;
+      var tile = tiles[current];
+      var img = tile.querySelector("img");
+      var caption = tile.querySelector(".photo-caption");
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCaption.textContent = caption ? caption.textContent : img.alt;
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    function close() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    tiles.forEach(function (tile, index) {
+      tile.addEventListener("click", function () { open(index); });
+    });
+
+    lightbox.querySelector("[data-lightbox-close]").addEventListener("click", close);
+    lightbox.querySelector("[data-lightbox-prev]").addEventListener("click", function () { open(current - 1); });
+    lightbox.querySelector("[data-lightbox-next]").addEventListener("click", function () { open(current + 1); });
+    lightbox.addEventListener("click", function (event) {
+      if (event.target === lightbox) close();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (!lightbox.classList.contains("is-open")) return;
+      if (event.key === "Escape") close();
+      if (event.key === "ArrowLeft") open(current - 1);
+      if (event.key === "ArrowRight") open(current + 1);
+    });
+  });
+  </script>
+
+  <script src="./js/jquery.js"></script>
+  <script src="./js/proper.js"></script>
+  <script src="./js/bootstrap.js"></script>
+  <script src="./js/cookie.js"></script>
+  <script src="./js/dark.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="./js/project-animate.js?v=2"></script>
+  <script src="./js/site-effects.js?v=3"></script>
+</body>
+
+</html>

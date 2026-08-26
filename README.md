@@ -1,332 +1,210 @@
 <div align="center">
 
-# 👨‍💻 Muhammad Hamza
+# Muhammad Hamza - AI Engineering Portfolio
 
-### AI Developer • Software Engineer • Machine Learning & Computer Vision
+### LLM & RAG Engineer | Agentic AI Developer | Machine Learning Researcher
 
-<p>
-Personal portfolio and technical showcase featuring projects in
-<strong>Artificial Intelligence, Deep Learning, Computer Vision, Medical AI,
-Data Science and Full-Stack Software Engineering</strong>.
-</p>
+A modern, responsive portfolio presenting production-oriented AI systems,
+research, engineering services, technical case studies, and professional experience.
 
-<br>
-
-[![Portfolio](https://img.shields.io/badge/🌐_Live_Portfolio-Visit_Website-2563EB?style=for-the-badge)](https://Hamza-code-hub.github.io/)
-[![GitHub](https://img.shields.io/badge/GitHub-Hamza--code--hub-181717?style=for-the-badge\&logo=github)](https://github.com/Hamza-code-hub)
-[![Resume](https://img.shields.io/badge/Resume-View_PDF-DC2626?style=for-the-badge\&logo=adobeacrobatreader\&logoColor=white)](./Muhammad_Hamza_Resume%20Up.pdf)
-
-<br>
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square\&logo=python\&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square\&logo=tensorflow\&logoColor=white)
-![Keras](https://img.shields.io/badge/Keras-D00000?style=flat-square\&logo=keras\&logoColor=white)
-![Machine Learning](https://img.shields.io/badge/Machine_Learning-7C3AED?style=flat-square)
-![Deep Learning](https://img.shields.io/badge/Deep_Learning-2563EB?style=flat-square)
-![Computer Vision](https://img.shields.io/badge/Computer_Vision-06B6D4?style=flat-square)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square\&logo=javascript\&logoColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square\&logo=html5\&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square\&logo=css3\&logoColor=white)
+[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-Visit-5B5BD6?style=for-the-badge)](https://hamza-code-hub.github.io/)
+[![GitHub](https://img.shields.io/badge/GitHub-Hamza--code--hub-181717?style=for-the-badge&logo=github)](https://github.com/Hamza-code-hub)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-hamzzaz-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/hamzzaz)
+[![Resume](https://img.shields.io/badge/Resume-Download_PDF-DC2626?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./resume/Muhammad-Hamza-Resume.pdf)
 
 </div>
 
 ---
 
-## 🚀 About This Portfolio
+## Overview
 
-This repository contains the source code for my personal developer portfolio hosted with **GitHub Pages**.
+This repository contains the source for my GitHub Pages portfolio. It is designed as a senior AI engineering showcase rather than a conventional template-based personal website.
 
-The website presents my work across software engineering and artificial intelligence, including projects involving:
+The portfolio focuses on:
 
-* 🤖 Artificial Intelligence
-* 🧠 Deep Learning
-* 👁️ Computer Vision
-* 🩻 Medical AI
-* 📊 Data Science
-* 🐍 Python Development
-* 🌐 Web Development
-* 🔬 Research Projects
-* ⚙️ Full-Stack Applications
+- LLM applications and Retrieval-Augmented Generation
+- Agentic AI and multi-agent workflows
+- Machine learning and deep learning
+- Computer vision and real-time analytics
+- Medical imaging research
+- Python, Django, FastAPI, and AI-ready backends
+- Data pipelines, automation, and production delivery
 
-The goal of the portfolio is to provide one place to explore my **technical skills, research interests, projects, experience, services and resume**.
+## Design and interaction
 
----
+The interface includes a shared professional design system across the homepage, portfolio, services, resume, contact, and project case-study pages.
 
-## 🌐 Live Portfolio
+- Persistent light and dark themes
+- System theme detection with saved user preference
+- Responsive layouts for desktop, tablet, and mobile
+- Stable typed hero specialties with no layout shift
+- Scroll progress and staggered reveal animations
+- Pointer-aware card lighting and subtle 3D tilt
+- Reduced-motion accessibility support
+- Animated AI system visualizations built with HTML and CSS
+- Animated architecture flows on project detail pages
+- Interactive AI architecture map with orbital core, live subsystem consoles, data routes, counters, and cursor parallax
+- Consistent spacing, typography, contrast, and card geometry
+- Six equal-height homepage service cards and three selected project case studies
+- Unique portfolio case studies with a half-animation, half-description card layout
+- A restrained two-sheet resume layout with professional A4 print styling
 
-<div align="center">
+The animated project panels and architecture map are original visual representations of each system. They do not depend on copied project artwork or external animation assets.
 
-### 🚀 [hamza-code-hub.github.io](https://Hamza-code-hub.github.io/)
+## Selected projects
 
-</div>
+The homepage presents three representative systems:
 
-The portfolio is automatically deployed through **GitHub Pages**.
+| Project | Focus | Core technologies |
+| --- | --- | --- |
+| [VisionGuard](./projects/visionguard-ai.html) | Warehouse collision-risk intelligence | YOLO, ByteTrack, OpenCV |
+| [NeuroInsight AI](./projects/neuroinsight-ai.html) | Clinical intelligence and neuroimaging | Agentic AI, RAG, Flutter |
+| [Flood Prediction](./projects/flood-prediction-lightgbm.html) | Environmental regression pipeline | LightGBM, Python, Kaggle |
 
----
+The complete [portfolio page](./portfolio.html) includes additional work in RAG, cybersecurity, satellite imagery, predictive maintenance, automation, and research.
 
-## 🧠 Areas of Interest
+## Website pages
 
-```text
-Artificial Intelligence
-        │
-        ├── Machine Learning
-        ├── Deep Learning
-        │
-        ├── Computer Vision
-        │
-        ├── Medical Imaging
-        │
-        ├── Data Science
-        │
-        ├── Intelligent Automation
-        │
-        └── AI-Powered Software Systems
-```
+| Page | Purpose |
+| --- | --- |
+| [Home](./index.html) | Professional introduction, capabilities, research, services, and selected work |
+| [Portfolio](./portfolio.html) | Filterable collection of projects and case studies |
+| [Services](./services.html) | AI engineering services, delivery approach, and engagement process |
+| [Resume](./resume/) | Experience, skills, education, research, and project history |
+| [Contact](./contact.html) | Contact form and professional links |
+| [`projects/`](./projects/) | Detailed project architecture, workflow, metrics, and technology pages |
 
-I am particularly interested in building AI systems that connect **research, intelligent algorithms and practical software engineering**.
+## Technology stack
 
----
+### AI and data
 
-## 🛠️ Technical Stack
+- Python
+- TensorFlow and PyTorch
+- Scikit-learn and LightGBM
+- OpenCV, YOLO, ByteTrack, and MediaPipe
+- Pandas, NumPy, and data visualization tooling
+- LangChain, LangGraph, vector search, and RAG pipelines
 
-### Artificial Intelligence & Data
+### Backend and applications
 
-| Technology              | Area                          |
-| ----------------------- | ----------------------------- |
-| 🐍 **Python**           | AI development and automation |
-| 🧠 **TensorFlow**       | Deep learning                 |
-| 🔥 **Keras**            | Neural-network development    |
-| 📊 **NumPy**            | Numerical computing           |
-| 🐼 **Pandas**           | Data analysis                 |
-| 📈 **Matplotlib**       | Data visualization            |
-| 🤖 **Scikit-learn**     | Machine learning              |
-| 👁️ **Computer Vision** | Image-analysis projects       |
+- Django and FastAPI
+- REST APIs and authentication
+- Flutter, Node.js, and TypeScript
+- Databases, data pipelines, and automation
 
-### Web
+### Portfolio frontend
 
-| Technology       | Purpose                |
-| ---------------- | ---------------------- |
-| **HTML5**        | Website structure      |
-| **CSS3**         | Responsive styling     |
-| **JavaScript**   | Frontend interactivity |
-| **GitHub Pages** | Deployment and hosting |
+- Semantic HTML5
+- CSS custom properties and responsive layouts
+- Vanilla JavaScript
+- Bootstrap utilities
+- Intersection Observer and CSS keyframe animations
+- GitHub Pages
 
----
-
-## 🔬 Featured Work
-
-My portfolio includes projects and research across areas such as:
-
-### 🧠 Medical AI
-
-Deep-learning and intelligent software projects involving medical imaging and neurological analysis.
-
-### 👁️ Computer Vision
-
-Image-classification and object-detection systems using modern deep-learning architectures.
-
-### 🛰️ Remote Sensing
-
-Satellite-image analysis and land-cover classification.
-
-### 📊 Machine Learning
-
-End-to-end ML workflows covering preprocessing, training, evaluation and prediction.
-
-### ⚙️ Software Engineering
-
-Full-stack applications, APIs, automation systems and production-oriented software architectures.
-
----
-
-## 🗂️ Website Structure
+## Repository structure
 
 ```text
 Hamza-code-hub.github.io/
-│
-├── css/
-│   └── Website styles
-│
-├── images/
-│   └── Portfolio images and project assets
-│
-├── js/
-│   └── Frontend functionality
-│
-├── index.html
-│   └── Main landing page
-│
-├── portfolio.html
-│   └── Projects and technical work
-│
-├── services.html
-│   └── Services and capabilities
-│
-├── resume.html
-│   └── Resume and experience
-│
-├── contact.html
-│   └── Contact page
-│
-├── fyp.html
-│   └── Final-year project / featured project
-│
-├── Muhammad_Hamza_Resume Up.pdf
-│   └── Downloadable resume
-│
-├── robots.txt
-├── sitemap.xml
-├── .nojekyll
-└── README.md
+|-- css/
+|   |-- my.css                 # Shared themes, layouts, and animation system
+|   `-- theme.css              # Bootstrap-based foundation
+|-- images/                    # Profile, platform, and case-study media
+|-- js/
+|   |-- dark.js                # Persistent light/dark theme controller
+|   |-- sidebar.js             # Shared navigation for inner pages
+|   |-- site-effects.js        # Homepage/listing animations and visual models
+|   `-- project-animate.js      # Project-page architecture and metric animation
+|-- projects/                  # Individual project case studies
+|-- resume/
+|   |-- index.html              # Online resume page
+|   `-- Muhammad-Hamza-Resume.pdf
+|-- index.html
+|-- portfolio.html
+|-- services.html
+|-- contact.html
+|-- robots.txt
+|-- sitemap.xml
+`-- README.md
 ```
 
----
+## Theme behavior
 
-## 🧭 Portfolio Navigation
+The site checks for a saved theme preference first. If none exists, it uses the operating-system preference. The selected theme is stored in `localStorage` and shared by every page.
 
-| Section             | Description                                    |
-| ------------------- | ---------------------------------------------- |
-| 🏠 **Home**         | Introduction and professional overview         |
-| 👨‍💻 **Portfolio** | Projects and technical work                    |
-| 🛠️ **Services**    | Technical services and capabilities            |
-| 📄 **Resume**       | Education, experience and technical background |
-| 🚀 **FYP**          | Featured / final-year project                  |
-| 📬 **Contact**      | Contact information                            |
+Both themes use the same semantic color variables, so cards, forms, project diagrams, text, navigation, and interactive states remain readable and consistent.
 
----
+## Animation architecture
 
-## 🎓 Background
+Animations are implemented without a heavy animation framework:
 
-I am focused on combining **software engineering with artificial intelligence** to build practical systems for real-world applications.
+1. `site-effects.js` limits the homepage to three selected projects and builds animated project visualizations.
+2. Intersection Observer reveals sections and cards only when they enter the viewport.
+3. Fine-pointer devices receive subtle interactive lighting and perspective effects.
+4. `project-animate.js` adds animated data flow, statistics, progress bars, and architecture nodes to case studies.
+5. `prefers-reduced-motion` disables nonessential movement for accessibility.
 
-My technical interests include:
+The resume intentionally does not load the portfolio animation scripts. Its screen layout mirrors a clean two-page document, uses a wider 60/40 experience-and-skills structure, and switches to exact A4 sheets when printed.
 
-```text
-Deep Learning
-Machine Learning
-Computer Vision
-Medical Imaging
-Data Processing
-Feature Engineering
-Model Evaluation
-AI Application Development
-Software Architecture
-Research & Experimentation
+### Animated project models
+
+Static thumbnails are replaced by purpose-built motion models that explain what each selected system does:
+
+| Visual model | Animation behavior |
+| --- | --- |
+| VisionGuard | Moving forklift and pedestrian tracks, risk line, detection zone, and live telemetry |
+| NeuroInsight AI | Breathing brain geometry, pulsing clinical nodes, and signal wave |
+| Flood Prediction | Animated feature bars and model-performance telemetry |
+| Attendance System | Live presence ring, synchronized workforce rows, and status indicators |
+| AeroNav Sim | Autonomous drone marker following a multi-waypoint route |
+| AI Virtual Painter | Gesture hand motion, moving cursor, and progressively drawn strokes |
+
+Every case-study page also receives an animated architecture panel showing input, intelligence, decision, and output stages with moving data packets. These animations are built from semantic HTML and CSS, remain theme-aware, and scale down for mobile layouts.
+
+## Resume
+
+- [View the online resume](./resume/)
+- [Download the PDF resume](./resume/Muhammad-Hamza-Resume.pdf)
+
+The online version includes print-specific CSS for clean document output.
+
+## Running locally
+
+No build step is required. Open `index.html` directly, or serve the repository with any static file server.
+
+```bash
+python -m http.server 8080
 ```
 
----
+Then open `http://localhost:8080`.
 
-## 🔬 Research Focus
+## Deployment
 
-A major part of my work explores the intersection of:
+The site is deployed through GitHub Pages from this repository. Changes to the published branch are served as a static website.
 
-```text
-                  AI Research
-                      │
-          ┌───────────┼───────────┐
-          │           │           │
-          ▼           ▼           ▼
-    Deep Learning  Imaging    Data Science
-          │           │           │
-          └───────────┼───────────┘
-                      │
-                      ▼
-            Practical AI Systems
-```
+SEO support includes:
 
-My goal is to move beyond isolated model experiments and build complete systems that combine:
+- Semantic metadata
+- Open Graph and social-card information
+- Schema.org structured data
+- `robots.txt`
+- `sitemap.xml`
+- Accessible image descriptions and navigation labels
 
-**Data → Models → Evaluation → Software → User Experience**
+## Research
 
----
+My published work includes research on multi-class Alzheimer's disease classification using volumetric brain MRI and 3D deep learning. The portfolio connects this research background with practical AI software engineering and production-oriented delivery.
 
-## 📄 Resume
+## Contact
 
-My latest resume is available directly from this repository:
-
-### 📥 [View / Download Resume](./Muhammad_Hamza_Resume%20Up.pdf)
-
----
-
-## 🚀 Deployment
-
-The website is hosted using:
-
-```text
-GitHub Repository
-       │
-       ▼
-GitHub Pages
-       │
-       ▼
-Static Portfolio
-       │
-       ▼
-hamza-code-hub.github.io
-```
-
-GitHub Pages provides automatic deployment whenever the website source is updated.
-
----
-
-## 🔎 SEO & Discoverability
-
-The repository includes:
-
-```text
-robots.txt
-sitemap.xml
-```
-
-to help search engines discover and index the portfolio pages.
-
----
-
-## 📈 Continuous Development
-
-The portfolio is continuously updated with:
-
-* New AI projects
-* Research work
-* Software engineering projects
-* Technical skills
-* Project documentation
-* Resume updates
-* UI improvements
-* Portfolio case studies
-
----
-
-## 🤝 Connect
-
-<div align="center">
-
-### Explore my work on GitHub
-
-[![GitHub](https://img.shields.io/badge/GitHub-Hamza--code--hub-181717?style=for-the-badge\&logo=github\&logoColor=white)](https://github.com/Hamza-code-hub)
-
-### Visit my Portfolio
-
-[![Website](https://img.shields.io/badge/Portfolio-Live_Website-2563EB?style=for-the-badge)](https://Hamza-code-hub.github.io/)
-
-</div>
+- Portfolio: [hamza-code-hub.github.io](https://hamza-code-hub.github.io/)
+- GitHub: [Hamza-code-hub](https://github.com/Hamza-code-hub)
+- LinkedIn: [hamzzaz](https://www.linkedin.com/in/hamzzaz)
+- Email: [hamza.ai.official@gmail.com](mailto:hamza.ai.official@gmail.com)
 
 ---
 
 <div align="center">
 
-# 👨‍💻 Muhammad Hamza
-
-### AI × Software Engineering × Research
-
-**Building intelligent systems from research ideas to working software.**
-
-<br>
-
-`Python` • `Deep Learning` • `Computer Vision` • `Machine Learning` • `Medical AI` • `Software Engineering`
-
-<br>
-
-⭐ **Explore the repositories to see the projects behind the portfolio.**
+**Research -> Engineering -> Reliable AI systems**
 
 </div>

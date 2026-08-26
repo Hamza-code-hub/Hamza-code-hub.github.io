@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Flood Prediction with LightGBM | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flood Prediction with LightGBM: an end-to-end regression project by Muhammad Hamza predicting flood-related outcomes from environmental data, with feature importance and explainable evaluation.">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="../js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">Flood Prediction with LightGBM</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">An end-to-end machine learning regression pipeline predicting flood-related continuous outcomes from structured environmental data.</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">Python</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">LightGBM</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">Scikit-learn</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.26s">Pandas</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.33s">Regression</span>
+        </div>
+        <a class="btn btn-primary mr-2" href="https://github.com/Hamza-code-hub/Regression-Flood-Prediction-LGMB" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="150"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+        <a class="btn btn-secondary" href="https://www.kaggle.com/code/muhammadhamzamaher/regression-flood-prediction-lgmb" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="220"><i class="fas fa-external-link-alt mr-2"></i>Open Kaggle Notebook</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/flood-prediction-lightgbm-hero.png" alt="Flood Prediction with LightGBM hero" data-aos="zoom-in" data-aos-delay="0">
+          <img src="../images/flood-prediction-lightgbm-model-overview.png" alt="Flood Prediction LightGBM model and analysis overview" data-aos="zoom-in" data-aos-delay="80">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>Flood prediction involves environmental, geographical, meteorological and infrastructure-related variables. This project develops a reproducible regression pipeline using <strong>LightGBM</strong> to learn the relationship between input features and a continuous flood-probability target, covering the complete ML lifecycle from raw data to reusable inference.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why This Project Exists</h3>
+            <p>Flood-prone regions and infrastructure planners need early, data-driven risk estimates rather than reacting after water is already rising. This project demonstrates a reusable, explainable regression pipeline that can be retrained on new regional data to produce a continuous flood-probability estimate, with feature importance that tells decision-makers <em>which</em> environmental factors are actually driving the risk.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Pipeline</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">Raw Dataset</div>
+                  <div class="step-desc">Environmental &amp; infrastructure variables loaded.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Preprocessing</div>
+                  <div class="step-desc">Missing-value imputation and encoding.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">Feature Prep</div>
+                  <div class="step-desc">Feature selection and ID-column exclusion.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">LightGBM Training</div>
+                  <div class="step-desc">Gradient-boosted trees learn the flood target.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Evaluation</div>
+                  <div class="step-desc">MAE, RMSE, R², MAPE and feature importance.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                  <div class="step-num">6</div>
+                  <div class="step-title">Prediction</div>
+                  <div class="step-desc">Saved pipeline scores new, unseen data.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-water text-primary mr-2"></i><strong>Flood Regression</strong> — complete workflow for structured environmental data.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-bolt text-primary mr-2"></i><strong>LightGBM</strong> — efficient gradient-boosted decision-tree regression.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-broom text-primary mr-2"></i><strong>Automatic Preprocessing</strong> — missing-value imputation, categorical encoding, ID exclusion.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="180"><i class="fas fa-chart-bar text-primary mr-2"></i><strong>Evaluation</strong> — MAE, RMSE, R² and MAPE, saved as machine-readable metrics.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="240"><i class="fas fa-search text-primary mr-2"></i><strong>Feature Importance</strong> — ranks the most influential predictors.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-save text-primary mr-2"></i><strong>Model Persistence &amp; Reusable Inference</strong> — joblib pipeline plus a dedicated prediction script for new CSV files.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-map-marked-alt benefit-icon"></i>
+                  <div class="benefit-title">Proactive Planning</div>
+                  <p class="benefit-desc">Estimates risk ahead of time instead of reacting once flooding starts.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-recycle benefit-icon"></i>
+                  <div class="benefit-title">Reusable Pipeline</div>
+                  <p class="benefit-desc">Retrain on any new region's dataset with the same modular code.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-eye benefit-icon"></i>
+                  <div class="benefit-title">Transparent Drivers</div>
+                  <p class="benefit-desc">Feature importance shows exactly what's driving each prediction.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card"><i class="fas fa-rocket benefit-icon"></i>
+                  <div class="benefit-title">Fast Iteration</div>
+                  <p class="benefit-desc">Saved joblib pipeline + inference script means quick re-scoring of new data.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">Python</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">LightGBM</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">Scikit-learn</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.14s">Pandas</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.18s">NumPy</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.22s">Matplotlib</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.26s">Joblib</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.30s">Kaggle</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary mr-2" href="https://github.com/Hamza-code-hub/Regression-Flood-Prediction-LGMB" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i>Explore the Repository</a>
+            <a class="btn btn-secondary" href="https://www.kaggle.com/code/muhammadhamzamaher/regression-flood-prediction-lgmb" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-2"></i>Kaggle Notebook</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Machine Learning &amp; Data Science</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

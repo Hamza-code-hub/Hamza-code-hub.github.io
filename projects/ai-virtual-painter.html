@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>AI Virtual Painter — Gesture-Controlled Drawing | Muhammad Hamza</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Virtual Painter: a computer vision app by Muhammad Hamza turning a webcam into a gesture-controlled drawing canvas using MediaPipe real-time hand tracking.">
+  <meta name="author" content="Muhammad Hamza">
+  <link rel="icon" type="image/png" href="../images/favicon.ico">
+  <link rel="apple-touch-icon" href="../images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script defer src="../js/all.js"></script>
+  <link id="theme-style" rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/my.css?v=7">
+</head>
+
+<body>
+  <script src="../js/sidebar.js?v=5"></script>
+
+  <div class="main-wrapper">
+    <section class="cta-section theme-bg-light animated-hero py-5">
+      <div class="container single-col-max-width text-center">
+        <h2 class="heading mb-2" data-aos="fade-up">AI Virtual Painter</h2>
+        <p class="lead mb-3" data-aos="fade-up" data-aos-delay="80">A computer vision application that turns any webcam into an interactive drawing canvas — paint without touching a thing.</p>
+        <div class="mb-3">
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.05s">Python</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.12s">OpenCV</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.19s">MediaPipe</span>
+          <span class="badge badge-secondary badge-pop mr-1 mb-1" style="animation-delay:.26s">Real-Time Hand Tracking</span>
+        </div>
+        <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/AI-Object-detection-gesture-paint-conrollar-" target="_blank" rel="noopener noreferrer" data-aos="zoom-in" data-aos-delay="150"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+      </div>
+    </section>
+
+    <section class="project px-3 py-5 p-md-5">
+      <div class="container">
+
+        <div class="gallery mb-5">
+          <img src="../images/computervison.png" alt="AI Virtual Painter gesture-controlled drawing canvas" data-aos="zoom-in" data-aos-delay="0">
+        </div>
+
+        <div class="project-sections">
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Overview</h3>
+            <p>AI Virtual Painter converts a standard webcam into an interactive drawing canvas. Using MediaPipe's real-time hand tracking, the system detects 21 hand landmarks and translates finger movements into brush strokes without any physical input device — a beginner-friendly demonstration of computer vision and gesture-based interfaces.</p>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Purpose — Why This Project Exists</h3>
+            <p>This project exists to show, in the most approachable way possible, how computer vision can replace physical input hardware for creative and accessible interfaces — no stylus, no tablet, no special sensor, just a standard webcam and a hand. It's also a compact, single-file reference for anyone learning real-time hand tracking and gesture recognition from scratch.</p>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Animated Pipeline</h3>
+            <div class="workflow-wrap">
+              <div class="workflow-steps">
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="0">
+                  <div class="step-num">1</div>
+                  <div class="step-title">Webcam Feed</div>
+                  <div class="step-desc">Live HD video captured frame by frame.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="100">
+                  <div class="step-num">2</div>
+                  <div class="step-title">Hand Detection</div>
+                  <div class="step-desc">MediaPipe locates the hand in each frame.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="200">
+                  <div class="step-num">3</div>
+                  <div class="step-title">Landmark Tracking</div>
+                  <div class="step-desc">21-point skeleton tracked in real time.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
+                  <div class="step-num">4</div>
+                  <div class="step-title">Gesture Recognition</div>
+                  <div class="step-desc">Finger positions mapped to draw / select gestures.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
+                  <div class="step-num">5</div>
+                  <div class="step-title">Brush/Tool Mapping</div>
+                  <div class="step-desc">Gesture resolved to color, eraser or brush size.</div>
+                </div>
+                <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
+                  <div class="step-num">6</div>
+                  <div class="step-title">Canvas Rendering</div>
+                  <div class="step-desc">Strokes blended onto the live canvas in real time.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Key Features</h3>
+            <div class="row">
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="0"><i class="fas fa-paint-brush text-primary mr-2"></i><strong>Freehand Drawing</strong> — controlled by index-finger position.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="60"><i class="fas fa-hand-peace text-primary mr-2"></i><strong>Two-Finger Gestures</strong> — activate color and tool selection.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="120"><i class="fas fa-palette text-primary mr-2"></i><strong>Five-Color Palette</strong> — plus eraser and canvas-clear.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="180"><i class="fas fa-save text-primary mr-2"></i><strong>Export Artwork</strong> — timestamped PNG snapshots.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="240"><i class="fas fa-hand-sparkles text-primary mr-2"></i><strong>21-Point Hand Skeleton</strong> — real-time tracking at HD resolution.</div>
+              <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-keyboard text-primary mr-2"></i><strong>Configurable Controls</strong> — brush thickness, eraser size, keyboard shortcuts.</div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5">
+            <h3 class="project-section-title mb-3" data-aos="fade-up">Benefits</h3>
+            <div class="row">
+              <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="benefit-card"><i class="fas fa-webcam benefit-icon"></i>
+                  <div class="benefit-title">No Extra Hardware</div>
+                  <p class="benefit-desc">Works with any standard webcam — no stylus or sensor needed.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="benefit-card"><i class="fas fa-graduation-cap benefit-icon"></i>
+                  <div class="benefit-title">Learn by Example</div>
+                  <p class="benefit-desc">Compact, single-file reference for real-time hand-tracking CV.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="benefit-card"><i class="fas fa-wifi-slash benefit-icon"></i>
+                  <div class="benefit-title">Fully Offline</div>
+                  <p class="benefit-desc">Runs entirely on-device — no cloud calls, no data leaves the machine.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section mb-5" data-aos="fade-up">
+            <h3 class="project-section-title mb-3">Technology Stack</h3>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.02s">Python 3.9–3.11</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.06s">OpenCV</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.10s">MediaPipe</span>
+            <span class="badge badge-pill badge-light border mr-2 mb-2 p-2 badge-pop" style="animation-delay:.14s">NumPy</span>
+          </div>
+
+          <div class="project-section text-center" data-aos="zoom-in">
+            <a class="btn btn-primary" href="https://github.com/Hamza-code-hub/AI-Object-detection-gesture-paint-conrollar-" target="_blank" rel="noopener noreferrer"><i class="fab fa-github mr-2"></i>Explore the Repository</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+      <small class="copyright">© 2025 Muhammad Hamza — AI Developer | Computer Vision</small>
+    </footer>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/proper.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/cookie.js"></script>
+  <script src="../js/dark.js"></script>
+  <script src="../js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/project-animate.js?v=2"></script>
+</body>
+
+</html>

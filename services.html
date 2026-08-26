@@ -32,13 +32,13 @@
 <link rel="apple-touch-icon" href="images/favicon.ico">
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- CSS Files -->
 <link rel="stylesheet" href="./css/carousel.css">
 <link rel="stylesheet" href="./css/owl.css">
-<link rel="stylesheet" href="./css/my.css">
 <link id="theme-style" rel="stylesheet" href="./css/theme.css">
+<link rel="stylesheet" href="./css/my.css?v=7">
 
 <!-- AOS Animation -->
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -63,88 +63,37 @@
     {"@type": "ListItem", "position": 5, "name": "NLP & Text Analytics", "url": "https://hamza-code-hub.github.io/services.html#nlp"},
     {"@type": "ListItem", "position": 6, "name": "AI Web Development", "url": "https://hamza-code-hub.github.io/services.html#webdev"},
     {"@type": "ListItem", "position": 7, "name": "AI Research & Publications", "url": "https://hamza-code-hub.github.io/services.html#research"},
-    {"@type": "ListItem", "position": 8, "name": "Data Science & Analytics", "url": "https://hamza-code-hub.github.io/services.html#data"}
+    {"@type": "ListItem", "position": 8, "name": "Data Science & Analytics", "url": "https://hamza-code-hub.github.io/services.html#data"},
+    {"@type": "ListItem", "position": 9, "name": "MLOps, Cloud & DevOps", "url": "https://hamza-code-hub.github.io/services.html#devops"}
   ]
 }
 </script>
 
 <style>
-.service-hero { background: linear-gradient(135deg, #008080 0%, #004d4d 100%); color: #fff; padding: 80px 0 60px; text-align: center; }
+.service-hero { position:relative; overflow:hidden; background:radial-gradient(circle at 30% 20%, rgba(85,230,255,.16), transparent 55%), radial-gradient(circle at 80% 80%, rgba(157,123,255,.14), transparent 55%); color:var(--ink); padding:90px 0 64px; text-align:center; }
 .service-hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
-.service-hero p { font-size: 1.15rem; opacity: 0.92; max-width: 700px; margin: 0 auto 28px; }
-.service-card { border: none; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); transition: transform 0.25s, box-shadow 0.25s; height: 100%; }
-.service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,128,128,0.18); }
+.service-hero p { font-size: 1.15rem; color:var(--muted); max-width: 700px; margin: 0 auto 28px; }
+.service-card { border:1px solid var(--line); border-radius:18px; background:linear-gradient(145deg,rgba(27,42,75,.78),rgba(12,19,38,.8)); box-shadow:0 14px 40px rgba(0,0,0,.18); transition: transform 0.25s, box-shadow 0.25s, border-color .25s; height: 100%; }
+.service-card:hover { transform: translateY(-9px); border-color:rgba(85,230,255,.52); box-shadow:0 22px 52px rgba(0,0,0,.34), 0 0 28px rgba(85,230,255,.1); }
 .service-card .card-body { padding: 32px 28px; }
-.service-icon { font-size: 2.5rem; color: #008080; margin-bottom: 18px; }
-.service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
-.service-card ul { padding-left: 18px; color: #555; }
+.service-icon { font-size: 2.5rem; color: var(--cyan); margin-bottom: 18px; }
+.service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color:var(--ink); }
+.service-card ul { padding-left: 18px; color: var(--muted); }
 .service-card ul li { margin-bottom: 5px; }
-.price-badge { display: inline-block; background: #e6f7f7; color: #008080; border-radius: 20px; padding: 4px 14px; font-size: 0.85rem; font-weight: 600; margin-top: 14px; }
-.tech-tag { display: inline-block; background: #f0f0f0; color: #444; border-radius: 12px; padding: 3px 10px; font-size: 0.78rem; margin: 3px 2px; }
-.cta-section { background: linear-gradient(135deg, #008080 0%, #004d4d 100%); color: #fff; padding: 60px 0; text-align: center; }
+.price-badge { display: inline-block; background: rgba(85,230,255,.12); color: var(--cyan); border:1px solid rgba(85,230,255,.25); border-radius: 20px; padding: 4px 14px; font-size: 0.85rem; font-weight: 600; margin-top: 14px; }
+.tech-tag { display: inline-block; background: rgba(170,210,255,.08); color: var(--muted); border:1px solid var(--line); border-radius: 12px; padding: 3px 10px; font-size: 0.78rem; margin: 3px 2px; }
+.cta-section { position:relative; overflow:hidden; background:radial-gradient(circle at 30% 30%, rgba(85,230,255,.14), transparent 55%), radial-gradient(circle at 75% 70%, rgba(184,255,106,.1), transparent 55%); color:var(--ink); padding: 60px 0; text-align: center; }
 .cta-section h2 { font-size: 2rem; font-weight: 700; margin-bottom: 14px; }
-.section-divider { width: 60px; height: 4px; background: #008080; margin: 0 auto 40px; border-radius: 2px; }
-.why-item { padding: 24px; background: #f8f9fa; border-radius: 10px; height: 100%; }
-.why-item i { font-size: 2rem; color: #008080; margin-bottom: 14px; }
+.section-divider { width: 60px; height: 4px; background:linear-gradient(90deg,var(--cyan),var(--violet)); margin: 0 auto 40px; border-radius: 2px; }
+.why-item { padding: 24px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(27,42,75,.6),rgba(12,19,38,.65)); border-radius: 14px; height: 100%; }
+.why-item i { font-size: 2rem; color: var(--cyan); margin-bottom: 14px; }
+.why-item h5 { color:var(--ink); }
+.why-item p { color:var(--muted); }
 </style>
 </head>
 
 <body>
-<header class="header text-center">
-    <div class="force-overflow">
-        <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Muhammad Hamza</a></h1>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navigation" class="collapse navbar-collapse flex-column">
-          <div class="profile-section pt-3 pt-lg-0">
-            <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="Muhammad Hamza AI Developer" width="160" height="160" loading="eager">
-            <div class="bio mb-3">
-              Hi, I am <strong>Muhammad Hamza.</strong>
-            </div>
-            <ul class="social-list list-inline py-2 mx-auto">
-              <li class="list-inline-item"><a href="https://twitter.com/Muhamma08974837" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-fw"></i></a></li>
-              <li class="list-inline-item"><a href="https://www.linkedin.com/in/hamzzaz" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github-alt fa-fw"></i></a></li>
-            </ul>
-            <!--//social-list-->
-            <hr>
-          </div>
-          <!--//profile-section-->
-          <ul class="navbar-nav flex-column text-left">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="portfolio.html"><i class="fas fa-laptop-code fa-fw mr-2"></i>Portfolio</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="services.html"><i class="fas fa-cogs fa-fw mr-2"></i>Services<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Contact</a>
-            </li>
-          </ul>
-          <div class="my-2">
-            <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a>
-          </div>
-          <div class="dark-mode-toggle text-center w-100">
-            <hr class="mb-4">
-            <h4 class="toggle-name mb-3"><i class="fas fa-adjust mr-1"></i>Dark Mode</h4>
-            <div id="toggle-switch" class="toggle-switch mx-auto mb-4 text-left">
-              <input class="toggle-switch-checkbox" type="checkbox" id="darkSwitch">
-              <label class="toggle-switch-label" for="darkSwitch">Toggle</label>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-</header>
+<script src="./js/sidebar.js?v=5"></script>
 
 <div class="main-wrapper">
 
@@ -152,7 +101,7 @@
     <section class="service-hero" aria-label="Services Hero">
         <div class="container">
             <h1>Professional AI Development Services</h1>
-            <p>I build intelligent, scalable AI systems for startups and enterprises worldwide. From LLM-powered chatbots to computer vision pipelines — let's turn your AI idea into reality.</p>
+            <p>I build intelligent, scalable AI systems for startups and enterprises worldwide — agentic multi-agent workflows, production RAG pipelines, and computer vision, deployed with proper cloud and DevOps practice. Let's turn your AI idea into reality.</p>
             <a href="contact.html" class="btn btn-light btn-lg mr-3"><i class="fas fa-envelope mr-2"></i>Hire Me</a>
             <a href="portfolio.html" class="btn btn-outline-light btn-lg"><i class="fas fa-laptop-code mr-2"></i>View Portfolio</a>
         </div>
@@ -207,10 +156,10 @@
                                 <li>Enterprise knowledge base chatbots</li>
                             </ul>
                             <div>
-                                <span class="tech-tag">Pinecone</span>
+                                <span class="tech-tag">FAISS</span>
                                 <span class="tech-tag">ChromaDB</span>
                                 <span class="tech-tag">LlamaIndex</span>
-                                <span class="tech-tag">FAISS</span>
+                                <span class="tech-tag">Haystack</span>
                             </div>
                             <div class="price-badge">Available for Hire Worldwide</div>
                         </div>
@@ -223,20 +172,20 @@
                         <div class="card-body">
                             <div class="service-icon"><i class="fas fa-project-diagram"></i></div>
                             <h3>Agentic AI &amp; Multi-Agent Systems</h3>
-                            <p>Autonomous AI agents that can reason, plan, and take actions to complete complex multi-step tasks automatically.</p>
+                            <p>Autonomous AI agents that reason, plan, and take actions to complete complex multi-step tasks — with agent state, tool orchestration and context handling built in.</p>
                             <ul>
                                 <li>AI agent design &amp; architecture</li>
-                                <li>Multi-agent orchestration systems</li>
-                                <li>Tool-using agents (web search, code exec)</li>
-                                <li>Workflow automation with AI agents</li>
-                                <li>LangGraph &amp; CrewAI implementations</li>
+                                <li>LangGraph multi-agent orchestration (state machines, tool use)</li>
+                                <li>Model Context Protocol (MCP) integration</li>
+                                <li>Tool-using agents (retrieval, web search, code exec)</li>
+                                <li>Persistent session memory &amp; contextual state</li>
                                 <li>Business process automation</li>
                             </ul>
                             <div>
                                 <span class="tech-tag">LangGraph</span>
-                                <span class="tech-tag">CrewAI</span>
-                                <span class="tech-tag">AutoGen</span>
-                                <span class="tech-tag">LangChain Agents</span>
+                                <span class="tech-tag">LangChain</span>
+                                <span class="tech-tag">MCP</span>
+                                <span class="tech-tag">Tool Orchestration</span>
                             </div>
                             <div class="price-badge">Available for Hire Worldwide</div>
                         </div>
@@ -373,26 +322,26 @@
                     </div>
                 </div>
 
-                <!-- Service 9: AI Automation -->
-                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                <!-- Service 9: MLOps, Cloud & DevOps -->
+                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" id="devops">
                     <div class="card service-card">
                         <div class="card-body">
-                            <div class="service-icon"><i class="fas fa-cog"></i></div>
-                            <h3>AI Automation &amp; Intelligent Systems</h3>
-                            <p>Smart automation systems that use AI to handle repetitive tasks, workflows, and business processes intelligently.</p>
+                            <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                            <h3>MLOps, Cloud &amp; DevOps</h3>
+                            <p>Production deployment and CI/CD for AI systems — from containerized services to automated testing and release pipelines.</p>
                             <ul>
-                                <li>Document processing automation</li>
-                                <li>Email &amp; communication AI</li>
-                                <li>RPA with AI integration</li>
-                                <li>Intelligent data extraction (OCR+AI)</li>
-                                <li>AI scheduling &amp; planning systems</li>
-                                <li>Custom AI pipeline development</li>
+                                <li>Docker containerization for AI/ML services</li>
+                                <li>Kubernetes orchestration &amp; scaling</li>
+                                <li>CI/CD pipelines (GitHub Actions, Jenkins)</li>
+                                <li>AWS cloud deployment</li>
+                                <li>Automated model retraining &amp; testing</li>
+                                <li>API testing &amp; documentation (Postman)</li>
                             </ul>
                             <div>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Selenium</span>
-                                <span class="tech-tag">OCR</span>
-                                <span class="tech-tag">OpenAI</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">AWS</span>
+                                <span class="tech-tag">GitHub Actions</span>
                             </div>
                             <div class="price-badge">Available for Hire Worldwide</div>
                         </div>
@@ -499,10 +448,11 @@
     </footer>
 </div>
 
-<script src="./js/jquery-3.4.1.min.js"></script>
-<script src="./js/popper.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./js/main.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/proper.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script src="./js/dark.js"></script>
+<script src="./js/site-effects.js?v=3"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init({ duration: 800, once: true });

@@ -13,77 +13,36 @@
   <link rel="icon" type="image/png" href="images/favicon.ico">
   <link rel="apple-touch-icon" href="images/favicon.ico">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <!-- FontAwesome JS -->
   <script defer src="./js/all.js"></script>
   <!-- Theme CSS -->
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/my.css?v=7">
 </head>
 
 <body>
-  <header class="header text-center">
-    <div class="force-overflow">
-      <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a></h1>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navigation" class="collapse navbar-collapse flex-column">
-          <div class="profile-section pt-3 pt-lg-0">
-            <img class="profile-image mb-3 rounded-circle mx-auto" src="images/Muhammad_Hamza.png" alt="image">
-            <div class="bio mb-3">Hi, I am Muhammad Hamza. Welcome to my personal portfolio!</div>
-            <ul class="social-list list-inline py-2 mx-auto">
-              <li class="list-inline-item"><a href="https://twitter.com/Muhamma08974837"
-                  target="_blank"><i class="fab fa-twitter fa-fw"></i></a></li>
-              <li class="list-inline-item"><a href="https://www.linkedin.com/in/hamzzaz"
-                  target="_blank"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank"><i
-                    class="fab fa-github-alt fa-fw"></i></a></li>
-            </ul>
-            <!--//social-list-->
-            <hr>
-          </div>
-          <!--//profile-section-->
-          <ul class="navbar-nav flex-column text-left">
-            <li class="nav-item ">
-              <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="portfolio.html"><i
-                  class="fas fa-laptop-code fa-fw mr-2"></i>Portfolio</a>
-            </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="services.html"><i
-                            class="fas fa-cogs fa-fw mr-2"></i>Services</a>
-                </li>
-            <li class="nav-item">
-              <a class="nav-link" href="resume.html"><i
-                  class="fas fa-file-alt fa-fw mr-2"></i>Resume</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html"><i
-                  class="fas fa-envelope-open-text fa-fw mr-2"></i>Contact</a>
-            </li>
-          </ul>
-          <div class="my-2">
-            <a class="btn btn-primary" href="contact.html" target="_blank"><i
-                class="fas fa-paper-plane mr-2"></i>Hire Me</a>
-          </div>
-          <div class="dark-mode-toggle text-center w-100">
-            <hr class="mb-4">
-            <h4 class="toggle-name mb-3 "><i class="fas fa-adjust mr-1"></i>Dark Mode</h4>
-            <input class="toggle" id="darkmode" type="checkbox">
-            <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-          </div>
-          <!--//dark-mode-toggle-->
-        </div>
-      </nav>
-    </div>
-    <!--//force-overflow-->
-  </header>
+  <script src="./js/sidebar.js?v=5"></script>
   <div class="main-wrapper">
-    <section class="cta-section theme-bg-light py-5">
+    <section class="cta-section theme-bg-light py-5 cta-section--arch">
+      <div class="cta-arch-bg" aria-hidden="true">
+        <span class="arch-orbit orbit-a"></span>
+        <span class="arch-orbit orbit-b"></span>
+        <span class="arch-orbit orbit-c"></span>
+        <span class="arch-node node-1"></span>
+        <span class="arch-node node-2"></span>
+        <span class="arch-node node-3"></span>
+        <span class="arch-node node-4"></span>
+        <svg class="arch-routes" viewBox="0 0 1000 400" preserveAspectRatio="none">
+          <path id="arch-route-1" class="arch-route route-1" d="M500 200 C380 130 260 90 120 60" pathLength="1"></path>
+          <path id="arch-route-2" class="arch-route route-2" d="M500 200 C620 130 740 90 880 60" pathLength="1"></path>
+          <path id="arch-route-3" class="arch-route route-3" d="M500 200 C380 270 260 320 120 350" pathLength="1"></path>
+          <path id="arch-route-4" class="arch-route route-4" d="M500 200 C620 270 740 320 880 350" pathLength="1"></path>
+          <circle class="arch-packet" r="3"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#arch-route-1"></mpath></animateMotion></circle>
+          <circle class="arch-packet" r="3"><animateMotion dur="6.2s" begin="-1s" repeatCount="indefinite"><mpath href="#arch-route-3"></mpath></animateMotion></circle>
+        </svg>
+      </div>
       <div class="container text-center single-col-max-width">
         <h2 class="heading">Portfolio</h2>
         <div class="intro">
@@ -111,104 +70,169 @@
 
         <div class="project-cards row isotope">
 
+          <!-- NEW: VisionGuard AI -->
+          <div class="isotope-item col-md-6 mb-5 ai" data-aos="fade-up">
+            <div class="card project-card">
+              <div class="row no-gutters">
+                <div class="col-lg-4 card-img-holder">
+                  <img src="images/dashboard.png" class="card-img img-full m-3" alt="VisionGuard AI Warehouse Safety">
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="projects/visionguard-ai.html" class="theme-link">VisionGuard — Warehouse Safety AI</a></h5>
+                    <p class="card-text">YOLO + ByteTrack computer vision system detecting forklift–pedestrian collision risk with real-world distance, TTC and explainable risk scoring.</p>
+                    <p class="card-text"><small class="text-muted">AI / Computer Vision</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="link-mask">
+                <a class="link-mask-link" href="projects/visionguard-ai.html"></a>
+                <div class="link-mask-text">
+                  <a class="btn btn-secondary" href="projects/visionguard-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW: NeuroInsight AI -->
+          <div class="isotope-item col-md-6 mb-5 ai research" data-aos="fade-up">
+            <div class="card project-card">
+              <div class="row no-gutters">
+                <div class="col-lg-4 card-img-holder">
+                  <img src="images/neuroinsigt11.png" class="card-img img-full m-3" alt="NeuroInsight AI Clinical Intelligence Platform">
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="projects/neuroinsight-ai.html" class="theme-link">NeuroInsight AI</a></h5>
+                    <p class="card-text">Agentic Flutter clinical intelligence platform exploring 3D neuroimaging, explainable AI, biomarkers and case-aware RAG for Alzheimer's MRI analysis.</p>
+                    <p class="card-text"><small class="text-muted">AI / Medical Research</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="link-mask">
+                <a class="link-mask-link" href="projects/neuroinsight-ai.html"></a>
+                <div class="link-mask-text">
+                  <a class="btn btn-secondary" href="projects/neuroinsight-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW: Flood Prediction with LightGBM -->
+          <div class="isotope-item col-md-6 mb-5 Datascn ai" data-aos="fade-up">
+            <div class="card project-card">
+              <div class="row no-gutters">
+                <div class="col-lg-4 card-img-holder">
+                  <img src="images/flood-prediction-lightgbm-hero.png" class="card-img img-full m-3" alt="Flood Prediction with LightGBM">
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="projects/flood-prediction-lightgbm.html" class="theme-link">Flood Prediction with LightGBM</a></h5>
+                    <p class="card-text">End-to-end regression pipeline predicting flood-related outcomes from environmental data, with feature importance and full model evaluation.</p>
+                    <p class="card-text"><small class="text-muted">Machine Learning / Kaggle</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="link-mask">
+                <a class="link-mask-link" href="projects/flood-prediction-lightgbm.html"></a>
+                <div class="link-mask-text">
+                  <a class="btn btn-secondary" href="projects/flood-prediction-lightgbm.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW: Attendance Management System -->
+          <div class="isotope-item col-md-6 mb-5" data-aos="fade-up">
+            <div class="card project-card">
+              <div class="row no-gutters">
+                <div class="col-lg-4 card-img-holder">
+                  <img src="images/ams1.jpeg" class="card-img img-full m-3" alt="Attendance Management System">
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="projects/attendance-management-system.html" class="theme-link">Attendance Management System</a></h5>
+                    <p class="card-text">Cross-platform Flutter + Node.js/TypeScript workforce platform for attendance tracking, shift management and HR reporting.</p>
+                    <p class="card-text"><small class="text-muted">Full-Stack / Mobile</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="link-mask">
+                <a class="link-mask-link" href="projects/attendance-management-system.html"></a>
+                <div class="link-mask-text">
+                  <a class="btn btn-secondary" href="projects/attendance-management-system.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW: AeroNav Sim (Autonomous Drone Flight Simulation) -->
+          <div class="isotope-item col-md-6 mb-5 ai research" data-aos="fade-up">
+            <div class="card project-card">
+              <div class="row no-gutters">
+                <div class="col-lg-4 card-img-holder">
+                  <img src="images/drone-simulation-hero.png" class="card-img img-full m-3" alt="AeroNav Sim Autonomous Drone Flight Simulation">
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="projects/drone-flight-simulation.html" class="theme-link">AeroNav Sim — Drone Flight Simulation</a></h5>
+                    <p class="card-text">Autonomous UAV simulation platform with A* path planning, PID flight control and multi-drone coordination, built toward ROS/PX4/Gazebo.</p>
+                    <p class="card-text"><small class="text-muted">Robotics / Simulation</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="link-mask">
+                <a class="link-mask-link" href="projects/drone-flight-simulation.html"></a>
+                <div class="link-mask-text">
+                  <a class="btn btn-secondary" href="projects/drone-flight-simulation.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW: AI Virtual Painter -->
+          <div class="isotope-item col-md-6 mb-5 ai" data-aos="fade-up">
+            <div class="card project-card">
+              <div class="row no-gutters">
+                <div class="col-lg-4 card-img-holder">
+                  <img src="images/computervison.png" class="card-img img-full m-3" alt="AI Virtual Painter Gesture Drawing">
+                </div>
+                <div class="col-lg-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="projects/ai-virtual-painter.html" class="theme-link">AI Virtual Painter</a></h5>
+                    <p class="card-text">MediaPipe hand-tracking computer vision app turning a webcam into a gesture-controlled drawing canvas — no physical input device required.</p>
+                    <p class="card-text"><small class="text-muted">Computer Vision</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="link-mask">
+                <a class="link-mask-link" href="projects/ai-virtual-painter.html"></a>
+                <div class="link-mask-text">
+                  <a class="btn btn-secondary" href="projects/ai-virtual-painter.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Existing project cards (kept) -->
-          <div class="isotope-item col-md-6 mb-5 dj">
+          <div class="isotope-item col-md-6 mb-5 ai research" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
-                  <img src="images/python.png" class="card-img" alt="Python | Django">
+                  <img src="images/aerorul-ai-dashboard.png" class="card-img img-full m-3" alt="Aircraft Engine RUL Prediction AI">
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="dj.html" class="theme-link">Python | Django</a></h5>
-                    <p class="card-text">Different projects on Management, Yoga Performance (API-based), Timetable Management System for university and Research Experiments.</p>
-                    <p class="card-text"><small class="text-muted">Professional | Open Source</small></p>
-                  </div>
-                </div>
-              </div>
-              <div class="link-mask">
-                <a class="link-mask-link" href="psdtohtml.html"></a>
-                <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="psdtohtml.html">
-                    <i class="fas fa-eye mr-2"></i>View Case Study </a>
-                </div>
-              </div>
-              <!--//link-mask-->
-            </div>
-          </div>
-          <!--//col-->
-
-          <div class="isotope-item col-md-6 mb-5 fyp">
-            <div class="card project-card">
-              <div class="row no-gutters">
-                <div class="col-lg-4 card-img-holder">
-                  <img src="images/resturent.jpg" class="card-img img-full m-2" alt="Restaurant Management">
-                </div>
-                <div class="col-lg-8">
-                  <div class="card-body">
-                    <h5 class="card-title"><a href="fyp.html" class="theme-link">Restaurant Management Solution</a></h5>
-                    <p class="card-text">A Restaurant Management Solution with Admin Panel, Tablet App and Kitchen Screen.</p>
-                    <p class="card-text"><small class="text-muted">Professional | Open Source</small></p>
-                  </div>
-                </div>
-              </div>
-              <div class="link-mask">
-                <a class="link-mask-link" href="wpelementor.html"></a>
-                <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="wpelementor.html">
-                    <i class="fas fa-eye mr-2"></i>View Case Study </a>
-                </div>
-              </div>
-              <!--//link-mask-->
-            </div>
-          </div>
-          <!--//col-->
-
-          <div class="isotope-item col-md-6 mb-5 Datascn">
-            <div class="card project-card">
-              <div class="row no-gutters">
-                <div class="col-lg-4 card-img-holder">
-                  <img src="images/Datascience.jpg" class="card-img img-full m-3" alt="Data Preprocessing">
-                </div>
-                <div class="col-lg-8">
-                  <div class="card-body">
-                    <h5 class="card-title"><a href="wpelementor.html" class="theme-link">Data Preprocessing</a></h5>
-                    <p class="card-text">Data Analysis, preprocessing and Data Visualization.</p>
-                    <p class="card-text"><small class="text-muted">Open Source</small></p>
-                  </div>
-                </div>
-              </div>
-              <div class="link-mask">
-                <a class="link-mask-link" href="react.html"></a>
-                <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="react.html">
-                    <i class="fas fa-eye mr-2"></i>View Case Study </a>
-                </div>
-              </div>
-              <!--//link-mask-->
-            </div>
-            <!--//card-->
-          </div>
-          <!--//col-->
-
-          <div class="isotope-item col-md-6 mb-5 ai sec">
-            <div class="card project-card">
-              <div class="row no-gutters">
-                <div class="col-lg-4 card-img-holder">
-                  <img src="images/p3.png" class="card-img img-full m-3" alt="Aircraft Engine RLC">
-                </div>
-                <div class="col-lg-8">
-                  <div class="card-body">
-                    <h5 class="card-title"><a href="air.html" class="theme-link">Aircraft Engine RLC</a></h5>
-                    <p class="card-text">UAV, Drone and Aircraft Engine Fault prediction or remaining life cycle Prediction.</p>
+                    <h5 class="card-title"><a href="projects/aircraft-engine-rul-prediction.html" class="theme-link">Aircraft Engine RUL Prediction AI</a></h5>
+                    <p class="card-text">Predictive-maintenance ML system estimating turbofan engine Remaining Useful Life from NASA C-MAPSS sensor data (Random Forest, XGBoost, LightGBM).</p>
                     <p class="card-text"><small class="text-muted">Research Project</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="fyp.html"></a>
+                <a class="link-mask-link" href="projects/aircraft-engine-rul-prediction.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="fyp.html">
+                  <a class="btn btn-secondary" href="projects/aircraft-engine-rul-prediction.html">
                     <i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
@@ -217,7 +241,7 @@
           </div>
 
           <!-- NEW: Agentic Cybersecurity AI Assistant -->
-          <div class="isotope-item col-md-6 mb-5 ai sec">
+          <div class="isotope-item col-md-6 mb-5 ai sec" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
@@ -225,46 +249,46 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">Agentic Cybersecurity AI Assistant</a></h5>
+                    <h5 class="card-title"><a href="projects/agentic-cybersecurity-ai-assistant.html" class="theme-link">Agentic Cybersecurity AI Assistant</a></h5>
                     <p class="card-text">Multi-agent system + RAG to automate vulnerability triage, scheduled scans and PDF reporting for enterprise security operations.</p>
                     <p class="card-text"><small class="text-muted">AI / Cybersecurity</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="#"></a>
+                <a class="link-mask-link" href="projects/agentic-cybersecurity-ai-assistant.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="#"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                  <a class="btn btn-secondary" href="projects/agentic-cybersecurity-ai-assistant.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
           </div>
 
-           <!-- NEW: Technical Support Chatbot (NLP) -->
-          <div class="isotope-item col-md-6 mb-5 ai dj">
+           <!-- NEW: Agentic RAG-Powered Support Assistant (NLP) -->
+          <div class="isotope-item col-md-6 mb-5 ai dj" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
-                  <img src="images/technical chatbot.png" class="card-img img-full m-3" alt="Technical Support Chatbot">
+                  <img src="images/technical chatbot.png" class="card-img img-full m-3" alt="Agentic RAG-Powered Support Assistant">
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">Technical Support Chatbot</a></h5>
-                    <p class="card-text">Intent-classification based chatbot combining rule-based fallback with ML intent detection for product support.</p>
+                    <h5 class="card-title"><a href="projects/agentic-rag-support-assistant.html" class="theme-link">Agentic RAG-Powered Support Assistant</a></h5>
+                    <p class="card-text">LLM-driven agentic assistant that autonomously resolves technical product queries with real-time, knowledge-grounded retrieval.</p>
                     <p class="card-text"><small class="text-muted">NLP / Automation</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="#"></a>
+                <a class="link-mask-link" href="projects/agentic-rag-support-assistant.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="#"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                  <a class="btn btn-secondary" href="projects/agentic-rag-support-assistant.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
           </div>
           <!-- NEW: AI-Driven Intrusion Detection -->
-          <div class="isotope-item col-md-6 mb-5 sec">
+          <div class="isotope-item col-md-6 mb-5 sec" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
@@ -272,23 +296,23 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">AI-Driven Intrusion Detection</a></h5>
-                    <p class="card-text">Hybrid model (TabNet + Transformer + Cross-Attention) for network intrusion detection, trained on CIC-IDS 2017 / NSL-KDD datasets.</p>
+                    <h5 class="card-title"><a href="projects/ai-intrusion-detection.html" class="theme-link">AI-Driven Intrusion Detection</a></h5>
+                    <p class="card-text">Hybrid TabNet + Transformer deep-learning architecture for network intrusion detection, trained on the CIC-IDS 2017 dataset.</p>
                     <p class="card-text"><small class="text-muted">Cybersecurity / Research</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="#"></a>
+                <a class="link-mask-link" href="projects/ai-intrusion-detection.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="#"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                  <a class="btn btn-secondary" href="projects/ai-intrusion-detection.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- NEW: 3D-MobiBrainNet (Alzheimer's Detection) -->
-          <div class="isotope-item col-md-6 mb-5 research fyp">
+          <div class="isotope-item col-md-6 mb-5 research fyp" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
@@ -296,16 +320,16 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">3D-MobiBrainNet — Alzheimer's Detection</a></h5>
-                    <p class="card-text">3D CNN multi-plane fusion model for multi-class Alzheimer’s classification — published in Ain Shams Engineering Journal (Elsevier).</p>
+                    <h5 class="card-title"><a href="projects/3d-mobibrainnet.html" class="theme-link">3D-MobiBrainNet — Alzheimer's Detection</a></h5>
+                    <p class="card-text">3D CNN multi-plane fusion model for multi-class Alzheimer’s classification (97.33% accuracy) — published in Ain Shams Engineering Journal (Elsevier).</p>
                     <p class="card-text"><small class="text-muted">Research | Publication</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="https://doi.org/10.1016/j.asej.2025.103714"></a>
+                <a class="link-mask-link" href="projects/3d-mobibrainnet.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="https://doi.org/10.1016/j.asej.2025.103714" target="_blank"><i class="fas fa-eye mr-2"></i>Read Paper </a>
+                  <a class="btn btn-secondary" href="projects/3d-mobibrainnet.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
@@ -314,7 +338,7 @@
          
 
           <!-- NEW: Ticket Scalping Prevention System -->
-          <div class="isotope-item col-md-6 mb-5 ai">
+          <div class="isotope-item col-md-6 mb-5 ai" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
@@ -322,16 +346,16 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">AI-Based Ticket Scalping Prevention</a></h5>
+                    <h5 class="card-title"><a href="projects/ai-ticket-scalping-prevention.html" class="theme-link">AI-Based Ticket Scalping Prevention</a></h5>
                     <p class="card-text">Anomaly detection and behavior analysis to detect bot purchasing and apply dynamic mitigation & pricing strategies.</p>
                     <p class="card-text"><small class="text-muted">AI / Fraud Detection</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="#"></a>
+                <a class="link-mask-link" href="projects/ai-ticket-scalping-prevention.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="#"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                  <a class="btn btn-secondary" href="projects/ai-ticket-scalping-prevention.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
@@ -339,7 +363,7 @@
 
 
           <!-- NEW: University Timetable System (Django) -->
-          <div class="isotope-item col-md-6 mb-5 dj">
+          <div class="isotope-item col-md-6 mb-5 dj" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
@@ -347,23 +371,23 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">University Timetable System</a></h5>
+                    <h5 class="card-title"><a href="projects/university-timetable-system.html" class="theme-link">University Timetable System</a></h5>
                     <p class="card-text">Constraint-based automated scheduling web app for faculty and class allocation built with Django.</p>
                     <p class="card-text"><small class="text-muted">Django / Web App</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="#"></a>
+                <a class="link-mask-link" href="projects/university-timetable-system.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="#"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                  <a class="btn btn-secondary" href="projects/university-timetable-system.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- NEW: LinkedIn Automation Bot -->
-          <div class="isotope-item col-md-6 mb-5 dj ai">
+          <div class="isotope-item col-md-6 mb-5 dj ai" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
@@ -371,23 +395,23 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">LinkedIn Automation Bot</a></h5>
+                    <h5 class="card-title"><a href="projects/linkedin-automation-bot.html" class="theme-link">LinkedIn Automation Bot</a></h5>
                     <p class="card-text">Selenium + BeautifulSoup based automation for profile scraping and connection workflows (data collection for outreach).</p>
                     <p class="card-text"><small class="text-muted">Web Automation / Data Collection</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="#"></a>
+                <a class="link-mask-link" href="projects/linkedin-automation-bot.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="#"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                  <a class="btn btn-secondary" href="projects/linkedin-automation-bot.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- NEW: Satellite Image Classification -->
-          <div class="isotope-item col-md-6 mb-5 Datascn research">
+          <div class="isotope-item col-md-6 mb-5 Datascn research" data-aos="fade-up">
             <div class="card project-card">
               <div class="row no-gutters">
                 <div class="col-lg-4 card-img-holder">
@@ -395,16 +419,16 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="#" class="theme-link">Satellite Image Classification</a></h5>
-                    <p class="card-text">Land-cover classification using Transfer Learning (EfficientNet) and custom augmentation on remote sensing datasets.</p>
+                    <h5 class="card-title"><a href="projects/satellite-image-classification.html" class="theme-link">Satellite Image Classification</a></h5>
+                    <p class="card-text">EuroSAT land-cover classification using a transfer-learned ResNet18, with confusion matrices, ROC curves and real-time inference.</p>
                     <p class="card-text"><small class="text-muted">Deep Learning / Research</small></p>
                   </div>
                 </div>
               </div>
               <div class="link-mask">
-                <a class="link-mask-link" href="#"></a>
+                <a class="link-mask-link" href="projects/satellite-image-classification.html"></a>
                 <div class="link-mask-text">
-                  <a class="btn btn-secondary" href="#"><i class="fas fa-eye mr-2"></i>View Case Study </a>
+                  <a class="btn btn-secondary" href="projects/satellite-image-classification.html"><i class="fas fa-eye mr-2"></i>View Case Study </a>
                 </div>
               </div>
             </div>
@@ -435,6 +459,9 @@
   <script src="./js/dark.js"></script>
   <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
   <script src="./js/switcher.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="./js/project-animate.js?v=2"></script>
+  <script src="./js/site-effects.js?v=3"></script>
 </body>
 
 </html>
