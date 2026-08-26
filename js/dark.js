@@ -10,7 +10,7 @@
   function preferredTheme() {
     var saved = storedTheme();
     if (saved === "light" || saved === "dark") return saved;
-    return "light";
+    return "dark";
   }
 
   function applyTheme(theme, persist) {

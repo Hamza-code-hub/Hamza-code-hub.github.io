@@ -1309,7 +1309,9 @@ a { transition: color .25s ease, opacity .25s ease; }
 .header .blog-name a { color:#fff; font-size:1.5rem; font-weight:700; letter-spacing:-.05em; }
 .header .blog-name a::after { content:".ai"; color:var(--cyan); font-family:"DM Mono", monospace; font-size:.67em; margin-left:3px; }
 .profile-section .profile-image { width:112px !important; height:112px !important; padding:4px; border:1px solid rgba(85,230,255,.65) !important; box-shadow:0 0 0 6px rgba(85,230,255,.06), 0 12px 34px rgba(0,0,0,.35); }
-.profile-section .bio { color:var(--muted); font-size:.82rem; }
+.profile-section .bio { color:var(--muted); font-size:.82rem; margin-bottom:.85rem !important; }
+.header .profile-section { display:flex; flex-direction:column; justify-content:flex-start !important; }
+.header .social-list { margin-top:0 !important; }
 .header hr { border-color:var(--line); }
 .header .nav-item .nav-link, body.dark-mode .header .nav-item .nav-link { padding:.46rem .7rem; margin:.1rem 0; color:#aebcd0; font-size:.8rem; border:1px solid transparent; border-radius:10px; }
 .header .nav-item .nav-link:hover, .header .nav-item.active .nav-link { color:#fff !important; background:rgba(85,230,255,.08); border-color:rgba(85,230,255,.13); transform:translateX(4px); }
@@ -3732,18 +3734,17 @@ body.dark-mode::after { background:radial-gradient(circle,rgba(45,212,191,.1),tr
   width:min(100%,365px);
   aspect-ratio:4 / 5;
   margin:0 auto;
-  border-radius:36px 36px 28px 28px;
-  animation:heroPortraitFloat 6.8s cubic-bezier(.45,.05,.55,.95) infinite;
-}
-.about-me-section .hero-image-frame::before {
-  inset:-11px;
-  padding:11px;
+  padding:12px;
+  box-sizing:border-box;
   background:linear-gradient(125deg,var(--signal),var(--accent) 45%,var(--warm) 78%,var(--signal));
   background-size:240% 240%;
-  border-radius:38px 38px 30px 30px;
+  border-radius:36px 36px 28px 28px;
   filter:drop-shadow(0 15px 28px rgba(35,56,119,.2));
-  animation:heroPrismFlow 7s ease-in-out infinite;
+  transform-origin:top center;
+  animation:heroPortraitFloat 5s ease-in-out infinite,heroPrismFlow 7s ease-in-out infinite;
 }
+.about-me-section .hero-image-frame::before { content:none; }
+.about-me-section .hero-image-frame:hover { animation-play-state:paused,running; }
 .about-me-section .hero-image-frame::after {
   inset:18px -20px -20px 18px;
   z-index:-2;
@@ -3758,14 +3759,19 @@ body.dark-mode::after { background:radial-gradient(circle,rgba(45,212,191,.1),tr
   animation:heroBackplatePulse 6.8s ease-in-out infinite;
 }
 .about-me-section .profile-image {
-  width:100% !important;
-  height:100% !important;
-  aspect-ratio:4 / 5;
+  position:absolute !important;
+  top:12px !important;
+  right:12px !important;
+  bottom:12px !important;
+  left:12px !important;
+  width:calc(100% - 24px) !important;
+  height:calc(100% - 24px) !important;
+  margin:0 !important;
   object-fit:cover;
   object-position:center 31%;
   border:0;
-  border-radius:30px 30px 23px 23px !important;
-  background:var(--panel-solid) !important;
+  border-radius:24px 24px 18px 18px !important;
+  background:transparent !important;
   box-shadow:0 28px 68px rgba(23,33,60,.24);
 }
 body.dark-mode .about-me-section .profile-image {
@@ -3788,8 +3794,8 @@ body.dark-mode .about-me-section .profile-image {
   letter-spacing:.12em;
 }
 @keyframes heroPortraitFloat {
-  0%,100% { transform:translate3d(0,0,0) rotate(-.6deg); }
-  50% { transform:translate3d(0,-12px,0) rotate(.45deg); }
+  0%,100% { transform:rotate(-3deg); }
+  50% { transform:rotate(3deg); }
 }
 @keyframes heroPrismFlow {
   0%,100% { background-position:0% 45%; }
@@ -3827,27 +3833,15 @@ body.dark-mode .about-me-section .profile-image {
   box-shadow:0 3px 8px rgba(15,23,42,.25),0 0 10px var(--accent-soft);
   transform:translateX(-50%);
 }
-.about-me-section .hero-image-frame--hanging {
-  transform-origin:top center;
-  animation-name:heroHangSwing;
-  animation-duration:5s;
-  animation-timing-function:ease-in-out;
-  animation-iteration-count:infinite;
-}
-.about-me-section .hero-image-frame--hanging:hover,
 .hero-image-col:hover .hero-hook {
   animation-play-state:paused;
-}
-@keyframes heroHangSwing {
-  0%,100% { transform:rotate(-3deg); }
-  50% { transform:rotate(3deg); }
 }
 @keyframes heroHookSwing {
   0%,100% { transform:translateX(-50%) rotate(-3deg); }
   50% { transform:translateX(-50%) rotate(3deg); }
 }
 @media (prefers-reduced-motion:reduce) {
-  .hero-hook,.about-me-section .hero-image-frame--hanging { animation:none !important; }
+  .hero-hook,.about-me-section .hero-image-frame { animation:none !important; }
 }
 @media (max-width:1199.98px) { .hero-hook { display:none; } }
 
