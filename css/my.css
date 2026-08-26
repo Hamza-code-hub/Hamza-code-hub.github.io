@@ -3640,3 +3640,176 @@ body.dark-mode .testimonial-carousel .quote-content {
   .header #navigation.navbar-collapse,
   .mobile-menu-backdrop { transition:none !important; }
 }
+
+/* ============================================================
+   Graphite + emerald visual system
+   A restrained professional palette with a stronger circular hero portrait.
+   ============================================================ */
+:root {
+  --page:#f3f7f5;
+  --page-alt:#eaf1ee;
+  --panel:rgba(255,255,255,.9);
+  --panel-solid:#ffffff;
+  --panel-soft:#f7faf9;
+  --text:#23312d;
+  --heading:#0b1d18;
+  --subtle:#60706a;
+  --border:rgba(12,82,68,.14);
+  --accent:#087f6b;
+  --accent-strong:#056353;
+  --accent-soft:rgba(8,127,107,.12);
+  --signal:#21b88b;
+  --warm:#d5a447;
+  --shadow:0 24px 70px rgba(17,56,47,.12);
+  --grid:rgba(14,91,75,.045);
+}
+html[data-theme="dark"], body.dark-mode {
+  --page:#07110e;
+  --page-alt:#0a1713;
+  --panel:rgba(13,29,24,.88);
+  --panel-solid:#0f201a;
+  --panel-soft:#0b1915;
+  --text:#dce9e4;
+  --heading:#f6fffb;
+  --subtle:#94aaa2;
+  --border:rgba(105,211,176,.16);
+  --accent:#39d2a2;
+  --accent-strong:#75e7c0;
+  --accent-soft:rgba(57,210,162,.14);
+  --signal:#18a97e;
+  --warm:#e0b35d;
+  --shadow:0 28px 80px rgba(0,0,0,.38);
+  --grid:rgba(109,211,178,.045);
+}
+
+body::after { background:radial-gradient(circle,rgba(33,184,139,.09),transparent 68%); }
+body.dark-mode::after { background:radial-gradient(circle,rgba(57,210,162,.1),transparent 68%); }
+.profile-teaser .blog-name a {
+  background:linear-gradient(105deg,var(--heading) 28%,var(--accent) 68%,var(--warm));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.btn-primary,body.dark-mode .btn-primary,
+.header .btn-primary,body.dark-mode .header .btn-primary {
+  background:linear-gradient(120deg,var(--accent),var(--signal));
+}
+.hero-role-label { background:linear-gradient(120deg,var(--accent),var(--signal)); }
+.scroll-progress { background:linear-gradient(90deg,var(--accent),var(--signal),var(--warm)); }
+
+/* Strong circular hero portrait with an architectural double ring. */
+.about-me-section .hero-image-col {
+  width:min(100%,420px);
+  padding:1.25rem 1.25rem 3rem;
+}
+.about-me-section .hero-image-frame {
+  width:min(100%,390px);
+  aspect-ratio:1;
+  margin:0 auto;
+  border-radius:50%;
+  animation:heroCircleFloat 6.5s cubic-bezier(.45,.05,.55,.95) infinite;
+}
+.about-me-section .hero-image-frame::before {
+  inset:-13px;
+  padding:2px;
+  background:conic-gradient(from 35deg,var(--accent),var(--signal),var(--warm),var(--accent));
+  border-radius:50%;
+  filter:drop-shadow(0 14px 28px var(--accent-soft));
+  animation:heroFrameOrbit 16s linear infinite;
+}
+.about-me-section .hero-image-frame::after {
+  inset:9%;
+  width:auto;
+  height:auto;
+  right:9%;
+  bottom:9%;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--signal),transparent 66%);
+  filter:blur(35px);
+  opacity:.18;
+}
+.about-me-section .profile-image {
+  width:100% !important;
+  height:100% !important;
+  aspect-ratio:1;
+  object-fit:cover;
+  object-position:center 30%;
+  border:8px solid var(--panel-solid);
+  border-radius:50% !important;
+  background:none !important;
+  box-shadow:0 0 0 9px var(--accent-soft),0 28px 68px rgba(14,55,45,.25);
+}
+body.dark-mode .about-me-section .profile-image {
+  box-shadow:0 0 0 9px var(--accent-soft),0 30px 72px rgba(0,0,0,.5);
+}
+.about-me-section .hero-image-frame:hover .profile-image {
+  transform:scale(1.018);
+  box-shadow:0 0 0 12px var(--accent-soft),0 36px 80px rgba(14,55,45,.3);
+}
+.about-me-section .hero-trust-mark {
+  right:auto;
+  bottom:.35rem;
+  left:50%;
+  min-width:max-content;
+  padding:.62rem .9rem;
+  transform:translateX(-50%);
+  border-radius:999px;
+  box-shadow:0 14px 32px rgba(14,55,45,.18);
+}
+@keyframes heroCircleFloat {
+  0%,100% { transform:translate3d(0,0,0) scale(1); }
+  50% { transform:translate3d(0,-12px,0) scale(1.008); }
+}
+
+/* Mobile drawer remains deliberately black in both themes. Theme controls
+   stay available beside the close button and at the bottom of the drawer. */
+@media (max-width:991.98px) {
+  .header #navigation.navbar-collapse,
+  .header #navigation.navbar-collapse.collapsing,
+  html[data-theme="dark"] .header #navigation.navbar-collapse,
+  body.dark-mode .header #navigation.navbar-collapse {
+    color:#f4fbf8;
+    background:#050a08 !important;
+    border-left-color:rgba(112,231,191,.16);
+  }
+  .header #navigation :is(.home-nav,.sidebar-nav) .nav-item.active .nav-link {
+    color:#fff !important;
+    background:linear-gradient(100deg,rgba(57,210,162,.22),rgba(255,255,255,.035));
+    border-color:rgba(57,210,162,.42);
+  }
+  .header #navigation :is(.home-nav,.sidebar-nav) .nav-link:hover {
+    background:rgba(57,210,162,.1);
+    border-color:rgba(57,210,162,.22);
+  }
+  .header #navigation .nav-link .svg-inline--fa { color:#54dbaf; }
+  .header #navigation .dark-mode-toggle {
+    margin-top:auto;
+    padding:.8rem .75rem 1rem;
+    background:linear-gradient(180deg,transparent,rgba(57,210,162,.05));
+    border-radius:14px;
+  }
+  .header #navigation .dark-mode-toggle .toggle-name { color:#d9e9e3 !important; }
+  .header #navigation .dark-mode-toggle .toggle + .toggle-btn {
+    background:#14231e;
+    border-color:rgba(112,231,191,.28);
+  }
+  body.mobile-menu-open .mobile-theme-toggle {
+    top:calc(env(safe-area-inset-top, 0px) + 1rem);
+    right:4.35rem;
+    z-index:1130;
+    color:#70e7bf;
+    background:#101b17;
+    border-color:rgba(112,231,191,.28);
+    box-shadow:0 10px 28px rgba(0,0,0,.32);
+  }
+  .header .navbar-toggler:focus-visible { outline-color:#54dbaf; }
+}
+
+@media (max-width:575.98px) {
+  .about-me-section .hero-image-col { width:min(88vw,330px); padding:1rem 1rem 2.8rem; }
+  .about-me-section .hero-image-frame::before { inset:-10px; border-radius:50%; }
+  .about-me-section .profile-image { border-width:6px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .about-me-section .hero-image-frame { animation:none !important; }
+}
