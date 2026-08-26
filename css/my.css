@@ -1545,7 +1545,7 @@ a { color:var(--accent-strong); }
 .hero-trust-mark { color:var(--accent-soft); }
 .profile-teaser .blog-name a { background:linear-gradient(105deg,var(--heading) 20%,var(--accent) 58%,var(--signal)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .profile-teaser .tagline { color:var(--accent-strong); }
-.about-me-section .profile-image { background:linear-gradient(135deg,var(--accent),var(--signal),var(--warm)); box-shadow:18px 18px 0 var(--accent-soft),0 30px 80px rgba(22,29,56,.18); }
+.about-me-section .profile-image { background:linear-gradient(135deg,var(--accent),var(--signal),var(--warm),var(--accent)); box-shadow:18px 18px 0 var(--accent-soft),0 30px 80px rgba(22,29,56,.18); }
 body.dark-mode .about-me-section .profile-image { box-shadow:18px 18px 0 var(--accent-soft),0 30px 80px rgba(0,0,0,.48); }
 .hero-trust-row { display:flex; flex-wrap:wrap; gap:.75rem; max-width:760px; }
 .hero-trust-row > div { display:flex; min-width:150px; flex:1; flex-direction:column; padding:.85rem 1rem; background:var(--panel); border:1px solid var(--border); border-radius:14px; }
@@ -1932,10 +1932,19 @@ body::-webkit-scrollbar-thumb:hover { background:var(--accent-strong); }
   object-position:center top;
   border:8px solid transparent;
   border-radius:30px !important;
-  transform:rotate(1.5deg);
-  transition:transform .6s cubic-bezier(.22,1,.36,1),box-shadow .6s ease;
+  background-size:300% 300% !important;
+  transform:none;
+  transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease;
+  animation:heroBorderShift 9s ease infinite;
+  will-change:transform;
 }
-.about-me-section .profile-image:hover { transform:rotate(0) translateY(-8px); }
+.about-me-section .profile-image:hover {
+  transform:translateY(-10px) scale(1.015);
+  box-shadow:22px 22px 0 var(--accent-soft),0 40px 90px rgba(22,29,56,.3);
+}
+body.dark-mode .about-me-section .profile-image:hover { box-shadow:22px 22px 0 var(--accent-soft),0 40px 90px rgba(0,0,0,.55); }
+@keyframes heroBorderShift { 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
+@media (prefers-reduced-motion:reduce) { .about-me-section .profile-image { animation:none; } }
 .profile-teaser .blog-name { margin:0; padding-top:0 !important; }
 .profile-teaser .tagline { min-height:0; margin:.8rem 0 0; }
 .hero-role-rotator {
