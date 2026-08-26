@@ -116,9 +116,44 @@
 		<script src="./js/project-animate.js?v=2"></script>
 		<script src="./js/site-effects.js?v=3"></script>
 		<script>
-document.getElementById('contact-form').addEventListener('submit', function() {
-  alert('✅ Your message has been sent successfully!');
-});
+(function () {
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('contact-form-status');
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var submitLabel = submitBtn.innerHTML;
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+    status.textContent = '';
+    status.className = 'mt-3 mb-0';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        status.textContent = '✅ Your message has been sent successfully — I\'ll get back to you soon.';
+        status.classList.add('text-success');
+        form.reset();
+      } else {
+        return response.json().then(function (data) {
+          var message = (data && data.errors && data.errors.map(function (e) { return e.message; }).join(', ')) || 'Something went wrong. Please try again or email me directly.';
+          status.textContent = '⚠️ ' + message;
+          status.classList.add('text-danger');
+        });
+      }
+    }).catch(function () {
+      status.textContent = '⚠️ Could not send your message. Please email hamza.ai.official@gmail.com directly.';
+      status.classList.add('text-danger');
+    }).finally(function () {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = submitLabel;
+    });
+  });
+})();
 </script>
 
 	</body>

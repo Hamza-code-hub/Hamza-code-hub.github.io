@@ -1613,6 +1613,7 @@ body.dark-mode .about-me-section .profile-image { box-shadow:18px 18px 0 var(--a
 /* Cards and projects */
 .platform-card,.publication-item,.project-card,.overview-section .item-inner,.do-section .item-inner,.testimonial-carousel .item,.service-card,.benefit-card,.workflow-step,.resume-wrapper,body.dark-mode .project-card,body.dark-mode .testimonial-carousel .item { color:var(--text) !important; background:var(--panel) !important; border:1px solid var(--border) !important; box-shadow:var(--shadow); backdrop-filter:blur(18px); }
 .platform-card:hover,.publication-item:hover,.project-card:hover,.overview-section .item-inner:hover,.do-section .item-inner:hover,.service-card:hover,.benefit-card:hover { border-color:var(--accent) !important; box-shadow:0 28px 70px var(--accent-soft); }
+.testimonial-carousel .item:before,.client-quote:before { border-top-color:var(--accent) !important; }
 .platform-name,.pub-title,.item-title,.do-title,.project-card .card-title,.project-card .card-title a,body.dark-mode .project-card .card-title { color:var(--heading) !important; }
 .overview-section .item-inner > .svg-inline--fa,.overview-section .item-inner > i,.service-icon,.benefit-icon { color:var(--accent) !important; filter:drop-shadow(0 0 10px var(--accent-soft)); }
 .project-card::before { background:linear-gradient(90deg,var(--accent),var(--signal),transparent 80%); }
@@ -3741,21 +3742,22 @@ body.dark-mode::after { background:radial-gradient(circle,rgba(45,212,191,.1),tr
   border-radius:36px 36px 28px 28px;
   filter:drop-shadow(0 15px 28px rgba(35,56,119,.2));
   transform-origin:top center;
-  animation:heroPortraitFloat 5s ease-in-out infinite,heroPrismFlow 7s ease-in-out infinite;
+  animation:heroPortraitFloat 6.8s ease-in-out infinite,heroPrismFlow 7s ease-in-out infinite;
 }
 .about-me-section .hero-image-frame::before { content:none; }
 .about-me-section .hero-image-frame:hover { animation-play-state:paused,running; }
 .about-me-section .hero-image-frame::after {
-  inset:18px -20px -20px 18px;
+  inset:-21px -23px -25px -22px;
   z-index:-2;
   width:auto;
   height:auto;
-  background:linear-gradient(150deg,var(--signal),var(--accent) 52%,var(--warm));
-  border:1px solid color-mix(in srgb,var(--signal) 36%,transparent);
-  border-radius:34px 34px 30px 30px;
+  background:linear-gradient(135deg,var(--accent) 2%,var(--signal) 30%,#169eb2 62%,var(--warm) 96%);
+  border:0;
+  border-radius:48px 48px 38px 38px;
   filter:none;
-  opacity:.2;
-  transform:rotate(2.4deg);
+  opacity:1;
+  transform:rotate(1.8deg);
+  box-shadow:20px 24px 0 rgba(82,101,217,.11),0 34px 70px rgba(23,33,60,.2);
   animation:heroBackplatePulse 6.8s ease-in-out infinite;
 }
 .about-me-section .profile-image {
@@ -3794,56 +3796,17 @@ body.dark-mode .about-me-section .profile-image {
   letter-spacing:.12em;
 }
 @keyframes heroPortraitFloat {
-  0%,100% { transform:rotate(-3deg); }
-  50% { transform:rotate(3deg); }
+  0%,100% { transform:translate3d(0,0,0) rotate(-1.05deg); }
+  50% { transform:translate3d(0,-10px,0) rotate(.55deg); }
 }
 @keyframes heroPrismFlow {
   0%,100% { background-position:0% 45%; }
   50% { background-position:100% 55%; }
 }
 @keyframes heroBackplatePulse {
-  0%,100% { opacity:.17; transform:rotate(2.4deg) translate3d(0,0,0); }
-  50% { opacity:.26; transform:rotate(1.6deg) translate3d(4px,5px,0); }
+  0%,100% { transform:rotate(1.8deg) translate3d(0,0,0); }
+  50% { transform:rotate(1.2deg) translate3d(3px,4px,0); }
 }
-
-/* Hanging-picture effect: a small hook/string above the frame, and the
-   frame itself swings from that top point like it's hung on a wall. */
-.hero-hook {
-  position:absolute;
-  top:0;
-  left:50%;
-  z-index:3;
-  width:3px;
-  height:30px;
-  background:linear-gradient(var(--subtle),transparent);
-  transform:translateX(-50%);
-  transform-origin:top center;
-  animation:heroHookSwing 5s ease-in-out infinite;
-}
-.hero-hook::before {
-  content:"";
-  position:absolute;
-  top:-6px;
-  left:50%;
-  width:13px;
-  height:13px;
-  border-radius:50%;
-  background:var(--panel-solid);
-  border:2.5px solid var(--accent);
-  box-shadow:0 3px 8px rgba(15,23,42,.25),0 0 10px var(--accent-soft);
-  transform:translateX(-50%);
-}
-.hero-image-col:hover .hero-hook {
-  animation-play-state:paused;
-}
-@keyframes heroHookSwing {
-  0%,100% { transform:translateX(-50%) rotate(-3deg); }
-  50% { transform:translateX(-50%) rotate(3deg); }
-}
-@media (prefers-reduced-motion:reduce) {
-  .hero-hook,.about-me-section .hero-image-frame { animation:none !important; }
-}
-@media (max-width:1199.98px) { .hero-hook { display:none; } }
 
 /* Mobile drawer remains deliberately black in both themes. Theme controls
    stay available beside the close button and at the bottom of the drawer. */
@@ -3890,9 +3853,22 @@ body.dark-mode .about-me-section .profile-image {
 }
 
 @media (max-width:575.98px) {
-  .about-me-section .hero-image-col { width:min(90vw,350px); padding:1rem 1rem 3rem; }
-  .about-me-section .hero-image-frame::before { inset:-9px; border-radius:40px 40px 31px 31px; }
-  .about-me-section .hero-image-frame::after { inset:14px -14px -15px 14px; }
+  .about-me-section { padding-right:1rem !important; padding-left:1rem !important; }
+  .about-me-section .container,
+  .about-me-section .profile-teaser { width:calc(100vw - 2rem) !important; min-width:0; max-width:calc(100vw - 2rem) !important; }
+  .about-me-section .container { padding-right:0; padding-left:0; }
+  .about-me-section .profile-teaser { display:flex !important; flex-direction:column !important; }
+  .about-me-section .profile-teaser .media-body { width:calc(100vw - 2rem) !important; min-width:0; max-width:calc(100vw - 2rem) !important; flex:0 0 auto; overflow:visible; }
+  .profile-teaser .blog-name { width:calc(100vw - 3.25rem); max-width:calc(100vw - 3.25rem); font-size:clamp(2rem,10.2vw,2.48rem) !important; letter-spacing:-.075em; overflow-wrap:anywhere; white-space:normal; }
+  .profile-teaser .tagline,
+  .about-me-section .bio { width:calc(100vw - 3.25rem); max-width:calc(100vw - 3.25rem); padding-right:0 !important; padding-left:0 !important; overflow:visible; overflow-wrap:normal; word-break:normal; white-space:normal !important; }
+  .profile-teaser .tagline { white-space:normal !important; }
+  .hero-role-rotator { width:calc(100vw - 3.25rem); max-width:calc(100vw - 3.25rem); overflow:visible; }
+  .hero-actions { grid-template-columns:repeat(2,minmax(0,1fr)); width:calc(100vw - 3.25rem); max-width:calc(100vw - 3.25rem); }
+  .hero-actions .btn { width:100%; min-width:0; max-width:100%; padding:.72rem .35rem; font-size:.78rem; }
+  .hero-trust-row { width:calc(100vw - 3.25rem); max-width:calc(100vw - 3.25rem); }
+  .about-me-section .hero-image-col { width:min(calc(100vw - 4.5rem),350px); max-width:calc(100vw - 4.5rem); align-self:flex-start; margin-left:1rem !important; padding:1rem 1.15rem 3.15rem; }
+  .about-me-section .hero-image-frame::after { inset:-16px -17px -19px -17px; border-radius:42px 42px 34px 34px; box-shadow:13px 17px 0 rgba(82,101,217,.1),0 28px 55px rgba(23,33,60,.18); }
   .about-me-section .profile-image { border-width:5px; border-radius:27px 27px 21px 21px !important; }
 }
 
