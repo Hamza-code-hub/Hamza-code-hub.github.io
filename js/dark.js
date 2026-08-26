@@ -59,6 +59,14 @@
     if (!button || !menu || button.dataset.mobileMenuBound) return;
     button.dataset.mobileMenuBound = "true";
 
+    var backdrop = document.querySelector(".mobile-menu-backdrop");
+    if (!backdrop) {
+      backdrop = document.createElement("div");
+      backdrop.className = "mobile-menu-backdrop";
+      backdrop.setAttribute("aria-hidden", "true");
+      document.body.appendChild(backdrop);
+    }
+
     function isMobile() {
       return !window.matchMedia || window.matchMedia("(max-width: 991.98px)").matches;
     }
@@ -66,16 +74,35 @@
     function setOpen(open) {
       menu.classList.remove("collapsing");
       menu.classList.toggle("show", open);
+      button.classList.toggle("is-open", open);
+      document.body.classList.toggle("mobile-menu-open", open);
+      backdrop.classList.toggle("is-visible", open);
       button.setAttribute("aria-expanded", String(open));
       menu.setAttribute("aria-hidden", String(!open));
+    }
+
+    function syncViewport() {
+      if (isMobile()) {
+        if (!menu.classList.contains("show")) setOpen(false);
+        return;
+      }
+      menu.classList.remove("show", "collapsing");
+      button.classList.remove("is-open");
+      document.body.classList.remove("mobile-menu-open");
+      backdrop.classList.remove("is-visible");
+      button.setAttribute("aria-expanded", "false");
+      menu.removeAttribute("aria-hidden");
     }
 
     button.addEventListener("click", function (event) {
       if (!isMobile()) return;
       event.preventDefault();
+      event.stopImmediatePropagation();
       event.stopPropagation();
       setOpen(!menu.classList.contains("show"));
     });
+
+    backdrop.addEventListener("click", function () { setOpen(false); });
 
     menu.addEventListener("click", function (event) {
       if (isMobile() && event.target.closest("a")) setOpen(false);
@@ -86,9 +113,9 @@
         button.focus();
       }
     });
-    window.addEventListener("resize", function () {
-      if (!isMobile()) setOpen(false);
-    });
+    window.addEventListener("resize", syncViewport);
+
+    syncViewport();
   }
 
   function bindToggle() {

@@ -3478,3 +3478,148 @@ body.dark-mode .testimonial-carousel .quote-content {
   #skills > .container > .row { grid-template-columns:1fr; }
   #skills .item-inner { min-height:0; }
 }
+
+/* Reliable mobile navigation drawer. This intentionally owns the complete
+   open/closed state instead of depending on Bootstrap's collapse animation. */
+.mobile-menu-backdrop { display:none; }
+@media (max-width:991.98px) {
+  body.mobile-menu-open { overflow:hidden; }
+
+  .header {
+    position:sticky !important;
+    top:0;
+    z-index:1110;
+  }
+  .header .force-overflow {
+    min-height:66px;
+    flex-wrap:nowrap;
+  }
+  .header .blog-name {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  .header .navbar {
+    display:flex !important;
+    width:46px;
+    height:46px;
+    flex:0 0 46px;
+    align-items:center;
+    justify-content:center;
+  }
+  .header .navbar-toggler {
+    display:flex !important;
+    position:relative !important;
+    z-index:1125;
+    width:44px;
+    height:44px;
+    margin:0 !important;
+    padding:.62rem !important;
+    align-items:center;
+    justify-content:center;
+    opacity:1 !important;
+    visibility:visible !important;
+    color:#fff !important;
+    background:#0b0d13 !important;
+    border:1px solid rgba(255,255,255,.2) !important;
+    border-radius:13px;
+    box-shadow:0 8px 22px rgba(0,0,0,.24);
+  }
+  .header .navbar-toggler:focus-visible {
+    outline:3px solid var(--accent-soft);
+    outline-offset:2px;
+  }
+  .header .navbar-toggler-icon,
+  .header .navbar-toggler-icon::before,
+  .header .navbar-toggler-icon::after {
+    transition:transform .24s ease,box-shadow .24s ease,background-color .24s ease;
+  }
+  .header .navbar-toggler-icon::before,
+  .header .navbar-toggler-icon::after {
+    background:#fff;
+  }
+  .header .navbar-toggler-icon::before { box-shadow:0 8px 0 #fff; }
+  .header .navbar-toggler.is-open .navbar-toggler-icon::before {
+    top:50%;
+    transform:translateY(-50%) rotate(45deg);
+    box-shadow:none;
+  }
+  .header .navbar-toggler.is-open .navbar-toggler-icon::after {
+    bottom:50%;
+    transform:translateY(50%) rotate(-45deg);
+  }
+
+  .header #navigation.navbar-collapse,
+  .header #navigation.navbar-collapse.collapsing {
+    display:flex !important;
+    position:fixed !important;
+    inset:0 0 0 auto !important;
+    z-index:1120;
+    width:min(86vw,350px);
+    height:100vh;
+    height:100dvh;
+    max-height:none;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    padding:5.4rem 1rem 1.35rem;
+    overflow-x:hidden;
+    overflow-y:auto;
+    color:#f7f8ff;
+    background:#07090f;
+    border:0;
+    border-left:1px solid rgba(255,255,255,.13);
+    border-radius:0;
+    box-shadow:-24px 0 55px rgba(0,0,0,.42);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translate3d(105%,0,0);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .22s ease,visibility .3s;
+  }
+  .header #navigation.navbar-collapse.show {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translate3d(0,0,0);
+  }
+  .header #navigation .profile-section { flex:0 0 auto; }
+  .header #navigation .profile-image { width:112px; height:112px; }
+  .header #navigation :is(.home-nav,.sidebar-nav) {
+    flex:0 0 auto;
+    width:100%;
+    margin:.25rem 0 .8rem;
+  }
+  .header #navigation :is(.home-nav,.sidebar-nav) .nav-link {
+    min-height:44px;
+    padding:.68rem .8rem;
+  }
+
+  .mobile-menu-backdrop {
+    display:block;
+    position:fixed;
+    inset:0;
+    z-index:1095;
+    background:rgba(2,4,9,.64);
+    -webkit-backdrop-filter:blur(3px);
+    backdrop-filter:blur(3px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .25s ease,visibility .25s;
+  }
+  .mobile-menu-backdrop.is-visible {
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+}
+
+@media (max-width:380px) {
+  .header #navigation.navbar-collapse,
+  .header #navigation.navbar-collapse.collapsing { width:92vw; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .header #navigation.navbar-collapse,
+  .mobile-menu-backdrop { transition:none !important; }
+}
