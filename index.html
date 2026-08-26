@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="./css/carousel.css">
   <link rel="stylesheet" href="./css/owl.css">
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
-  <link rel="stylesheet" href="./css/my.css?v=7">
+  <link rel="stylesheet" href="./css/my.css?v=8">
 
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -200,8 +200,8 @@
 
 
 
-          <ul class="navbar-nav flex-column text-left">
-            <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Home</a></li>
+          <ul class="navbar-nav flex-column text-left sidebar-nav home-nav" aria-label="Home page sections">
+            <li class="nav-item active"><a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Home</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#aboutme"><i class="fas fa-address-card fa-fw mr-2"></i>About Me</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#platforms"><i class="fas fa-briefcase fa-fw mr-2"></i>Work Platforms</a></li>
             <li class="nav-item"><a class="nav-link" href="services.html"><i class="fas fa-cogs fa-fw mr-2"></i>AI Services</a></li>
@@ -263,7 +263,9 @@
             </div>
           </div>
           <div class="hero-image-col">
-            <img class="profile-image" src="images/hamza black suite.jpeg" alt="Muhammad Hamza AI Developer and LLM Engineer in a black suit" width="460" loading="eager">
+            <div class="hero-image-frame">
+              <img class="profile-image" src="images/hamza black suite.jpeg" alt="Muhammad Hamza AI Developer and LLM Engineer in a black suit" width="460" loading="eager">
+            </div>
             <span class="hero-trust-mark" aria-hidden="true">AI / ENGINEER / RESEARCH</span>
           </div>
         </div>
@@ -794,6 +796,7 @@
   <script src="./js/cookie.js"></script>
   <script src="./js/dark.js"></script>
   <script src="./js/site-effects.js?v=3"></script>
+  <script src="./js/home-nav.js?v=1"></script>
   <script>
     if (window.AOS) { AOS.init({ duration: 700, once: true, offset: 60 }); }
   </script>

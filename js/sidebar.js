@@ -47,7 +47,7 @@
               "</ul>" +
               "<hr>" +
             "</div>" +
-            '<ul class="navbar-nav flex-column text-left">' + navHtml + "</ul>" +
+            '<ul class="navbar-nav flex-column text-left sidebar-nav">' + navHtml + "</ul>" +
             '<div class="my-2"><a class="btn btn-primary" href="' + base + 'contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a></div>' +
             '<div class="dark-mode-toggle text-center w-100">' +
               '<hr class="mb-4">' +
