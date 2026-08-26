@@ -3446,3 +3446,35 @@ body.dark-mode .testimonial-carousel .quote-content {
     margin-right:auto;
   }
 }
+
+/* Home skills use the same generous three-column rhythm as the services area. */
+#skills > .container > .row {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+  margin:0;
+  align-items:stretch;
+}
+#skills > .container > .row > .item {
+  display:flex;
+  width:auto !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+#skills .item-inner {
+  display:flex;
+  width:100%;
+  min-height:320px;
+  flex-direction:column;
+  padding:1.65rem !important;
+}
+#skills .item-title { min-height:3.15rem; margin-bottom:.75rem; }
+#skills .item-inner p { margin:0; color:var(--subtle); font-size:.92rem; line-height:1.65; }
+@media (max-width:991.98px) {
+  #skills > .container > .row { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:575.98px) {
+  #skills > .container > .row { grid-template-columns:1fr; }
+  #skills .item-inner { min-height:0; }
+}
