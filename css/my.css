@@ -3736,11 +3736,11 @@ body.dark-mode::after { background:radial-gradient(circle,rgba(45,212,191,.1),tr
   animation:heroPortraitFloat 6.8s cubic-bezier(.45,.05,.55,.95) infinite;
 }
 .about-me-section .hero-image-frame::before {
-  inset:-12px;
-  padding:3px;
+  inset:-11px;
+  padding:11px;
   background:linear-gradient(125deg,var(--signal),var(--accent) 45%,var(--warm) 78%,var(--signal));
   background-size:240% 240%;
-  border-radius:46px 46px 35px 35px;
+  border-radius:38px 38px 30px 30px;
   filter:drop-shadow(0 15px 28px rgba(35,56,119,.2));
   animation:heroPrismFlow 7s ease-in-out infinite;
 }
@@ -3763,7 +3763,7 @@ body.dark-mode::after { background:radial-gradient(circle,rgba(45,212,191,.1),tr
   aspect-ratio:4 / 5;
   object-fit:cover;
   object-position:center 31%;
-  border:6px solid var(--panel-solid);
+  border:0;
   border-radius:30px 30px 23px 23px !important;
   background:var(--panel-solid) !important;
   box-shadow:0 28px 68px rgba(23,33,60,.24);
@@ -3799,6 +3799,57 @@ body.dark-mode .about-me-section .profile-image {
   0%,100% { opacity:.17; transform:rotate(2.4deg) translate3d(0,0,0); }
   50% { opacity:.26; transform:rotate(1.6deg) translate3d(4px,5px,0); }
 }
+
+/* Hanging-picture effect: a small hook/string above the frame, and the
+   frame itself swings from that top point like it's hung on a wall. */
+.hero-hook {
+  position:absolute;
+  top:0;
+  left:50%;
+  z-index:3;
+  width:3px;
+  height:30px;
+  background:linear-gradient(var(--subtle),transparent);
+  transform:translateX(-50%);
+  transform-origin:top center;
+  animation:heroHookSwing 5s ease-in-out infinite;
+}
+.hero-hook::before {
+  content:"";
+  position:absolute;
+  top:-6px;
+  left:50%;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:var(--panel-solid);
+  border:2.5px solid var(--accent);
+  box-shadow:0 3px 8px rgba(15,23,42,.25),0 0 10px var(--accent-soft);
+  transform:translateX(-50%);
+}
+.about-me-section .hero-image-frame--hanging {
+  transform-origin:top center;
+  animation-name:heroHangSwing;
+  animation-duration:5s;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+}
+.about-me-section .hero-image-frame--hanging:hover,
+.hero-image-col:hover .hero-hook {
+  animation-play-state:paused;
+}
+@keyframes heroHangSwing {
+  0%,100% { transform:rotate(-3deg); }
+  50% { transform:rotate(3deg); }
+}
+@keyframes heroHookSwing {
+  0%,100% { transform:translateX(-50%) rotate(-3deg); }
+  50% { transform:translateX(-50%) rotate(3deg); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-hook,.about-me-section .hero-image-frame--hanging { animation:none !important; }
+}
+@media (max-width:1199.98px) { .hero-hook { display:none; } }
 
 /* Mobile drawer remains deliberately black in both themes. Theme controls
    stay available beside the close button and at the bottom of the drawer. */
