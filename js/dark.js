@@ -53,9 +53,48 @@
     window.addEventListener("portfolio:theme", syncIcon);
   }
 
+  function bindMobileMenu() {
+    var button = document.querySelector(".header .navbar-toggler");
+    var menu = document.getElementById("navigation");
+    if (!button || !menu || button.dataset.mobileMenuBound) return;
+    button.dataset.mobileMenuBound = "true";
+
+    function isMobile() {
+      return !window.matchMedia || window.matchMedia("(max-width: 991.98px)").matches;
+    }
+
+    function setOpen(open) {
+      menu.classList.remove("collapsing");
+      menu.classList.toggle("show", open);
+      button.setAttribute("aria-expanded", String(open));
+      menu.setAttribute("aria-hidden", String(!open));
+    }
+
+    button.addEventListener("click", function (event) {
+      if (!isMobile()) return;
+      event.preventDefault();
+      event.stopPropagation();
+      setOpen(!menu.classList.contains("show"));
+    });
+
+    menu.addEventListener("click", function (event) {
+      if (isMobile() && event.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && menu.classList.contains("show")) {
+        setOpen(false);
+        button.focus();
+      }
+    });
+    window.addEventListener("resize", function () {
+      if (!isMobile()) setOpen(false);
+    });
+  }
+
   function bindToggle() {
     applyTheme(preferredTheme(), false);
     addMobileFloatingToggle();
+    bindMobileMenu();
     var toggle = document.getElementById("darkmode");
     if (!toggle || toggle.dataset.themeBound) return;
     toggle.dataset.themeBound = "true";
