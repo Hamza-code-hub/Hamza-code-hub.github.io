@@ -3655,9 +3655,9 @@ body.dark-mode .testimonial-carousel .quote-content {
   --heading:#111a2e;
   --subtle:#67738b;
   --border:rgba(58,74,117,.16);
-  --accent:#e11d48;
-  --accent-strong:#9f1239;
-  --accent-soft:rgba(225,29,72,.13);
+  --accent:#7c3aed;
+  --accent-strong:#2563eb;
+  --accent-soft:rgba(124,58,237,.13);
   --signal:#0284c7;
   --warm:#f59e0b;
   --shadow:0 24px 70px rgba(23,33,60,.13);
@@ -3673,11 +3673,11 @@ html[data-theme="dark"], body.dark-mode {
   --heading:#f7f9ff;
   --subtle:#9aa8c0;
   --border:rgba(128,151,208,.18);
-  --accent:#fb7185;
-  --accent-strong:#f43f5e;
-  --accent-soft:rgba(251,113,133,.18);
+  --accent:#a78bfa;
+  --accent-strong:#60a5fa;
+  --accent-soft:rgba(167,139,250,.18);
   --signal:#38bdf8;
-  --warm:#fbbf24;
+  --warm:#f87171;
   --shadow:0 28px 80px rgba(0,0,0,.4);
   --grid:rgba(132,151,204,.055);
 }
