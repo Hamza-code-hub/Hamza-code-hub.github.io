@@ -3271,3 +3271,108 @@ body.dark-mode .testimonial-carousel .quote-content {
   .header #navigation :is(.home-nav,.sidebar-nav) .nav-item.active .nav-link { color:#fff !important; background:linear-gradient(100deg,rgba(139,131,255,.28),rgba(255,255,255,.04)); border-color:rgba(139,131,255,.46); }
   .mobile-theme-toggle { top:calc(env(safe-area-inset-top, 0px) + 4.85rem); right:.85rem; }
 }
+
+/* Home hero portrait: a controlled editorial frame with calm, layered motion. */
+.about-me-section .hero-image-col {
+  position:relative;
+  width:min(100%,440px);
+  align-self:center;
+  align-items:center;
+  justify-self:center;
+  margin:0 auto !important;
+  padding:1rem 1rem 2.25rem;
+}
+.about-me-section .hero-image-frame {
+  position:relative;
+  z-index:1;
+  width:100%;
+  isolation:isolate;
+  transform-origin:50% 62%;
+  animation:heroImageFloat 6.5s cubic-bezier(.45,.05,.55,.95) infinite;
+}
+.about-me-section .hero-image-frame::before {
+  position:absolute;
+  inset:-11px;
+  z-index:-1;
+  padding:1px;
+  content:"";
+  background:conic-gradient(from 105deg,var(--accent),var(--signal),transparent 36%,var(--warm),var(--accent));
+  border-radius:38px;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  filter:drop-shadow(0 12px 25px var(--accent-soft));
+  animation:heroFrameOrbit 14s linear infinite;
+}
+.about-me-section .hero-image-frame::after {
+  position:absolute;
+  z-index:-2;
+  width:78%;
+  height:45%;
+  right:-9%;
+  bottom:-8%;
+  content:"";
+  background:radial-gradient(ellipse,var(--signal),transparent 68%);
+  filter:blur(25px);
+  opacity:.22;
+  animation:heroAmbientGlow 6.5s ease-in-out infinite;
+}
+.about-me-section .profile-image {
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100% !important;
+  max-width:none !important;
+  aspect-ratio:4 / 5;
+  margin:0 !important;
+  object-position:center 43%;
+  border:7px solid var(--panel-solid);
+  border-radius:30px !important;
+  box-shadow:16px 18px 0 var(--accent-soft),0 28px 65px rgba(20,27,57,.22);
+}
+.about-me-section .hero-image-frame:hover { animation-play-state:paused; }
+.about-me-section .hero-image-frame:hover .profile-image { transform:scale(1.018); box-shadow:20px 23px 0 var(--accent-soft),0 36px 76px rgba(20,27,57,.3); }
+.about-me-section .hero-trust-mark {
+  position:absolute;
+  right:-.25rem;
+  bottom:.45rem;
+  z-index:3;
+  display:block;
+  margin:0;
+  padding:.55rem .72rem;
+  color:var(--heading);
+  background:var(--panel-solid);
+  border:1px solid var(--border);
+  border-radius:10px;
+  box-shadow:0 12px 28px rgba(20,27,57,.16);
+  font:500 .6rem "DM Mono",monospace;
+  letter-spacing:.08em;
+  text-align:center;
+}
+@keyframes heroImageFloat {
+  0%,100% { transform:translate3d(0,0,0) rotate(-.45deg); }
+  50% { transform:translate3d(0,-13px,0) rotate(.4deg); }
+}
+@keyframes heroFrameOrbit { to { transform:rotate(1turn); } }
+@keyframes heroAmbientGlow { 0%,100% { opacity:.18; transform:translate3d(0,0,0) scale(.94); } 50% { opacity:.36; transform:translate3d(-12px,-9px,0) scale(1.08); } }
+@media (max-width:1199.98px) {
+  .about-me-section .hero-image-col { width:min(86vw,410px); margin-top:1rem !important; }
+}
+@media (max-width:575.98px) {
+  .about-me-section .hero-image-col { width:min(90vw,360px); padding:.75rem .75rem 1.25rem; }
+  .about-me-section .hero-image-frame::before { inset:-8px; border-radius:34px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .about-me-section .hero-image-frame,
+  .about-me-section .hero-image-frame::before,
+  .about-me-section .hero-image-frame::after { animation:none !important; }
+}
+
+/* Keep the portfolio call-to-action centered independently of the project grid. */
+#projects .portfolio-cta {
+  display:flex;
+  width:100%;
+  justify-content:center;
+  padding-top:1.5rem !important;
+  text-align:center;
+}
