@@ -2,6 +2,10 @@
    AOS init, animated stat counters (.stat-number[data-count]) and
    animated progress bars (.progress-row[data-value]). */
 document.addEventListener("DOMContentLoaded", function () {
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var projectPage = document.querySelector(".project");
+  if (projectPage) document.body.classList.add("project-detail-page");
+
   var caseHero = document.querySelector(".project .container") ? document.querySelector(".cta-section .container") : null;
   if (caseHero && !caseHero.querySelector(".case-hero-visual")) {
     caseHero.classList.add("case-hero-container");
@@ -28,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     caseHero.insertAdjacentHTML("beforeend",
       '<div class="case-hero-visual" role="img" aria-label="Animated architecture flow for ' + projectName.replace(/"/g, "") + '">' +
         '<div class="case-flow-grid"></div><span class="case-scan"></span>' +
+        '<span class="case-hero-glow glow-one"></span><span class="case-hero-glow glow-two"></span>' +
+        '<span class="case-corner corner-one"></span><span class="case-corner corner-two"></span>' +
         '<div class="case-flow-node node-input"><i class="fas fa-database"></i><b>' + flow[0] + '</b><small>source stage</small></div>' +
         '<div class="case-flow-node node-model"><i class="fas fa-brain"></i><b>' + flow[1] + '</b><small>processing stage</small></div>' +
         '<div class="case-flow-node node-decision"><i class="fas fa-project-diagram"></i><b>' + flow[2] + '</b><small>intelligence stage</small></div>' +
@@ -35,6 +41,65 @@ document.addEventListener("DOMContentLoaded", function () {
         '<div class="case-flow-line line-one"><i></i></div><div class="case-flow-line line-two"><i></i></div><div class="case-flow-line line-three"><i></i></div>' +
         '<div class="case-flow-status"><span></span> LIVE ARCHITECTURE / ' + projectName.toUpperCase() + '</div>' +
       '</div>');
+  }
+
+  /* Turn ordinary screenshots into animated product-view panels without
+     requiring bespoke markup in every case-study file. */
+  if (projectPage) {
+    projectPage.querySelectorAll(".gallery > img").forEach(function (img, index) {
+      var shot = document.createElement("figure");
+      shot.className = "project-shot";
+      shot.style.setProperty("--shot-index", index);
+      Array.from(img.attributes).forEach(function (attribute) {
+        if (attribute.name.indexOf("data-aos") !== 0) return;
+        shot.setAttribute(attribute.name, attribute.value);
+        img.removeAttribute(attribute.name);
+      });
+      img.parentNode.insertBefore(shot, img);
+      shot.appendChild(img);
+      var label = document.createElement("figcaption");
+      label.innerHTML = '<span>PROJECT VIEW</span><b>' + String(index + 1).padStart(2, "0") + '</b>';
+      shot.appendChild(label);
+    });
+
+    projectPage.querySelectorAll(".project-sections > .project-section").forEach(function (section, index) {
+      section.setAttribute("data-section-index", String(index + 1).padStart(2, "0"));
+    });
+
+    if (!reduceMotion) {
+      projectPage.querySelectorAll(".project-section, .benefit-card, .workflow-step, .case-flow-node").forEach(function (card) {
+        card.classList.add("project-reactive");
+        card.addEventListener("pointermove", function (event) {
+          var rect = card.getBoundingClientRect();
+          var x = ((event.clientX - rect.left) / rect.width) * 100;
+          var y = ((event.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty("--pointer-x", x + "%");
+          card.style.setProperty("--pointer-y", y + "%");
+          if (card.classList.contains("benefit-card") || card.classList.contains("workflow-step")) {
+            card.style.setProperty("--card-rx", ((50 - y) / 16).toFixed(2) + "deg");
+            card.style.setProperty("--card-ry", ((x - 50) / 18).toFixed(2) + "deg");
+          }
+        });
+        card.addEventListener("pointerleave", function () {
+          card.style.removeProperty("--card-rx");
+          card.style.removeProperty("--card-ry");
+        });
+      });
+
+      projectPage.querySelectorAll(".project-shot").forEach(function (shot) {
+        shot.addEventListener("pointermove", function (event) {
+          var rect = shot.getBoundingClientRect();
+          var x = (event.clientX - rect.left) / rect.width - 0.5;
+          var y = (event.clientY - rect.top) / rect.height - 0.5;
+          shot.style.setProperty("--shot-x", (x * 9).toFixed(2) + "px");
+          shot.style.setProperty("--shot-y", (y * 7).toFixed(2) + "px");
+        });
+        shot.addEventListener("pointerleave", function () {
+          shot.style.removeProperty("--shot-x");
+          shot.style.removeProperty("--shot-y");
+        });
+      });
+    }
   }
 
   if (!document.querySelector(".scroll-progress")) {
@@ -94,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
     revealObserver.observe(el);
   });
 
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var pageSections = document.querySelectorAll(".project-section, .project-meta, .benefit-card, .workflow-step, .project-hero, .resume-wrapper");
   pageSections.forEach(function (section, index) {
     section.classList.add("motion-reveal");

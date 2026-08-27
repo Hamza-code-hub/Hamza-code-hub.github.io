@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 	<head>
 		<title>Contact Muhammad Hamza | Hire an AI Developer</title>
@@ -31,7 +31,7 @@
 		<script defer src="./js/all.js"></script>
 		<!-- Theme CSS -->
 		<link id="theme-style" rel="stylesheet" href="./css/theme.css">
-		<link rel="stylesheet" href="./css/my.css?v=15">
+		<link rel="stylesheet" href="./css/my.css?v=16">
 		<script type="application/ld+json">
 		{
 		  "@context":"https://schema.org",
@@ -74,23 +74,36 @@
     <h2 class="section-title font-weight-bold mb-4" data-aos="fade-up">Contact Me</h2>
     <p class="section-intro mb-5" data-aos="fade-up" data-aos-delay="60">Interested in collaborating or have a question? Feel free to reach out!</p>
 
-    <form id="contact-form" action="https://formspree.io/f/meopoqez" method="POST" class="contact-form mx-auto" style="max-width:600px;" data-aos="fade-up" data-aos-delay="120">
+    <div id="message-sent" class="contact-success-banner mb-4" role="status">
+      <i class="fas fa-check-circle" aria-hidden="true"></i>
+      <div><strong>Message sent successfully.</strong><span>Thank you — I will reply as soon as possible.</span></div>
+    </div>
+
+    <form id="contact-form" action="https://formsubmit.co/hamza.ai.official@gmail.com" method="POST" class="contact-form mx-auto" style="max-width:600px;" data-native-submit="true" data-aos="fade-up" data-aos-delay="120">
+      <input type="hidden" name="_subject" value="New portfolio enquiry for Muhammad Hamza">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://hamza-code-hub.github.io/contact.html#message-sent">
+      <input class="contact-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="form-group">
-        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+        <label class="sr-only" for="contact-name">Your name</label>
+        <input id="contact-name" type="text" name="name" class="form-control" placeholder="Your Name" autocomplete="name" maxlength="80" required>
       </div>
       <div class="form-group">
-        <input type="email" name="_replyto" class="form-control" placeholder="Your Email" required>
+        <label class="sr-only" for="contact-email">Your email</label>
+        <input id="contact-email" type="email" name="email" class="form-control" placeholder="Your Email" autocomplete="email" maxlength="160" required>
       </div>
       <div class="form-group">
-        <input type="text" name="subject" class="form-control" placeholder="Subject">
+        <label class="sr-only" for="contact-subject">Subject</label>
+        <input id="contact-subject" type="text" name="subject" class="form-control" placeholder="Subject" maxlength="120">
       </div>
       <div class="form-group">
-        <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+        <label class="sr-only" for="contact-message">Your message</label>
+        <textarea id="contact-message" name="message" class="form-control" rows="6" placeholder="Your Message" minlength="20" maxlength="4000" required></textarea>
       </div>
       <button type="submit" class="btn btn-primary mt-3">
         <i class="fas fa-paper-plane mr-2"></i>Send Message
       </button>
-      <p id="contact-form-status" class="mt-3 mb-0" role="status" aria-live="polite"></p>
+      <p class="contact-privacy-note mt-3 mb-0"><i class="fas fa-shield-alt mr-1" aria-hidden="true"></i>Protected by spam filtering. Your details are used only to reply to this enquiry.</p>
     </form>
   </div>
 </section>
@@ -105,8 +118,6 @@
 		<script src="./js/jquery.js"></script>
 		<script src="./js/proper.js"></script>
 		<script src="./js/bootstrap.js"></script>
-		<script src="./js/form.js"></script>
-		<script src="./js/validation.js"></script>
 		<!-- Dark Mode -->
 		<script src="./js/cookie.js"></script>
 		<script src="./js/dark.js?v=3"></script>
@@ -118,6 +129,7 @@
 		<script>
 (function () {
   var form = document.getElementById('contact-form');
+  if (!form || form.dataset.nativeSubmit === 'true') return;
   var status = document.getElementById('contact-form-status');
   var submitBtn = form.querySelector('button[type="submit"]');
   var submitLabel = submitBtn.innerHTML;
