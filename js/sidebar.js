@@ -43,7 +43,7 @@
               '<ul class="social-list list-inline py-2 mx-auto">' +
                 '<li class="list-inline-item"><a href="https://twitter.com/Muhamma08974837" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-fw"></i></a></li>' +
                 '<li class="list-inline-item"><a href="https://www.linkedin.com/in/hamzzaz" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in fa-fw"></i></a></li>' +
-                '<li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github-alt fa-fw"></i></a></li>' +
+                '<li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github fa-fw"></i></a></li>' +
               "</ul>" +
               "<hr>" +
             "</div>" +

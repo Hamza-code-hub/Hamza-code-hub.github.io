@@ -4474,3 +4474,71 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
     text-align:left;
   }
 }
+
+/* Compact résumé contact bar: four equal information cells keep every
+   detail on one deliberate row instead of leaving the location orphaned. */
+.resume-page .resume-contact {
+  margin-top:1.2rem;
+  padding:.65rem .55rem;
+  background:var(--panel-soft);
+  border:1px solid var(--border) !important;
+  border-radius:10px;
+}
+.resume-page .resume-contact ul {
+  display:grid;
+  grid-template-columns:1.35fr 1fr 1.3fr .9fr;
+  gap:0;
+  width:100%;
+}
+.resume-page .resume-contact li {
+  min-width:0;
+  min-height:36px;
+  justify-content:center;
+  padding:.25rem .7rem;
+  color:var(--text);
+  border-right:1px solid var(--border);
+  font-size:.7rem;
+  font-weight:600;
+  line-height:1.35;
+  white-space:nowrap;
+}
+.resume-page .resume-contact li:last-child { border-right:0; }
+.resume-page .resume-contact i {
+  width:1.7rem;
+  height:1.7rem;
+  color:var(--accent-strong);
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:7px;
+  box-shadow:0 3px 9px rgba(22,30,54,.06);
+}
+.resume-page .resume-contact .resume-link {
+  min-width:0;
+  padding-top:.28rem;
+  overflow:visible;
+  font-size:.7rem !important;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+@media (max-width:767.98px) {
+  .resume-page .resume-contact ul {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .resume-page .resume-contact li:nth-child(2) { border-right:0; }
+  .resume-page .resume-contact li:nth-child(-n+2) { border-bottom:1px solid var(--border); }
+}
+@media (max-width:420px) {
+  .resume-page .resume-contact ul {
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%;
+  }
+  .resume-page .resume-contact li,
+  .resume-page .resume-contact li:nth-child(2) {
+    justify-content:flex-start;
+    border-right:0;
+    border-bottom:1px solid var(--border);
+  }
+  .resume-page .resume-contact li:last-child { border-bottom:0; }
+}
