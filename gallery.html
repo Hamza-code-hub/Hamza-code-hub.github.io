@@ -43,6 +43,11 @@
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/hamza%20black%20suite%20crop.jpeg","name":"Muhammad Hamza professional AI engineer portrait","description":"Professional close portrait of Muhammad Hamza in a black suit."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/hamza-forntpose.jpeg","name":"Muhammad Hamza professional front pose","description":"Muhammad Hamza in a professional front-facing outdoor portrait."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/hamza-restrunent.jpeg","name":"Muhammad Hamza restaurant portrait","description":"Muhammad Hamza in a smart-casual professional portrait."},
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/minhaj-solutions-industry-expert-session.jpg","name":"Muhammad Hamza AI industry expert session","description":"Muhammad Hamza featured as an AI Engineer for an industry expert session at Minhaj Solutions."},
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-company-recognition.jpg","name":"Muhammad Hamza company recognition moment","description":"Muhammad Hamza at a professional recognition moment with a laptop and appreciation gift."},
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-indoor-side-portrait.jpg","name":"Muhammad Hamza indoor side portrait","description":"Professional indoor side portrait of Muhammad Hamza."},
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-black-shirt-outdoor.jpg","name":"Muhammad Hamza black shirt outdoor portrait","description":"Muhammad Hamza in a smart-casual black shirt outdoor portrait."},
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/outdoor.jpeg","name":"Muhammad Hamza outdoor university portrait","description":"Muhammad Hamza in a smart-casual outdoor portrait on a university campus."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai3.jpeg","name":"Muhammad Hamza with the development team","description":"Muhammad Hamza collaborating with the software development team."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai4.jpg","name":"Muhammad Hamza laptop scheme achievement","description":"Muhammad Hamza receiving a laptop under the Prime Minister's Youth Laptop Scheme 2025."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki11.jpg","name":"Muhammad Hamza AI engineer office profile"},
@@ -51,9 +56,7 @@
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki9.jpg","name":"Muhammad Hamza professional profile photo"},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai2.jpg","name":"Muhammad Hamza outdoor portrait"},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki1.jpg","name":"Muhammad Hamza professional outdoor photo"},
-      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki6.jpg","name":"Muhammad Hamza at a formal event with a colleague"},
-      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg","name":"Muhammad Hamza indoor portrait"},
-      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki8.jpg","name":"Muhammad Hamza relaxed portrait"}
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg","name":"Muhammad Hamza indoor portrait"}
     ]
   }
   </script>
@@ -164,6 +167,9 @@
     .photo-grid .photo-tile--team img { object-position: center 58%; }
     .photo-grid .photo-tile--subject-up img { object-position: center 18%; }
     .photo-grid .photo-tile--subject-higher img { object-position: center 28%; }
+    .photo-grid .photo-tile--lift-image img {
+      transform: translateY(-18px) scale(1.1);
+    }
 
     .photo-tile:hover {
       transform: translateY(-6px);
@@ -182,6 +188,10 @@
 
     .photo-tile:hover img {
       transform: scale(1.06);
+    }
+
+    .photo-grid .photo-tile--lift-image:hover img {
+      transform: translateY(-20px) scale(1.14);
     }
 
     .photo-tile .photo-tag {
@@ -330,10 +340,28 @@
             <figcaption class="photo-caption">Building production software and AI systems with the CyberZeus team</figcaption>
           </figure>
 
+          <figure class="photo-tile featured" data-aos="fade-up" data-aos-delay="20">
+            <span class="photo-tag">Industry Session</span>
+            <img src="images/minhaj-solutions-industry-expert-session.jpg" alt="Muhammad Hamza featured as an AI Engineer at the Minhaj Solutions Industry Expert Session" width="1600" height="1734" loading="eager" decoding="async">
+            <figcaption class="photo-caption">Industry Expert Session — AI engineering and intelligent systems</figcaption>
+          </figure>
+
           <figure class="photo-tile featured" data-aos="fade-up" data-aos-delay="40">
             <span class="photo-tag">Professional</span>
             <img src="images/hamza black suite crop.jpeg" alt="Muhammad Hamza senior AI engineer in a black suit" width="1106" height="1422" loading="eager" decoding="async">
             <figcaption class="photo-caption">Muhammad Hamza — AI engineer and applied AI researcher</figcaption>
+          </figure>
+
+          <figure class="photo-tile photo-tile--lift-image" data-aos="fade-up" data-aos-delay="60">
+            <span class="photo-tag">Recognition</span>
+            <img src="images/muhammad-hamza-company-recognition.jpg" alt="Muhammad Hamza at a company recognition moment with a laptop and appreciation gift" width="1600" height="1200" loading="lazy" decoding="async">
+            <figcaption class="photo-caption">Professional recognition at the workplace</figcaption>
+          </figure>
+
+          <figure class="photo-tile photo-tile--lift-image" data-aos="fade-up" data-aos-delay="80">
+            <span class="photo-tag">Portrait</span>
+            <img src="images/muhammad-hamza-indoor-side-portrait.jpg" alt="Muhammad Hamza professional indoor side portrait" width="1200" height="1600" loading="lazy" decoding="async">
+            <figcaption class="photo-caption">Indoor professional side portrait</figcaption>
           </figure>
 
           <figure class="photo-tile" data-aos="fade-up" data-aos-delay="80">
@@ -345,6 +373,18 @@
             <span class="photo-tag">Off Duty</span>
             <img src="images/hamza-restrunent.jpeg" alt="Muhammad Hamza smart-casual restaurant portrait" width="1086" height="1449" loading="lazy" decoding="async">
             <figcaption class="photo-caption">A candid moment beyond the workspace</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="140">
+            <span class="photo-tag">Outdoor</span>
+            <img src="images/muhammad-hamza-black-shirt-outdoor.jpg" alt="Muhammad Hamza smart-casual black shirt outdoor portrait" width="960" height="1280" loading="lazy" decoding="async">
+            <figcaption class="photo-caption">Smart-casual outdoor portrait</figcaption>
+          </figure>
+
+          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="160">
+            <span class="photo-tag">Campus</span>
+            <img src="images/outdoor.jpeg" alt="Muhammad Hamza in a blue polo shirt outdoors on a university campus" width="1200" height="1600" loading="lazy" decoding="async">
+            <figcaption class="photo-caption">Outdoor university portrait</figcaption>
           </figure>
 
           <figure class="photo-tile featured" data-aos="fade-up" data-aos-delay="0">
@@ -390,19 +430,9 @@
             <figcaption class="photo-caption">Professional outdoor portrait</figcaption>
           </figure>
 
-          <figure class="photo-tile" data-aos="fade-up" data-aos-delay="0">
-            <img src="images/Muhammad_Hamza_from_pattoki6.jpg" alt="Muhammad Hamza with a colleague at a formal event" width="715" height="894" loading="lazy">
-            <figcaption class="photo-caption">Formal event with a colleague</figcaption>
-          </figure>
-
           <figure class="photo-tile" data-aos="fade-up" data-aos-delay="180">
             <img src="images/Muhammad_Hamza_from_pattoki13.jpg" alt="Muhammad Hamza casual indoor portrait" width="613" height="768" loading="lazy">
             <figcaption class="photo-caption">Casual portrait</figcaption>
-          </figure>
-
-          <figure class="photo-tile photo-tile--subject-up" data-aos="fade-up" data-aos-delay="0">
-            <img src="images/Muhammad_Hamza_from_pattoki8.jpg" alt="Muhammad Hamza relaxed indoor portrait" width="564" height="1000" loading="lazy">
-            <figcaption class="photo-caption">Relaxed portrait</figcaption>
           </figure>
 
         </div>
