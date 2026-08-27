@@ -4321,3 +4321,156 @@ body.dark-mode .about-me-section .profile-image {
 .contact-privacy-note { color:var(--subtle); font-size:.72rem; line-height:1.5; }
 @keyframes contactSuccessIn { from { opacity:0; transform:translateY(12px) scale(.98); } to { opacity:1; transform:none; } }
 @media (prefers-reduced-motion:reduce) { .contact-success-banner:target { animation:none; } }
+
+/* Resume sheets are documents, not themed web panels. Keep both pages as
+   clean white paper in light and dark site modes while the surrounding
+   toolbar and canvas continue to follow the selected theme. */
+.resume-page .resume-wrapper,
+.resume-page.dark-mode .resume-wrapper,
+html[data-theme="dark"] .resume-page .resume-wrapper {
+  --text:#334057;
+  --heading:#111a2e;
+  --subtle:#67738b;
+  --border:rgba(58,74,117,.16);
+  --accent:#7c3aed;
+  --accent-strong:#2563eb;
+  --accent-soft:rgba(124,58,237,.13);
+  --panel:#ffffff;
+  --panel-solid:#ffffff;
+  --panel-soft:#f7f9fc;
+  color:#334057 !important;
+  background:#ffffff !important;
+  border-color:var(--border) !important;
+  border-top-color:var(--accent) !important;
+  box-shadow:0 18px 45px rgba(22,30,54,.1) !important;
+  color-scheme:light;
+}
+.resume-page .resume-wrapper .resume-sheet-label,
+.resume-page .resume-wrapper hr,
+.resume-page .resume-wrapper .resume-section-heading,
+.resume-page .resume-wrapper .resume-contact,
+.resume-page .resume-wrapper .resume-aside { border-color:var(--border) !important; }
+
+/* A true fixed mobile top bar. The matching body offset prevents every page,
+   including the resume toolbar, from sliding underneath it. */
+@media (max-width:991.98px) {
+  html { scroll-padding-top:84px; }
+  body,
+  body.dark-mode { padding-top:72px !important; }
+  .header,
+  body.dark-mode .header,
+  html[data-theme="dark"] .header {
+    position:fixed !important;
+    inset:0 0 auto 0 !important;
+    z-index:1110;
+    width:100% !important;
+    height:72px;
+    margin:0 !important;
+  }
+  .header .force-overflow {
+    width:100%;
+    height:72px;
+    min-height:72px;
+  }
+  .main-wrapper,
+  body.dark-mode .main-wrapper { padding-top:0 !important; }
+}
+@media print {
+  body.resume-page { padding-top:0 !important; }
+}
+
+/* Home content follows the same professional narrative as its sidebar:
+   introduction, capabilities, services, proof, then supporting context. */
+.home-page .main-wrapper { display:flex; flex-direction:column; }
+.home-page .main-wrapper > .about-me-section { order:0; }
+.home-page .main-wrapper > #aboutme { order:1; }
+.home-page .main-wrapper > #skills { order:2; }
+.home-page .main-wrapper > #services { order:3; }
+.home-page .main-wrapper > #publications { order:4; }
+.home-page .main-wrapper > #platforms { order:5; }
+.home-page .main-wrapper > #whatido { order:6; }
+.home-page .main-wrapper > #testimonials { order:7; }
+.home-page .main-wrapper > #projects { order:8; }
+.home-page .main-wrapper > .footer { order:9; }
+.home-page .main-wrapper > .container,
+.home-page .main-wrapper > .overview-section:not([id]) { display:none; }
+
+/* A balanced résumé masthead: centered identity, readable summary and one
+   orderly contact rail instead of two visually competing columns. */
+.resume-page .resume-header { text-align:center; }
+.resume-page .resume-header > .row {
+  display:block;
+  margin-right:0;
+  margin-left:0;
+}
+.resume-page .resume-title {
+  width:100%;
+  max-width:100%;
+  padding-right:0 !important;
+  padding-left:0 !important;
+}
+.resume-page .resume-name,
+.resume-page.dark-mode .resume-name {
+  font-size:clamp(2.15rem,4vw,2.85rem) !important;
+  letter-spacing:.055em !important;
+}
+.resume-page .resume-title > p {
+  max-width:820px;
+  margin-right:auto;
+  margin-left:auto;
+}
+.resume-page .resume-contact {
+  width:100%;
+  max-width:100%;
+  margin-top:1.35rem;
+  padding:1rem 0 0;
+  border-top:1px solid var(--border);
+  border-left:0;
+}
+.resume-page .resume-contact ul {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:.65rem 1.35rem;
+}
+.resume-page .resume-contact li { margin:0 !important; }
+
+@media (max-width:991.98px) {
+  .header .force-overflow {
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) 46px;
+    align-items:center;
+    gap:.75rem;
+    padding:.8rem 1rem;
+    overflow:visible !important;
+  }
+  .header .blog-name { grid-column:1; }
+  .header .navbar {
+    grid-column:2;
+    width:46px !important;
+    min-width:46px;
+    padding:0 !important;
+  }
+  .header .navbar-toggler {
+    display:flex !important;
+    position:fixed !important;
+    top:14px !important;
+    right:14px !important;
+    bottom:auto !important;
+    left:auto !important;
+    z-index:1140;
+  }
+}
+
+@media (max-width:575.98px) {
+  .resume-page .resume-contact ul {
+    display:grid;
+    grid-template-columns:1fr;
+    width:max-content;
+    max-width:100%;
+    margin-right:auto;
+    margin-left:auto;
+    text-align:left;
+  }
+}
