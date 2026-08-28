@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">Agentic AI system designed by Muhammad Hamza</title>
+  <desc id="desc">A modern system diagram connecting data, retrieval, agentic reasoning, machine learning, APIs, and production delivery.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06101e"/><stop offset=".52" stop-color="#0b1728"/><stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/><stop offset=".5" stop-color="#2dd4bf"/><stop offset="1" stop-color="#fb923c"/>
+    </linearGradient>
+    <radialGradient id="core" cx="40%" cy="30%">
+      <stop offset="0" stop-color="#38bdf8"/><stop offset=".5" stop-color="#0ea5e9"/><stop offset="1" stop-color="#0f766e"/>
+    </radialGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#334155" stroke-width=".6" opacity=".25"/>
+    </pattern>
+    <path id="r1" d="M190 82C350 82 390 147 514 155"/>
+    <path id="r2" d="M190 238C350 238 390 173 514 165"/>
+    <path id="r3" d="M686 155C810 147 850 82 1010 82"/>
+    <path id="r4" d="M686 165C810 173 850 238 1010 238"/>
+  </defs>
+  <rect x="1" y="1" width="1198" height="318" rx="28" fill="url(#bg)" stroke="#25334a" stroke-width="2"/>
+  <rect x="2" y="2" width="1196" height="316" rx="27" fill="url(#grid)"/>
+  <ellipse cx="600" cy="160" rx="235" ry="116" fill="#0ea5e9" opacity=".04">
+    <animate attributeName="rx" values="220;270;220" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".03;.09;.03" dur="5s" repeatCount="indefinite"/>
+  </ellipse>
+  <g fill="none" stroke="url(#signal)" stroke-width="2.4" stroke-linecap="round" opacity=".82">
+    <use href="#r1" stroke-dasharray="8 12"><animate attributeName="stroke-dashoffset" values="80;0" dur="2.8s" repeatCount="indefinite"/></use>
+    <use href="#r2" stroke-dasharray="8 12"><animate attributeName="stroke-dashoffset" values="80;0" dur="3.2s" repeatCount="indefinite"/></use>
+    <use href="#r3" stroke-dasharray="8 12"><animate attributeName="stroke-dashoffset" values="0;-80" dur="2.6s" repeatCount="indefinite"/></use>
+    <use href="#r4" stroke-dasharray="8 12"><animate attributeName="stroke-dashoffset" values="0;-80" dur="3s" repeatCount="indefinite"/></use>
+  </g>
+  <g fill="#67e8f9" filter="url(#glow)">
+    <circle r="4"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#r1"/></animateMotion></circle>
+    <circle r="4"><animateMotion dur="3.2s" repeatCount="indefinite"><mpath href="#r2"/></animateMotion></circle>
+    <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#r3"/></animateMotion></circle>
+    <circle r="4"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#r4"/></animateMotion></circle>
+  </g>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" text-anchor="middle">
+    <g transform="translate(130 82)">
+      <rect x="-88" y="-35" width="176" height="70" rx="17" fill="#101d30" stroke="#38bdf8"/>
+      <circle cx="-60" r="8" fill="#38bdf8"><animate attributeName="opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/></circle>
+      <text x="14" y="-3" fill="#f8fafc" font-size="16" font-weight="700">DATA + CONTEXT</text><text x="14" y="18" fill="#94a3b8" font-size="11" letter-spacing="2">INPUT LAYER</text>
+    </g>
+    <g transform="translate(130 238)">
+      <rect x="-88" y="-35" width="176" height="70" rx="17" fill="#101d30" stroke="#2dd4bf"/>
+      <circle cx="-60" r="8" fill="#2dd4bf"><animate attributeName="opacity" values="1;.35;1" dur="2.4s" repeatCount="indefinite"/></circle>
+      <text x="14" y="-3" fill="#f8fafc" font-size="16" font-weight="700">RAG + SEARCH</text><text x="14" y="18" fill="#94a3b8" font-size="11" letter-spacing="2">KNOWLEDGE</text>
+    </g>
+    <g transform="translate(600 160)" filter="url(#glow)">
+      <circle r="87" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="10 9" opacity=".75"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="18s" repeatCount="indefinite"/></circle>
+      <circle r="68" fill="url(#core)" stroke="#67e8f9" stroke-width="2"><animate attributeName="r" values="65;70;65" dur="3s" repeatCount="indefinite"/></circle>
+      <text y="-8" fill="#fff" font-size="23" font-weight="800" letter-spacing="2">AGENTIC AI</text><text y="18" fill="#dbeafe" font-size="12" font-weight="600" letter-spacing="3">ORCHESTRATION</text>
+      <circle cy="-87" r="5" fill="#fb923c"/><circle cx="87" r="5" fill="#2dd4bf"/><circle cy="87" r="5" fill="#38bdf8"/><circle cx="-87" r="5" fill="#a78bfa"/>
+    </g>
+    <g transform="translate(1070 82)">
+      <rect x="-88" y="-35" width="176" height="70" rx="17" fill="#101d30" stroke="#fb923c"/>
+      <circle cx="-60" r="8" fill="#fb923c"><animate attributeName="opacity" values=".35;1;.35" dur="1.8s" repeatCount="indefinite"/></circle>
+      <text x="14" y="-3" fill="#f8fafc" font-size="16" font-weight="700">ML + VISION</text><text x="14" y="18" fill="#94a3b8" font-size="11" letter-spacing="2">INTELLIGENCE</text>
+    </g>
+    <g transform="translate(1070 238)">
+      <rect x="-88" y="-35" width="176" height="70" rx="17" fill="#101d30" stroke="#a78bfa"/>
+      <circle cx="-60" r="8" fill="#a78bfa"><animate attributeName="opacity" values="1;.35;1" dur="2.2s" repeatCount="indefinite"/></circle>
+      <text x="14" y="-3" fill="#f8fafc" font-size="16" font-weight="700">APIs + CLOUD</text><text x="14" y="18" fill="#94a3b8" font-size="11" letter-spacing="2">PRODUCTION</text>
+    </g>
+  </g>
+</svg>

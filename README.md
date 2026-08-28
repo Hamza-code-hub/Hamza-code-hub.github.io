@@ -1,210 +1,111 @@
+<!--
+  PROFILE README
+  GitHub displays this on the profile Overview when it is published from:
+  https://github.com/Hamza-code-hub/Hamza-code-hub
+-->
+
 <div align="center">
 
-# Muhammad Hamza - AI Engineering Portfolio
+<img width="100%" alt="Muhammad Hamza — senior AI and machine learning engineer" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0ea5e9,50:14b8a6,100:f97316&amp;height=220&amp;section=header&amp;text=Muhammad%20Hamza&amp;fontSize=56&amp;fontColor=ffffff&amp;fontAlignY=38&amp;desc=AI%20Engineer%20%E2%80%A2%20Agentic%20Systems%20%E2%80%A2%20Applied%20Research&amp;descAlignY=60&amp;animation=fadeIn" />
 
-### LLM & RAG Engineer | Agentic AI Developer | Machine Learning Researcher
+<a href="https://hamza-code-hub.github.io/">
+  <img alt="Professional introduction: AI/ML Engineer, Agentic AI and RAG Architect, Production AI Builder" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=600&amp;size=22&amp;pause=900&amp;color=22D3EE&amp;center=true&amp;vCenter=true&amp;width=820&amp;lines=AI%2FML+Engineer;Agentic+AI+%26+RAG+Architect;Computer+Vision+%26+Applied+ML;Building+Production-Ready+AI+Systems" />
+</a>
 
-A modern, responsive portfolio presenting production-oriented AI systems,
-research, engineering services, technical case studies, and professional experience.
+<p>
+  <a href="https://hamza-code-hub.github.io/"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Explore_my_work-0ea5e9?style=for-the-badge&amp;logo=googlechrome&amp;logoColor=white" /></a>
+  <a href="https://www.linkedin.com/in/hamzzaz"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white" /></a>
+  <a href="mailto:hamza.ai.official@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-Let's_build-EA4335?style=for-the-badge&amp;logo=gmail&amp;logoColor=white" /></a>
+  <a href="https://hamza-code-hub.github.io/resume/"><img alt="Resume" src="https://img.shields.io/badge/Resume-View_online-f97316?style=for-the-badge&amp;logo=readdotcv&amp;logoColor=white" /></a>
+</p>
 
-[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-Visit-5B5BD6?style=for-the-badge)](https://hamza-code-hub.github.io/)
-[![GitHub](https://img.shields.io/badge/GitHub-Hamza--code--hub-181717?style=for-the-badge&logo=github)](https://github.com/Hamza-code-hub)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-hamzzaz-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/hamzzaz)
-[![Resume](https://img.shields.io/badge/Resume-Download_PDF-DC2626?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./resume/Muhammad-Hamza-Resume.pdf)
+**I design intelligent systems that move from research and prototypes to reliable production software.**
 
 </div>
 
----
+<img width="100%" alt="Agentic AI architecture connecting data, RAG, machine learning, computer vision, APIs, and cloud delivery" src="https://raw.githubusercontent.com/Hamza-code-hub/Hamza-code-hub.github.io/main/images/github-profile-ai-network.svg" />
 
-## Overview
+## About me
 
-This repository contains the source for my GitHub Pages portfolio. It is designed as a senior AI engineering showcase rather than a conventional template-based personal website.
+I am **Muhammad Hamza**, an AI/ML engineer and applied AI researcher from Pakistan. My work centers on **agentic AI**, **LLM applications**, **Retrieval-Augmented Generation**, **computer vision**, and **production machine-learning systems**.
 
-The portfolio focuses on:
+- Building multi-agent workflows, tool-using AI agents, and grounded RAG platforms.
+- Designing retrieval pipelines with embeddings, semantic search, FAISS, and ChromaDB.
+- Developing computer-vision and deep-learning systems for operational and medical use cases.
+- Shipping AI capabilities through Python, FastAPI, Django, cloud infrastructure, and CI/CD.
+- Published research in 3D deep learning for Alzheimer's disease classification from brain MRI.
 
-- LLM applications and Retrieval-Augmented Generation
-- Agentic AI and multi-agent workflows
-- Machine learning and deep learning
-- Computer vision and real-time analytics
-- Medical imaging research
-- Python, Django, FastAPI, and AI-ready backends
-- Data pipelines, automation, and production delivery
+## Engineering focus
 
-## Design and interaction
-
-The interface includes a shared professional design system across the homepage, portfolio, services, resume, contact, and project case-study pages.
-
-- Persistent light and dark themes
-- System theme detection with saved user preference
-- Responsive layouts for desktop, tablet, and mobile
-- Stable typed hero specialties with no layout shift
-- Scroll progress and staggered reveal animations
-- Pointer-aware card lighting and subtle 3D tilt
-- Reduced-motion accessibility support
-- Animated AI system visualizations built with HTML and CSS
-- Animated architecture flows on project detail pages
-- Interactive AI architecture map with orbital core, live subsystem consoles, data routes, counters, and cursor parallax
-- Consistent spacing, typography, contrast, and card geometry
-- Six equal-height homepage service cards and three selected project case studies
-- Unique portfolio case studies with a half-animation, half-description card layout
-- A restrained two-sheet resume layout with professional A4 print styling
-
-The animated project panels and architecture map are original visual representations of each system. They do not depend on copied project artwork or external animation assets.
-
-## Selected projects
-
-The homepage presents three representative systems:
-
-| Project | Focus | Core technologies |
-| --- | --- | --- |
-| [VisionGuard](./projects/visionguard-ai.html) | Warehouse collision-risk intelligence | YOLO, ByteTrack, OpenCV |
-| [NeuroInsight AI](./projects/neuroinsight-ai.html) | Clinical intelligence and neuroimaging | Agentic AI, RAG, Flutter |
-| [Flood Prediction](./projects/flood-prediction-lightgbm.html) | Environmental regression pipeline | LightGBM, Python, Kaggle |
-
-The complete [portfolio page](./portfolio.html) includes additional work in RAG, cybersecurity, satellite imagery, predictive maintenance, automation, and research.
-
-## Website pages
-
-| Page | Purpose |
-| --- | --- |
-| [Home](./index.html) | Professional introduction, capabilities, research, services, and selected work |
-| [Portfolio](./portfolio.html) | Filterable collection of projects and case studies |
-| [Services](./services.html) | AI engineering services, delivery approach, and engagement process |
-| [Resume](./resume/) | Experience, skills, education, research, and project history |
-| [Contact](./contact.html) | Contact form and professional links |
-| [`projects/`](./projects/) | Detailed project architecture, workflow, metrics, and technology pages |
+| Domain | What I build |
+| :--- | :--- |
+| **Agentic AI** | Multi-agent orchestration, stateful workflows, tool use, MCP, and AI automation |
+| **LLM + RAG** | Production retrieval architectures, vector search, knowledge assistants, and evaluation |
+| **Machine Learning** | Predictive systems, feature engineering, model evaluation, and decision-ready analytics |
+| **Computer Vision** | Detection, tracking, real-time video intelligence, and medical imaging workflows |
+| **AI Platforms** | APIs, backend services, containerized deployment, observability, and cloud delivery |
 
 ## Technology stack
 
-### AI and data
+<div align="center">
 
-- Python
-- TensorFlow and PyTorch
-- Scikit-learn and LightGBM
-- OpenCV, YOLO, ByteTrack, and MediaPipe
-- Pandas, NumPy, and data visualization tooling
-- LangChain, LangGraph, vector search, and RAG pipelines
+<img alt="Python, PyTorch, TensorFlow, Scikit-learn, OpenCV, FastAPI, Django, Flutter, Docker, Kubernetes, AWS, Git, GitHub, PostgreSQL, MongoDB, and Linux" src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,sklearn,opencv,fastapi,django,flutter,docker,kubernetes,aws,git,github,postgres,mongodb,linux&amp;perline=8" />
 
-### Backend and applications
+<br /><br />
 
-- Django and FastAPI
-- REST APIs and authentication
-- Flutter, Node.js, and TypeScript
-- Databases, data pipelines, and automation
+![LangChain](https://img.shields.io/badge/LangChain-Agent_Orchestration-1C3C3C?style=flat-square)
+![LangGraph](https://img.shields.io/badge/LangGraph-Stateful_Agents-0F766E?style=flat-square)
+![LlamaIndex](https://img.shields.io/badge/LlamaIndex-RAG-7C3AED?style=flat-square)
+![FAISS](https://img.shields.io/badge/FAISS-Vector_Search-0284C7?style=flat-square)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-Embeddings-F97316?style=flat-square)
+![MCP](https://img.shields.io/badge/MCP-Tool_Integration-2563EB?style=flat-square)
+![Pandas](https://img.shields.io/badge/Pandas-Data_Science-150458?style=flat-square&logo=pandas)
+![Power BI](https://img.shields.io/badge/Power_BI-Analytics-F2C811?style=flat-square&logo=powerbi&logoColor=111827)
 
-### Portfolio frontend
+</div>
 
-- Semantic HTML5
-- CSS custom properties and responsive layouts
-- Vanilla JavaScript
-- Bootstrap utilities
-- Intersection Observer and CSS keyframe animations
-- GitHub Pages
+## Selected systems
 
-## Repository structure
-
-```text
-Hamza-code-hub.github.io/
-|-- css/
-|   |-- my.css                 # Shared themes, layouts, and animation system
-|   `-- theme.css              # Bootstrap-based foundation
-|-- images/                    # Profile, platform, and case-study media
-|-- js/
-|   |-- dark.js                # Persistent light/dark theme controller
-|   |-- sidebar.js             # Shared navigation for inner pages
-|   |-- site-effects.js        # Homepage/listing animations and visual models
-|   `-- project-animate.js      # Project-page architecture and metric animation
-|-- projects/                  # Individual project case studies
-|-- resume/
-|   |-- index.html              # Online resume page
-|   `-- Muhammad-Hamza-Resume.pdf
-|-- index.html
-|-- portfolio.html
-|-- services.html
-|-- contact.html
-|-- robots.txt
-|-- sitemap.xml
-`-- README.md
-```
-
-## Theme behavior
-
-The site checks for a saved theme preference first. If none exists, it uses the operating-system preference. The selected theme is stored in `localStorage` and shared by every page.
-
-Both themes use the same semantic color variables, so cards, forms, project diagrams, text, navigation, and interactive states remain readable and consistent.
-
-## Animation architecture
-
-Animations are implemented without a heavy animation framework:
-
-1. `site-effects.js` limits the homepage to three selected projects and builds animated project visualizations.
-2. Intersection Observer reveals sections and cards only when they enter the viewport.
-3. Fine-pointer devices receive subtle interactive lighting and perspective effects.
-4. `project-animate.js` adds animated data flow, statistics, progress bars, and architecture nodes to case studies.
-5. `prefers-reduced-motion` disables nonessential movement for accessibility.
-
-The resume intentionally does not load the portfolio animation scripts. Its screen layout mirrors a clean two-page document, uses a wider 60/40 experience-and-skills structure, and switches to exact A4 sheets when printed.
-
-### Animated project models
-
-Static thumbnails are replaced by purpose-built motion models that explain what each selected system does:
-
-| Visual model | Animation behavior |
-| --- | --- |
-| VisionGuard | Moving forklift and pedestrian tracks, risk line, detection zone, and live telemetry |
-| NeuroInsight AI | Breathing brain geometry, pulsing clinical nodes, and signal wave |
-| Flood Prediction | Animated feature bars and model-performance telemetry |
-| Attendance System | Live presence ring, synchronized workforce rows, and status indicators |
-| AeroNav Sim | Autonomous drone marker following a multi-waypoint route |
-| AI Virtual Painter | Gesture hand motion, moving cursor, and progressively drawn strokes |
-
-Every case-study page also receives an animated architecture panel showing input, intelligence, decision, and output stages with moving data packets. These animations are built from semantic HTML and CSS, remain theme-aware, and scale down for mobile layouts.
-
-## Resume
-
-- [View the online resume](./resume/)
-- [Download the PDF resume](./resume/Muhammad-Hamza-Resume.pdf)
-
-The online version includes print-specific CSS for clean document output.
-
-## Running locally
-
-No build step is required. Open `index.html` directly, or serve the repository with any static file server.
-
-```bash
-python -m http.server 8080
-```
-
-Then open `http://localhost:8080`.
-
-## Deployment
-
-The site is deployed through GitHub Pages from this repository. Changes to the published branch are served as a static website.
-
-SEO support includes:
-
-- Semantic metadata
-- Open Graph and social-card information
-- Schema.org structured data
-- `robots.txt`
-- `sitemap.xml`
-- Accessible image descriptions and navigation labels
-
-## Research
-
-My published work includes research on multi-class Alzheimer's disease classification using volumetric brain MRI and 3D deep learning. The portfolio connects this research background with practical AI software engineering and production-oriented delivery.
-
-## Contact
-
-- Portfolio: [hamza-code-hub.github.io](https://hamza-code-hub.github.io/)
-- GitHub: [Hamza-code-hub](https://github.com/Hamza-code-hub)
-- LinkedIn: [hamzzaz](https://www.linkedin.com/in/hamzzaz)
-- Email: [hamza.ai.official@gmail.com](mailto:hamza.ai.official@gmail.com)
-
----
+| Project | Engineering impact | Case study |
+| :--- | :--- | :---: |
+| **VisionGuard AI** | Real-time warehouse risk intelligence using detection, tracking, and safety analytics | [View](https://hamza-code-hub.github.io/projects/visionguard-ai.html) |
+| **NeuroInsight AI** | Agentic clinical intelligence with 3D neuroimaging, explainability, biomarkers, and RAG | [View](https://hamza-code-hub.github.io/projects/neuroinsight-ai.html) |
+| **Agentic Cybersecurity Assistant** | Multi-agent vulnerability triage, security retrieval, scheduled scans, and reporting | [View](https://hamza-code-hub.github.io/projects/agentic-cybersecurity-ai-assistant.html) |
+| **Agentic RAG Support Assistant** | Knowledge-grounded technical support with autonomous reasoning and retrieval | [View](https://hamza-code-hub.github.io/projects/agentic-rag-support-assistant.html) |
+| **AeroRUL AI** | Predictive aircraft-engine remaining-useful-life modeling and operational analytics | [View](https://hamza-code-hub.github.io/projects/aircraft-engine-rul-prediction.html) |
 
 <div align="center">
 
-**Research -> Engineering -> Reliable AI systems**
+### Explore the complete portfolio
+
+[![View all AI projects](https://img.shields.io/badge/View_All_AI_Projects-Portfolio-14b8a6?style=for-the-badge&logo=github&logoColor=white)](https://hamza-code-hub.github.io/portfolio.html)
+[![Discuss a project](https://img.shields.io/badge/Discuss_A_Project-Contact_Me-f97316?style=for-the-badge&logo=minutemailer&logoColor=white)](https://hamza-code-hub.github.io/contact.html)
+
+</div>
+
+## GitHub engineering activity
+
+<div align="center">
+
+<img width="98%" alt="Muhammad Hamza GitHub contribution profile" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Hamza-code-hub&amp;theme=github_dark" />
+
+<img width="49%" alt="Muhammad Hamza repositories by programming language" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Hamza-code-hub&amp;theme=github_dark" />
+<img width="49%" alt="Muhammad Hamza commits by programming language" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Hamza-code-hub&amp;theme=github_dark" />
+
+</div>
+
+## Research to production
+
+My research in volumetric brain MRI and 3D deep learning informs how I approach real-world AI: establish a measurable problem, build reproducible pipelines, evaluate honestly, and engineer the surrounding software needed to make the model useful.
+
+> **Current direction:** production-grade agentic systems, RAG evaluation, multimodal intelligence, AI security, and reliable AI platform architecture.
+
+<div align="center">
+
+### Let's build an intelligent system that creates measurable value
+
+**[Portfolio](https://hamza-code-hub.github.io/)** · **[LinkedIn](https://www.linkedin.com/in/hamzzaz)** · **[Resume](https://hamza-code-hub.github.io/resume/)** · **[Email](mailto:hamza.ai.official@gmail.com)**
+
+<img width="100%" alt="Gradient profile footer" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:f97316,50:14b8a6,100:0ea5e9&amp;height=120&amp;section=footer" />
 
 </div>
