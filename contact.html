@@ -32,6 +32,109 @@
 		<!-- Theme CSS -->
 		<link id="theme-style" rel="stylesheet" href="./css/theme.css">
 		<link rel="stylesheet" href="./css/my.css?v=18">
+		<style>
+			.whatsapp-float {
+				position: fixed;
+				right: 1.25rem;
+				right: max(1.25rem, env(safe-area-inset-right));
+				bottom: 1.25rem;
+				bottom: max(1.25rem, env(safe-area-inset-bottom));
+				z-index: 1150;
+				display: inline-flex;
+				width: 3.75rem;
+				height: 3.75rem;
+				align-items: center;
+				justify-content: center;
+				color: #fff !important;
+				background: #128c7e;
+				border: 1px solid rgba(255, 255, 255, .3);
+				border-radius: 50%;
+				box-shadow: 0 12px 30px rgba(8, 33, 29, .3);
+				text-decoration: none !important;
+				transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+				isolation: isolate;
+			}
+
+			.whatsapp-float::before {
+				position: absolute;
+				inset: -.35rem;
+				z-index: -1;
+				content: "";
+				border: 1px solid rgba(37, 211, 102, .55);
+				border-radius: inherit;
+				animation: whatsapp-pulse 2.4s ease-out infinite;
+			}
+
+			.whatsapp-float:hover {
+				color: #fff;
+				background: #075e54;
+				box-shadow: 0 16px 36px rgba(7, 94, 84, .36);
+				transform: translateY(-3px);
+			}
+
+			.whatsapp-float:focus-visible {
+				outline: 3px solid #fff;
+				outline-offset: 3px;
+			}
+
+			.whatsapp-float .fa-whatsapp {
+				font-size: 1.9rem;
+			}
+
+			.whatsapp-float__tooltip {
+				position: absolute;
+				right: calc(100% + .75rem);
+				padding: .45rem .65rem;
+				color: #fff;
+				background: #17202a;
+				border: 1px solid rgba(255, 255, 255, .14);
+				border-radius: 6px;
+				box-shadow: 0 8px 22px rgba(0, 0, 0, .22);
+				font: 500 .75rem "DM Mono", monospace;
+				white-space: nowrap;
+				opacity: 0;
+				pointer-events: none;
+				transform: translateX(.35rem);
+				transition: opacity .2s ease, transform .2s ease;
+			}
+
+			.whatsapp-float:hover .whatsapp-float__tooltip,
+			.whatsapp-float:focus-visible .whatsapp-float__tooltip {
+				opacity: 1;
+				transform: none;
+			}
+
+			@keyframes whatsapp-pulse {
+				0% { opacity: .8; transform: scale(.9); }
+				70%, 100% { opacity: 0; transform: scale(1.18); }
+			}
+
+			@media (max-width: 575.98px) {
+				.whatsapp-float {
+					right: 1rem;
+					right: max(1rem, env(safe-area-inset-right));
+					bottom: 1rem;
+					bottom: max(1rem, env(safe-area-inset-bottom));
+					width: 3.5rem;
+					height: 3.5rem;
+				}
+
+				.whatsapp-float__tooltip { display: none; }
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.whatsapp-float,
+				.whatsapp-float::before,
+				.whatsapp-float__tooltip {
+					animation: none;
+					transition: none;
+				}
+			}
+
+			@media print {
+				.whatsapp-float { display: none !important; }
+			}
+		</style>
 		<script type="application/ld+json">
 		{
 		  "@context":"https://schema.org",
@@ -113,6 +216,14 @@
     </footer>
 		</div>
 		<!--//main-wrapper-->
+		<a class="whatsapp-float"
+			href="https://wa.me/923417215920?text=Hello%20Muhammad%20Hamza%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20AI%20project."
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Message Muhammad Hamza on WhatsApp">
+			<i class="fab fa-whatsapp" aria-hidden="true"></i>
+			<span class="whatsapp-float__tooltip" aria-hidden="true">Chat on WhatsApp</span>
+		</a>
 		<!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
 		<!-- Javascript -->
 		<script src="./js/jquery.js"></script>
