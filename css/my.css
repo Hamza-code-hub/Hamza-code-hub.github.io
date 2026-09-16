@@ -1308,7 +1308,8 @@ a { transition: color .25s ease, opacity .25s ease; }
 .header, body.dark-mode .header { width:280px; background:rgba(8, 14, 30, .82); border-right:1px solid var(--line); backdrop-filter:blur(20px); }
 .header .blog-name a { color:#fff; font-size:1.5rem; font-weight:700; letter-spacing:-.05em; }
 .header .blog-name a::after { content:".ai"; color:var(--cyan); font-family:"DM Mono", monospace; font-size:.67em; margin-left:3px; }
-.profile-section .profile-image { width:112px !important; height:112px !important; padding:4px; border:1px solid rgba(85,230,255,.65) !important; box-shadow:0 0 0 6px rgba(85,230,255,.06), 0 12px 34px rgba(0,0,0,.35); }
+.profile-section .profile-image { width:124px !important; height:124px !important; padding:4px; border:1px solid rgba(85,230,255,.65) !important; box-shadow:0 0 0 6px rgba(85,230,255,.06), 0 12px 34px rgba(0,0,0,.35); }
+.profile-section .sidebar-profile-image { object-position:center 18% !important; }
 .profile-section .bio { color:var(--muted); font-size:.82rem; margin-bottom:.85rem !important; }
 .header .profile-section { display:flex; flex-direction:column; justify-content:flex-start !important; }
 .header .social-list { margin-top:0 !important; }
