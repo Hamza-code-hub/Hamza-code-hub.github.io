@@ -2430,7 +2430,7 @@ body.dark-mode .testimonial-carousel .quote-content {
   letter-spacing:.16em;
   text-transform:uppercase;
 }
-.resume-page .resume-toolbar h1 {
+.resume-page .resume-toolbar h2 {
   margin:0;
   color:var(--heading);
   font-size:clamp(1.55rem,3vw,2.15rem);

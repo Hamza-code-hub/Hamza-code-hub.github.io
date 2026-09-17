@@ -33,12 +33,12 @@
   var html =
     '<header class="header text-center">' +
       '<div class="force-overflow">' +
-        '<h1 class="blog-name pt-lg-4 mb-0"><a href="' + base + 'index.html">Muhammad Hamza</a></h1>' +
+        '<div class="blog-name pt-lg-4 mb-0"><a href="' + base + 'index.html">Muhammad Hamza</a></div>' +
         '<nav class="navbar navbar-expand-lg navbar-dark">' +
           '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>' +
           '<div id="navigation" class="collapse navbar-collapse flex-column">' +
             '<div class="profile-section pt-3 pt-lg-0">' +
-              '<img class="profile-image sidebar-profile-image mb-3 rounded-circle mx-auto" src="' + base + 'images/hamza_gray_professional.png" alt="Muhammad Hamza AI Developer professional portrait" width="160" height="160" loading="eager">' +
+              '<img class="profile-image sidebar-profile-image mb-3 rounded-circle mx-auto" src="' + base + 'images/muhammad-hamza-ai-developer-software-engineer.jpg" alt="Muhammad Hamza, AI Engineer, AI Developer and Software Engineer" width="160" height="160" loading="eager">' +
               '<div class="bio mb-3">Hi, I am <strong>Muhammad Hamza.</strong></div>' +
               '<ul class="social-list list-inline py-2 mx-auto">' +
                 '<li class="list-inline-item"><a href="https://twitter.com/Muhamma08974837" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-fw"></i></a></li>' +
