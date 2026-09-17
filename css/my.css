@@ -4476,51 +4476,77 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   }
 }
 
-/* Compact résumé contact bar: four equal information cells keep every
-   detail on one deliberate row instead of leaving the location orphaned. */
+/* Resume contact bar: consistent icon badges and labeled information cells. */
 .resume-page .resume-contact {
   margin-top:1.2rem;
-  padding:.65rem .55rem;
+  padding:.75rem;
   background:var(--panel-soft);
   border:1px solid var(--border) !important;
-  border-radius:10px;
+  border-radius:12px;
 }
 .resume-page .resume-contact ul {
   display:grid;
-  grid-template-columns:1.35fr 1fr 1.3fr .9fr;
+  grid-template-columns:1.35fr .95fr 1.25fr 1fr;
   gap:0;
   width:100%;
 }
 .resume-page .resume-contact li {
+  display:grid;
+  grid-template-columns:2rem minmax(0,1fr);
+  align-items:center;
+  gap:.65rem;
   min-width:0;
-  min-height:36px;
-  justify-content:center;
-  padding:.25rem .7rem;
+  min-height:52px;
+  margin:0 !important;
+  padding:.35rem 1rem;
   color:var(--text);
   border-right:1px solid var(--border);
-  font-size:.7rem;
-  font-weight:600;
   line-height:1.35;
-  white-space:nowrap;
+  text-align:left;
 }
 .resume-page .resume-contact li:last-child { border-right:0; }
-.resume-page .resume-contact i {
-  width:1.7rem;
-  height:1.7rem;
+.resume-page .resume-contact-icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:2rem;
+  height:2rem;
   color:var(--accent-strong);
   background:#fff;
   border:1px solid var(--border);
-  border-radius:7px;
-  box-shadow:0 3px 9px rgba(22,30,54,.06);
+  border-radius:9px;
+  box-shadow:0 4px 12px rgba(22,30,54,.07);
 }
+.resume-page .resume-contact-icon i,
+.resume-page .resume-contact-icon .svg-inline--fa {
+  width:.8rem;
+  height:.8rem;
+  color:var(--accent-strong);
+}
+.resume-page .resume-contact-details { display:block; min-width:0; }
+.resume-page .resume-contact-label {
+  display:block;
+  margin-bottom:.12rem;
+  color:var(--subtle);
+  font-size:.52rem;
+  font-weight:700;
+  letter-spacing:.11em;
+  line-height:1.2;
+  text-transform:uppercase;
+}
+.resume-page .resume-contact-value,
 .resume-page .resume-contact .resume-link {
+  display:block;
   min-width:0;
-  padding-top:.28rem;
-  overflow:visible;
-  font-size:.7rem !important;
-  font-weight:600;
+  overflow:hidden;
+  color:var(--text);
+  font-size:.68rem !important;
+  font-weight:650;
+  line-height:1.35;
+  text-overflow:ellipsis;
   white-space:nowrap;
 }
+.resume-page .resume-contact .resume-link:hover { color:var(--accent-strong); }
 
 @media (max-width:767.98px) {
   .resume-page .resume-contact ul {
@@ -4537,7 +4563,6 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   }
   .resume-page .resume-contact li,
   .resume-page .resume-contact li:nth-child(2) {
-    justify-content:flex-start;
     border-right:0;
     border-bottom:1px solid var(--border);
   }
