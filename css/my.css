@@ -4486,9 +4486,12 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
 }
 .resume-page .resume-contact ul {
   display:grid;
-  grid-template-columns:1.35fr .95fr 1.25fr 1fr;
+  grid-template-columns:1.2fr .9fr 1.1fr .9fr;
   gap:0;
   width:100%;
+  margin:0;
+  padding:0 !important;
+  justify-content:stretch;
 }
 .resume-page .resume-contact li {
   display:grid;
@@ -4498,7 +4501,7 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   min-width:0;
   min-height:52px;
   margin:0 !important;
-  padding:.35rem 1rem;
+  padding:.45rem .85rem;
   color:var(--text);
   border-right:1px solid var(--border);
   line-height:1.35;
@@ -4538,12 +4541,12 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
 .resume-page .resume-contact .resume-link {
   display:block;
   min-width:0;
-  overflow:hidden;
+  overflow:visible;
   color:var(--text);
   font-size:.68rem !important;
   font-weight:650;
   line-height:1.35;
-  text-overflow:ellipsis;
+  text-overflow:clip;
   white-space:nowrap;
 }
 .resume-page .resume-contact .resume-link:hover { color:var(--accent-strong); }
@@ -4555,7 +4558,7 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   .resume-page .resume-contact li:nth-child(2) { border-right:0; }
   .resume-page .resume-contact li:nth-child(-n+2) { border-bottom:1px solid var(--border); }
 }
-@media (max-width:420px) {
+@media (max-width:575.98px) {
   .resume-page .resume-contact ul {
     display:grid;
     grid-template-columns:1fr;
