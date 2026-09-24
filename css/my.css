@@ -4385,16 +4385,243 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
 .home-page .main-wrapper { display:flex; flex-direction:column; }
 .home-page .main-wrapper > .about-me-section { order:0; }
 .home-page .main-wrapper > #aboutme { order:1; }
-.home-page .main-wrapper > #skills { order:2; }
-.home-page .main-wrapper > #services { order:3; }
-.home-page .main-wrapper > #publications { order:4; }
-.home-page .main-wrapper > #platforms { order:5; }
-.home-page .main-wrapper > #whatido { order:6; }
-.home-page .main-wrapper > #testimonials { order:7; }
-.home-page .main-wrapper > #projects { order:8; }
-.home-page .main-wrapper > .footer { order:9; }
+.home-page .main-wrapper > #delivery { order:2; }
+.home-page .main-wrapper > #skills { order:3; }
+.home-page .main-wrapper > #services { order:4; }
+.home-page .main-wrapper > #achievements { order:5; }
+.home-page .main-wrapper > #publications { order:6; }
+.home-page .main-wrapper > #platforms { order:7; }
+.home-page .main-wrapper > #whatido { order:8; }
+.home-page .main-wrapper > #testimonials { order:9; }
+.home-page .main-wrapper > #projects { order:10; }
+.home-page .main-wrapper > .footer { order:11; }
 .home-page .main-wrapper > .container,
 .home-page .main-wrapper > .overview-section:not([id]) { display:none; }
+
+/* Client-to-production delivery narrative on the home page. */
+.about-me-section .profile-teaser {
+  grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr);
+  gap:clamp(1.75rem,3vw,3rem);
+}
+.home-page .hero-trust-row { grid-template-columns:repeat(4,minmax(0,1fr)); max-width:920px; }
+.home-page .hero-trust-row > div { min-height:118px; padding:.9rem .85rem; }
+.home-page .hero-trust-row strong {
+  min-width:0;
+  font-size:clamp(.9rem,1.15vw,1rem);
+  line-height:1.2;
+  overflow-wrap:anywhere;
+  white-space:normal;
+}
+.home-page .hero-trust-row span { line-height:1.45; overflow-wrap:anywhere; }
+
+/* Achievements and recognition remain distinct from research publications. */
+.achievement-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+}
+.achievement-card {
+  position:relative;
+  display:flex;
+  min-width:0;
+  min-height:100%;
+  gap:1rem;
+  padding:1.35rem;
+  color:var(--text);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.achievement-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--accent);
+  box-shadow:0 24px 60px var(--accent-soft);
+}
+.achievement-card--featured { border-top:3px solid var(--accent); }
+.achievement-icon {
+  display:flex;
+  width:2.8rem;
+  height:2.8rem;
+  flex:0 0 2.8rem;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--accent-strong));
+  border-radius:12px;
+  box-shadow:0 10px 24px var(--accent-soft);
+}
+.achievement-content { min-width:0; }
+.achievement-year {
+  display:inline-block;
+  margin-bottom:.55rem;
+  color:var(--accent-strong);
+  font:600 .62rem "DM Mono",monospace;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.achievement-card h3 {
+  margin-bottom:.65rem;
+  color:var(--heading);
+  font-size:1rem;
+  line-height:1.4;
+}
+.achievement-card p { margin-bottom:.7rem; color:var(--subtle) !important; font-size:.82rem; line-height:1.65; }
+.achievement-card .achievement-meta { color:var(--text) !important; font-weight:650; }
+.achievement-link { font-size:.78rem; font-weight:650; }
+.achievement-link .svg-inline--fa { margin-left:.25rem; font-size:.68rem; }
+@media (max-width:991.98px) { .achievement-grid { grid-template-columns:1fr; } }
+.delivery-intro { max-width:900px; margin-right:auto; margin-left:auto; }
+.delivery-leadership {
+  max-width:940px;
+  margin-right:auto;
+  margin-left:auto;
+  padding:1rem 1.25rem;
+  color:var(--text);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-left:4px solid var(--accent);
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  line-height:1.75;
+}
+.delivery-workflow .workflow-steps {
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:1rem;
+  align-items:stretch;
+}
+.delivery-workflow .workflow-step {
+  width:auto;
+  min-width:0;
+  height:100%;
+  margin:0;
+  padding:1.25rem .75rem;
+}
+.delivery-workflow .workflow-step:not(:last-child)::after {
+  content:"\2192";
+  top:2rem;
+  right:-1.05rem;
+  width:1.1rem;
+  color:var(--signal);
+  font:700 1.15rem/1 "Segoe UI Symbol","Arial Unicode MS",sans-serif;
+  text-align:center;
+  opacity:.9;
+}
+.delivery-workflow .step-desc { margin-bottom:0; }
+@media (max-width:1199.98px) {
+  .about-me-section .profile-teaser {
+    grid-template-columns:1fr;
+    gap:2.5rem;
+  }
+  .about-me-section .profile-teaser .media-body {
+    width:100%;
+    max-width:780px;
+  }
+  .about-me-section .hero-image-col {
+    width:min(78vw,430px);
+    margin:1rem auto 0 !important;
+  }
+  .home-page .hero-trust-row {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    max-width:780px;
+  }
+  .delivery-workflow .workflow-steps { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .delivery-workflow .workflow-step:not(:last-child)::after { content:none; }
+}
+@media (max-width:991.98px) {
+  .home-page .hero-trust-row { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:575.98px) {
+  .home-page .hero-trust-row,
+  .delivery-workflow .workflow-steps { grid-template-columns:1fr; }
+  .delivery-workflow .workflow-steps { row-gap:2.35rem; }
+  .delivery-workflow .workflow-step:not(:last-child)::after {
+    content:"\2193";
+    top:auto;
+    right:auto;
+    bottom:-1.7rem;
+    left:50%;
+    transform:translateX(-50%);
+  }
+  .about-me-section .hero-trust-mark {
+    width:max-content;
+    min-width:0;
+    max-width:calc(100vw - 5.5rem);
+    padding:.55rem .7rem;
+    font-size:.5rem;
+    line-height:1.45;
+    text-align:center;
+    white-space:normal;
+  }
+  .about-me-section .hero-trust-mark { font-size:0; white-space:nowrap; }
+  .about-me-section .hero-trust-mark::after {
+    content:"OFFICIAL AI PORTFOLIO";
+    font:650 .52rem/1.35 "DM Mono",monospace;
+    letter-spacing:.1em;
+  }
+}
+
+/* Portfolio hero and filters remain readable at narrow viewport widths. */
+.portfolio-page .filters {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.65rem;
+}
+.portfolio-page .filters .type { margin:0 !important; }
+@media (max-width:575.98px) {
+  .portfolio-page .main-wrapper { width:100%; max-width:100vw; overflow-x:hidden; }
+  .portfolio-page .cta-section { padding-right:1rem; padding-left:1rem; }
+  .portfolio-page .cta-section .container {
+    width:calc(100vw - 2rem) !important;
+    max-width:calc(100vw - 2rem) !important;
+    padding-right:0;
+    padding-left:0;
+  }
+  .portfolio-page .cta-section .heading {
+    width:calc(100vw - 2rem) !important;
+    max-width:calc(100vw - 2rem) !important;
+    font-size:clamp(1.75rem,8.2vw,2rem);
+    line-height:1.08;
+    letter-spacing:-.055em;
+    overflow-wrap:anywhere;
+    white-space:normal !important;
+  }
+  .portfolio-page .cta-section .intro {
+    width:100%;
+    max-width:100%;
+    font-size:.95rem;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+  }
+  .portfolio-page .projects-list > .container,
+  .portfolio-page .project-cards,
+  .portfolio-page .filters {
+    width:calc(100vw - 2rem) !important;
+    min-width:0;
+    max-width:calc(100vw - 2rem) !important;
+  }
+  .portfolio-page .projects-list { width:100vw; padding-right:1rem !important; padding-left:1rem !important; }
+  .portfolio-page .projects-list > .container { margin-right:auto; margin-left:auto; padding-right:0; padding-left:0; }
+  .portfolio-page .filters {
+    gap:.55rem;
+    padding-left:0 !important;
+  }
+  .portfolio-page .filters .type {
+    max-width:100%;
+    padding:.45rem .75rem;
+    font-size:.68rem;
+    white-space:normal;
+  }
+  .portfolio-page .projects-list .portfolio-system-card {
+    width:100% !important;
+    max-width:100% !important;
+    padding-right:0;
+    padding-left:0;
+  }
+}
 
 /* A balanced résumé masthead: centered identity, readable summary and one
    orderly contact rail instead of two visually competing columns. */
@@ -4570,4 +4797,63 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
     border-bottom:1px solid var(--border);
   }
   .resume-page .resume-contact li:last-child { border-bottom:0; }
+}
+
+/* Keep the downloadable résumé aligned with the two-sheet web document. */
+@media print {
+  @page { size:A4; margin:0; }
+  .resume-page .resume-wrapper,
+  .resume-page.dark-mode .resume-wrapper {
+    width:210mm !important;
+    max-width:210mm !important;
+    min-height:297mm !important;
+    margin:0 !important;
+    padding:8mm 10mm !important;
+    overflow:visible;
+  }
+  .resume-page .resume-header { padding-bottom:.45rem; }
+  .resume-page .resume-name,
+  .resume-page.dark-mode .resume-name { margin-bottom:.2rem !important; font-size:22pt !important; }
+  .resume-page .resume-tagline { margin-bottom:.35rem !important; font-size:9pt; }
+  .resume-page .resume-title > p { font-size:6.8pt; line-height:1.34; }
+  .resume-page .resume-contact { margin-top:.45rem; padding:.25rem; border-radius:7px; }
+  .resume-page .resume-contact ul { grid-template-columns:1.2fr .9fr 1.1fr .9fr; }
+  .resume-page .resume-contact li { min-height:34px; padding:.2rem .45rem; gap:.35rem; }
+  .resume-page .resume-contact-icon { width:1.55rem; height:1.55rem; }
+  .resume-page .resume-contact-label { font-size:4.7pt; }
+  .resume-page .resume-contact-value,
+  .resume-page .resume-contact .resume-link { font-size:5.8pt !important; }
+  .resume-page .resume-wrapper > hr,
+  .resume-page .resume-wrapper .project-section + hr { margin:0 0 .45rem; }
+  .resume-page .resume-main { padding-right:1.1rem !important; }
+  .resume-page .resume-aside { padding-left:1rem !important; }
+  .resume-page .resume-section-heading,
+  .resume-page.dark-mode .resume-section-heading { margin-bottom:.5rem !important; padding-bottom:.25rem; font-size:6.6pt; }
+  .resume-page .work-section,
+  .resume-page .skills-section,
+  .resume-page .education-section,
+  .resume-page .resume-wrapper > .project-section { padding-top:.3rem !important; padding-bottom:.3rem !important; }
+  .resume-page .work-section > .item,
+  .resume-page .resume-wrapper > .project-section > .item {
+    margin-bottom:.45rem !important;
+    padding:0 0 .38rem .55rem;
+  }
+  .resume-page .item-heading { grid-template-columns:minmax(0,1fr) minmax(125px,195px); gap:.25rem .65rem; margin-bottom:.25rem !important; }
+  .resume-page .resume-main .item-title { font-size:7.5pt; }
+  .resume-page .resume-wrapper .item-meta { font-size:5.4pt; line-height:1.35; }
+  .resume-page .resume-wrapper p,
+  .resume-page .resume-wrapper li,
+  .resume-page .resume-wrapper .item-content { font-size:6.2pt; line-height:1.28; }
+  .resume-page .resume-wrapper ul { margin-bottom:.3rem; padding-left:.8rem; }
+  .resume-page .resume-wrapper li { margin-bottom:.08rem; }
+  .resume-page .skills-section > strong { margin:.3rem 0 .12rem; font-size:6.2pt; }
+  .resume-page .skills-section ul { margin-bottom:.3rem; padding-left:.55rem; }
+  .resume-page .skills-section li { margin-bottom:.06rem; font-size:5.6pt; }
+  .resume-page .education-section p { margin-bottom:.35rem; padding-left:.5rem; }
+  .resume-page .resume-sheet-label { margin-bottom:.45rem; font-size:5.5pt; }
+  .resume-page .resume-wrapper > .project-section > .item > strong,
+  .resume-page .resume-wrapper > .project-section > p > strong { font-size:7pt; }
+  .resume-page .resume-wrapper > .project-section .mb-4 { margin-bottom:.5rem !important; }
+  .resume-page .resume-wrapper > .project-section .mt-2 { margin-top:.2rem !important; }
+  .resume-page .resume-wrapper > .project-section .mb-1 { margin-bottom:.12rem !important; }
 }
