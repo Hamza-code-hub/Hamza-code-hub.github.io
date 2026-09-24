@@ -44,12 +44,13 @@
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/hamza-forntpose.jpeg","name":"Muhammad Hamza professional front pose","description":"Muhammad Hamza in a professional front-facing outdoor portrait."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/hamza-restrunent.jpeg","name":"Muhammad Hamza restaurant portrait","description":"Muhammad Hamza in a smart-casual professional portrait."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/minhaj-solutions-industry-expert-session.jpg","name":"Muhammad Hamza AI industry expert session","description":"Muhammad Hamza featured as an AI Engineer for an industry expert session at Minhaj Solutions."},
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Russian_scholarship.png","name":"Muhammad Hamza fully funded international scholar","description":"Muhammad Hamza selected for the fully funded Design and Development of Unmanned Aerial Systems short study program at Samara National Research University, Russia, as officially announced by the University of Okara."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-company-recognition-upright.jpg","name":"Muhammad Hamza company recognition moment","description":"Muhammad Hamza at a professional recognition moment with a laptop and appreciation gift."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-indoor-side-portrait.jpg","name":"Muhammad Hamza indoor side portrait","description":"Professional indoor side portrait of Muhammad Hamza."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-black-shirt-outdoor.jpg","name":"Muhammad Hamza black shirt outdoor portrait","description":"Muhammad Hamza in a smart-casual black shirt outdoor portrait."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-university-of-okara.jpg","name":"Muhammad Hamza at the University of Okara","description":"Muhammad Hamza in a smart-casual outdoor portrait at the University of Okara."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai3.jpeg","name":"Muhammad Hamza with the development team","description":"Muhammad Hamza collaborating with the software development team."},
-      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai4.jpg","name":"Muhammad Hamza laptop scheme achievement","description":"Muhammad Hamza receiving a laptop under the Prime Minister's Youth Laptop Scheme 2025."},
+      {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai4.png","name":"Muhammad Hamza laptop scheme achievement","description":"Muhammad Hamza receiving a laptop under the Prime Minister's Youth Laptop Scheme 2025."},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki11.jpg","name":"Muhammad Hamza AI engineer office profile"},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki10.jpeg","name":"Muhammad Hamza casual portrait"},
       {"@type":"ImageObject","contentUrl":"https://hamza-code-hub.github.io/images/muhammad-hamza-software-engineer.jpg","name":"Muhammad Hamza Software Engineer portrait"},
@@ -295,6 +296,128 @@
     @media (prefers-reduced-motion: reduce) {
       .photo-tile, .photo-tile img { transition: none !important; }
     }
+  
+    /* Featured scholarship banner — preserve the original 1051×523 (2.01:1) image without cropping */
+    .scholarship-feature {
+      width: 100%;
+      max-width: 1051px;
+      margin: 0 auto 26px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--panel-soft);
+      box-shadow: var(--shadow);
+    }
+
+    .scholarship-feature__link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .scholarship-feature__media {
+      position: relative;
+      width: 100%;
+      background: #07101c;
+      overflow: hidden;
+    }
+
+    .scholarship-feature__media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1051 / 523;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .scholarship-feature__badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      padding: 5px 11px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(5,10,19,.78);
+      backdrop-filter: blur(7px);
+      color: var(--fx-cyan, #38e8ff);
+      font: 600 .64rem "DM Mono", monospace;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .scholarship-feature__body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 15px 18px 16px;
+    }
+
+    .scholarship-feature__copy {
+      min-width: 0;
+    }
+
+    .scholarship-feature__copy h3 {
+      margin: 0 0 5px;
+      color: var(--heading);
+      font: 700 1.03rem/1.35 "Space Grotesk", sans-serif;
+    }
+
+    .scholarship-feature__copy p {
+      margin: 0;
+      color: var(--subtle);
+      font-size: .86rem;
+      line-height: 1.45;
+    }
+
+    .scholarship-feature__proof {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font: 600 .76rem "DM Mono", monospace;
+      white-space: nowrap;
+    }
+
+    .scholarship-feature:hover {
+      border-color: var(--accent);
+      box-shadow: 0 24px 60px var(--accent-soft, rgba(56,232,255,.12));
+    }
+
+    @media (max-width: 767px) {
+      .scholarship-feature {
+        margin-bottom: 18px;
+        border-radius: 16px;
+      }
+
+      .scholarship-feature__badge {
+        top: 10px;
+        left: 10px;
+        padding: 4px 8px;
+        font-size: .56rem;
+      }
+
+      .scholarship-feature__body {
+        display: block;
+        padding: 12px 14px 14px;
+      }
+
+      .scholarship-feature__copy h3 {
+        font-size: .96rem;
+      }
+
+      .scholarship-feature__copy p {
+        font-size: .8rem;
+      }
+
+      .scholarship-feature__proof {
+        display: inline-block;
+        margin-top: 9px;
+        font-size: .7rem;
+        white-space: normal;
+      }
+    }
+
   </style>
 </head>
 
@@ -327,6 +450,34 @@
           </div>
         </div>
 
+        <!-- Featured international scholarship milestone.
+             The source image is a 1051×523 landscape composite, so it is kept at
+             its natural 2.01:1 ratio instead of being cropped into the photo grid. -->
+        <figure class="scholarship-feature" data-aos="fade-up" data-aos-delay="40">
+          <a class="scholarship-feature__link"
+             href="https://www.facebook.com/100057430488723/posts/1278918220699182/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="View the official University of Okara announcement for Muhammad Hamza's fully funded Samara National Research University program">
+            <div class="scholarship-feature__media">
+              <span class="scholarship-feature__badge">International Recognition · 2025</span>
+              <img src="images/Russian_scholarship.png"
+                   alt="Muhammad Hamza and Samara National Research University, Russia — fully funded Unmanned Aerial Systems study program"
+                   width="1051"
+                   height="523"
+                   loading="eager"
+                   decoding="async">
+            </div>
+            <figcaption class="scholarship-feature__body">
+              <div class="scholarship-feature__copy">
+                <h3>Fully Funded ScholarShip — Design &amp; Development of Unmanned Aerial Systems</h3>
+                <p>Samara National Research University, Russia · Officially announced by the University of Okara</p>
+              </div>
+              <span class="scholarship-feature__proof">Official Announcement ↗</span>
+            </figcaption>
+          </a>
+        </figure>
+
         <!--
           Static animated photo grid (no slider).
           Professional / team / achievement photos are marked "featured" and
@@ -349,7 +500,7 @@
 
           <figure class="photo-tile featured" data-aos="fade-up" data-aos-delay="40">
             <span class="photo-tag">Professional</span>
-            <img src="images/hamza black suite crop.jpeg" alt="Muhammad Hamza senior AI engineer in a black suit" width="1106" height="1422" loading="eager" decoding="async">
+            <img src="images/hamza black suite crop.png" alt="Muhammad Hamza senior AI engineer in a black suit" width="1106" height="1422" loading="eager" decoding="async">
             <figcaption class="photo-caption">Muhammad Hamza — AI engineer and applied AI researcher</figcaption>
           </figure>
 
@@ -396,7 +547,7 @@
 
           <figure class="photo-tile featured" data-aos="fade-up" data-aos-delay="60">
             <span class="photo-tag">Achievement</span>
-            <img src="images/Muhammad_Hamza_ai4.jpg" alt="Muhammad Hamza receiving a laptop under the Prime Minister's Youth Laptop Scheme 2025" width="1350" height="1800" loading="eager">
+            <img src="images/Muhammad_Hamza_ai4.png" alt="Muhammad Hamza receiving a laptop under the Prime Minister's Youth Laptop Scheme 2025" width="1350" height="1800" loading="eager">
             <figcaption class="photo-caption">Prime Minister's Youth Laptop Scheme 2025</figcaption>
           </figure>
 
