@@ -2565,7 +2565,8 @@ body.dark-mode .testimonial-carousel .quote-content {
   margin-left:0;
 }
 .resume-page .item-heading > [class*="col-"] { width:auto; max-width:none; padding:0; flex:none; }
-.resume-page .resume-main .item-title {
+.resume-page .resume-main .item-title,
+.resume-page .resume-wide-experience .item-title {
   color:var(--heading) !important;
   font-size:.96rem;
   font-weight:700;
@@ -2613,6 +2614,24 @@ body.dark-mode .testimonial-carousel .quote-content {
   padding-left:.85rem;
   border-left:2px solid var(--accent-soft);
 }
+.resume-page .resume-wide-experience {
+  margin-top:.35rem;
+  padding-top:1rem;
+  border-top:1px solid var(--border);
+}
+.resume-page .resume-wide-experience > .item {
+  padding:.1rem 0 .15rem .9rem;
+  border-left:2px solid var(--accent-soft);
+}
+.resume-page .resume-wide-experience .item-content ul {
+  columns:2;
+  column-gap:2.5rem;
+  margin-bottom:0;
+}
+.resume-page .resume-wide-experience .item-content li {
+  break-inside:avoid;
+  padding-right:.5rem;
+}
 .resume-page .resume-sheet-label {
   display:flex;
   justify-content:space-between;
@@ -2653,6 +2672,7 @@ body.dark-mode .testimonial-carousel .quote-content {
   .resume-page .resume-aside { padding-left:15px !important; border-left:0; }
   .resume-page .item-heading { grid-template-columns:1fr; gap:.3rem; }
   .resume-page .item-heading .item-meta { text-align:left !important; }
+  .resume-page .resume-wide-experience .item-content ul { columns:1; }
 }
 @media (max-width:420px) {
   .resume-page .resume-toolbar__actions { display:grid; grid-template-columns:1fr; }
@@ -4778,12 +4798,76 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
 }
 .resume-page .resume-contact .resume-link:hover { color:var(--accent-strong); }
 
+.resume-page .resume-profile-links {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:.55rem;
+  width:100%;
+  margin:.7rem auto 0;
+  padding:0;
+  text-align:left;
+}
+.resume-page .resume-profile-card {
+  display:grid;
+  grid-template-columns:2rem minmax(0,1fr);
+  align-items:center;
+  gap:.55rem;
+  min-width:0;
+  min-height:52px;
+  padding:.55rem .65rem;
+  color:var(--text);
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:10px;
+  box-shadow:0 5px 16px rgba(22,30,54,.045);
+  text-decoration:none !important;
+}
+.resume-page .resume-profile-card:hover {
+  color:var(--text);
+  border-color:var(--accent);
+  box-shadow:0 8px 20px rgba(38,98,255,.1);
+}
+.resume-page .resume-profile-icon {
+  display:inline-flex;
+  width:2rem;
+  height:2rem;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent-strong);
+  background:var(--accent-soft);
+  border-radius:8px;
+}
+.resume-page .resume-profile-icon i,
+.resume-page .resume-profile-icon .svg-inline--fa {
+  width:.78rem;
+  height:.78rem;
+  color:var(--accent-strong);
+}
+.resume-page .resume-profile-copy { display:block; min-width:0; }
+.resume-page .resume-profile-label {
+  display:block;
+  margin-bottom:.1rem;
+  color:var(--heading);
+  font:700 .58rem/1.25 "DM Mono",monospace;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.resume-page .resume-profile-value {
+  display:block;
+  overflow:hidden;
+  color:var(--subtle);
+  font:500 .56rem/1.35 "DM Mono",monospace;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
 @media (max-width:1199.98px) {
   .resume-page .resume-contact ul {
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
   .resume-page .resume-contact li:nth-child(2) { border-right:0; }
   .resume-page .resume-contact li:nth-child(-n+2) { border-bottom:1px solid var(--border); }
+  .resume-page .resume-profile-links { grid-template-columns:repeat(3,minmax(0,1fr)); }
 }
 @media (max-width:575.98px) {
   .resume-page .resume-contact ul {
@@ -4797,6 +4881,13 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
     border-bottom:1px solid var(--border);
   }
   .resume-page .resume-contact li:last-child { border-bottom:0; }
+  .resume-page .resume-profile-links { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .resume-page .resume-profile-card:last-child { grid-column:1 / -1; }
+}
+
+@media (max-width:420px) {
+  .resume-page .resume-profile-links { grid-template-columns:1fr; }
+  .resume-page .resume-profile-card:last-child { grid-column:auto; }
 }
 
 /* Keep the downloadable résumé aligned with the two-sheet web document. */
@@ -4823,6 +4914,14 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   .resume-page .resume-contact-label { font-size:4.7pt; }
   .resume-page .resume-contact-value,
   .resume-page .resume-contact .resume-link { font-size:5.8pt !important; }
+  .resume-page .resume-profile-links { grid-template-columns:repeat(5,minmax(0,1fr)); gap:.2rem; margin-top:.25rem; }
+  .resume-page .resume-profile-card { display:flex; min-height:0; justify-content:center; padding:.2rem; border:0; box-shadow:none; }
+  .resume-page .resume-profile-icon { width:1rem; height:1rem; background:transparent; }
+  .resume-page .resume-profile-icon i,
+  .resume-page .resume-profile-icon .svg-inline--fa { width:.62rem; height:.62rem; }
+  .resume-page .resume-profile-copy { display:block; }
+  .resume-page .resume-profile-label { margin:0; font-size:4.8pt; }
+  .resume-page .resume-profile-value { display:none; }
   .resume-page .resume-wrapper > hr,
   .resume-page .resume-wrapper .project-section + hr { margin:0 0 .45rem; }
   .resume-page .resume-main { padding-right:1.1rem !important; }
@@ -4839,7 +4938,8 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
     padding:0 0 .38rem .55rem;
   }
   .resume-page .item-heading { grid-template-columns:minmax(0,1fr) minmax(125px,195px); gap:.25rem .65rem; margin-bottom:.25rem !important; }
-  .resume-page .resume-main .item-title { font-size:7.5pt; }
+  .resume-page .resume-main .item-title,
+  .resume-page .resume-wide-experience .item-title { font-size:7.5pt; }
   .resume-page .resume-wrapper .item-meta { font-size:5.4pt; line-height:1.35; }
   .resume-page .resume-wrapper p,
   .resume-page .resume-wrapper li,
@@ -4850,6 +4950,9 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   .resume-page .skills-section ul { margin-bottom:.3rem; padding-left:.55rem; }
   .resume-page .skills-section li { margin-bottom:.06rem; font-size:5.6pt; }
   .resume-page .education-section p { margin-bottom:.35rem; padding-left:.5rem; }
+  .resume-page .resume-wide-experience { margin-top:.1rem; padding-top:.35rem; }
+  .resume-page .resume-wide-experience > .item { padding:0 0 .2rem .55rem; }
+  .resume-page .resume-wide-experience .item-content ul { columns:2; column-gap:1.1rem; }
   .resume-page .resume-sheet-label { margin-bottom:.45rem; font-size:5.5pt; }
   .resume-page .resume-wrapper > .project-section > .item > strong,
   .resume-page .resume-wrapper > .project-section > p > strong { font-size:7pt; }
