@@ -987,6 +987,66 @@ body.generate-pdf .resume-wrapper {
   .no-print, .no-print * { display: none !important; }
 }
 
+/* Homepage profile imagery: three crawlable, high-resolution photos support
+   the Person/ProfilePage image metadata without overwhelming the page. */
+.home-about-section {
+  position:relative;
+  overflow:hidden;
+}
+.home-about-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.72fr);
+  gap:clamp(2rem,5vw,4.75rem);
+  align-items:center;
+}
+.home-about-copy { min-width:0; }
+.home-about-gallery-link {
+  font:600 .76rem/1.6 "DM Mono",monospace;
+  letter-spacing:.035em;
+}
+.home-about-photo {
+  position:relative;
+  padding:.7rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+.home-about-photo::before {
+  position:absolute;
+  z-index:0;
+  content:"";
+  inset:-1px;
+  pointer-events:none;
+  border-radius:22px;
+  background:linear-gradient(135deg,var(--accent-soft),transparent 48%,rgba(78,196,181,.12));
+}
+.home-about-photo a,
+.home-about-photo img,
+.home-about-photo figcaption { position:relative; z-index:1; }
+.home-about-photo a { display:block; overflow:hidden; border-radius:15px; }
+.home-about-photo img {
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:4 / 3;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.home-about-photo a:hover img { transform:scale(1.018); }
+.home-about-photo figcaption {
+  padding:.8rem .25rem .15rem;
+  color:var(--subtle);
+  font:500 .69rem/1.5 "DM Mono",monospace;
+  letter-spacing:.025em;
+}
+@media (max-width:767.98px) {
+  .home-about-grid { grid-template-columns:1fr; gap:1.75rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .home-about-photo img { transition:none; }
+}
+
 /* =========================
    Dark-mode overrides
    ========================= */
