@@ -469,6 +469,74 @@
     var service = serviceData.find(function (item) { return item.id === id; });
     return { text: serviceText(service, language), topic: service.id, links: [link(translate(service.rows[0][0]), 'services.html#' + service.id), link(t('contact'), 'contact.html')] };
   }
+  // A compact, hand-checked index of the published case studies. The longer
+  // descriptions come from the already translated page-introduction catalog.
+  var projectFacts = [
+    ['3d-mobibrainnet', '3D-MobiBrainNet', ['mobibrainnet', 'alzheimer classification', '3d brain mri'], ['medical', 'mri', 'alzheimer', 'classification', 'research']],
+    ['agentic-cybersecurity-ai-assistant', 'Agentic Cybersecurity AI Assistant', ['cybersecurity assistant', 'vulnerability intelligence', 'vulnerability analysis'], ['agentic', 'security', 'cybersecurity', 'rag', 'vulnerability']],
+    ['agentic-rag-support-assistant', 'Agentic RAG-Powered Support Assistant', ['rag support assistant', 'support assistant', 'technical support chatbot'], ['rag', 'support', 'chatbot', 'retrieval', 'agentic']],
+    ['ai-intrusion-detection', 'AI-Driven Intrusion Detection', ['intrusion detection', 'tabnet transformer'], ['security', 'cybersecurity', 'network', 'classification', 'intrusion']],
+    ['ai-ticket-scalping-prevention', 'AI-Based Ticket Scalping Prevention', ['ticket scalping', 'scalping prevention', 'ticketing fraud'], ['fraud', 'ticketing', 'pricing', 'bots', 'classification']],
+    ['ai-virtual-painter', 'AI Virtual Painter', ['virtual painter', 'hand tracking painter', 'air painting'], ['computer vision', 'hand tracking', 'webcam', 'gesture']],
+    ['aircraft-engine-rul-prediction', 'Aircraft Engine RUL Prediction AI', ['aircraft engine', 'remaining useful life', 'turbofan'], ['prediction', 'maintenance', 'machine learning', 'sensor']],
+    ['attendance-management-system', 'Attendance Management System', ['attendance management', 'shift management', 'workforce platform'], ['flutter', 'attendance', 'hr', 'scheduling']],
+    ['drone-flight-simulation', 'AeroNav Sim', ['aeronav', 'drone flight', 'drone simulation'], ['drone', 'uav', 'simulation', 'navigation']],
+    ['flood-prediction-lightgbm', 'Flood Prediction with LightGBM', ['flood prediction', 'lightgbm', 'flood model'], ['prediction', 'flood', 'regression', 'machine learning']],
+    ['linkedin-automation-bot', 'LinkedIn Automation Bot', ['linkedin automation', 'linkedin bot', 'profile scraping'], ['automation', 'selenium', 'outreach']],
+    ['neuroinsight-ai', 'NeuroInsight AI', ['neuroinsight', 'clinical intelligence', 'clinical ai'], ['medical', 'mri', 'alzheimer', 'agentic', 'rag', 'research']],
+    ['satellite-image-classification', 'Satellite Image Classification', ['satellite image', 'eurosat', 'land cover'], ['computer vision', 'satellite', 'classification', 'remote sensing']],
+    ['university-timetable-system', 'University Timetable System', ['university timetable', 'timetable system', 'faculty scheduling'], ['scheduling', 'django', 'education']],
+    ['visionguard-ai', 'VisionGuard AI', ['visionguard', 'warehouse safety', 'forklift pedestrian'], ['computer vision', 'warehouse', 'safety', 'object detection', 'tracking']]
+  ];
+  function projectDescription(fact) {
+    var catalog = window.PortfolioPageIntros;
+    var entry = catalog && catalog['project-' + fact[0]];
+    return entry && (entry[language] || entry.en) ? (entry[language] || entry.en).text : fact[1] + '. Open the case study for the overview, methods and results.';
+  }
+  function projectLink(fact) { return link(fact[1], 'projects/' + fact[0] + '.html'); }
+  function knowledgeAnswer(query) {
+    var contactLink = link(t('contact'), 'contact.html');
+    var resumeLink = link(t('resume'), 'resume/index.html');
+    var projectIntent = any(query, topicTerms('projects', ['project', 'case study', 'portfolio', 'built', 'work sample', 'پراجیکٹ', 'مشروع', 'proyecto', 'projet', 'projeto']));
+    if (any(query, ['whatsapp', 'wa.me', 'whats app', 'واٹس ایپ', 'واتساب', 'watsapp'])) {
+      return { text: 'Muhammad Hamza’s WhatsApp number is +92 341 7215920. You can also send project details through the Contact page.', topic: 'contact', links: [link('WhatsApp +92 341 7215920', 'https://wa.me/923417215920'), contactLink] };
+    }
+    if (any(query, ['phone number', 'mobile number', 'telephone number', 'call hamza', 'contact number', 'فون نمبر', 'رقم الهاتف'])) {
+      return { text: 'Muhammad Hamza’s published WhatsApp number is +92 341 7215920. The Contact page also has a message form.', topic: 'contact', links: [link('WhatsApp +92 341 7215920', 'https://wa.me/923417215920'), contactLink] };
+    }
+    if (any(query, ['email address', 'email id', 'email hamza', 'ای میل ایڈریس', 'البريد الإلكتروني'])) {
+      return { text: 'Muhammad Hamza’s published email address is hamza.ai.official@gmail.com. You can also use the Contact form.', topic: 'contact', links: [link('Email Muhammad Hamza', 'mailto:hamza.ai.official@gmail.com'), contactLink] };
+    }
+    if (any(query, ['education', 'degree', 'university of okara', 'cgpa', 'college', 'تعلیم', 'جامعة', 'universidad', 'université'])) {
+      return { text: 'Muhammad Hamza earned a BS in Software Engineering from the University of Okara (2020–2024), with a 3.80 CGPA. His earlier qualification is FSc Pre-Engineering from Punjab Group of Colleges.', topic: 'education', links: [resumeLink] };
+    }
+    if (any(query, ['cyberzeus', 'minhaj', 'fiverr', 'work experience', 'career history', 'professional experience', 'employment', 'تجربہ', 'خبرة'])) {
+      return { text: 'Experience: CyberZeus (Aug 2025–present), first as AI Developer in CyberZeus Games and since Jan 2026 as AI Engineer in CyberZeus Software Systems; Minhaj Solutions (Apr 2024–Aug 2025), AI Developer; and freelance AI/ML and Python work on Fiverr (Jul 2023–present). The résumé details the work in each role.', topic: 'experience', links: [resumeLink, contactLink] };
+    }
+    if (any(query, ['skill', 'tech stack', 'technology stack', 'tools you use', 'programming language', 'مہارت', 'مهارات'])) {
+      return { text: 'Core skills include Python, FastAPI, LangChain/LangGraph, agent workflows, RAG and vector search (FAISS, ChromaDB, LlamaIndex), machine learning, computer vision (YOLO, OpenCV, ByteTrack), SQL/PostgreSQL, Docker, Kubernetes and AWS. The résumé also lists cybersecurity and VAPT tools.', topic: 'skills', links: [resumeLink, link(t('services'), 'services.html')] };
+    }
+    if (any(query, ['publication', 'research paper', 'journal', 'doi', 'published research', 'اشاعت', 'منشورات'])) {
+      return { text: 'The résumé lists three research publications, with DOI links: 10.1016/j.asej.2025.103714, 10.1109/ACCESS.2026.3683571 and 10.1016/j.asej.2026.104453. Open the résumé for their titles and source links.', topic: 'research', links: [resumeLink] };
+    }
+    if (any(query, ['photo', 'picture', 'portrait', 'gallery', 'image of hamza', 'تصویر', 'صورة', 'galería', 'galerie'])) {
+      var gallery = window.PortfolioPageIntros && window.PortfolioPageIntros.gallery;
+      return { text: gallery ? (gallery[language] || gallery.en).text : 'The photo gallery shows Muhammad Hamza’s professional portraits, AI development work, team collaboration and career milestones.', topic: 'gallery', links: [link(t('gallery') === 'gallery' ? 'Photo gallery' : t('gallery'), 'gallery.html')] };
+    }
+    // A named project takes priority over broad service keywords such as RAG.
+    var named = projectFacts.find(function (fact) { return fact[2].some(function (name) { return contains(query, name); }); });
+    if (named) return { text: projectDescription(named), topic: 'projects', links: [projectLink(named), link(t('projects'), 'portfolio.html'), contactLink] };
+    if (projectIntent) {
+      var tags = ['rag', 'agentic', 'cybersecurity', 'security', 'computer vision', 'vision', 'medical', 'mri', 'alzheimer', 'classification', 'fraud', 'automation', 'prediction', 'drone', 'satellite', 'warehouse', 'research', 'flutter', 'scheduling', 'machine learning'];
+      var matchedTags = tags.filter(function (tag) { return contains(query, tag); });
+      if (matchedTags.length) {
+        var matches = projectFacts.filter(function (fact) { return matchedTags.some(function (tag) { return fact[3].indexOf(tag) !== -1 || (tag === 'vision' && fact[3].indexOf('computer vision') !== -1); }); }).slice(0, 3);
+        if (matches.length) return { text: matches.map(projectDescription).join('\n\n'), topic: 'projects', links: matches.map(projectLink).concat([link(t('projects'), 'portfolio.html')]) };
+      }
+      return { text: 'The portfolio presents 15 published case studies across agentic AI, RAG, cybersecurity, computer vision, medical imaging, automation, and classical machine learning. Open the portfolio to browse each overview and its methods.', topic: 'projects', links: [link(t('projects'), 'portfolio.html')] };
+    }
+    return null;
+  }
   function answer(question) {
     var query = normalize(question).slice(0, 1000);
     var rules = domainRules[language] || domainRules.en;
@@ -486,6 +554,8 @@
     if (any(query, topicTerms('timeline', ['timeline', 'how long', 'duration', 'delivery', 'deadline', 'days', 'وقت', 'کتنے دن', 'مدت', 'موعد', 'مدة', 'ايام', 'وقت التسليم', 'kab', 'kitne din', 'waqt']))) {
       return { text: t('timeline'), topic: 'timeline', links: [link(t('contact'), 'contact.html')] };
     }
+    var grounded = knowledgeAnswer(query);
+    if (grounded) return grounded;
     var cvActions = ['download', 'send', 'share', 'open', 'view', 'ڈاؤن لوڈ', 'بھیجیں', 'شیئر', 'کھولیں', 'دیکھیں', 'تحميل', 'ارسل', 'ارسال', 'شارك', 'افتح', 'عرض', '下载', '分享', '发送', '打开', '查看', 'डाउनलोड', 'भेजें', 'साझा', 'खोलें', 'देखें', 'descargar', 'compartir', 'enviar', 'abrir', 'ver', 'télécharger', 'partager', 'envoyer', 'ouvrir', 'voir', 'baixar', 'compartilhar', 'ডাউনলোড', 'পাঠান', 'শেয়ার', 'খুলুন', 'দেখুন', 'скачать', 'отправить', 'поделиться', 'открыть', 'посмотреть', 'unduh', 'kirim', 'bagikan', 'buka', 'lihat', 'herunterladen', 'teilen', 'senden', 'öffnen', 'ansehen', 'ダウンロード', '送って', '共有', '開く', '見る', 'indir', 'paylaş', 'gönder', 'görüntüle', 'tải xuống', 'gửi', 'chia sẻ', 'mở', 'xem', '다운로드', '보내', '공유', '열기', '보기', 'ดาวน์โหลด', 'ส่ง', 'แชร์', 'เปิด', 'ดู', 'دانلود', 'ارسال', 'بفرست', 'اشتراک', 'مشاهده', 'பதிவிறக்க', 'பகிர்', 'அனுப்பு', 'திற', 'பார்க்க', 'డౌన్‌లోడ్', 'పంపు', 'పంచుకో', 'తెరవ', 'చూడండి'];
     var cvMeansResume = contains(query, 'cv') && any(query, cvActions) && !any(query, topicTerms('cv', ['computer vision', 'model', 'image', 'video', 'yolo', 'opencv', 'detection', 'vision service', 'وژن', 'تصویر', 'صور', 'رؤية']));
     var resumeTerms = financial || fraud || anomaly
@@ -495,7 +565,7 @@
       return { text: t('resumeAnswer'), topic: 'resume', links: [link(t('resume'), 'resume/index.html')] };
     }
     if (any(query, topicTerms('contact', ['contact', 'email', 'whatsapp', 'hire', 'get in touch', 'reach you', 'رابطہ', 'ای میل', 'واٹس', 'اتصال', 'تواصل', 'بريد', 'واتساب', 'rabta']))) {
-      return { text: t('contactAnswer'), topic: 'contact', links: [link(t('contact'), 'contact.html')] };
+      return { text: t('contactAnswer') + ' WhatsApp: +92 341 7215920.', topic: 'contact', links: [link('WhatsApp +92 341 7215920', 'https://wa.me/923417215920'), link(t('contact'), 'contact.html')] };
     }
     if (financial || (fraud && !visual)) {
       var financialAnswer = serviceAnswer('data');

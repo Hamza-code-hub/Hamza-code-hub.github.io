@@ -9,6 +9,8 @@
     var pageIntroKey = page === "gallery" ? "gallery" : page === "project" ? "project-" + location.pathname.split("/").pop().replace(/\.html$/i,"") : "";
     var pageIntroReady = !pageIntroKey || !!window.PortfolioPageIntros;
     var pageIntroWaiters = [];
+    var knowledgeIntroWaiters = [];
+    var knowledgeIntroLoading = false;
     var coreIntroReady = !!window.PortfolioCoreIntros;
     var coreIntroLoading = false;
     var coreIntroWaiters = [];
@@ -74,6 +76,19 @@
         pageIntroWaiters.splice(0).forEach(function (callback) { callback(); });
       };
       document.head.appendChild(introScript);
+    }
+    function ensureKnowledgeIntros(callback) {
+      if (window.PortfolioPageIntros) { callback(); return; }
+      if (pageIntroKey && !pageIntroReady) { pageIntroWaiters.push(callback); return; }
+      knowledgeIntroWaiters.push(callback);
+      if (knowledgeIntroLoading) return;
+      knowledgeIntroLoading = true;
+      var script = document.createElement("script"); script.async = true;
+      script.src = new URL("../js/portfolio-page-intros.js?v=1",scriptUrl).href;
+      script.onload = script.onerror = function () {
+        knowledgeIntroWaiters.splice(0).forEach(function (waiter) { waiter(); });
+      };
+      document.head.appendChild(script);
     }
     function later(callback,delay) { timers.push(window.setTimeout(callback,delay)); }
     function clearTimers() { timers.forEach(window.clearTimeout); timers = []; }
@@ -226,16 +241,30 @@
       var main = target.closest(".main-wrapper");
       var leftLimit = main && innerWidth >= 992 ? Math.max(12,main.getBoundingClientRect().left + 8) : 12;
       var rightLimit = innerWidth - 112;
-      var x = visible.right + 10;
-      if (x > rightLimit) x = visible.left - 110;
-      if (x < leftLimit) x = Math.max(leftLimit,Math.min(rightLimit,visible.left + 12));
-      if (innerWidth < 992 && target.closest(".sidebar-nav")) {
-        x = target.closest('.header[dir="rtl"]') ? Math.max(12,Math.min(rightLimit,visible.left + 8)) : rightLimit;
-      }
       var topClearance = Math.min(innerWidth < 992 ? 156 : 112,Math.max(46,innerHeight - 130));
       var focusY = visible.bottom - visible.top > 160 ? Math.max(visible.top + 20,Math.min(visible.bottom - 20,innerHeight * .45)) : (visible.top + visible.bottom) / 2;
-      var y = Math.max(topClearance,Math.min(innerHeight - (innerWidth < 576 ? 102 : 116),focusY - 48));
-      root.dataset.facing = bounds.left + bounds.width * .5 < x + 50 ? "left" : "right";
+      // Position from the SVG's actual raised fingertip, rather than a guessed
+      // avatar-box offset. The arm rotates during speech, so scroll-following
+      // recalculates this anchor on every animation frame.
+      var hand = root.querySelector(".guide-avatar__hand");
+      function tipOffset() {
+        var tip = new DOMPoint(6,-12).matrixTransform(hand.getScreenCTM());
+        var box = root.getBoundingClientRect();
+        return {x:tip.x - box.left,y:tip.y - box.top};
+      }
+      function atSide(side) {
+        root.dataset.facing = side === "right" ? "left" : "right";
+        var offset = tipOffset();
+        return {x:(side === "right" ? visible.right + 6 : visible.left - 6) - offset.x,offset:offset};
+      }
+      var side = visible.right + 100 < innerWidth ? "right" : "left";
+      var placement = atSide(side);
+      if ((side === "right" && placement.x > rightLimit) || (side === "left" && placement.x < leftLimit)) {
+        side = side === "right" ? "left" : "right";
+        placement = atSide(side);
+      }
+      var x = Math.max(leftLimit,Math.min(rightLimit,placement.x));
+      var y = Math.max(topClearance,Math.min(innerHeight - (innerWidth < 576 ? 102 : 116),focusY - placement.offset.y));
       root.style.setProperty("--guide-x",x + "px"); root.style.setProperty("--guide-y",y + "px");
     }
     var targets = {
@@ -293,7 +322,7 @@
       }
       if (changed) { clearHighlights(); target.classList.add("portfolio-guide-target"); highlights = [target]; root.dataset.cue = cue.target; }
       moveTo(selector,cue.gesture || "point");
-      if (changed) followMovingTarget(900);
+      if (changed) followMovingTarget(1400);
     }
     function cueTimeline(text,cues,token) {
       var list = (cues || []).filter(function (cue) { return typeof cue.at === "number" && targets[cue.target]; }).slice().sort(function (a,b) { return a.at - b.at; }).map(function (cue,index,ordered) {
@@ -502,6 +531,7 @@
     function openDialog() {
       stop(false); root.hidden = false; dialog.hidden = false; root.classList.add("is-chat-open"); avatar.setAttribute("aria-expanded","true");
       label(avatar,t("closeAssistant","Close assistant")); fitWindow(); input.focus({preventScroll:true});
+      ensureKnowledgeIntros(renderConversation);
     }
     function closeDialog(focus) {
       dialog.hidden = true; root.classList.remove("is-chat-open"); avatar.setAttribute("aria-expanded","false"); label(avatar,t("openAssistant","Open assistant")); if (focus) avatar.focus({preventScroll:true});
@@ -523,7 +553,7 @@
     play.addEventListener("click",togglePlayback); chatPlay.addEventListener("click",togglePlayback);
     hide.addEventListener("click",hideGuide);
     close.addEventListener("click",function () { stop(false); closeDialog(true); });
-    dialog.querySelector("form").addEventListener("submit",function (event) { event.preventDefault(); var question = input.value.trim(); if (!question) return; input.value = ""; answer(question,true); input.focus({preventScroll:true}); });
+    dialog.querySelector("form").addEventListener("submit",function (event) { event.preventDefault(); var question = input.value.trim(); if (!question) return; input.value = ""; ensureKnowledgeIntros(function () { answer(question,true); input.focus({preventScroll:true}); }); });
     dialog.querySelectorAll("[data-assistant-topic]").forEach(function (button) { button.addEventListener("click",function () { answer(button.dataset.assistantTopic,true,button.textContent.trim()); }); });
     tourButton.addEventListener("click",tour);
     dialog.querySelector(".portfolio-assistant__language").addEventListener("click",function () { if (window.PortfolioControls) window.PortfolioControls.openLanguagePicker(); });

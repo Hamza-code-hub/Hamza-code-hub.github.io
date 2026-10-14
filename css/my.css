@@ -2924,6 +2924,7 @@ body.dark-mode .testimonial-carousel .quote-content {
   .resume-page .resume-name,
   .resume-page .resume-section-heading,
   .resume-page .resume-wrapper a { color:#795726 !important; }
+  .resume-page .resume-wrapper a[href] { text-decoration:underline !important; text-underline-offset:2px; }
   .resume-page .resume-section-heading,
   .resume-page .resume-contact,
   .resume-page .resume-aside,
@@ -5228,6 +5229,16 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   white-space:nowrap;
 }
 .resume-page .resume-contact .resume-link:hover { color:var(--accent-strong); }
+.resume-page .resume-wrapper a[href]:not(.resume-profile-card) {
+  text-decoration:underline !important;
+  text-decoration-color:currentColor !important;
+  text-decoration-thickness:1px !important;
+  text-underline-offset:3px;
+}
+.resume-page .resume-wrapper a[href]:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
 
 .resume-page .resume-profile-links {
   display:grid;
@@ -5290,6 +5301,12 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   font:500 .56rem/1.35 "DM Mono",monospace;
   text-overflow:ellipsis;
   white-space:nowrap;
+}
+.resume-page .resume-profile-card .resume-profile-label,
+.resume-page .resume-profile-card .resume-profile-value {
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:2px;
 }
 
 @media (max-width:1199.98px) {
