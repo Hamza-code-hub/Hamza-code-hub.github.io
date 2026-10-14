@@ -21,13 +21,26 @@
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var synth = window.speechSynthesis;
     var nativeVoice = !!(synth && window.SpeechSynthesisUtterance);
-    var mutedKey = "portfolio-guide-muted";
+    // A Stop applies to this document only. Persisting it in sessionStorage also
+    // muted the next page and every refresh in the same tab, which made the
+    // requested automatic introduction appear broken.
+    var mutedForPage = false;
+    // A page is introduced once per tab. Normalize directory index URLs so
+    // / and /index.html (and /resume/ and /resume/index.html) share a visit.
+    var visitPath = location.pathname.replace(/\/index\.html$/i,"/").replace(/\/$/,"") || "/";
+    var autoVisitKey = "portfolio-guide-auto-visit-v1:" + visitPath.toLowerCase();
+    var autoVisitClaimed = false;
+    var currentIntroAutomatic = false;
+    var currentTourAutomatic = false;
+    var currentTourContinuation = false;
     var generation = 0;
     var timers = [];
     var audio = null;
     var utterance = null;
     var ready = false;
     var entering = false;
+    var deferredAutomaticHomeIntro = false;
+    var restartAfterVisibility = null;
     var lastQuestion = "";
     var history = [];
     var activeTarget = null;
@@ -46,8 +59,21 @@
     var continuation = consumeContinuation();
     function t(key,fallback) { var result = locale.t(key); return result === key ? (fallback || key) : result; }
     function language() { return locale.languages.filter(function (item) { return item.code === locale.getLanguage(); })[0] || locale.languages[0]; }
-    function muted() { try { return sessionStorage.getItem(mutedKey) === "true"; } catch (error) { return false; } }
-    function saveMuted(value) { try { sessionStorage.setItem(mutedKey,String(value)); } catch (error) { /* Optional preference. */ } }
+    function muted() { return mutedForPage; }
+    function saveMuted(value) { mutedForPage = !!value; }
+    function hasAutoVisit() {
+      if (autoVisitClaimed) return true;
+      try { return sessionStorage.getItem(autoVisitKey) === "1"; } catch (_) { return false; }
+    }
+    function rememberAutoVisit() {
+      autoVisitClaimed = true;
+      try { sessionStorage.setItem(autoVisitKey,"1"); } catch (_) { /* This document still remembers its visit. */ }
+    }
+    function claimAutoVisit() {
+      if (hasAutoVisit()) return false;
+      rememberAutoVisit();
+      return true;
+    }
     function pageCopyReady() { return !locale.getPageStatus || locale.getPageStatus().ready; }
     function afterPageCopy(callback) {
       var token = generation, code = locale.getLanguage();
@@ -146,11 +172,12 @@
           <g class="guide-avatar__head"><path d="M90 29V18" stroke="#ad905d" stroke-width="3"/><circle cx="90" cy="15" r="4" fill="#f5ba5a"/><rect x="50" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="118" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="57" y="30" width="66" height="59" rx="21" fill="url(#guide-metal)"/><rect x="64" y="40" width="52" height="37" rx="14" fill="url(#guide-face)"/><g fill="#f5ba5a"><rect x="75" y="50" width="7" height="9" rx="3.5"/><rect x="98" y="50" width="7" height="9" rx="3.5"/><rect class="guide-avatar__mouth" x="84" y="67" width="12" height="3" rx="1.5"/></g><path d="M73 36h26" stroke="#fff9e9" stroke-width="2" opacity=".65" stroke-linecap="round"/></g>
         </g>
       </svg><span class="portfolio-guide__notification" aria-hidden="true"></span>
-    </button><span class="portfolio-guide__status sr-only" role="status" aria-live="polite" aria-atomic="true"></span>`;
+    </button><span class="portfolio-guide__prompt" hidden></span><span class="portfolio-guide__status sr-only" role="status" aria-live="polite" aria-atomic="true"></span>`;
     var avatar = root.querySelector(".portfolio-guide__avatar");
     var play = root.querySelector(".portfolio-guide__play");
     var hide = root.querySelector(".portfolio-guide__hide");
     var status = root.querySelector(".portfolio-guide__status");
+    var prompt = root.querySelector(".portfolio-guide__prompt");
 
     // The assistant is a separate, click-opened window. No assistant section is inserted into any page.
     var dialog = document.createElement("div"); dialog.id = "portfolio-assistant-dialog"; dialog.className = "portfolio-assistant-dialog"; dialog.hidden = true;
@@ -181,8 +208,15 @@
       var action = active ? "stop" : root.dataset.sound === "blocked" ? "soundBlockedShort" : "play";
       label(play,t(action)); label(chatPlay,t(action));
     }
-    function clearBlockedCue() { delete root.dataset.sound; delete dialog.dataset.sound; }
-    function showBlockedCue() { root.dataset.sound = dialog.dataset.sound = "blocked"; updateToggle(false); }
+    function clearBlockedCue() { delete root.dataset.sound; delete dialog.dataset.sound; prompt.hidden = true; }
+    function showBlockedCue() {
+      prompt.textContent = t("soundBlockedShort","Tap Play to enable sound");
+      prompt.dir = language().dir;
+      prompt.hidden = false;
+      root.dataset.promptSide = root.getBoundingClientRect().left < 260 ? "right" : "left";
+      root.dataset.sound = dialog.dataset.sound = "blocked";
+      updateToggle(false);
+    }
     function clearHighlights() { highlights.forEach(function (item) { item.classList.remove("portfolio-guide-target"); }); highlights = []; }
     function clearTargetFollow() {
       if (followFrame) cancelAnimationFrame(followFrame);
@@ -192,6 +226,7 @@
     }
     function cancel() {
       generation += 1; clearTimers(); clearHighlights(); activeTimeline = null; resumeTour = null;
+      currentIntroAutomatic = currentTourAutomatic = currentTourContinuation = false;
       clearBlockedCue();
       clearTargetFollow(); activeTarget = activeGesture = null;
       if (layoutFrame) cancelAnimationFrame(layoutFrame); layoutFrame = 0;
@@ -298,9 +333,9 @@
       navTools:'.home-nav a[href$="#whatido"]', navTestimonials:'.home-nav a[href$="#testimonials"]', navFeatured:'.home-nav a[href$="#projects"]',
       navPortfolio:'.sidebar-nav a[href$="portfolio.html"]', navResume:'.sidebar-nav a[href$="resume/index.html"]', navGallery:'.sidebar-nav a[href$="gallery.html"]',
       navServices:'.sidebar-nav a[href$="services.html"], .home-nav a[href$="#services"]', navContact:'.sidebar-nav a[href$="contact.html"]',
-      portfolioHero:".cta-section h1", portfolioCards:".projects-list .project-card", portfolioPreview2:".project-cards > .isotope-item:nth-child(2) .project-card", portfolioPreview3:".project-cards > .isotope-item:nth-child(3) .project-card", portfolioPreview4:".project-cards > .isotope-item:nth-child(4) .project-card", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
+      portfolioHero:".cta-section h1", portfolioCards:".project-cards > .isotope-item:first-child .card-title", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
       serviceHero:".service-hero h1", galleryHero:".cta-section h1", galleryFirst:".photo-grid .photo-tile", projectHero:".cta-section h1",
-      serviceLLM:"#llm h3", serviceRAG:"#rag h3", serviceAgents:"#agentic h3", serviceVision:"#cv h3", serviceNLP:"#nlp h3", serviceWeb:"#webdev h3", serviceResearch:"#research h3", serviceData:"#data h3", serviceDevOps:"#devops h3", serviceWhyHire:"#why-hire h2",
+      serviceLLM:"#llm h3", serviceRAG:"#rag h3", serviceAgents:"#agentic h3", serviceVision:"#cv h3", serviceNLP:"#nlp h3", serviceWeb:"#webdev h3", serviceResearch:"#research h3", serviceData:"#data h3", serviceDevOps:"#devops h3", serviceWhyHire:"#why-hire h2", serviceHowWork:"#how-i-work h2",
       contactName:"#contact-name", contactEmail:"#contact-email", contactSubject:"#contact-subject", contactMessage:"#contact-message", contactSend:'#contact-form button[type="submit"]'
     };
     function ensureGuideMenu() {
@@ -402,7 +437,7 @@
         function failed(blocked) {
           if (!valid()) return;
           clearTimers(); audio = null; player.pause(); root.classList.remove("is-speaking");
-          if (!blocked && nativeVoice) { speak(text,token,onEnd,onStart,true,timelineOptions); return; }
+          if (nativeVoice) { speak(text,token,onEnd,onStart,true,timelineOptions); return; }
           unavailable(blocked);
         }
         var started = false;
@@ -429,25 +464,31 @@
       later(function () { if (validSpeech()) { utterance = null; synth.cancel(); unavailable(true); } },3500);
       try { synth.speak(request); } catch (error) { utterance = null; unavailable(false); }
     }
-    function intro(manual) {
+    function intro(manual,automaticVisit) {
+      if (automaticVisit) currentIntroAutomatic = true;
       if (pendingLanguageIntent) { if (manual) { saveMuted(false); pendingLanguageIntent.interrupted = false; } if (!pendingLanguageIntent.interrupted) pendingLanguageIntent.wasActive = true; return; }
-      if (!pageCopyReady()) { if (manual) saveMuted(false); root.dataset.state = "intro"; afterPageCopy(function () { intro(manual); }); return; }
-      if (!pageIntroReady) { if (manual) saveMuted(false); root.dataset.state = "intro"; afterPageIntro(function () { intro(manual); }); return; }
+      if (!pageCopyReady()) { if (manual) saveMuted(false); root.dataset.state = "intro"; afterPageCopy(function () { intro(manual,automaticVisit); }); return; }
+      if (!pageIntroReady) { if (manual) saveMuted(false); root.dataset.state = "intro"; afterPageIntro(function () { intro(manual,automaticVisit); }); return; }
       if ((page === "portfolio" || page === "resume") && !chapter(page === "portfolio" ? "portfolioPage" : "resumePage") && !coreIntroReady) {
-        if (manual) saveMuted(false); root.dataset.state = "intro"; afterCoreIntro(function () { intro(manual); }); return;
+        if (manual) saveMuted(false); root.dataset.state = "intro"; afterCoreIntro(function () { intro(manual,automaticVisit); }); return;
       }
-      cancel(); if (manual) saveMuted(false); lastQuestion = ""; root.hidden = !ready || (window.PortfolioEntry && window.PortfolioEntry.active); root.dataset.state = "intro"; root.dataset.mode = "compact";
+      if (automaticVisit && !claimAutoVisit()) { currentIntroAutomatic = false; root.dataset.state = "idle"; root.dataset.mode = "launcher"; dock(); return; }
+      cancel(); currentIntroAutomatic = !!automaticVisit; if (manual) saveMuted(false); lastQuestion = ""; root.hidden = !ready || (window.PortfolioEntry && window.PortfolioEntry.active); root.dataset.state = "intro"; root.dataset.mode = "compact";
       var token = generation;
       function complete(blocked) { if (token !== generation) return; cancel(); root.dataset.state = "complete"; root.dataset.mode = blocked ? "compact" : "launcher"; dock(); }
+      if (page === "services") {
+        var serviceHeading = document.querySelector(".service-hero h1");
+        root.dataset.chapter = "serviceHero";
+        speak(serviceHeading ? serviceHeading.textContent.trim() : t("tourServices"),token,complete,null,false,{cues:[{at:0,target:"serviceHero",gesture:"wave"}],onUnavailable:complete});
+        return;
+      }
       if (page !== "home") {
         var chapterKey = {portfolio:"portfolioPage",resume:"resumePage",contact:"contactForm"}[page];
-        var recording = chapterKey ? chapter(chapterKey) || (window.PortfolioCoreIntros && window.PortfolioCoreIntros[language().code] && window.PortfolioCoreIntros[language().code][page]) : page === "services" ? narration("tourServices") : window.PortfolioPageIntros && window.PortfolioPageIntros[pageIntroKey] && window.PortfolioPageIntros[pageIntroKey][language().code];
-        var cues = recording && recording.cues || (page === "services" ? [{at:0,target:"serviceHero",gesture:"wave"},{at:1.8,fraction:.16,target:"serviceLLM",gesture:"point"},{at:3.5,fraction:.32,target:"serviceAgents",gesture:"point"},{at:5.3,fraction:.48,target:"serviceVision",gesture:"point"},{at:7.2,fraction:.65,target:"serviceData",gesture:"point"},{at:9.3,fraction:.84,target:"serviceRAG",gesture:"point"}] : page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"},{at:3.8,target:"galleryFirst",gesture:"point"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
-        if (page === "services" && recording) cues = cues.map(function (cue) { return Object.assign({},cue,{charIndex:Math.round(recording.text.length * (cue.fraction || 0))}); });
-        if (page === "portfolio" && cues.length) cues = cues.concat([{at:5.1,fraction:.41,charIndex:Math.round(recording.text.length * .49),target:"portfolioPreview2",gesture:"point"},{at:7.6,fraction:.61,charIndex:Math.round(recording.text.length * .68),target:"portfolioPreview3",gesture:"point"},{at:10.1,fraction:.80,charIndex:Math.round(recording.text.length * .86),target:"portfolioPreview4",gesture:"point"}]);
+        var recording = chapterKey ? chapter(chapterKey) || (window.PortfolioCoreIntros && window.PortfolioCoreIntros[language().code] && window.PortfolioCoreIntros[language().code][page]) : window.PortfolioPageIntros && window.PortfolioPageIntros[pageIntroKey] && window.PortfolioPageIntros[pageIntroKey][language().code];
+        var cues = recording && recording.cues || (page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"},{at:3.8,target:"galleryFirst",gesture:"point"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
         if (!recording) { recording = narration("welcome"); chapterKey = "welcome"; cues = []; }
         if (!recording) { complete(false); return; }
-        root.dataset.chapter = chapterKey || (page === "services" ? "tourServices" : pageIntroKey);
+        root.dataset.chapter = chapterKey || pageIntroKey;
         speak(recording.text,token,complete,null,false,{recording:recording,cues:cues,onUnavailable:complete});
         return;
       }
@@ -463,33 +504,55 @@
         if (!root.hidden && page === "home" && !reducedMotion.matches && dialog.hidden) moveTo(".hero-kicker","wave");
       },false,{cues:welcomeCues(text),onUnavailable:complete});
     }
+    function autoStart() {
+      if (muted() || document.hidden || root.hidden || root.dataset.state !== "idle") return;
+      if (hasAutoVisit()) { root.dataset.mode = "launcher"; dock(); return; }
+      if (page === "services") tour({automatic:true});
+      else intro(false,true);
+    }
     function planForPage() {
       function item(key,fallback,target,nextPage) { return {key:key,recording:chapter(key),text:fallback,target:target,nextPage:nextPage}; }
       if (page === "home") {
         return [item("introMap",null,"navPortfolio"),item("openPortfolio",t("tourProjects"),"navPortfolio","portfolio")];
       }
       if (page === "portfolio") {
-        var catalog = window.PortfolioPageIntros || {};
         var cards = Array.from(document.querySelectorAll(".project-cards .project-card")).filter(function (card) { return card.getClientRects().length > 0; });
         var projects = cards.map(function (card) {
           var tile = card.closest(".isotope-item"), index = Array.prototype.indexOf.call(tile.parentElement.children,tile);
           var href = card.querySelector(".card-title a[href]"), slug = href && new URL(href.href).pathname.split("/").pop().replace(/\.html$/i,"");
-          var key = "projectCard" + index, recording = catalog["project-" + slug] && (catalog["project-" + slug][language().code] || catalog["project-" + slug].en);
-          targets[key] = ".project-cards > .isotope-item:nth-child(" + (index + 1) + ") .project-card";
-          return {key:"project-" + slug,recording:recording,text:recording ? recording.text : card.querySelector(".card-title").textContent.trim(),target:key};
+          var key = "projectCard" + index;
+          targets[key] = ".project-cards > .isotope-item:nth-child(" + (index + 1) + ") .card-title";
+          return {key:"project-" + slug,recording:null,text:card.querySelector(".card-title").textContent.trim(),target:key};
         });
-        return projects.length ? projects.concat([item("sidebarResume",t("tourResume"),"navResume","resume")]) : [item("portfolioPage",t("tourProjects"),"portfolioCards"),item("sidebarResume",t("tourResume"),"navResume","resume")];
+        var title = document.querySelector(targets.portfolioHero);
+        return [{key:"portfolioPage",recording:null,text:title ? title.textContent.trim() : t("tourProjects"),target:"portfolioHero"}].concat(projects,[item("sidebarResume",t("tourResume"),"navResume","resume")]);
       }
       if (page === "resume") return chapter("resumePage") ? [item("resumePage",null,"resumeContent","services")] : [item("resumePage",t("tourResume"),"resumeContent"),item("sidebarServices",t("tourServices"),"navServices","services")];
       if (page === "services") {
         var serviceTargets = {llm:"serviceLLM",rag:"serviceRAG",agentic:"serviceAgents",cv:"serviceVision",nlp:"serviceNLP",webdev:"serviceWeb",research:"serviceResearch",data:"serviceData",devops:"serviceDevOps"};
-        var services = Object.keys(serviceTargets).map(function (id) {
-          var recording = narration(id);
-          return {key:"service-" + id,recording:recording,text:recording ? recording.text : locale.answer(id).text,target:serviceTargets[id]};
+        var heading = document.querySelector(targets.serviceHero);
+        var services = [{key:"serviceHero",recording:null,text:heading ? heading.textContent.trim() : t("tourServices"),target:"serviceHero",cues:[{at:0,target:"serviceHero",gesture:"wave"}]}];
+        Object.keys(serviceTargets).forEach(function (id) {
+          var target = document.querySelector(targets[serviceTargets[id]]);
+          services.push({key:"service-" + id,recording:null,text:target ? target.textContent.trim() : id,target:serviceTargets[id]});
         });
-        var why = document.querySelector("#why-hire");
-        if (why) services.push({key:"service-why-hire",recording:null,text:Array.from(why.querySelectorAll("h2,.why-item h5")).map(function (el) { return el.textContent.trim(); }).join(". "),target:"serviceWhyHire",optionalVoice:true});
-        services.push(item("servicesContact",t("tourContact"),"navContact","contact"));
+        function addSection(sectionId,prefix,headingTarget) {
+          var section = document.getElementById(sectionId);
+          if (!section) return;
+          var heading = section.querySelector("h2");
+          if (heading) services.push({key:"service-" + prefix,recording:null,text:heading.textContent.trim() + ".",target:headingTarget});
+          Array.from(section.querySelectorAll(".row > .col-12")).forEach(function (column,index) {
+            var title = column.querySelector("h5");
+            if (!title) return;
+            var targetKey = "service" + prefix + (index + 1);
+            targets[targetKey] = "#" + sectionId + " .row > .col-12:nth-child(" + (index + 1) + ") h5";
+            services.push({key:"service-" + prefix + "-" + (index + 1),recording:null,text:title.textContent.trim(),target:targetKey});
+          });
+        }
+        addSection("why-hire","why-hire","serviceWhyHire");
+        addSection("how-i-work","how-i-work","serviceHowWork");
+        var contactRecording = narration("tourContact");
+        services.push({key:"servicesContact",recording:contactRecording,text:contactRecording ? contactRecording.text : t("tourContact"),target:"navContact",nextPage:"contact"});
         return services;
       }
       if (page === "contact") return [item("contactForm",t("tourContact"),"contactName")];
@@ -519,15 +582,20 @@
         resumeTour = function () { navigateTour(nextPage); };
       }
     }
-    function tour() {
+    function tour(options) {
+      options = {automatic:!!(options && options.automatic),continuation:!!(options && options.continuation)};
       if (pendingLanguageIntent) { saveMuted(false); pendingLanguageIntent.wasTour = true; pendingLanguageIntent.wasActive = true; pendingLanguageIntent.interrupted = false; return; }
-      if (!pageCopyReady()) { saveMuted(false); root.dataset.state = "tour"; afterPageCopy(tour); return; }
-      if (page === "portfolio" && !window.PortfolioPageIntros && !knowledgeIntroFailed) { root.dataset.state = "tour"; ensureKnowledgeIntros(tour); return; }
-      closeDialog(false); cancel(); saveMuted(false); root.hidden = !ready; root.dataset.state = "tour"; root.dataset.mode = "compact";
-      var steps = planForPage(), token = generation;
+      currentTourAutomatic = options.automatic; currentTourContinuation = options.continuation;
+      if (!pageCopyReady()) { saveMuted(false); root.dataset.state = "tour"; afterPageCopy(function () { tour(options); }); return; }
+      if (options.automatic) rememberAutoVisit();
+      if (options.continuation) rememberAutoVisit();
+      closeDialog(false); cancel(); saveMuted(false); currentTourAutomatic = options.automatic; currentTourContinuation = options.continuation; root.hidden = !ready; root.dataset.state = "tour"; root.dataset.mode = "compact";
+      var steps = planForPage().filter(function (step) { return !options.automatic || !step.nextPage; }), token = generation;
       function step(index) {
         if (token !== generation) return;
-        if (index >= steps.length) { cancel(); root.dataset.state = "complete"; root.dataset.mode = "launcher"; dock(); return; }
+        if (index >= steps.length) {
+          cancel(); root.dataset.state = "complete"; root.dataset.mode = "launcher"; dock(); return;
+        }
         var item = steps[index], selector = targets[item.target], target = selector && document.querySelector(selector);
         root.dataset.state = "tour"; root.dataset.chapter = item.key; delete root.dataset.cue; clearHighlights(); updateToggle(true);
         if (/^nav/.test(item.target)) ensureGuideMenu(); else closeGuideMenu();
@@ -536,14 +604,13 @@
           if (token !== generation) return;
           moveTo(selector,"wave");
           var recording = item.recording, text = recording ? recording.text : item.text;
-          var cues = recording && recording.cues && recording.cues.length ? recording.cues : [{at:0,target:item.target}];
+          var cues = item.cues || (recording && recording.cues && recording.cues.length ? recording.cues : [{at:0,target:item.target}]);
           speak(text,token,function () {
             if (token !== generation) return;
             if (item.nextPage) { navigateTour(item.nextPage); return; }
             later(function () { step(index + 1); },240);
           },null,false,{recording:recording,cues:cues,onUnavailable:function () {
             if (token !== generation) return;
-            if (item.optionalVoice) { later(function () { step(index + 1); },500); return; }
             root.dataset.state = "tour-paused"; root.classList.remove("is-speaking"); updateToggle(false);
             resumeTour = function () { step(index); };
           }});
@@ -584,7 +651,9 @@
     function labels() {
       var lang = language(); root.lang = lang.code; root.dir = "ltr"; dialog.lang = lang.code; dialog.dir = lang.dir;
       label(avatar,t(dialog.hidden ? "openAssistant" : "closeAssistant",dialog.hidden ? "Open assistant" : "Close assistant"));
-      label(play,t(root.classList.contains("is-active") ? "stop" : "play")); label(chatPlay,t(root.classList.contains("is-active") ? "stop" : "play")); label(hide,t("hide")); label(close,t("closeAssistant","Close assistant"));
+      var playbackLabel = root.classList.contains("is-active") ? "stop" : root.dataset.sound === "blocked" ? "soundBlockedShort" : "play";
+      label(play,t(playbackLabel)); label(chatPlay,t(playbackLabel)); label(hide,t("hide")); label(close,t("closeAssistant","Close assistant"));
+      if (!prompt.hidden) { prompt.textContent = t("soundBlockedShort","Tap Play to enable sound"); prompt.dir = lang.dir; }
       dialog.querySelector("h2").textContent = t("assistant","Portfolio assistant"); dialog.querySelector(".portfolio-assistant__greeting").textContent = t("help");
       dialog.querySelector(".portfolio-assistant__note").textContent = t("assistantNote"); input.placeholder = t("questionPlaceholder");
       dialog.querySelector('label[for="portfolio-assistant-question"]').textContent = t("questionPlaceholder"); label(dialog.querySelector(".portfolio-assistant__send"),t("send"));
@@ -603,31 +672,36 @@
     tourButton.addEventListener("click",tour);
     dialog.querySelector(".portfolio-assistant__language").addEventListener("click",function () { if (window.PortfolioControls) window.PortfolioControls.openLanguagePicker(); });
     document.addEventListener("portfolio:languagechanging",function () {
-      if (!pendingLanguageIntent) pendingLanguageIntent = {wasActive:root.classList.contains("is-active") || root.dataset.state === "intro" || root.dataset.state === "complete" || (root.dataset.state === "idle" && !muted()),wasTour:root.dataset.state === "tour" || root.dataset.state === "tour-paused",interrupted:false};
+      if (!pendingLanguageIntent) pendingLanguageIntent = {wasActive:root.classList.contains("is-active") || root.dataset.state === "intro",wasIntroAutomatic:currentIntroAutomatic,wasTour:root.dataset.state === "tour" || root.dataset.state === "tour-paused",wasAutomatic:currentTourAutomatic,wasContinuation:currentTourContinuation,interrupted:false};
       continuation = null; cancel();
     });
     document.addEventListener("portfolio:language",function () {
-      var intent = pendingLanguageIntent || {wasActive:root.classList.contains("is-active") || root.dataset.state === "intro" || root.dataset.state === "complete" || (root.dataset.state === "idle" && !muted()),wasTour:root.dataset.state === "tour" || root.dataset.state === "tour-paused",interrupted:false};
+      var intent = pendingLanguageIntent || {wasActive:root.classList.contains("is-active") || root.dataset.state === "intro",wasIntroAutomatic:currentIntroAutomatic,wasTour:root.dataset.state === "tour" || root.dataset.state === "tour-paused",wasAutomatic:currentTourAutomatic,wasContinuation:currentTourContinuation,interrupted:false};
       pendingLanguageIntent = null; continuation = null; cancel(); labels(); renderConversation();
       if (!dialog.hidden) ensureKnowledge(renderConversation);
       if (window.PortfolioEntry && window.PortfolioEntry.active) return;
       if (intent.interrupted) return;
       if (lastQuestion && !dialog.hidden && !muted()) answer(lastQuestion,false);
-      else if (intent.wasTour && !muted()) tour();
-      else if ((intent.wasActive || page === "home") && !muted()) intro(false);
+      else if (intent.wasTour && !muted()) tour({automatic:intent.wasAutomatic,continuation:intent.wasContinuation});
+      else if (intent.wasActive && !muted()) intro(false,intent.wasIntroAutomatic && !hasAutoVisit());
     });
     document.addEventListener("portfolio:pagetranslated",function () {
-      if (ready && pageCopyReady() && !pendingLanguageIntent && root.dataset.state === "idle" && !muted() && !document.hidden && !(window.PortfolioEntry && window.PortfolioEntry.active)) intro(false);
+      if (ready && pageCopyReady() && !pendingLanguageIntent && root.dataset.state === "idle" && !muted() && !document.hidden && !(window.PortfolioEntry && window.PortfolioEntry.active)) autoStart();
     });
     document.addEventListener("portfolio:entering",function (event) {
       entering = true;
-      if (event.detail && event.detail.skipNarration) stop(false);
-      else if (!muted()) intro(true);
+      deferredAutomaticHomeIntro = false;
+      if (event.detail && event.detail.skipNarration) { stop(false); root.dataset.mode = "launcher"; dock(); }
+      else if (page === "home" && event.detail && event.detail.automatic) deferredAutomaticHomeIntro = !hasAutoVisit();
+      else if (!muted() && !hasAutoVisit()) intro(true,true);
     });
     document.addEventListener("portfolio:entered",function () {
-      root.hidden = !ready; if (entering && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
-      else if (!entering && !muted()) intro(false);
-      else if (muted()) { root.dataset.mode = "launcher"; dock(); }
+      root.hidden = !ready;
+      if (entering && root.dataset.state === "stopped" && !hasAutoVisit()) rememberAutoVisit();
+      if (deferredAutomaticHomeIntro) { deferredAutomaticHomeIntro = false; if (!muted()) autoStart(); }
+      else if (entering && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
+      else if (!entering && !muted()) autoStart();
+      else if ((muted() || hasAutoVisit()) && (root.dataset.state === "idle" || root.dataset.state === "stopped")) { root.dataset.mode = "launcher"; dock(); }
       entering = false;
     });
     function manualControl(event) {
@@ -643,9 +717,31 @@
       else if (event.key === "Escape" && (root.classList.contains("is-active") || root.dataset.state === "tour-paused")) stop(true);
       else if (["ArrowDown","ArrowUp","PageDown","PageUp","Home","End"," "].indexOf(event.key) >= 0 && !/INPUT|TEXTAREA|BUTTON/.test(event.target.tagName)) manualControl(event);
     });
-    document.addEventListener("visibilitychange",function () { if (document.hidden) stop(false); });
+    document.addEventListener("visibilitychange",function () {
+      if (document.hidden) {
+        restartAfterVisibility = !muted() && (root.dataset.state === "intro" || root.dataset.state === "tour") ? {type:root.dataset.state,introAutomatic:currentIntroAutomatic,tourAutomatic:currentTourAutomatic,tourContinuation:currentTourContinuation} : null;
+        if (restartAfterVisibility) stop(false);
+      } else if (!muted() && ready && !root.hidden) {
+        var interrupted = restartAfterVisibility;
+        restartAfterVisibility = null;
+        if (interrupted) later(function () {
+          if (document.hidden || muted() || root.hidden) return;
+          if (interrupted.type === "tour") tour({automatic:interrupted.tourAutomatic,continuation:interrupted.tourContinuation});
+          else intro(false,interrupted.introAutomatic && !hasAutoVisit());
+        },250);
+        else if (root.dataset.state === "idle") later(autoStart,250);
+      }
+    });
     window.addEventListener("pagehide",cancel); window.addEventListener("beforeprint",function () { stop(false); closeDialog(false); });
-    window.addEventListener("pageshow",function (event) { if (event.persisted) { handoffInFlight = false; continuation = null; clearContinuation(); stop(false); } });
+    window.addEventListener("pageshow",function (event) {
+      if (!event.persisted) return;
+      restartAfterVisibility = null;
+      handoffInFlight = false; continuation = null; clearContinuation();
+      if (root.dataset.state === "intro" || root.dataset.state === "tour") return;
+      cancel(); saveMuted(false);
+      root.hidden = !ready || !!(window.PortfolioEntry && window.PortfolioEntry.active);
+      if (!root.hidden && !document.hidden) later(autoStart,450);
+    });
     window.addEventListener("scroll",alignAfterScroll,{passive:true,capture:true});
     window.addEventListener("resize",function () { if (activeTarget) queueTargetFollow(); else dock(); if (!dialog.hidden) fitWindow(); });
     if (window.visualViewport) {
@@ -655,12 +751,12 @@
     if (reducedMotion.addEventListener) reducedMotion.addEventListener("change",function () { stop(false); });
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:function () { intro(true); },startTour:tour,stop:function () { stop(true); }};
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=13",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=14",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
-      if (continuation) { continuation = null; tour(); }
+      if (continuation) { continuation = null; tour({continuation:true}); }
       else if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
-      else if (!root.hidden && root.dataset.state === "idle" && !muted() && !document.hidden) later(function () { intro(false); },450);
+      else if (!root.hidden && root.dataset.state === "idle" && !muted() && !document.hidden) later(autoStart,450);
       else if (!root.hidden && muted()) { root.dataset.mode = "launcher"; dock(); }
     };
     document.head.appendChild(stylesheet);

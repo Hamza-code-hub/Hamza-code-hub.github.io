@@ -23,6 +23,9 @@
 .portfolio-guide.is-active .guide-icon-stop { display:block; }
 .portfolio-guide[data-sound="blocked"] .portfolio-guide__play,
 .portfolio-assistant-dialog[data-sound="blocked"] .portfolio-assistant__play { outline:2px solid var(--accent); outline-offset:3px; animation:guide-enable-sound 1.7s ease-in-out 3; }
+.portfolio-guide__prompt { position:absolute; top:17px; right:calc(100% + 8px); max-width:min(220px,calc(100vw - 120px)); width:max-content; padding:8px 11px; border:1px solid var(--accent); border-radius:10px; background:var(--panel-solid); box-shadow:0 7px 24px rgba(0,0,0,.22); color:var(--text); font:600 12px/1.35 system-ui,sans-serif; text-align:start; pointer-events:none; }
+.portfolio-guide[data-prompt-side="right"] .portfolio-guide__prompt { right:auto; left:calc(100% + 8px); }
+.portfolio-guide.is-chat-open .portfolio-guide__prompt { display:none; }
 .guide-avatar__floor { fill:var(--accent); opacity:.17; }
 .guide-avatar__limb { fill:none; stroke:#b5a17b; stroke-width:11; stroke-linecap:round; }
 .guide-avatar__detail { fill:none; stroke:#6f5c42; stroke-width:1.8; stroke-linecap:round; }

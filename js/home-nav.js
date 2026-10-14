@@ -52,6 +52,77 @@
     selectFromHash();
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initialiseHomeNavigation);
-  else initialiseHomeNavigation();
+  function initialiseHomeDepth() {
+    if (!document.body.classList.contains("home-page") || !window.matchMedia) return;
+
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var desktop = window.matchMedia("(min-width: 768px)");
+    var dial = document.querySelector(".home-kinetic-dial__plane");
+    var hero = document.querySelector(".ai-hero");
+    if (dial && hero && "IntersectionObserver" in window) {
+      var dialObserver = new IntersectionObserver(function (entries) {
+        dial.parentElement.classList.toggle("is-offscreen", !entries[0].isIntersecting);
+      });
+      dialObserver.observe(hero);
+    }
+    var stages = [
+      { section: document.querySelector(".ai-hero"), target: document.querySelector(".ai-portrait-stage"), kind: "portrait" },
+      { section: document.querySelector("#aboutme"), target: document.querySelector(".home-about-photo"), kind: "about" },
+      { section: document.querySelector("#projects"), target: document.querySelector("#projects"), kind: "projects" },
+      { section: document.querySelector("#experience"), target: document.querySelector(".work-experience-panel__core"), kind: "experience" }
+    ].filter(function (stage) { return stage.section && stage.target; });
+    if (!stages.length) return;
+
+    var frame = 0;
+    function render() {
+      frame = 0;
+      if (document.hidden || reducedMotion.matches) return;
+      var viewport = window.innerHeight;
+      if (dial && hero) {
+        var heroRect = hero.getBoundingClientRect();
+        var heroTop = heroRect.top + window.scrollY;
+        var travel = Math.max(0, Math.min(heroRect.height + viewport, window.scrollY - heroTop));
+        var tilt = Math.max(-1, Math.min(1, (viewport / 2 - (heroRect.top + heroRect.height / 2)) / (viewport / 2 + heroRect.height / 2)));
+        dial.style.setProperty("--dial-scroll-angle", (travel * .28).toFixed(1) + "deg");
+        dial.style.setProperty("--dial-scroll-tilt", (tilt * 6).toFixed(2) + "deg");
+      }
+      if (!desktop.matches) return;
+      stages.forEach(function (stage) {
+        var rect = stage.section.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > viewport + 100) return;
+        var distance = (viewport / 2 - (rect.top + rect.height / 2)) / (viewport / 2 + rect.height / 2);
+        var depth = Math.max(-1, Math.min(1, distance));
+        if (stage.kind === "portrait") {
+          stage.target.style.setProperty("--home-depth-y", (depth * -16).toFixed(1) + "px");
+          stage.target.style.setProperty("--home-depth-ry", (depth * 3).toFixed(2) + "deg");
+        } else if (stage.kind === "about") {
+          stage.target.style.setProperty("--home-depth-y", (depth * -12).toFixed(1) + "px");
+          stage.target.style.setProperty("--home-depth-ry", (depth * 2).toFixed(2) + "deg");
+        } else if (stage.kind === "projects") {
+          stage.target.style.setProperty("--home-depth-y", (depth * -6).toFixed(1) + "px");
+          stage.target.style.setProperty("--home-depth-ry", (depth * 1.5).toFixed(2) + "deg");
+        } else {
+          stage.target.style.setProperty("--home-depth-y", (depth * -10).toFixed(1) + "px");
+          stage.target.style.setProperty("--home-depth-ry", (-15 + depth * 9).toFixed(2) + "deg");
+        }
+      });
+    }
+    function queue() {
+      if (!frame) frame = window.requestAnimationFrame(render);
+    }
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue, { passive: true });
+    window.addEventListener("load", queue, { once: true });
+    document.addEventListener("visibilitychange", queue);
+    if (reducedMotion.addEventListener) reducedMotion.addEventListener("change", queue);
+    if (desktop.addEventListener) desktop.addEventListener("change", queue);
+    queue();
+  }
+
+  function initialise() {
+    initialiseHomeNavigation();
+    initialiseHomeDepth();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initialise);
+  else initialise();
 })();

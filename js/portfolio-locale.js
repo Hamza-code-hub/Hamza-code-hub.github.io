@@ -519,6 +519,9 @@
   function knowledgeAnswer(query) {
     var contactLink = link(t('contact'), 'contact.html');
     var resumeLink = link(t('resume'), 'resume/index.html');
+    if (/^(how are you|how're you|how r u|how is it going|how's it going)[?!. ]*$/.test(query)) {
+      return { text: language === 'en' ? "I'm here and ready to help. Ask me about Muhammad Hamza's AI services, projects, or experience." : t('help') + ' ' + t('serviceList'), topic: 'greeting', links: [link(t('services'), 'services.html'), contactLink] };
+    }
     var projectIntent = any(query, topicTerms('projects', ['project', 'case study', 'portfolio', 'built', 'work sample', 'پراجیکٹ', 'مشروع', 'proyecto', 'projet', 'projeto']));
     if (any(query, ['whatsapp', 'wa.me', 'whats app', 'واٹس ایپ', 'واتساب', 'watsapp'])) {
       return { text: language === 'en' ? 'Muhammad Hamza’s WhatsApp number is +92 341 7215920. You can also send project details through the Contact page.' : t('contactAnswer') + ' WhatsApp: +92 341 7215920.', topic: 'contact', links: [link('WhatsApp +92 341 7215920', 'https://wa.me/923417215920'), contactLink] };
