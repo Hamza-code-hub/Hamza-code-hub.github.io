@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initializeSiteEffects() {
   "use strict";
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var progress = document.createElement("div");
@@ -178,4 +178,10 @@ document.addEventListener("DOMContentLoaded", function () {
       mapCounterObserver.observe(systemMap);
     }
   }
-});
+}
+
+// These static pages load this script after the main content. Initialize now
+// so a slow deferred localization/voice script cannot delay the project cards.
+if (document.body && document.querySelector(".main-wrapper")) initializeSiteEffects();
+else if (document.readyState === "loading") document.addEventListener("DOMContentLoaded",initializeSiteEffects,{once:true});
+else initializeSiteEffects();

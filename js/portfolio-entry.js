@@ -94,7 +94,26 @@
   var api = { active:false, skipped:false, automatic:false, suppressed:suppressed, autoNarrate:narrationEnabled, enter:enter, handoff:handoff };
   window.PortfolioEntry = api;
   document.addEventListener("click",markLinkHandoff);
-  if (!entry) return;
+  function hashAnchor() {
+    var hashId = "";
+    try { hashId = decodeURIComponent(location.hash.slice(1)); } catch (_) { hashId = location.hash.slice(1); }
+    return hashId && document.getElementById(hashId);
+  }
+  function scrollToAnchor(anchor) {
+    if (!anchor) return;
+    // A category hash selects one pill, but the whole filter list must remain
+    // visible below the fixed mobile header and language/theme controls.
+    var target = anchor.closest && anchor.closest("#filters") || anchor;
+    // The site sets smooth scrolling globally; an immediate hash landing keeps
+    // the filter controls clear even if a visitor pauses the tour at once.
+    target.scrollIntoView({behavior:"instant",block:"start"});
+  }
+  if (!entry) {
+    if (suppressed && location.hash) window.addEventListener("load",function () {
+      requestAnimationFrame(function () { scrollToAnchor(hashAnchor()); });
+    },{once:true});
+    return;
+  }
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   var tilt = entry.querySelector(".entry-world-tilt");
@@ -168,16 +187,14 @@
     entry.removeEventListener("pointerleave",resetTilt);
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
-    var hashId = "";
-    try { hashId = decodeURIComponent(location.hash.slice(1)); } catch (_) { hashId = location.hash.slice(1); }
-    var anchor = hashId && document.getElementById(hashId);
+    var anchor = hashAnchor();
     if (anchor && entry.contains(anchor)) anchor = null;
     var focusTarget = anchor || document.querySelector(".main-wrapper h1,.main-wrapper [role='heading'][aria-level='1'],.main-wrapper");
     if (focusTarget && focusAfterEntry) {
       if (!focusTarget.hasAttribute("tabindex")) focusTarget.setAttribute("tabindex","-1");
       focusTarget.focus({preventScroll:true});
     }
-    if (anchor) anchor.scrollIntoView({behavior:"auto",block:"start"});
+    scrollToAnchor(anchor);
     document.dispatchEvent(new CustomEvent("portfolio:entered",{detail:{source:"entry"}}));
   }
   function enter(options) {

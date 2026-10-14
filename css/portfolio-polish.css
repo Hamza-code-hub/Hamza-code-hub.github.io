@@ -219,6 +219,28 @@
   body .portfolio-assistant__close:hover { color:var(--heading); border-color:var(--accent); }
   body .portfolio-assistant__footer button:hover { color:var(--accent-strong); }
 
+  /* Keep every project filter legible in both themes, including the active
+     gold pill that the old dark-mode stylesheet colored teal. */
+  body.portfolio-page .filters .type {
+    color:var(--text);
+    background:var(--panel-solid);
+    border-color:var(--border);
+    font-weight:600;
+  }
+  body.portfolio-page .filters .type:hover,
+  body.portfolio-page .filters .type:focus-visible {
+    color:var(--heading);
+    background:var(--accent-soft);
+    border-color:var(--accent);
+  }
+  body.portfolio-page .filters .type.active,
+  body.portfolio-page .filters .type.active:hover,
+  body.portfolio-page .filters .type.active:focus-visible {
+    color:var(--page);
+    background:var(--accent);
+    border-color:var(--accent);
+  }
+
   /* Thin slate scrollbars avoid a saturated line through every surface. */
   html,.header,.portfolio-entry,.portfolio-assistant__conversation,.portfolio-language-options { scrollbar-width:thin; scrollbar-color:var(--scroll-thumb) transparent; }
   body::-webkit-scrollbar { width:9px; }

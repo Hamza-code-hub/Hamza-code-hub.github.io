@@ -33,6 +33,7 @@
 .portfolio-guide__prompt { position:absolute; top:17px; right:calc(100% + 8px); max-width:min(220px,calc(100vw - 120px)); width:max-content; padding:8px 11px; border:1px solid var(--accent); border-radius:10px; background:var(--panel-solid); box-shadow:0 7px 24px rgba(0,0,0,.22); color:var(--text); font:600 12px/1.35 system-ui,sans-serif; text-align:start; pointer-events:none; animation:guide-cue-appear .36s ease-out both; }
 .portfolio-guide[data-prompt-side="right"] .portfolio-guide__prompt { right:auto; left:calc(100% + 8px); }
 .portfolio-guide.is-chat-open .portfolio-guide__prompt { display:none; }
+.portfolio-guide.is-language-cue .portfolio-guide__prompt { display:none; }
 .portfolio-guide__start-tour { position:absolute; top:41px; right:calc(100% + 9px); z-index:2; display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:43px; width:max-content; max-width:min(220px,calc(100vw - 120px)); padding:9px 15px; border:1px solid #f8cb7b; border-radius:12px; color:#17130d; background:linear-gradient(90deg,#f5ba5a,#f8cb7b); box-shadow:0 7px 22px rgba(245,186,90,.26),0 0 0 3px rgba(245,186,90,.11); font:700 13px/1.2 "Space Grotesk",system-ui,sans-serif; text-align:center; cursor:pointer; pointer-events:auto; transform:translateY(-50%); animation:guide-start-pulse 2.6s ease-in-out infinite; }
 .portfolio-guide__start-tour::after { content:"\2192"; font-size:17px; line-height:1; }
 .portfolio-guide__start-tour:hover { background:linear-gradient(90deg,#f8cb7b,#ffe0a1); box-shadow:0 8px 26px rgba(245,186,90,.37),0 0 0 4px rgba(245,186,90,.15); }
@@ -62,6 +63,7 @@
 .portfolio-guide[data-gesture="point"] .guide-avatar__open-fingers { display:none; }
 .portfolio-guide[data-gesture="point"] .guide-avatar__point-finger { display:block; }
 .portfolio-guide[data-mode="compact"] .guide-avatar__arm--right { transform:rotate(8deg); }
+.portfolio-guide.is-language-cue[data-mode="compact"] .guide-avatar__arm--right { transform:rotate(25deg); }
 .portfolio-guide:not(.is-active) .guide-avatar__forearm { animation:none; }
 .portfolio-guide[data-sound="blocked"] .guide-avatar__forearm--right { animation:guide-wave 1.15s ease-in-out 2; }
 .portfolio-guide-target { outline:2px solid var(--accent); outline-offset:6px; border-radius:6px; }

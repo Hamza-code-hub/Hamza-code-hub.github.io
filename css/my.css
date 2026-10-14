@@ -5044,8 +5044,9 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   }
 }
 
-/* Card placement is intrinsic, so filter changes and late visual/font loads
-   cannot retain stale absolute coordinates from the previous layout. */
+/* Card placement follows available content width, including browser zoom.
+   Filter changes and late visual/font loads cannot retain old coordinates. */
+.portfolio-page .projects-list > .container { container-type:inline-size; }
 .portfolio-page .projects-list .project-cards {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -5063,8 +5064,52 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   flex:none !important;
 }
 .portfolio-page .projects-list .project-cards > .isotope-item[hidden] { display:none !important; }
-@media (max-width:1199.98px) {
+.portfolio-page .projects-list .portfolio-system-card .card-img-holder > img {
+  display:block;
+  width:100%;
+  height:100%;
+  margin:0 !important;
+  object-fit:cover;
+}
+@container (max-width:639px) {
   .portfolio-page .projects-list .project-cards { grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width:767.98px) {
+  .portfolio-page .projects-list .project-cards { grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width:991.98px) {
+  .portfolio-page #filters { scroll-margin-top:3rem; }
+}
+@media (max-width:575.98px) {
+  .portfolio-page #filters { scroll-margin-top:3.5rem; }
+}
+/* Narrow two-column cards stack their visual above the description so zoomed
+   desktop viewports never squeeze either panel into an unreadable half-card. */
+@media (min-width:768px) and (max-width:1399.98px) {
+  .portfolio-page .projects-list .portfolio-system-card .project-card {
+    height:auto;
+    min-height:470px;
+  }
+  .portfolio-page .projects-list .portfolio-system-card .project-card > .row {
+    display:flex;
+    flex-direction:column;
+    min-height:470px;
+  }
+  .portfolio-page .projects-list .portfolio-system-card .card-img-holder {
+    flex:0 0 205px;
+    height:205px !important;
+    border-right:0;
+    border-bottom:1px solid var(--border);
+  }
+  .portfolio-page .projects-list .portfolio-system-card .project-card > .row > [class*="col-"]:not(.card-img-holder) {
+    display:flex;
+    flex:1 1 auto;
+    height:auto;
+  }
+  .portfolio-page .projects-list .portfolio-system-card .card-body {
+    min-height:0;
+    justify-content:flex-start;
+  }
 }
 
 /* A balanced résumé masthead: centered identity, readable summary and one

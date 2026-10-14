@@ -73,6 +73,9 @@
     });
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initialize, {once:true});
+  // Portfolio markup precedes this synchronous script. Apply the initial hash
+  // filter before a slow deferred script can postpone DOMContentLoaded.
+  if (document.querySelector(".project-cards") && document.getElementById("filters")) initialize();
+  else if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initialize, {once:true});
   else initialize();
 }());
