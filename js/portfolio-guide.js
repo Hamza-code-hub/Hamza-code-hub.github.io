@@ -332,10 +332,10 @@
       navTools:'.home-nav a[href$="#whatido"]', navTestimonials:'.home-nav a[href$="#testimonials"]', navFeatured:'.home-nav a[href$="#projects"]',
       navPortfolio:'.sidebar-nav a[href$="portfolio.html"]', navResume:'.sidebar-nav a[href$="resume/index.html"]', navGallery:'.sidebar-nav a[href$="gallery.html"]',
       navServices:'.sidebar-nav a[href$="services.html"], .home-nav a[href$="#services"]', navContact:'.sidebar-nav a[href$="contact.html"]',
-      portfolioHero:".cta-section h1", portfolioCards:".project-cards > .isotope-item:first-child .card-title", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
+      portfolioHero:".cta-section h1", portfolioCards:".project-cards > .isotope-item:first-child .card-title", resumeHeading:".resume-wrapper .resume-name", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
       serviceHero:".service-hero h1", galleryHero:".cta-section h1", galleryFirst:".photo-grid .photo-tile", projectHero:".cta-section h1",
       serviceLLM:"#llm h3", serviceRAG:"#rag h3", serviceAgents:"#agentic h3", serviceVision:"#cv h3", serviceNLP:"#nlp h3", serviceWeb:"#webdev h3", serviceResearch:"#research h3", serviceData:"#data h3", serviceDevOps:"#devops h3", serviceWhyHire:"#why-hire h2", serviceHowWork:"#how-i-work h2",
-      contactName:"#contact-name", contactEmail:"#contact-email", contactSubject:"#contact-subject", contactMessage:"#contact-message", contactSend:'#contact-form button[type="submit"]'
+      contactHero:".cta-section h1", contactName:"#contact-name", contactEmail:"#contact-email", contactSubject:"#contact-subject", contactMessage:"#contact-message", contactSend:'#contact-form button[type="submit"]'
     };
     function ensureGuideMenu() {
       if (innerWidth >= 992) return;
@@ -490,6 +490,8 @@
         var cues = recording && recording.cues || (page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"},{at:3.8,target:"galleryFirst",gesture:"point"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
         if (!recording) { recording = narration("welcome"); chapterKey = "welcome"; cues = []; }
         if (!recording) { complete(false); return; }
+        var openingTarget = {portfolio:"portfolioHero",resume:"resumeHeading",gallery:"galleryHero",contact:"contactHero",project:"projectHero"}[page];
+        if (openingTarget && !cues.some(function (cue) { return cue.at === 0 && cue.target === openingTarget; })) cues = [{at:0,target:openingTarget,gesture:"wave"}].concat(cues);
         root.dataset.chapter = chapterKey || pageIntroKey;
         speak(recording.text,token,complete,null,false,{recording:recording,cues:cues,onUnavailable:complete});
         return;
@@ -737,7 +739,7 @@
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:startPageVoice,startTour:tour,stop:function () { stop(true); }};
     document.dispatchEvent(new CustomEvent("portfolio:guide-ready"));
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=16",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=18",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
