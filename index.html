@@ -44,6 +44,8 @@
   <link rel="stylesheet" href="./css/owl.css">
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
   <link rel="stylesheet" href="./css/my.css?v=26">
+  <link rel="stylesheet" href="./css/home-ai-showcase.css?v=2">
+  <link rel="stylesheet" href="./css/portfolio-entry.css?v=4">
 
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -567,9 +569,108 @@
 }
 </style>
 
+  <link rel="stylesheet" href="./css/portfolio-polish.css?v=1">
 </head>
 
 <body class="home-page">
+  <!-- An optional native 3D entry; the portfolio remains accessible without JavaScript. -->
+  <section class="portfolio-entry" id="portfolio-entry" role="dialog" aria-modal="true" aria-labelledby="entry-title" aria-describedby="entry-description" hidden>
+    <div class="entry-atmosphere" aria-hidden="true"></div>
+    <div class="entry-shell">
+      <div class="entry-copy">
+        <div class="entry-eyebrow"><span aria-hidden="true"></span><span data-entry-copy="entrySubtitle">AI Engineer</span></div>
+        <h2 id="entry-title" data-entry-copy="entryTitle">Muhammad Hamza</h2>
+        <p id="entry-description" data-entry-copy="exploreAI">Explore the engineering behind intelligent systems.</p>
+      </div>
+      <div class="entry-world" aria-label="Connected AI engineering specializations">
+        <div class="entry-world-tilt">
+          <div class="entry-ground" aria-hidden="true"><span></span></div>
+          <svg class="entry-connections" viewBox="0 0 1000 440" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path class="entry-route" d="M270 125C380 125 372 215 500 215S632 130 750 130M320 340C400 340 385 215 500 215S610 340 705 340"/>
+            <path class="entry-route entry-route--signal" d="M270 125C380 125 372 215 500 215S632 130 750 130M320 340C400 340 385 215 500 215S610 340 705 340"/>
+            <circle class="entry-route-node" cx="270" cy="125" r="4"/><circle class="entry-route-node" cx="750" cy="130" r="4"/>
+            <circle class="entry-route-node" cx="320" cy="340" r="4"/><circle class="entry-route-node" cx="705" cy="340" r="4"/>
+          </svg>
+          <div class="entry-station entry-station--agents">
+            <span class="entry-station-title" data-entry-copy="agents">Agentic AI</span>
+            <svg viewBox="0 0 240 145" aria-hidden="true" focusable="false">
+              <path class="entry-svg-shadow" d="m10 108 102-52 115 52-115 33Z"/>
+              <path class="entry-svg-line" d="M55 74h35l32-40h38m-38 40h54m-54-40v74h43"/>
+              <path class="entry-svg-side" d="m28 65 25 13 25-13v26l-25 14-25-14Z"/><path class="entry-svg-top" d="m28 65 25-14 25 14-25 13Z"/>
+              <path class="entry-svg-side" d="m99 20 23 13 23-13v26l-23 13-23-13Z"/><path class="entry-svg-top" d="m99 20 23-13 23 13-23 13Z"/>
+              <path class="entry-svg-side" d="m166 66 22 12 22-12v24l-22 13-22-13Z"/><path class="entry-svg-top" d="m166 66 22-12 22 12-22 12Z"/>
+              <path class="entry-svg-glass" d="m155 109 21-12 21 12-21 12Z"/>
+              <path class="entry-svg-symbol" d="m44 85 7 5 12-7M119 40h6m-3-3v6m62 42 4 3 5-5"/>
+              <circle class="entry-agent-signal" cx="89" cy="74" r="4"/><circle class="entry-agent-signal entry-agent-signal--second" cx="152" cy="74" r="4"/>
+            </svg>
+            <div class="entry-station-meta" aria-hidden="true"><span>PLAN</span><i></i><span>TOOLS</span><i></i><span>EXECUTE</span></div>
+          </div>
+          <div class="entry-station entry-station--vision">
+            <span class="entry-station-title" data-entry-copy="vision">Computer Vision</span>
+            <svg viewBox="0 0 240 165" aria-hidden="true" focusable="false">
+              <path class="entry-svg-shadow" d="m12 124 105-53 113 53-110 36Z"/>
+              <path class="entry-vision-surface" d="M22 22h198v117H22Z"/>
+              <path class="entry-vision-grid" d="M22 60h198M22 100h198M70 22v117M120 22v117M170 22v117"/>
+              <path class="entry-svg-side" d="m58 72 31 15 30-15v36l-30 16-31-16Z"/><path class="entry-svg-top" d="m58 72 31-16 30 16-30 15Z"/>
+              <path class="entry-svg-side" d="m144 65 21 11 21-11v39l-21 12-21-12Z"/><path class="entry-svg-top" d="m144 65 21-12 21 12-21 11Z"/>
+              <path class="entry-vision-box" d="M49 46h79v83H49ZM137 43h59v79h-59Z"/>
+              <path class="entry-svg-symbol" d="M48 38v-5h9m71 5v-5h-9m-71 96v5h9m71-5v5h-9"/>
+              <path class="entry-vision-scan" d="M23 28h196"/>
+              <rect class="entry-vision-tag" x="49" y="37" width="25" height="9" rx="2"/><rect class="entry-vision-tag" x="137" y="34" width="25" height="9" rx="2"/>
+            </svg>
+            <div class="entry-station-meta" aria-hidden="true"><span>DETECT</span><i></i><span>SEGMENT</span></div>
+          </div>
+          <div class="entry-station entry-station--generative">
+            <span class="entry-station-title" data-entry-copy="generative">Generative AI</span>
+            <svg viewBox="0 0 210 130" aria-hidden="true" focusable="false">
+              <path class="entry-svg-shadow" d="m25 96 80-42 80 42-80 31Z"/>
+              <path class="entry-svg-side" d="m49 75 56 27 56-27v9l-56 27-56-27Z"/><path class="entry-svg-top" d="m49 75 56-28 56 28-56 27Z"/>
+              <path class="entry-svg-side" d="m49 60 56 27 56-27v8l-56 28-56-28Z"/><path class="entry-svg-top" d="m49 60 56-28 56 28-56 27Z"/>
+              <path class="entry-svg-glass" d="m49 43 56-28 56 28-56 28Z"/>
+              <path class="entry-svg-line" d="m74 40 37-18m-26 25 43-21m-31 28 31-15"/>
+              <path class="entry-gen-spark" d="m164 18 3 8 12 4-12 4-3 9-3-9-12-4 12-4Z"/>
+              <circle class="entry-svg-dot" cx="39" cy="40" r="3"/>
+            </svg>
+            <div class="entry-station-meta" aria-hidden="true"><span>KNOWLEDGE</span><i></i><span>RAG</span></div>
+          </div>
+          <div class="entry-station entry-station--classical">
+            <span class="entry-station-title" data-entry-copy="classicalLabel">Classical ML</span>
+            <svg viewBox="0 0 210 130" aria-hidden="true" focusable="false">
+              <path class="entry-svg-shadow" d="m15 91 86-43 92 43-92 34Z"/>
+              <path class="entry-svg-top" d="m24 84 77-39 83 39-83 29Z"/>
+              <path class="entry-svg-side" d="m51 72 14 7 14-7v23l-14 7-14-7Z"/><path class="entry-svg-top" d="m51 72 14-7 14 7-14 7Z"/>
+              <path class="entry-svg-side" d="m92 48 14 7 14-7v37l-14 7-14-7Z"/><path class="entry-svg-top" d="m92 48 14-7 14 7-14 7Z"/>
+              <path class="entry-svg-side" d="m133 23 14 7 14-7v52l-14 7-14-7Z"/><path class="entry-svg-top" d="m133 23 14-7 14 7-14 7Z"/>
+              <path class="entry-ml-curve" d="M39 60q26 2 48-29t67-18"/>
+              <circle class="entry-svg-dot" cx="39" cy="60" r="3"/><circle class="entry-svg-dot" cx="87" cy="31" r="3"/><circle class="entry-svg-dot" cx="154" cy="13" r="3"/>
+            </svg>
+            <div class="entry-station-meta" aria-hidden="true"><span>LEARN</span><i></i><span>PREDICT</span></div>
+          </div>
+          <button class="entry-core" type="button" data-entry-enter aria-label="Enter Muhammad Hamza's portfolio">
+            <span class="entry-core-aura" aria-hidden="true"></span>
+            <svg viewBox="0 0 220 240" aria-hidden="true" focusable="false">
+              <defs><linearGradient id="entry-core-glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38bdf8" stop-opacity=".28"/><stop offset="1" stop-color="#a78bfa" stop-opacity=".04"/></linearGradient></defs>
+              <ellipse class="entry-core-shadow" cx="110" cy="220" rx="77" ry="13"/>
+              <path class="entry-core-back" d="m32 69 78-45 78 45v99l-78 44-78-44Z"/>
+              <path class="entry-core-facet" d="m32 69 78 45 78-45-78-45Z"/>
+              <path class="entry-core-facet" d="m32 69 78 45v98l-78-44Z"/>
+              <path class="entry-core-facet entry-core-facet--right" d="m188 69-78 45v98l78-44Z"/>
+              <path class="entry-core-network" d="m64 89 47-22 46 24-21 45-26 29-37-26-9-50Zm0 0 46 76m1-98 25 69m-63 3 84-48m-84 48 63-3"/>
+              <circle class="entry-core-neuron" cx="64" cy="89" r="4"/><circle class="entry-core-neuron" cx="111" cy="67" r="5"/><circle class="entry-core-neuron" cx="157" cy="91" r="4"/>
+              <circle class="entry-core-neuron" cx="136" cy="136" r="4"/><circle class="entry-core-neuron" cx="110" cy="165" r="5"/><circle class="entry-core-neuron" cx="73" cy="139" r="4"/>
+              <path class="entry-core-edge" d="m32 69 78 45 78-45M110 114v98"/>
+            </svg>
+            <span class="entry-core-mark" aria-hidden="true">AI</span>
+          </button>
+        </div>
+      </div>
+      <div class="entry-actions">
+        <button class="entry-enter" type="button" data-entry-enter><span data-entry-copy="enterPortfolio">Enter portfolio</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        <span class="entry-hint" data-entry-copy="entryHint">Click to enter · Move to explore</span>
+        <button class="entry-skip" type="button" data-entry-enter data-entry-instant data-entry-copy="skipIntro">Skip introduction</button>
+      </div>
+    </div>
+  </section>
   <header class="header text-center">
     <div class="force-overflow">
       <div class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a></div>
@@ -637,22 +738,88 @@
   <div class="main-wrapper">
 
     <!-- About Section -->
-    <section class="about-me-section p-3 p-lg-5 theme-bg-light">
+    <section class="about-me-section ai-hero p-3 p-lg-5 theme-bg-light" aria-label="Muhammad Hamza, AI Engineer">
       <div class="container">
         <div class="profile-teaser media flex-column flex-lg-row">
           <div class="media-body">
             <div class="hero-kicker"><span aria-hidden="true"></span>Senior AI Engineer <em>Official Portfolio · Applied AI · Production Systems</em></div>
             <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a> <span class="sr-only">— AI Engineer</span></h1>
-            <div class="tagline mb-2">LLM Systems | RAG Architecture | Agentic AI | Computer Vision</div>
+            <div class="tagline mb-2">Agentic AI · Generative AI · Computer Vision · Classical ML</div>
             <div class="hero-role-rotator" aria-label="Areas of specialization">
               <span class="hero-role-label">Building</span>
               <span id="hero-role-text">production AI systems</span>
             </div>
+            <div class="ai-domain-grid" aria-label="Explore four AI engineering specializations">
+              <a class="ai-domain ai-domain--vision" href="services.html#cv">
+                <span class="ai-domain-visual" aria-hidden="true">
+                  <svg viewBox="0 0 88 88" focusable="false">
+                    <path class="ai-icon-shadow" d="M11 64 44 45 77 64 44 83Z"/>
+                    <path class="ai-icon-side" d="M13 52 44 70 75 52 75 63 44 81 13 63Z"/>
+                    <path class="ai-icon-top" d="M13 52 44 34 75 52 44 70Z"/>
+                    <path class="ai-icon-glass" d="M20 16 68 16 68 52 20 52Z"/>
+                    <path class="ai-icon-stroke" d="M26 25v-3h7m22 0h7v7m0 13v4h-7m-22 0h-7v-7"/>
+                    <path class="ai-icon-stroke" d="M29 34c8-10 22-10 30 0-8 10-22 10-30 0Z"/>
+                    <circle class="ai-icon-dot" cx="44" cy="34" r="5"/>
+                  </svg>
+                </span>
+                <span class="ai-domain-copy"><strong>Computer Vision</strong><span>Detection, segmentation &amp; imaging</span></span>
+                <span class="ai-domain-arrow" aria-hidden="true">&#8599;</span>
+              </a>
+              <a class="ai-domain ai-domain--agents" href="services.html#agentic">
+                <span class="ai-domain-visual" aria-hidden="true">
+                  <svg viewBox="0 0 88 88" focusable="false">
+                    <path class="ai-icon-shadow" d="M8 62 44 43 80 62 44 82Z"/>
+                    <path class="ai-icon-stroke ai-icon-path" d="m24 55 20-13 20 13M44 42V24"/>
+                    <path class="ai-icon-side" d="m34 16 10 6 10-6v14l-10 6-10-6Z"/>
+                    <path class="ai-icon-top" d="m34 16 10-6 10 6-10 6Z"/>
+                    <path class="ai-icon-side" d="m13 50 11 6 11-6v14l-11 7-11-7Z"/>
+                    <path class="ai-icon-top" d="m13 50 11-7 11 7-11 6Z"/>
+                    <path class="ai-icon-side" d="m53 50 11 6 11-6v14l-11 7-11-7Z"/>
+                    <path class="ai-icon-top" d="m53 50 11-7 11 7-11 6Z"/>
+                    <circle class="ai-icon-dot" cx="44" cy="43" r="4"/>
+                  </svg>
+                </span>
+                <span class="ai-domain-copy"><strong>Agentic AI</strong><span>Tool use, workflows &amp; automation</span></span>
+                <span class="ai-domain-arrow" aria-hidden="true">&#8599;</span>
+              </a>
+              <a class="ai-domain ai-domain--generative" href="services.html#llm">
+                <span class="ai-domain-visual" aria-hidden="true">
+                  <svg viewBox="0 0 88 88" focusable="false">
+                    <path class="ai-icon-shadow" d="m10 64 34-19 34 19-34 19Z"/>
+                    <path class="ai-icon-side" d="m16 57 28 16 28-16v8L44 81 16 65Z"/>
+                    <path class="ai-icon-top" d="m16 57 28-16 28 16-28 16Z"/>
+                    <path class="ai-icon-side" d="m16 44 28 16 28-16v7L44 67 16 51Z"/>
+                    <path class="ai-icon-top" d="m16 44 28-16 28 16-28 16Z"/>
+                    <path class="ai-icon-glass" d="m16 30 28-16 28 16-28 16Z"/>
+                    <path class="ai-icon-dot" d="m44 20 3 8 11 3-11 3-3 8-3-8-11-3 11-3Z"/>
+                    <path class="ai-icon-stroke" d="M68 11v10m-5-5h10"/>
+                  </svg>
+                </span>
+                <span class="ai-domain-copy"><strong>Generative AI</strong><span>LLM applications, RAG &amp; assistants</span></span>
+                <span class="ai-domain-arrow" aria-hidden="true">&#8599;</span>
+              </a>
+              <a class="ai-domain ai-domain--ml" href="services.html#data">
+                <span class="ai-domain-visual" aria-hidden="true">
+                  <svg viewBox="0 0 88 88" focusable="false">
+                    <path class="ai-icon-shadow" d="m9 63 35-20 35 20-35 20Z"/>
+                    <path class="ai-icon-side" d="m15 56 29 17 29-17v7L44 80 15 63Z"/>
+                    <path class="ai-icon-top" d="m15 56 29-17 29 17-29 17Z"/>
+                    <path class="ai-icon-side" d="m24 47 8 5 8-5v13l-8 5-8-5Z"/>
+                    <path class="ai-icon-top" d="m24 47 8-5 8 5-8 5Z"/>
+                    <path class="ai-icon-side" d="m39 33 8 5 8-5v19l-8 5-8-5Z"/>
+                    <path class="ai-icon-top" d="m39 33 8-5 8 5-8 5Z"/>
+                    <path class="ai-icon-side" d="m54 19 8 5 8-5v26l-8 5-8-5Z"/>
+                    <path class="ai-icon-top" d="m54 19 8-5 8 5-8 5Z"/>
+                    <path class="ai-icon-stroke" d="m21 31 16-8 9 2 13-14"/>
+                    <circle class="ai-icon-dot" cx="21" cy="31" r="3"/>
+                  </svg>
+                </span>
+                <span class="ai-domain-copy"><strong>Classical ML</strong><span>Classification, regression &amp; forecasting</span></span>
+                <span class="ai-domain-arrow" aria-hidden="true">&#8599;</span>
+              </a>
+            </div>
             <div class="bio mb-4">
-              I architect and deliver <strong>production-grade AI systems</strong> that connect research, reliable software engineering, and measurable business outcomes. My work spans LLM applications, retrieval systems, autonomous agent workflows, computer vision, machine learning, Python APIs, data pipelines, and deployment-ready AI infrastructure.
-              <br><br>
-              Review my <a class="theme-link" href="portfolio.html">selected AI systems</a>, explore <a class="theme-link" href="services.html">engineering services</a>, or read my
-              <a class="theme-link" href="resume/index.html">technical resume</a>.
+              I design and deliver <strong>production-grade AI systems</strong>, connecting research with reliable software engineering, from models and retrieval pipelines to autonomous workflows and deployment-ready applications.
             </div>
             <div class="hero-actions mb-4">
               <a class="btn btn-primary" href="portfolio.html"><i class="fas fa-arrow-alt-circle-right mr-2"></i>Selected Work</a>
@@ -665,12 +832,14 @@
               <div><strong>Team Lead</strong><span>Hands-on technical leadership</span></div>
             </div>
           </div>
-          <div class="hero-image-col">
-            <span class="hero-hanger" aria-hidden="true"><i></i></span>
+          <div class="hero-image-col ai-portrait-stage">
+            <span class="ai-portrait-orbit" aria-hidden="true"></span>
+            <span class="ai-portrait-layer ai-portrait-layer--back" aria-hidden="true"></span>
+            <span class="ai-portrait-layer ai-portrait-layer--front" aria-hidden="true"></span>
             <div class="hero-image-frame">
               <img class="profile-image" src="images/muhammad-hamza-ai-engineer.jpg" alt="Muhammad Hamza, AI Engineer and LLM Engineer" width="1097" height="1434" loading="eager" fetchpriority="high" decoding="async">
             </div>
-            <span class="hero-trust-mark" aria-hidden="true">OFFICIAL PORTFOLIO / AI ARCHITECT / ENGINEER / RESEARCHER</span>
+            <div class="ai-portrait-caption"><span aria-hidden="true"></span><strong>AI Engineer</strong><span>Research &#8594; Real-world systems</span></div>
           </div>
         </div>
       </div>
@@ -1326,6 +1495,13 @@
   <script src="./js/dark.js?v=3"></script>
   <script src="./js/site-effects.js?v=3"></script>
   <script src="./js/home-nav.js?v=1"></script>
+  <script defer src="./js/portfolio-locale.js?v=5"></script>
+  <script defer src="./js/portfolio-locales-extra.js?v=3"></script>
+  <script defer src="./js/portfolio-controls.js?v=3"></script>
+  <script defer src="./js/portfolio-entry.js?v=2"></script>
+  <script defer src="./js/portfolio-narration.js?v=4"></script>
+  <script defer src="./js/portfolio-tour.js?v=1"></script>
+  <script defer src="./js/portfolio-guide.js?v=7"></script>
   <script>
     if (window.AOS) { AOS.init({ duration: 700, once: true, offset: 60 }); }
   </script>
