@@ -74,6 +74,7 @@
           </div>
         </div>
         <div class="entry-actions">
+          <svg class="entry-cue-arrow" viewBox="0 0 110 86" aria-hidden="true" focusable="false"><path d="M104 7C79 4 82 58 17 59m12-11L17 59l13 8"/></svg>
           <button class="entry-enter" type="button" data-entry-enter><span data-entry-copy="enterPortfolio">Enter portfolio</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
           <button class="entry-skip" type="button" data-entry-enter data-entry-instant data-entry-copy="skipIntro">Skip introduction</button>
         </div>

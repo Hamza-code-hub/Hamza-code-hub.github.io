@@ -49,6 +49,24 @@
     var menuOpenedByGuide = false;
     var handoffInFlight = false;
     var tourStorageKey = "portfolio-guided-tour-v2";
+    var voiceVisitsKey = "portfolio-guide-voice-visits-v1";
+    // The entry scene begins a fresh visit. Internal handoffs retain this list,
+    // so each page narrates only on its first navigation in the current visit.
+    if (window.PortfolioEntry && !window.PortfolioEntry.suppressed) {
+      try { sessionStorage.removeItem(voiceVisitsKey); } catch (_) {}
+    }
+    function voicePageKey() { return location.pathname.replace(/\/index\.html$/i,"/"); }
+    function voiceVisits() {
+      try { var list = JSON.parse(sessionStorage.getItem(voiceVisitsKey) || "[]"); return Array.isArray(list) ? list : []; }
+      catch (_) { return []; }
+    }
+    function hasVoicedThisPage() { return voiceVisits().indexOf(voicePageKey()) !== -1; }
+    function markVoiceVisit() {
+      try {
+        var list = voiceVisits(), key = voicePageKey();
+        if (list.indexOf(key) === -1) { list.push(key); sessionStorage.setItem(voiceVisitsKey,JSON.stringify(list)); }
+      } catch (_) {}
+    }
     var continuation = consumeContinuation();
     if (window.PortfolioEntry && window.PortfolioEntry.skipped) continuation = null;
     function t(key,fallback) { var result = locale.t(key); return result === key ? (fallback || key) : result; }
@@ -492,6 +510,7 @@
       },false,{cues:welcomeCues(text),onUnavailable:complete});
     }
     function startPageVoice() {
+      markVoiceVisit();
       clearBlockedCue(); saveMuted(false);
       if (continuation) { continuation = null; tour({continuation:true}); }
       else if (page === "services") tour({automatic:true});
@@ -727,7 +746,7 @@
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
       else if (!root.hidden && (root.dataset.state === "idle" || root.dataset.state === "stopped")) { root.dataset.mode = "compact"; dock(); }
-      if (window.PortfolioEntry && window.PortfolioEntry.suppressed && window.PortfolioEntry.autoNarrate === true) startPageVoice();
+      if (window.PortfolioEntry && window.PortfolioEntry.suppressed && window.PortfolioEntry.autoNarrate === true && !hasVoicedThisPage()) startPageVoice();
     };
     document.head.appendChild(stylesheet);
   }
