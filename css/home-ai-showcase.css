@@ -63,6 +63,55 @@ html[data-theme="dark"] .home-kinetic-dial__plane,
 body.dark-mode .home-kinetic-dial__plane { opacity:.5; }
 @keyframes homeDialClockwise { to { transform:rotate(360deg); } }
 @keyframes homeDialCounterclockwise { to { transform:rotate(-360deg); } }
+
+/* A thin, non-interactive scroll instrument carries the orbital motif past the hero. */
+.home-scroll-instrument {
+  position:fixed;
+  top:42vh;
+  right:-24px;
+  z-index:8;
+  width:94px;
+  aspect-ratio:1;
+  pointer-events:none;
+  color:var(--accent);
+  opacity:0;
+  transform:translate(10px,-50%);
+  transition:opacity .3s ease,transform .3s ease;
+  filter:drop-shadow(0 0 8px color-mix(in srgb,var(--accent) 13%,transparent));
+}
+.home-scroll-instrument.is-visible { opacity:.65; transform:translate(0,-50%); }
+.home-scroll-instrument svg { display:block; width:100%; height:100%; fill:none; stroke:currentColor; }
+.home-scroll-instrument__rotor,
+.home-scroll-instrument__inner { transform-origin:center; transform-box:view-box; }
+.home-scroll-instrument__rotor { transform:rotate(var(--home-scroll-angle,0deg)); }
+.home-scroll-instrument__ticks { stroke-width:2; stroke-dasharray:1 8; opacity:.65; }
+.home-scroll-instrument__spokes { stroke-width:2; stroke-linecap:round; opacity:.65; }
+.home-scroll-instrument__track { stroke-width:1.5; opacity:.32; }
+.home-scroll-instrument__progress {
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-dasharray:226.2;
+  stroke-dashoffset:var(--home-progress-offset,226.2);
+  transform:rotate(-90deg);
+  transform-origin:center;
+  transform-box:view-box;
+}
+.home-scroll-instrument__inner {
+  stroke-width:1.25;
+  opacity:.8;
+  animation:homeScrollInstrumentDrift 70s linear infinite;
+  animation-play-state:paused;
+}
+.home-scroll-instrument.is-visible .home-scroll-instrument__inner { animation-play-state:running; }
+.home-scroll-instrument__core { fill:var(--accent); stroke:none; }
+@keyframes homeScrollInstrumentDrift { to { transform:rotate(-360deg); } }
+@media (min-width:992px) and (max-width:1100px) {
+  .home-scroll-instrument { right:-22px; width:72px; }
+  .home-scroll-instrument.is-visible { opacity:.48; }
+}
+@media (max-width:991.98px) { .home-scroll-instrument { display:none; } }
+@media print { .home-scroll-instrument,.home-kinetic-dial { display:none !important; } }
+
 .ai-hero > .container { position:relative; z-index:1; max-width:1280px; }
 .home-page .ai-hero .profile-teaser {
   display:grid !important;
@@ -352,6 +401,7 @@ body.dark-mode .ai-hero .hero-image-frame:hover .profile-image { transform:none;
   .home-page .ai-hero .ai-portrait-stage { width:250px; margin:0 auto !important; align-self:center; }
 }
 @media (prefers-reduced-motion:reduce) {
+  .home-scroll-instrument { display:none; }
   .home-kinetic-dial__rotor--outer,
   .home-kinetic-dial__rotor--inner { animation:none !important; }
   .home-kinetic-dial__plane { transform:translateY(-50%) perspective(950px) rotateX(23deg) rotateY(-13deg); }

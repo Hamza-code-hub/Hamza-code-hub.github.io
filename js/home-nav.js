@@ -58,6 +58,7 @@
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var desktop = window.matchMedia("(min-width: 768px)");
     var dial = document.querySelector(".home-kinetic-dial__plane");
+    var scrollInstrument = document.querySelector(".home-scroll-instrument");
     var hero = document.querySelector(".ai-hero");
     if (dial && hero && "IntersectionObserver" in window) {
       var dialObserver = new IntersectionObserver(function (entries) {
@@ -76,7 +77,10 @@
     var frame = 0;
     function render() {
       frame = 0;
-      if (document.hidden || reducedMotion.matches) return;
+      if (document.hidden || reducedMotion.matches) {
+        if (scrollInstrument) scrollInstrument.classList.remove("is-visible");
+        return;
+      }
       var viewport = window.innerHeight;
       if (dial && hero) {
         var heroRect = hero.getBoundingClientRect();
@@ -85,6 +89,13 @@
         var tilt = Math.max(-1, Math.min(1, (viewport / 2 - (heroRect.top + heroRect.height / 2)) / (viewport / 2 + heroRect.height / 2)));
         dial.style.setProperty("--dial-scroll-angle", (travel * .28).toFixed(1) + "deg");
         dial.style.setProperty("--dial-scroll-tilt", (tilt * 6).toFixed(2) + "deg");
+      }
+      if (scrollInstrument) {
+        var scrollRange = Math.max(1, document.documentElement.scrollHeight - viewport);
+        var progress = Math.max(0, Math.min(1, window.scrollY / scrollRange));
+        scrollInstrument.style.setProperty("--home-progress-offset", (226.2 * (1 - progress)).toFixed(2));
+        scrollInstrument.style.setProperty("--home-scroll-angle", (window.scrollY * .22).toFixed(1) + "deg");
+        scrollInstrument.classList.toggle("is-visible", desktop.matches && hero && hero.getBoundingClientRect().bottom < viewport * .58);
       }
       if (!desktop.matches) return;
       stages.forEach(function (stage) {

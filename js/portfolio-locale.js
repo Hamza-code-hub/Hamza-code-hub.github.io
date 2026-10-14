@@ -155,7 +155,7 @@
     ['Home', 'ہوم', 'الرئيسية'], ['Portfolio', 'پورٹ فولیو', 'الأعمال'], ['Services', 'خدمات', 'الخدمات'], ['Contact', 'رابطہ', 'التواصل'],
     ['Muhammad Hamza', 'محمد حمزہ', 'محمد حمزة'],
     ['— AI Engineer | Python Engineer | Research Author', '— اے آئی انجینئر | Python انجینئر | محقق', '— مهندس ذكاء اصطناعي | مهندس Python | باحث'],
-    ['© 2025 Muhammad Hamza — Python Developer | Research Author', '© 2025 محمد حمزہ — Python ڈیولپر | محقق', '© 2025 محمد حمزة — مطور Python | باحث'],
+    ['© 2023 Muhammad Hamza  — Python Developer | Research Author', '© 2025 محمد حمزہ — Python ڈیولپر | محقق', '© 2025 محمد حمزة — مطور Python | باحث'],
     ['Services Hero', 'خدمات کا تعارف', 'مقدمة الخدمات'], ['All Services', 'تمام خدمات', 'جميع الخدمات'],
     ['Why Hire Muhammad Hamza', 'محمد حمزہ کی خدمات کیوں حاصل کریں', 'لماذا تختار محمد حمزة'], ['Work Process', 'کام کا طریقہ', 'مراحل العمل'], ['Call to Action', 'رابطے کی دعوت', 'دعوة للتواصل']
   ];

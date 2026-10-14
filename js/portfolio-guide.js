@@ -40,6 +40,7 @@
     var ready = false;
     var entering = false;
     var deferredAutomaticHomeIntro = false;
+    var skippedHomeEntry = false;
     var restartAfterVisibility = null;
     var lastQuestion = "";
     var history = [];
@@ -691,13 +692,15 @@
     document.addEventListener("portfolio:entering",function (event) {
       entering = true;
       deferredAutomaticHomeIntro = false;
-      if (event.detail && event.detail.skipNarration) { stop(false); root.dataset.mode = "launcher"; dock(); }
+      skippedHomeEntry = !!(event.detail && event.detail.skipNarration);
+      if (skippedHomeEntry) { stop(false); root.dataset.mode = "launcher"; dock(); }
       else if (page === "home" && event.detail && event.detail.automatic) deferredAutomaticHomeIntro = !hasAutoVisit();
       else if (!muted() && !hasAutoVisit()) intro(true,true);
     });
     document.addEventListener("portfolio:entered",function () {
       root.hidden = !ready;
-      if (entering && root.dataset.state === "stopped" && !hasAutoVisit()) rememberAutoVisit();
+      if (skippedHomeEntry) rememberAutoVisit();
+      skippedHomeEntry = false;
       if (deferredAutomaticHomeIntro) { deferredAutomaticHomeIntro = false; if (!muted()) autoStart(); }
       else if (entering && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
       else if (!entering && !muted()) autoStart();
