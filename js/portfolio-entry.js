@@ -27,9 +27,15 @@
     } catch (_) { return null; }
   }
   function handoff(input) {
-    if (!hasEntered) return false;
+    if (!hasEntered && !(api && api.active)) return false;
     var url = pageUrl(input);
     if (!url || url.pathname + url.search === location.pathname + location.search) return false;
+    // A sidebar click during the brief scene is also a valid first entry
+    // gesture: open that destination directly and request its page tour.
+    if (api.active && !hasEntered) {
+      narrationEnabled = true;
+      api.autoNarrate = true;
+    }
     try {
       sessionStorage.setItem(handoffKey,JSON.stringify({source:location.pathname + location.search,target:url.pathname + url.search,narrate:narrationEnabled,expires:Date.now() + 15000}));
       return true;
@@ -45,8 +51,6 @@
     var section = document.createElement("section");
     section.className = "portfolio-entry";
     section.id = "portfolio-entry";
-    section.setAttribute("role","dialog");
-    section.setAttribute("aria-modal","true");
     section.setAttribute("aria-labelledby","entry-title");
     section.setAttribute("aria-describedby","entry-description");
     section.hidden = true;
@@ -87,39 +91,22 @@
   hasEntered = suppressed;
   narrationEnabled = suppressed && handoffState.narrate !== false;
   var entry = !suppressed && (document.getElementById("portfolio-entry") || (document.querySelector(".main-wrapper") && createEntry()));
-  var api = { active:false, skipped:false, suppressed:suppressed, autoNarrate:narrationEnabled, enter:enter, handoff:handoff };
+  var api = { active:false, skipped:false, automatic:false, suppressed:suppressed, autoNarrate:narrationEnabled, enter:enter, handoff:handoff };
   window.PortfolioEntry = api;
   document.addEventListener("click",markLinkHandoff);
-  if (!entry) { document.documentElement.classList.remove("portfolio-entry-pending"); return; }
+  if (!entry) return;
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   var tilt = entry.querySelector(".entry-world-tilt");
   var world = entry.querySelector(".entry-world");
-  var backgrounds = Array.prototype.map.call(document.querySelectorAll("body > .header, body > .main-wrapper"),function (element) {
-    return { element:element, inert:element.inert };
-  });
-  var frame = 0, exitTimer = 0, revealTimer = 0, readyTimer = 0, entering = false, enterReady = !!window.PortfolioGuide, pointerX = 0, pointerY = 0;
+  var frame = 0, exitTimer = 0, revealTimer = 0, readyTimer = 0, autoTimer = 0, entering = false, enterReady = !!window.PortfolioGuide, pointerX = 0, pointerY = 0;
+  var focusAfterEntry = false;
   var fallbacks = {
     entryTitle:"Muhammad Hamza", entrySubtitle:"AI Engineer",
     exploreAI:"Explore the engineering behind intelligent systems.",
     agents:"Agentic AI", vision:"Computer Vision", generative:"Generative AI", classicalLabel:"Classical ML",
     enterPortfolio:"Enter portfolio", skipIntro:"Skip introduction"
   };
-  function ownGlobalControls() {
-    if (!api.active) return;
-    var controls = document.querySelectorAll(".mobile-theme-toggle,.portfolio-language-picker,.portfolio-language-control");
-    var ids = [];
-    controls.forEach(function (control,index) {
-      if (control.classList.contains("portfolio-language-control") && control.closest(".portfolio-language-picker")) return;
-      if (!control.id) {
-        var identifier = "portfolio-entry-control-" + index;
-        while (document.getElementById(identifier)) identifier += "x";
-        control.id = identifier;
-      }
-      ids.push(control.id);
-    });
-    if (ids.length) entry.setAttribute("aria-owns",ids.join(" "));
-  }
   function translate() {
     var locale = window.PortfolioLocale;
     entry.querySelectorAll("[data-entry-copy]").forEach(function (node) {
@@ -160,26 +147,24 @@
     enterReady = true;
     entry.querySelectorAll(".entry-enter,.entry-core").forEach(function (button) { button.disabled = false; });
     document.removeEventListener("portfolio:guide-ready",unlockActions);
-    if (api.active && (document.activeElement === document.body || document.activeElement === document.documentElement)) entry.querySelector(".entry-enter").focus({preventScroll:true});
   }
   function complete() {
     if (!api.active) return;
     clearTimeout(exitTimer);
     clearTimeout(revealTimer);
     clearTimeout(readyTimer);
+    clearTimeout(autoTimer);
     api.active = false;
     hasEntered = true;
     entry.hidden = true;
     entry.classList.remove("is-revealing","is-entering");
-    entry.removeAttribute("aria-owns");
     document.body.classList.remove("portfolio-entry-active","portfolio-entry-transition");
     document.documentElement.classList.remove("portfolio-entry-active");
-    backgrounds.forEach(function (item) { item.element.inert = item.inert; });
     document.removeEventListener("keydown",keyboard);
     document.removeEventListener("portfolio:language",translate);
     document.removeEventListener("visibilitychange",updateVisibility);
     document.removeEventListener("portfolio:guide-ready",unlockActions);
-    entry.removeEventListener("pointermove",move);
+    document.removeEventListener("pointermove",move);
     entry.removeEventListener("pointerleave",resetTilt);
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
@@ -188,63 +173,52 @@
     var anchor = hashId && document.getElementById(hashId);
     if (anchor && entry.contains(anchor)) anchor = null;
     var focusTarget = anchor || document.querySelector(".main-wrapper h1,.main-wrapper [role='heading'][aria-level='1'],.main-wrapper");
-    if (focusTarget) {
+    if (focusTarget && focusAfterEntry) {
       if (!focusTarget.hasAttribute("tabindex")) focusTarget.setAttribute("tabindex","-1");
       focusTarget.focus({preventScroll:true});
-      if (anchor) anchor.scrollIntoView({behavior:"auto",block:"start"});
     }
+    if (anchor) anchor.scrollIntoView({behavior:"auto",block:"start"});
     document.dispatchEvent(new CustomEvent("portfolio:entered",{detail:{source:"entry"}}));
   }
   function enter(options) {
     if (!api.active || entering) return;
-    if (!(options && options.skipNarration) && !enterReady) return;
+    if (!(options && (options.skipNarration || options.automatic)) && !enterReady) return;
     entering = true;
     hasEntered = true;
+    focusAfterEntry = !(options && options.automatic) || entry.contains(document.activeElement);
+    clearTimeout(autoTimer);
     clearTimeout(revealTimer); entry.classList.remove("is-revealing");
+    api.automatic = !!(options && options.automatic);
     api.skipped = !!(options && options.skipNarration);
-    narrationEnabled = !api.skipped;
+    // Home's automatic entry is silent, but a later sidebar click may request
+    // the destination page's first tour. An explicit Skip stays silent.
+    narrationEnabled = !api.skipped || !!(options && options.automatic);
     api.autoNarrate = narrationEnabled;
-    // Dispatch synchronously during the visitor's click so voice can use that activation.
-    document.dispatchEvent(new CustomEvent("portfolio:entering",{detail:{source:"entry",automatic:false,skipNarration:!!(options && options.skipNarration)}}));
+    // A manual Enter retains its user gesture for sound; autoplay cannot.
+    document.dispatchEvent(new CustomEvent("portfolio:entering",{detail:{source:"entry",automatic:!!(options && options.automatic),skipNarration:api.skipped}}));
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
     if (!motionAllowed() || (options && options.instant)) { complete(); return; }
     entry.classList.add("is-entering");
     document.body.classList.add("portfolio-entry-transition");
-    exitTimer = window.setTimeout(complete,650);
+    exitTimer = window.setTimeout(complete,550);
   }
   function keyboard(event) {
     if (entering) return;
     // Language search owns its Escape, Enter and Tab behavior while open.
     if (event.defaultPrevented || (event.target.closest && event.target.closest(".portfolio-language-picker,.portfolio-language-menu"))) return;
     if (event.key === "Escape") { event.preventDefault(); enter({instant:true,skipNarration:true}); return; }
-    if (enterReady && (event.key === "Enter" || event.key === " ") && (event.target === entry || event.target === document.body)) {
-      event.preventDefault(); enter(); return;
-    }
-    if (event.key !== "Tab") return;
-    var candidates = entry.querySelectorAll("button");
-    var controls = Array.prototype.slice.call(candidates).concat(Array.prototype.slice.call(document.querySelectorAll(".mobile-theme-toggle,.portfolio-language-control,.portfolio-language-button")));
-    var visible = controls.filter(function (node) { return !node.disabled && node.getClientRects().length; });
-    var index = visible.indexOf(document.activeElement);
-    if (index < 0 || (event.shiftKey && index === 0) || (!event.shiftKey && index === visible.length - 1)) {
-      event.preventDefault();
-      (event.shiftKey ? visible[visible.length - 1] : visible[0]).focus();
-    }
   }
 
   api.active = true;
   entry.hidden = false;
-  document.documentElement.classList.remove("portfolio-entry-pending");
   if (motionAllowed()) {
     entry.classList.add("is-revealing");
     revealTimer = window.setTimeout(function () { entry.classList.remove("is-revealing"); },1250);
   }
-  backgrounds.forEach(function (item) { item.element.inert = true; });
   document.body.classList.add("portfolio-entry-active");
   document.documentElement.classList.add("portfolio-entry-active");
   translate();
-  ownGlobalControls();
-  if (document.readyState !== "complete") document.addEventListener("DOMContentLoaded",ownGlobalControls,{once:true});
   if (!enterReady) {
     entry.querySelectorAll(".entry-enter,.entry-core").forEach(function (button) { button.disabled = true; });
     document.addEventListener("portfolio:guide-ready",unlockActions);
@@ -257,9 +231,19 @@
   document.addEventListener("keydown",keyboard);
   document.addEventListener("portfolio:language",translate);
   document.addEventListener("visibilitychange",updateVisibility);
-  entry.addEventListener("pointermove",move,{passive:true});
+  document.addEventListener("pointermove",move,{passive:true});
   entry.addEventListener("pointerleave",resetTilt,{passive:true});
   window.addEventListener("pageshow",function (event) { if (event.persisted && entering) complete(); });
-  if (enterReady) entry.querySelector(".entry-enter").focus({preventScroll:true});
   updateVisibility();
+  // Let visitors see the brief 3D reveal, then expose the actual page without
+  // requiring a click. Reduced-motion visitors reach the page immediately.
+  function autoEnter() {
+    var languageMenu = document.querySelector(".portfolio-language-menu");
+    if (languageMenu && !languageMenu.hidden) {
+      autoTimer = window.setTimeout(autoEnter,250);
+      return;
+    }
+    enter({automatic:true,skipNarration:document.body.classList.contains("home-page"),instant:!motionAllowed()});
+  }
+  autoTimer = window.setTimeout(autoEnter,motionAllowed() ? 1200 : 0);
 }());
