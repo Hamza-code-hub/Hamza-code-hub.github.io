@@ -445,6 +445,10 @@
         function failed(blocked) {
           if (!valid()) return;
           clearTimers(); audio = null; player.pause(); root.classList.remove("is-speaking");
+          // A browser autoplay rejection also blocks unprompted speech synthesis.
+          // Surface Play immediately so the visitor can enable the recorded voice
+          // with a trusted click instead of waiting through the TTS watchdog.
+          if (blocked) { unavailable(true); return; }
           if (nativeVoice) { speak(text,token,onEnd,onStart,true,timelineOptions); return; }
           unavailable(blocked);
         }
@@ -761,7 +765,7 @@
     if (reducedMotion.addEventListener) reducedMotion.addEventListener("change",function () { stop(false); });
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:function () { intro(true); },startTour:tour,stop:function () { stop(true); }};
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=14",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=15",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (continuation) { continuation = null; tour({continuation:true}); }

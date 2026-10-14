@@ -23,7 +23,7 @@
 .portfolio-guide.is-active .guide-icon-stop { display:block; }
 .portfolio-guide[data-sound="blocked"] .portfolio-guide__play,
 .portfolio-assistant-dialog[data-sound="blocked"] .portfolio-assistant__play { outline:2px solid var(--accent); outline-offset:3px; animation:guide-enable-sound 1.7s ease-in-out 3; }
-.portfolio-guide__prompt { position:absolute; top:17px; right:calc(100% + 8px); max-width:min(220px,calc(100vw - 120px)); width:max-content; padding:8px 11px; border:1px solid var(--accent); border-radius:10px; background:var(--panel-solid); box-shadow:0 7px 24px rgba(0,0,0,.22); color:var(--text); font:600 12px/1.35 system-ui,sans-serif; text-align:start; pointer-events:none; }
+.portfolio-guide__prompt { position:absolute; top:17px; right:calc(100% + 8px); max-width:min(220px,calc(100vw - 120px)); width:max-content; padding:8px 11px; border:1px solid var(--accent); border-radius:10px; background:var(--panel-solid); box-shadow:0 7px 24px rgba(0,0,0,.22); color:var(--text); font:600 12px/1.35 system-ui,sans-serif; text-align:start; pointer-events:none; animation:guide-cue-appear .36s ease-out both; }
 .portfolio-guide[data-prompt-side="right"] .portfolio-guide__prompt { right:auto; left:calc(100% + 8px); }
 .portfolio-guide.is-chat-open .portfolio-guide__prompt { display:none; }
 .guide-avatar__floor { fill:var(--accent); opacity:.17; }
@@ -48,6 +48,7 @@
 .portfolio-guide[data-gesture="point"] .guide-avatar__point-finger { display:block; }
 .portfolio-guide[data-mode="compact"] .guide-avatar__arm--right { transform:rotate(8deg); }
 .portfolio-guide:not(.is-active) .guide-avatar__forearm { animation:none; }
+.portfolio-guide[data-sound="blocked"] .guide-avatar__forearm--right { animation:guide-wave 1.15s ease-in-out 2; }
 .portfolio-guide-target { outline:2px solid var(--accent); outline-offset:6px; border-radius:6px; }
 body.mobile-menu-open .portfolio-guide { visibility:hidden; }
 body.portfolio-guided-navigation .portfolio-guide { visibility:visible; z-index:1165; }
@@ -105,6 +106,7 @@ body.portfolio-guided-navigation .portfolio-guide { visibility:visible; z-index:
 @keyframes guide-talk { to { transform:scaleY(2.3) scaleX(.85); } }
 @keyframes guide-breathe { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
 @keyframes guide-wave { 0%,100% { transform:rotate(-5deg); } 30% { transform:rotate(14deg); } 70% { transform:rotate(-14deg); } }
+@keyframes guide-cue-appear { from { opacity:0; transform:translateY(6px); } }
 @keyframes guide-enable-sound { 50% { box-shadow:0 0 0 8px color-mix(in srgb,var(--accent) 16%,transparent); } }
 @media (max-width:575.98px) {
   .portfolio-assistant-dialog { top:var(--assistant-mobile-top,130px); right:12px; bottom:auto; left:12px; width:auto; height:var(--assistant-mobile-height,calc(100dvh - 144px)); max-height:none; }
