@@ -5234,6 +5234,13 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   text-decoration-color:currentColor !important;
   text-decoration-thickness:1px !important;
   text-underline-offset:3px;
+  transition:color .18s ease,background-color .18s ease,text-decoration-thickness .18s ease;
+}
+.resume-page .resume-wrapper a[href]:not(.resume-profile-card):hover,
+.resume-page .resume-wrapper a[href]:not(.resume-profile-card):focus-visible {
+  color:var(--accent-strong) !important;
+  background:var(--accent-soft);
+  text-decoration-thickness:2px !important;
 }
 .resume-page .resume-wrapper a[href]:focus-visible {
   outline:2px solid var(--accent);
@@ -5307,6 +5314,13 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   text-decoration:underline;
   text-decoration-thickness:1px;
   text-underline-offset:2px;
+}
+.resume-page .resume-profile-card:hover .resume-profile-label,
+.resume-page .resume-profile-card:hover .resume-profile-value,
+.resume-page .resume-profile-card:focus-visible .resume-profile-label,
+.resume-page .resume-profile-card:focus-visible .resume-profile-value {
+  color:var(--accent-strong);
+  text-decoration-thickness:2px;
 }
 
 @media (max-width:1199.98px) {

@@ -488,36 +488,87 @@
     ['university-timetable-system', 'University Timetable System', ['university timetable', 'timetable system', 'faculty scheduling'], ['scheduling', 'django', 'education']],
     ['visionguard-ai', 'VisionGuard AI', ['visionguard', 'warehouse safety', 'forklift pedestrian'], ['computer vision', 'warehouse', 'safety', 'object detection', 'tracking']]
   ];
+  var projectTools = {
+    '3d-mobibrainnet':'PyTorch, 3D CNN, NiBabel and scikit-learn',
+    'agentic-cybersecurity-ai-assistant':'LangChain, LangGraph, FAISS, ChromaDB and Docker',
+    'agentic-rag-support-assistant':'LangChain, vector search, embeddings and Python',
+    'ai-intrusion-detection':'TabNet, Transformers, Docker and Kubernetes',
+    'ai-ticket-scalping-prevention':'scikit-learn, anomaly detection and Python',
+    'ai-virtual-painter':'OpenCV, MediaPipe and NumPy',
+    'aircraft-engine-rul-prediction':'scikit-learn, XGBoost, LightGBM and NASA C-MAPSS data',
+    'attendance-management-system':'Flutter, Dart, Node.js and TypeScript',
+    'drone-flight-simulation':'Python, Pygame, ROS, PX4 and MAVROS',
+    'flood-prediction-lightgbm':'LightGBM, scikit-learn, Pandas and NumPy',
+    'linkedin-automation-bot':'Selenium, BeautifulSoup and Python',
+    'neuroinsight-ai':'Flutter, 3D visualization, agentic orchestration and RAG',
+    'satellite-image-classification':'PyTorch, transfer-learned ResNet18 and EuroSAT',
+    'university-timetable-system':'Django, Python and SQL',
+    'visionguard-ai':'YOLO, ByteTrack, OpenCV homography and Python'
+  };
   function projectDescription(fact) {
     var catalog = window.PortfolioPageIntros;
     var entry = catalog && catalog['project-' + fact[0]];
-    return entry && (entry[language] || entry.en) ? (entry[language] || entry.en).text : fact[1] + '. Open the case study for the overview, methods and results.';
+    var overview = entry && (entry[language] || entry.en) ? (entry[language] || entry.en).text : fact[1] + '. Open the case study for the overview, methods and results.';
+    return language === 'en' && projectTools[fact[0]] ? overview + '\n\nMethods and tools: ' + projectTools[fact[0]] + '.' : overview;
   }
   function projectLink(fact) { return link(fact[1], 'projects/' + fact[0] + '.html'); }
+  function factT(key) {
+    var words = window.PortfolioKnowledgeLocales && window.PortfolioKnowledgeLocales[language];
+    return words && words[key] || key;
+  }
   function knowledgeAnswer(query) {
     var contactLink = link(t('contact'), 'contact.html');
     var resumeLink = link(t('resume'), 'resume/index.html');
     var projectIntent = any(query, topicTerms('projects', ['project', 'case study', 'portfolio', 'built', 'work sample', 'پراجیکٹ', 'مشروع', 'proyecto', 'projet', 'projeto']));
     if (any(query, ['whatsapp', 'wa.me', 'whats app', 'واٹس ایپ', 'واتساب', 'watsapp'])) {
-      return { text: 'Muhammad Hamza’s WhatsApp number is +92 341 7215920. You can also send project details through the Contact page.', topic: 'contact', links: [link('WhatsApp +92 341 7215920', 'https://wa.me/923417215920'), contactLink] };
+      return { text: language === 'en' ? 'Muhammad Hamza’s WhatsApp number is +92 341 7215920. You can also send project details through the Contact page.' : t('contactAnswer') + ' WhatsApp: +92 341 7215920.', topic: 'contact', links: [link('WhatsApp +92 341 7215920', 'https://wa.me/923417215920'), contactLink] };
     }
-    if (any(query, ['phone number', 'mobile number', 'telephone number', 'call hamza', 'contact number', 'فون نمبر', 'رقم الهاتف'])) {
+    if (any(query, ['phone number', 'mobile number', 'telephone number', 'call hamza', 'contact number', 'his number', 'your number', 'hamza number', 'number of hamza', 'فون نمبر', 'رقم الهاتف']) || (query === 'number' || query === 'phone')) {
       return { text: 'Muhammad Hamza’s published WhatsApp number is +92 341 7215920. The Contact page also has a message form.', topic: 'contact', links: [link('WhatsApp +92 341 7215920', 'https://wa.me/923417215920'), contactLink] };
     }
     if (any(query, ['email address', 'email id', 'email hamza', 'ای میل ایڈریس', 'البريد الإلكتروني'])) {
       return { text: 'Muhammad Hamza’s published email address is hamza.ai.official@gmail.com. You can also use the Contact form.', topic: 'contact', links: [link('Email Muhammad Hamza', 'mailto:hamza.ai.official@gmail.com'), contactLink] };
     }
-    if (any(query, ['education', 'degree', 'university of okara', 'cgpa', 'college', 'تعلیم', 'جامعة', 'universidad', 'université'])) {
-      return { text: 'Muhammad Hamza earned a BS in Software Engineering from the University of Okara (2020–2024), with a 3.80 CGPA. His earlier qualification is FSc Pre-Engineering from Punjab Group of Colleges.', topic: 'education', links: [resumeLink] };
+    if (any(query, ['where is hamza based', 'where are you based', 'location', 'where is hamza located', 'city', 'لاہور', 'موقع'])) {
+      return { text: 'Muhammad Hamza lists Lahore, Pakistan as his location. For remote work or a project discussion, use the Contact page.', topic: 'contact', links: [resumeLink, contactLink] };
+    }
+    if (any(query, ['who is muhammad hamza', 'who is hamza', 'about hamza', 'about muhammad', 'your background', 'اپنے بارے', 'من هو محمد'])) {
+      return { text: 'Muhammad Hamza is a client-facing AI/ML engineer focused on production-grade agentic AI, RAG, LLM applications, computer vision and machine learning. He leads a four-person development team, works on applied cybersecurity, and has published AI research in medical imaging.', topic: 'about', links: [link(t('about') === 'about' ? 'About Muhammad Hamza' : t('about'), 'index.html#aboutme'), resumeLink] };
+    }
+    if (any(query, ['why hire', 'hire hamza', 'hire you', 'choose hamza', 'choose you', 'work with hamza', 'آپ کو کیوں', 'کیوں ہائر', 'لماذا أوظف'])) {
+      var reasons = language === 'en' ? 'Why hire Muhammad Hamza? He brings published AI research, international client delivery, production-ready engineering from requirements through deployment, and a 4.8/5 Fiverr rating across 13 client reviews.' : factT('Why Hire Me?') + ':\n' + [factT('Published Researcher'),factT('International Experience'),factT('Production-Ready AI'),factT('5-Star Reviews')].join(' · ') + '\n4.8/5 · 13';
+      return { text: reasons, topic: 'why-hire', links: [link(factT('Why Hire Me?'), 'services.html#why-hire'), resumeLink, contactLink] };
+    }
+    if (any(query, ['education', 'degree', 'university of okara', 'cgpa', 'college', 'study', 'studied', 'school', 'qualification', 'alma mater', 'تعلیم', 'پڑھائی', 'جامعة', 'universidad', 'université'])) {
+      var education = language === 'en' ? 'Muhammad Hamza earned a BS in Software Engineering from the University of Okara (2020–2024), with a 3.80 CGPA. His earlier qualification is FSc Pre-Engineering from Punjab Group of Colleges.' : factT('Education') + ':\n' + factT('BS Software Engineering, CGPA: 3.80') + ' · University of Okara · 2020–2024\n' + factT('FSc Pre-Engineering') + ' · Punjab Group of Colleges';
+      return { text: education, topic: 'education', links: [resumeLink] };
     }
     if (any(query, ['cyberzeus', 'minhaj', 'fiverr', 'work experience', 'career history', 'professional experience', 'employment', 'تجربہ', 'خبرة'])) {
-      return { text: 'Experience: CyberZeus (Aug 2025–present), first as AI Developer in CyberZeus Games and since Jan 2026 as AI Engineer in CyberZeus Software Systems; Minhaj Solutions (Apr 2024–Aug 2025), AI Developer; and freelance AI/ML and Python work on Fiverr (Jul 2023–present). The résumé details the work in each role.', topic: 'experience', links: [resumeLink, contactLink] };
+      var experience = language === 'en' ? 'Experience: CyberZeus (Aug 2025–present), first as AI Developer in CyberZeus Games and since Jan 2026 as AI Engineer in CyberZeus Software Systems; Minhaj Solutions (Apr 2024–Aug 2025), AI Developer; and freelance AI/ML and Python work on Fiverr (Jul 2023–present). The résumé details the work in each role.' : factT('Experience') + ':\nCyberZeus · 08/2025 →\nCyberZeus Games · ' + factT('AI Developer') + ' · 08/2025–12/2025\nCyberZeus Software Systems · ' + factT('AI Engineer') + ' · 01/2026 →\nMinhaj Solutions · ' + factT('AI Developer') + ' · 04/2024–08/2025\nFiverr · ' + factT('Freelance AI/ML Engineer & Python Developer') + ' · 07/2023 →';
+      return { text: experience, topic: 'experience', links: [resumeLink, contactLink] };
     }
     if (any(query, ['skill', 'tech stack', 'technology stack', 'tools you use', 'programming language', 'مہارت', 'مهارات'])) {
-      return { text: 'Core skills include Python, FastAPI, LangChain/LangGraph, agent workflows, RAG and vector search (FAISS, ChromaDB, LlamaIndex), machine learning, computer vision (YOLO, OpenCV, ByteTrack), SQL/PostgreSQL, Docker, Kubernetes and AWS. The résumé also lists cybersecurity and VAPT tools.', topic: 'skills', links: [resumeLink, link(t('services'), 'services.html')] };
+      var skills = language === 'en' ? 'Core skills include Python, FastAPI, LangChain/LangGraph, agent workflows, RAG and vector search (FAISS, ChromaDB, LlamaIndex), machine learning, computer vision (YOLO, OpenCV, ByteTrack), SQL/PostgreSQL, Docker, Kubernetes and AWS. The résumé also lists cybersecurity and VAPT tools.' : factT('Core Technical Skills') + ':\nPython · FastAPI · LangChain · LangGraph · RAG · FAISS · ChromaDB · LlamaIndex · YOLO · OpenCV · ByteTrack · SQL · PostgreSQL · Docker · Kubernetes · AWS';
+      return { text: skills, topic: 'skills', links: [resumeLink, link(t('services'), 'services.html')] };
     }
     if (any(query, ['publication', 'research paper', 'journal', 'doi', 'published research', 'اشاعت', 'منشورات'])) {
       return { text: 'The résumé lists three research publications, with DOI links: 10.1016/j.asej.2025.103714, 10.1109/ACCESS.2026.3683571 and 10.1016/j.asej.2026.104453. Open the résumé for their titles and source links.', topic: 'research', links: [resumeLink] };
+    }
+    if (any(query, ['widenet', 'skin lesion segmentation', 'skin lesion paper'])) {
+      return { text: 'WIDENet is Muhammad Hamza’s lightweight CNN research on skin-lesion segmentation, combining multi-resolution wavelets, transformer context and attentive feature refinement. It was published in IEEE Access in 2026.', topic: 'research', links: [link('WIDENet DOI', 'https://doi.org/10.1109/ACCESS.2026.3683571'), resumeLink] };
+    }
+    if (any(query, ['diabetic retinopathy', 'retinopathy paper', 'retinal diagnosis'])) {
+      return { text: 'His 2026 diabetic-retinopathy paper presents a compact hierarchical vision encoder for five-class grading, with stability-driven normalization and regularization. The résumé reports 98.91% accuracy on APTOS.', topic: 'research', links: [link('Retinopathy paper DOI', 'https://doi.org/10.1016/j.asej.2026.104453'), resumeLink] };
+    }
+    if (any(query, ['achievement', 'award', 'scholarship', 'certificate', 'kaggle badge', 'laptop scheme', 'کامیابی', 'إنجاز'])) {
+      var achievements = language === 'en' ? 'Published achievements include a fully funded 2025 unmanned-aerial-systems scholarship at Samara National Research University, a 2023 Prime Minister’s Youth Laptop Scheme merit award, and Kaggle Notebook Expert status. The résumé links to supporting announcements.' : factT('Certifications & Achievements') + ':\n' + factT('Fully Funded Scholar — Design & Development of Unmanned Aerial Systems') + ' · 2025\n' + factT('Prime Minister’s Youth Laptop Scheme — Merit Recipient') + ' · 2023\n' + factT('Kaggle Notebook Expert Badge, Kaggle');
+      return { text: achievements, topic: 'achievements', links: [resumeLink, link(t('about') === 'about' ? 'Achievements' : t('about'), 'index.html#achievements')] };
+    }
+    if (any(query, ['github profile', 'kaggle profile', 'linkedin profile', 'google scholar', 'researchgate', 'fiverr profile', 'social profile'])) {
+      return { text: 'Muhammad Hamza’s professional profiles include GitHub, LinkedIn, Kaggle, Fiverr, Google Scholar and ResearchGate. The résumé and Work Platforms section contain the direct links.', topic: 'profiles', links: [link('Professional profiles', 'index.html#platforms'), resumeLink] };
+    }
+    if (any(query, ['testimonial', 'client review', 'what clients say', 'feedback from clients'])) {
+      return { text: 'Client feedback is published in the Testimonials section. His résumé also reports a 4.8/5 Fiverr rating across 13 client reviews.', topic: 'testimonials', links: [link('Testimonials', 'index.html#testimonials'), resumeLink] };
     }
     if (any(query, ['photo', 'picture', 'portrait', 'gallery', 'image of hamza', 'تصویر', 'صورة', 'galería', 'galerie'])) {
       var gallery = window.PortfolioPageIntros && window.PortfolioPageIntros.gallery;
@@ -527,10 +578,10 @@
     var named = projectFacts.find(function (fact) { return fact[2].some(function (name) { return contains(query, name); }); });
     if (named) return { text: projectDescription(named), topic: 'projects', links: [projectLink(named), link(t('projects'), 'portfolio.html'), contactLink] };
     if (projectIntent) {
-      var tags = ['rag', 'agentic', 'cybersecurity', 'security', 'computer vision', 'vision', 'medical', 'mri', 'alzheimer', 'classification', 'fraud', 'automation', 'prediction', 'drone', 'satellite', 'warehouse', 'research', 'flutter', 'scheduling', 'machine learning'];
+      var tags = ['rag', 'agentic', 'cybersecurity', 'security', 'computer vision', 'vision', 'cv', 'medical', 'mri', 'alzheimer', 'classification', 'fraud', 'automation', 'prediction', 'drone', 'satellite', 'warehouse', 'research', 'flutter', 'scheduling', 'machine learning'];
       var matchedTags = tags.filter(function (tag) { return contains(query, tag); });
       if (matchedTags.length) {
-        var matches = projectFacts.filter(function (fact) { return matchedTags.some(function (tag) { return fact[3].indexOf(tag) !== -1 || (tag === 'vision' && fact[3].indexOf('computer vision') !== -1); }); }).slice(0, 3);
+        var matches = projectFacts.filter(function (fact) { return matchedTags.some(function (tag) { return fact[3].indexOf(tag) !== -1 || ((tag === 'vision' || tag === 'cv') && fact[3].indexOf('computer vision') !== -1); }); }).slice(0, 3);
         if (matches.length) return { text: matches.map(projectDescription).join('\n\n'), topic: 'projects', links: matches.map(projectLink).concat([link(t('projects'), 'portfolio.html')]) };
       }
       return { text: 'The portfolio presents 15 published case studies across agentic AI, RAG, cybersecurity, computer vision, medical imaging, automation, and classical machine learning. Open the portfolio to browse each overview and its methods.', topic: 'projects', links: [link(t('projects'), 'portfolio.html')] };

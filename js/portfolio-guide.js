@@ -11,6 +11,10 @@
     var pageIntroWaiters = [];
     var knowledgeIntroWaiters = [];
     var knowledgeIntroLoading = false;
+    var knowledgeIntroFailed = false;
+    var knowledgeLocaleWaiters = [];
+    var knowledgeLocaleLoading = false;
+    var knowledgeLocaleFailed = false;
     var coreIntroReady = !!window.PortfolioCoreIntros;
     var coreIntroLoading = false;
     var coreIntroWaiters = [];
@@ -78,17 +82,37 @@
       document.head.appendChild(introScript);
     }
     function ensureKnowledgeIntros(callback) {
-      if (window.PortfolioPageIntros) { callback(); return; }
+      if (window.PortfolioPageIntros || knowledgeIntroFailed) { callback(); return; }
       if (pageIntroKey && !pageIntroReady) { pageIntroWaiters.push(callback); return; }
       knowledgeIntroWaiters.push(callback);
       if (knowledgeIntroLoading) return;
       knowledgeIntroLoading = true;
       var script = document.createElement("script"); script.async = true;
       script.src = new URL("../js/portfolio-page-intros.js?v=1",scriptUrl).href;
-      script.onload = script.onerror = function () {
+      script.onload = script.onerror = function (event) {
+        if (event.type === "error") knowledgeIntroFailed = true;
         knowledgeIntroWaiters.splice(0).forEach(function (waiter) { waiter(); });
       };
       document.head.appendChild(script);
+    }
+    function ensureKnowledgeLocales(callback) {
+      if (language().code === "en" || window.PortfolioKnowledgeLocales || knowledgeLocaleFailed) { callback(); return; }
+      knowledgeLocaleWaiters.push(callback);
+      if (knowledgeLocaleLoading) return;
+      knowledgeLocaleLoading = true;
+      var script = document.createElement("script"); script.async = true;
+      script.src = new URL("../js/portfolio-knowledge-locales.js?v=2",scriptUrl).href;
+      script.onload = script.onerror = function (event) {
+        if (event.type === "error") knowledgeLocaleFailed = true;
+        knowledgeLocaleWaiters.splice(0).forEach(function (waiter) { waiter(); });
+      };
+      document.head.appendChild(script);
+    }
+    function ensureKnowledge(callback) {
+      var pending = 2;
+      function done() { if (--pending === 0) callback(); }
+      ensureKnowledgeIntros(done);
+      ensureKnowledgeLocales(done);
     }
     function later(callback,delay) { timers.push(window.setTimeout(callback,delay)); }
     function clearTimers() { timers.forEach(window.clearTimeout); timers = []; }
@@ -274,9 +298,9 @@
       navTools:'.home-nav a[href$="#whatido"]', navTestimonials:'.home-nav a[href$="#testimonials"]', navFeatured:'.home-nav a[href$="#projects"]',
       navPortfolio:'.sidebar-nav a[href$="portfolio.html"]', navResume:'.sidebar-nav a[href$="resume/index.html"]', navGallery:'.sidebar-nav a[href$="gallery.html"]',
       navServices:'.sidebar-nav a[href$="services.html"], .home-nav a[href$="#services"]', navContact:'.sidebar-nav a[href$="contact.html"]',
-      portfolioHero:".cta-section h1", portfolioCards:".projects-list .project-card", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
+      portfolioHero:".cta-section h1", portfolioCards:".projects-list .project-card", portfolioPreview2:".project-cards > .isotope-item:nth-child(2) .project-card", portfolioPreview3:".project-cards > .isotope-item:nth-child(3) .project-card", portfolioPreview4:".project-cards > .isotope-item:nth-child(4) .project-card", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
       serviceHero:".service-hero h1", galleryHero:".cta-section h1", galleryFirst:".photo-grid .photo-tile", projectHero:".cta-section h1",
-      serviceLLM:"#llm h3", serviceRAG:"#rag h3", serviceAgents:"#agentic h3", serviceVision:"#cv h3", serviceData:"#data h3",
+      serviceLLM:"#llm h3", serviceRAG:"#rag h3", serviceAgents:"#agentic h3", serviceVision:"#cv h3", serviceNLP:"#nlp h3", serviceWeb:"#webdev h3", serviceResearch:"#research h3", serviceData:"#data h3", serviceDevOps:"#devops h3", serviceWhyHire:"#why-hire h2",
       contactName:"#contact-name", contactEmail:"#contact-email", contactSubject:"#contact-subject", contactMessage:"#contact-message", contactSend:'#contact-form button[type="submit"]'
     };
     function ensureGuideMenu() {
@@ -327,12 +351,12 @@
     function cueTimeline(text,cues,token) {
       var list = (cues || []).filter(function (cue) { return typeof cue.at === "number" && targets[cue.target]; }).slice().sort(function (a,b) { return a.at - b.at; }).map(function (cue,index,ordered) {
         var lead = index ? Math.min(.45,Math.max(0,cue.at - ordered[index - 1].at) * .4) : .45;
-        return {at:cue.at,target:cue.target,match:cue.match,gesture:cue.gesture,lead:lead,charIndex:cue.match ? text.indexOf(cue.match) : cue.at === 0 ? 0 : -1};
+        return {at:cue.at,fraction:cue.fraction,target:cue.target,match:cue.match,gesture:cue.gesture,lead:lead,charIndex:typeof cue.charIndex === "number" ? cue.charIndex : cue.match ? text.indexOf(cue.match) : cue.at === 0 ? 0 : -1};
       });
       var current = -1;
       function render(index,travel) { if (token !== generation || index < 0) return; current = index; root.style.setProperty("--guide-travel",(travel || Math.max(.12,list[index].lead)) + "s"); pointCue(list[index]); }
       return {
-        time:function (seconds) { if (token !== generation) return; var index = -1; list.forEach(function (cue,i) { if (seconds + cue.lead >= cue.at) index = i; }); if (index >= 0) render(index); },
+        time:function (seconds,duration) { if (token !== generation) return; var index = -1; list.forEach(function (cue,i) { var at = cue.fraction && Number.isFinite(duration) && duration > 0 ? cue.fraction * duration : cue.at; if (seconds + cue.lead >= at) index = i; }); if (index >= 0) render(index); },
         boundary:function (offset) { if (token !== generation) return; var index = -1; list.forEach(function (cue,i) { if (cue.charIndex >= 0 && offset >= cue.charIndex) index = i; }); if (index >= 0) render(index,.18); },
         refresh:function () { render(current); }
       };
@@ -382,8 +406,8 @@
           unavailable(blocked);
         }
         var started = false;
-        player.onplaying = function () { if (!valid()) return; clearTimers(); root.classList.add("is-speaking"); updateToggle(true); if (!started && onStart) onStart(); started = true; timeline.time(player.currentTime || 0); later(function () { failed(false); },Math.max(35000,text.length * 160)); };
-        player.ontimeupdate = function () { if (valid()) timeline.time(player.currentTime || 0); };
+        player.onplaying = function () { if (!valid()) return; clearTimers(); root.classList.add("is-speaking"); updateToggle(true); if (!started && onStart) onStart(); started = true; timeline.time(player.currentTime || 0,player.duration); later(function () { failed(false); },Math.max(35000,text.length * 160)); };
+        player.ontimeupdate = function () { if (valid()) timeline.time(player.currentTime || 0,player.duration); };
         player.onwaiting = function () { if (valid()) root.classList.remove("is-speaking"); };
         player.onended = function () { if (valid()) done(); };
         player.onerror = function () { failed(false); };
@@ -418,7 +442,9 @@
       if (page !== "home") {
         var chapterKey = {portfolio:"portfolioPage",resume:"resumePage",contact:"contactForm"}[page];
         var recording = chapterKey ? chapter(chapterKey) || (window.PortfolioCoreIntros && window.PortfolioCoreIntros[language().code] && window.PortfolioCoreIntros[language().code][page]) : page === "services" ? narration("tourServices") : window.PortfolioPageIntros && window.PortfolioPageIntros[pageIntroKey] && window.PortfolioPageIntros[pageIntroKey][language().code];
-        var cues = recording && recording.cues || (page === "services" ? [{at:0,target:"serviceHero",gesture:"wave"},{at:2.8,target:"serviceLLM",gesture:"point"}] : page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"},{at:3.8,target:"galleryFirst",gesture:"point"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
+        var cues = recording && recording.cues || (page === "services" ? [{at:0,target:"serviceHero",gesture:"wave"},{at:1.8,fraction:.16,target:"serviceLLM",gesture:"point"},{at:3.5,fraction:.32,target:"serviceAgents",gesture:"point"},{at:5.3,fraction:.48,target:"serviceVision",gesture:"point"},{at:7.2,fraction:.65,target:"serviceData",gesture:"point"},{at:9.3,fraction:.84,target:"serviceRAG",gesture:"point"}] : page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"},{at:3.8,target:"galleryFirst",gesture:"point"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
+        if (page === "services" && recording) cues = cues.map(function (cue) { return Object.assign({},cue,{charIndex:Math.round(recording.text.length * (cue.fraction || 0))}); });
+        if (page === "portfolio" && cues.length) cues = cues.concat([{at:5.1,fraction:.41,charIndex:Math.round(recording.text.length * .49),target:"portfolioPreview2",gesture:"point"},{at:7.6,fraction:.61,charIndex:Math.round(recording.text.length * .68),target:"portfolioPreview3",gesture:"point"},{at:10.1,fraction:.80,charIndex:Math.round(recording.text.length * .86),target:"portfolioPreview4",gesture:"point"}]);
         if (!recording) { recording = narration("welcome"); chapterKey = "welcome"; cues = []; }
         if (!recording) { complete(false); return; }
         root.dataset.chapter = chapterKey || (page === "services" ? "tourServices" : pageIntroKey);
@@ -442,12 +468,29 @@
       if (page === "home") {
         return [item("introMap",null,"navPortfolio"),item("openPortfolio",t("tourProjects"),"navPortfolio","portfolio")];
       }
-      if (page === "portfolio") return [item("portfolioPage",t("tourProjects"),"portfolioCards"),item("sidebarResume",t("tourResume"),"navResume","resume")];
+      if (page === "portfolio") {
+        var catalog = window.PortfolioPageIntros || {};
+        var cards = Array.from(document.querySelectorAll(".project-cards .project-card")).filter(function (card) { return card.getClientRects().length > 0; });
+        var projects = cards.map(function (card) {
+          var tile = card.closest(".isotope-item"), index = Array.prototype.indexOf.call(tile.parentElement.children,tile);
+          var href = card.querySelector(".card-title a[href]"), slug = href && new URL(href.href).pathname.split("/").pop().replace(/\.html$/i,"");
+          var key = "projectCard" + index, recording = catalog["project-" + slug] && (catalog["project-" + slug][language().code] || catalog["project-" + slug].en);
+          targets[key] = ".project-cards > .isotope-item:nth-child(" + (index + 1) + ") .project-card";
+          return {key:"project-" + slug,recording:recording,text:recording ? recording.text : card.querySelector(".card-title").textContent.trim(),target:key};
+        });
+        return projects.length ? projects.concat([item("sidebarResume",t("tourResume"),"navResume","resume")]) : [item("portfolioPage",t("tourProjects"),"portfolioCards"),item("sidebarResume",t("tourResume"),"navResume","resume")];
+      }
       if (page === "resume") return chapter("resumePage") ? [item("resumePage",null,"resumeContent","services")] : [item("resumePage",t("tourResume"),"resumeContent"),item("sidebarServices",t("tourServices"),"navServices","services")];
       if (page === "services") {
-        var services = [item("servicesGenerative",locale.answer("llm").text,"serviceLLM")];
-        if (!chapter("servicesGenerative")) services.push(item("servicesRAG",locale.answer("rag").text,"serviceRAG"));
-        services.push(item("servicesAgents",locale.answer("agentic").text,"serviceAgents"),item("servicesVision",locale.answer("computer vision").text,"serviceVision"),item("servicesML",locale.answer("data science").text,"serviceData"),item("servicesContact",t("tourContact"),"navContact","contact")); return services;
+        var serviceTargets = {llm:"serviceLLM",rag:"serviceRAG",agentic:"serviceAgents",cv:"serviceVision",nlp:"serviceNLP",webdev:"serviceWeb",research:"serviceResearch",data:"serviceData",devops:"serviceDevOps"};
+        var services = Object.keys(serviceTargets).map(function (id) {
+          var recording = narration(id);
+          return {key:"service-" + id,recording:recording,text:recording ? recording.text : locale.answer(id).text,target:serviceTargets[id]};
+        });
+        var why = document.querySelector("#why-hire");
+        if (why) services.push({key:"service-why-hire",recording:null,text:Array.from(why.querySelectorAll("h2,.why-item h5")).map(function (el) { return el.textContent.trim(); }).join(". "),target:"serviceWhyHire",optionalVoice:true});
+        services.push(item("servicesContact",t("tourContact"),"navContact","contact"));
+        return services;
       }
       if (page === "contact") return [item("contactForm",t("tourContact"),"contactName")];
       return [item("openPortfolio",t("tourProjects"),"navPortfolio","portfolio")];
@@ -479,6 +522,7 @@
     function tour() {
       if (pendingLanguageIntent) { saveMuted(false); pendingLanguageIntent.wasTour = true; pendingLanguageIntent.wasActive = true; pendingLanguageIntent.interrupted = false; return; }
       if (!pageCopyReady()) { saveMuted(false); root.dataset.state = "tour"; afterPageCopy(tour); return; }
+      if (page === "portfolio" && !window.PortfolioPageIntros && !knowledgeIntroFailed) { root.dataset.state = "tour"; ensureKnowledgeIntros(tour); return; }
       closeDialog(false); cancel(); saveMuted(false); root.hidden = !ready; root.dataset.state = "tour"; root.dataset.mode = "compact";
       var steps = planForPage(), token = generation;
       function step(index) {
@@ -499,6 +543,7 @@
             later(function () { step(index + 1); },240);
           },null,false,{recording:recording,cues:cues,onUnavailable:function () {
             if (token !== generation) return;
+            if (item.optionalVoice) { later(function () { step(index + 1); },500); return; }
             root.dataset.state = "tour-paused"; root.classList.remove("is-speaking"); updateToggle(false);
             resumeTour = function () { step(index); };
           }});
@@ -531,7 +576,7 @@
     function openDialog() {
       stop(false); root.hidden = false; dialog.hidden = false; root.classList.add("is-chat-open"); avatar.setAttribute("aria-expanded","true");
       label(avatar,t("closeAssistant","Close assistant")); fitWindow(); input.focus({preventScroll:true});
-      ensureKnowledgeIntros(renderConversation);
+      ensureKnowledge(renderConversation);
     }
     function closeDialog(focus) {
       dialog.hidden = true; root.classList.remove("is-chat-open"); avatar.setAttribute("aria-expanded","false"); label(avatar,t("openAssistant","Open assistant")); if (focus) avatar.focus({preventScroll:true});
@@ -553,7 +598,7 @@
     play.addEventListener("click",togglePlayback); chatPlay.addEventListener("click",togglePlayback);
     hide.addEventListener("click",hideGuide);
     close.addEventListener("click",function () { stop(false); closeDialog(true); });
-    dialog.querySelector("form").addEventListener("submit",function (event) { event.preventDefault(); var question = input.value.trim(); if (!question) return; input.value = ""; ensureKnowledgeIntros(function () { answer(question,true); input.focus({preventScroll:true}); }); });
+    dialog.querySelector("form").addEventListener("submit",function (event) { event.preventDefault(); var question = input.value.trim(); if (!question) return; input.value = ""; ensureKnowledge(function () { answer(question,true); input.focus({preventScroll:true}); }); });
     dialog.querySelectorAll("[data-assistant-topic]").forEach(function (button) { button.addEventListener("click",function () { answer(button.dataset.assistantTopic,true,button.textContent.trim()); }); });
     tourButton.addEventListener("click",tour);
     dialog.querySelector(".portfolio-assistant__language").addEventListener("click",function () { if (window.PortfolioControls) window.PortfolioControls.openLanguagePicker(); });
@@ -564,6 +609,7 @@
     document.addEventListener("portfolio:language",function () {
       var intent = pendingLanguageIntent || {wasActive:root.classList.contains("is-active") || root.dataset.state === "intro" || root.dataset.state === "complete" || (root.dataset.state === "idle" && !muted()),wasTour:root.dataset.state === "tour" || root.dataset.state === "tour-paused",interrupted:false};
       pendingLanguageIntent = null; continuation = null; cancel(); labels(); renderConversation();
+      if (!dialog.hidden) ensureKnowledge(renderConversation);
       if (window.PortfolioEntry && window.PortfolioEntry.active) return;
       if (intent.interrupted) return;
       if (lastQuestion && !dialog.hidden && !muted()) answer(lastQuestion,false);
