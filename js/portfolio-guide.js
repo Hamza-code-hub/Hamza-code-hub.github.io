@@ -156,11 +156,8 @@
 
     var root = document.createElement("aside");
     root.className = "portfolio-guide"; root.hidden = true; root.dataset.state = "idle"; root.dataset.mode = "compact"; root.dataset.gesture = "rest";
-    root.innerHTML = `<div class="portfolio-guide__controls">
-      <button type="button" class="portfolio-guide__play"><svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true" focusable="false"><path class="guide-icon-play" d="m6 3 11 7-11 7Z" fill="currentColor"/><rect class="guide-icon-stop" x="4" y="4" width="12" height="12" rx="2" fill="currentColor"/></svg></button>
-      <button type="button" class="portfolio-guide__hide"><svg viewBox="0 0 20 20" width="13" height="13" aria-hidden="true" focusable="false"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-    </div>
-    <button type="button" class="portfolio-guide__avatar" aria-haspopup="dialog" aria-expanded="false" aria-controls="portfolio-assistant-dialog">
+    root.innerHTML = `<div class="portfolio-guide__stage">
+      <button type="button" class="portfolio-guide__avatar" aria-haspopup="dialog" aria-expanded="false" aria-controls="portfolio-assistant-dialog">
       <svg viewBox="0 0 180 184" width="100" height="112" aria-hidden="true" focusable="false">
         <defs><linearGradient id="guide-metal" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fbf5e8"/><stop offset=".45" stop-color="#d7c9a9"/><stop offset="1" stop-color="#87775a"/></linearGradient><linearGradient id="guide-trim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8cb7b"/><stop offset="1" stop-color="#9b6d2e"/></linearGradient><linearGradient id="guide-face" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#303033"/><stop offset="1" stop-color="#0b0d0f"/></linearGradient></defs>
         <ellipse class="guide-avatar__floor" cx="90" cy="173" rx="43" ry="6"/>
@@ -174,10 +171,11 @@
           <g class="guide-avatar__head"><path d="M90 29V18" stroke="#ad905d" stroke-width="3"/><circle cx="90" cy="15" r="4" fill="#f5ba5a"/><rect x="50" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="118" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="57" y="30" width="66" height="59" rx="21" fill="url(#guide-metal)"/><rect x="64" y="40" width="52" height="37" rx="14" fill="url(#guide-face)"/><g fill="#f5ba5a"><rect x="75" y="50" width="7" height="9" rx="3.5"/><rect x="98" y="50" width="7" height="9" rx="3.5"/><rect class="guide-avatar__mouth" x="84" y="67" width="12" height="3" rx="1.5"/></g><path d="M73 36h26" stroke="#fff9e9" stroke-width="2" opacity=".65" stroke-linecap="round"/></g>
         </g>
       </svg><span class="portfolio-guide__notification" aria-hidden="true"></span>
-    </button><span class="portfolio-guide__prompt" hidden></span><span class="portfolio-guide__status sr-only" role="status" aria-live="polite" aria-atomic="true"></span>`;
+      </button>
+      <button type="button" class="portfolio-guide__play"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false"><path class="guide-icon-play" d="m6 3 11 7-11 7Z" fill="currentColor"/><rect class="guide-icon-stop" x="4" y="4" width="12" height="12" rx="2" fill="currentColor"/></svg></button>
+    </div><span class="portfolio-guide__prompt" hidden></span><span class="portfolio-guide__status sr-only" role="status" aria-live="polite" aria-atomic="true"></span>`;
     var avatar = root.querySelector(".portfolio-guide__avatar");
     var play = root.querySelector(".portfolio-guide__play");
-    var hide = root.querySelector(".portfolio-guide__hide");
     var status = root.querySelector(".portfolio-guide__status");
     var prompt = root.querySelector(".portfolio-guide__prompt");
 
@@ -249,7 +247,6 @@
       dialog.style.setProperty("--assistant-bottom",(bottom + 91) + "px");
     }
     function stop(remember) { if (pendingLanguageIntent) pendingLanguageIntent.interrupted = true; cancel(); if (remember) saveMuted(true); root.dataset.state = "stopped"; status.textContent = t("stopped"); dock(); }
-    function hideGuide() { stop(true); closeDialog(false); root.dataset.mode = "launcher"; dock(); label(avatar,t("openAssistant","Open assistant")); }
     function clippedBounds(target) {
       if (!target || !target.isConnected || !target.getClientRects().length) return null;
       var rect = target.getBoundingClientRect();
@@ -379,7 +376,7 @@
         if (changed) scrollCueTarget(target,true,false);
       } else {
         closeGuideMenu();
-        if (changed && (root.dataset.state === "tour" || (root.dataset.state === "intro" && page !== "home"))) scrollCueTarget(target,false,true);
+        if (changed && (root.dataset.state === "tour" || root.dataset.state === "intro")) scrollCueTarget(target,false,true);
       }
       if (changed) { clearHighlights(); target.classList.add("portfolio-guide-target"); highlights = [target]; root.dataset.cue = cue.target; }
       moveTo(selector,cue.gesture || "point");
@@ -658,7 +655,7 @@
       var lang = language(); root.lang = lang.code; root.dir = "ltr"; dialog.lang = lang.code; dialog.dir = lang.dir;
       label(avatar,t(dialog.hidden ? "openAssistant" : "closeAssistant",dialog.hidden ? "Open assistant" : "Close assistant"));
       var playbackLabel = root.classList.contains("is-active") ? "stop" : root.dataset.sound === "blocked" ? "soundBlockedShort" : "play";
-      label(play,t(playbackLabel)); label(chatPlay,t(playbackLabel)); label(hide,t("hide")); label(close,t("closeAssistant","Close assistant"));
+      label(play,t(playbackLabel)); label(chatPlay,t(playbackLabel)); label(close,t("closeAssistant","Close assistant"));
       if (!prompt.hidden) { prompt.textContent = t("soundBlockedShort","Tap Play to enable sound"); prompt.dir = lang.dir; }
       dialog.querySelector("h2").textContent = t("assistant","Portfolio assistant"); dialog.querySelector(".portfolio-assistant__greeting").textContent = t("help");
       dialog.querySelector(".portfolio-assistant__note").textContent = t("assistantNote"); input.placeholder = t("questionPlaceholder");
@@ -671,7 +668,6 @@
     avatar.addEventListener("click",function () { if (dialog.hidden) openDialog(); else { stop(false); closeDialog(true); } });
     function togglePlayback() { if (root.classList.contains("is-active")) stop(true); else { clearBlockedCue(); saveMuted(false); if (resumeTour) { var resume = resumeTour; resumeTour = null; resume(); } else if (lastQuestion && !dialog.hidden) answer(lastQuestion,false); else startPageVoice(); } }
     play.addEventListener("click",togglePlayback); chatPlay.addEventListener("click",togglePlayback);
-    hide.addEventListener("click",hideGuide);
     close.addEventListener("click",function () { stop(false); closeDialog(true); });
     dialog.querySelector("form").addEventListener("submit",function (event) { event.preventDefault(); var question = input.value.trim(); if (!question) return; input.value = ""; ensureKnowledge(function () { answer(question,true); input.focus({preventScroll:true}); }); });
     dialog.querySelectorAll("[data-assistant-topic]").forEach(function (button) { button.addEventListener("click",function () { answer(button.dataset.assistantTopic,true,button.textContent.trim()); }); });
@@ -741,7 +737,7 @@
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:startPageVoice,startTour:tour,stop:function () { stop(true); }};
     document.dispatchEvent(new CustomEvent("portfolio:guide-ready"));
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=15",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=16",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
