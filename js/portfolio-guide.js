@@ -25,10 +25,14 @@
     // muted the next page and every refresh in the same tab, which made the
     // requested automatic introduction appear broken.
     var mutedForPage = false;
-    // A page is introduced once per tab. Normalize directory index URLs so
-    // / and /index.html (and /resume/ and /resume/index.html) share a visit.
+    // A normal navigation introduces each page once per tab. A browser reload
+    // introduces this document again, without clearing the visit history used
+    // to keep a later navigation back to the page quiet.
+    // Normalize directory index URLs so / and /index.html share a visit.
     var visitPath = location.pathname.replace(/\/index\.html$/i,"/").replace(/\/$/,"") || "/";
     var autoVisitKey = "portfolio-guide-auto-visit-v1:" + visitPath.toLowerCase();
+    var navigationEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    var reloadedDocument = navigationEntry ? navigationEntry.type === "reload" : !!(performance.navigation && performance.navigation.type === 1);
     var autoVisitClaimed = false;
     var currentIntroAutomatic = false;
     var currentTourAutomatic = false;
@@ -66,12 +70,15 @@
       if (autoVisitClaimed) return true;
       try { return sessionStorage.getItem(autoVisitKey) === "1"; } catch (_) { return false; }
     }
+    function canAutoStartVisit() {
+      return !autoVisitClaimed && (reloadedDocument || !hasAutoVisit());
+    }
     function rememberAutoVisit() {
       autoVisitClaimed = true;
       try { sessionStorage.setItem(autoVisitKey,"1"); } catch (_) { /* This document still remembers its visit. */ }
     }
     function claimAutoVisit() {
-      if (hasAutoVisit()) return false;
+      if (!canAutoStartVisit()) return false;
       rememberAutoVisit();
       return true;
     }
@@ -507,7 +514,7 @@
     }
     function autoStart() {
       if (muted() || document.hidden || root.hidden || root.dataset.state !== "idle") return;
-      if (hasAutoVisit()) { root.dataset.mode = "launcher"; dock(); return; }
+      if (!canAutoStartVisit()) { root.dataset.mode = "launcher"; dock(); return; }
       if (page === "services") tour({automatic:true});
       else intro(false,true);
     }
@@ -694,8 +701,8 @@
       deferredAutomaticHomeIntro = false;
       skippedHomeEntry = !!(event.detail && event.detail.skipNarration);
       if (skippedHomeEntry) { stop(false); root.dataset.mode = "launcher"; dock(); }
-      else if (page === "home" && event.detail && event.detail.automatic) deferredAutomaticHomeIntro = !hasAutoVisit();
-      else if (!muted() && !hasAutoVisit()) intro(true,true);
+      else if (page === "home" && event.detail && event.detail.automatic) deferredAutomaticHomeIntro = canAutoStartVisit();
+      else if (!muted() && canAutoStartVisit()) intro(true,true);
     });
     document.addEventListener("portfolio:entered",function () {
       root.hidden = !ready;

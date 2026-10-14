@@ -1,0 +1,60 @@
+/* A decorative scrollbar instrument. Every moving part follows page scroll in JS. */
+.site-scroll-instrument {
+  position:fixed;
+  top:var(--site-scroll-y,116px);
+  right:-24px;
+  z-index:8;
+  width:94px;
+  aspect-ratio:1;
+  color:var(--accent,#f5ba5a);
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-50%);
+  filter:drop-shadow(0 0 8px color-mix(in srgb,var(--accent,#f5ba5a) 14%,transparent));
+  contain:layout style paint;
+}
+.site-scroll-instrument.is-visible { opacity:.64; }
+.site-scroll-instrument svg {
+  display:block;
+  width:100%;
+  height:100%;
+  overflow:visible;
+  fill:none;
+  stroke:currentColor;
+  transform:perspective(480px) rotateY(-16deg) rotateX(8deg);
+}
+.site-scroll-instrument__rotor,
+.site-scroll-instrument__inner,
+.site-scroll-instrument__progress { transform-origin:center; transform-box:view-box; }
+.site-scroll-instrument__rotor { transform:rotate(var(--site-scroll-angle,0deg)); }
+.site-scroll-instrument__ticks { stroke-width:2; stroke-dasharray:1 8; opacity:.65; }
+.site-scroll-instrument__spokes { stroke-width:2; stroke-linecap:round; opacity:.65; }
+.site-scroll-instrument__track { stroke-width:1.5; opacity:.35; }
+.site-scroll-instrument__progress {
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-dasharray:226.195;
+  stroke-dashoffset:var(--site-scroll-offset,226.195);
+  transform:rotate(-90deg);
+}
+.site-scroll-instrument__inner {
+  stroke-width:1.25;
+  opacity:.82;
+  transform:rotate(var(--site-scroll-angle-inner,0deg));
+}
+.site-scroll-instrument__core { fill:currentColor; stroke:none; }
+.portfolio-entry-active .site-scroll-instrument { visibility:hidden; }
+html:not([data-theme="dark"]) .site-scroll-instrument { opacity:0; }
+html:not([data-theme="dark"]) .site-scroll-instrument.is-visible { opacity:.5; }
+@media (min-width:768px) and (max-width:1100px) {
+  .site-scroll-instrument { right:-21px; width:76px; }
+  .site-scroll-instrument.is-visible { opacity:.53; }
+}
+@media (max-width:767.98px) {
+  .site-scroll-instrument { right:-18px; width:58px; filter:none; }
+  .site-scroll-instrument.is-visible { opacity:.5; }
+  html:not([data-theme="dark"]) .site-scroll-instrument.is-visible { opacity:.4; }
+}
+@media (prefers-reduced-motion:reduce),print {
+  .site-scroll-instrument { display:none !important; }
+}

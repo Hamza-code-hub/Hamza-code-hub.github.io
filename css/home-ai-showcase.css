@@ -17,6 +17,28 @@
   overflow:hidden;
   pointer-events:none;
 }
+.home-tunnel-art {
+  position:absolute;
+  top:49%;
+  right:-5%;
+  width:min(1040px,82vw);
+  height:auto;
+  color:var(--accent);
+  opacity:.27;
+  transform:translateY(-50%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 31%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 31%,#000 100%);
+}
+.home-tunnel-art__rails { opacity:.24; }
+.home-tunnel-art__rings { stroke-width:1.4; }
+.home-tunnel-art__segments { stroke-width:2.4; opacity:.45; }
+.home-tunnel-art__light-halo,
+.home-tunnel-art__floor-halo { stroke-width:15; opacity:.12; }
+.home-tunnel-art__light-line,
+.home-tunnel-art__floor-line { stroke-width:2.8; opacity:.78; }
+.home-tunnel-art__sparks { opacity:.62; }
+html[data-theme="dark"] .home-tunnel-art,
+body.dark-mode .home-tunnel-art { opacity:.69; }
 .home-kinetic-dial__plane {
   position:absolute;
   top:48%;
@@ -28,7 +50,7 @@
   transform:translateY(-50%) perspective(950px) rotateX(23deg) rotateY(calc(-13deg + var(--dial-scroll-tilt,0deg))) rotateZ(var(--dial-scroll-angle,0deg));
   transform-origin:center;
   transform-style:preserve-3d;
-  transition:transform .16s ease-out;
+  transition:none;
 }
 .home-kinetic-dial__plane::before {
   position:absolute;
@@ -37,7 +59,7 @@
   background:radial-gradient(circle,color-mix(in srgb,var(--accent) 12%,transparent),transparent 67%);
   content:"";
 }
-.home-kinetic-dial svg {
+.home-kinetic-dial__plane svg {
   position:absolute;
   inset:0;
   width:100%;
@@ -64,60 +86,7 @@ body.dark-mode .home-kinetic-dial__plane { opacity:.5; }
 @keyframes homeDialClockwise { to { transform:rotate(360deg); } }
 @keyframes homeDialCounterclockwise { to { transform:rotate(-360deg); } }
 
-/* A thin, non-interactive scroll instrument carries the orbital motif past the hero. */
-.home-scroll-instrument {
-  position:fixed;
-  top:42vh;
-  right:-24px;
-  z-index:8;
-  width:94px;
-  aspect-ratio:1;
-  pointer-events:none;
-  color:var(--accent);
-  opacity:0;
-  transform:translate(10px,-50%);
-  transition:opacity .3s ease,transform .3s ease;
-  filter:drop-shadow(0 0 8px color-mix(in srgb,var(--accent) 13%,transparent));
-}
-.home-scroll-instrument.is-visible { opacity:.65; transform:translate(0,-50%); }
-.home-scroll-instrument svg {
-  display:block;
-  width:100%;
-  height:100%;
-  fill:none;
-  stroke:currentColor;
-  transform:perspective(480px) rotateY(-16deg) rotateX(8deg);
-}
-.home-scroll-instrument__rotor,
-.home-scroll-instrument__inner { transform-origin:center; transform-box:view-box; }
-.home-scroll-instrument__rotor { transform:rotate(var(--home-scroll-angle,0deg)); }
-.home-scroll-instrument__ticks { stroke-width:2; stroke-dasharray:1 8; opacity:.65; }
-.home-scroll-instrument__spokes { stroke-width:2; stroke-linecap:round; opacity:.65; }
-.home-scroll-instrument__track { stroke-width:1.5; opacity:.32; }
-.home-scroll-instrument__progress {
-  stroke-width:3;
-  stroke-linecap:round;
-  stroke-dasharray:226.2;
-  stroke-dashoffset:var(--home-progress-offset,226.2);
-  transform:rotate(-90deg);
-  transform-origin:center;
-  transform-box:view-box;
-}
-.home-scroll-instrument__inner {
-  stroke-width:1.25;
-  opacity:.8;
-  animation:homeScrollInstrumentDrift 70s linear infinite;
-  animation-play-state:paused;
-}
-.home-scroll-instrument.is-visible .home-scroll-instrument__inner { animation-play-state:running; }
-.home-scroll-instrument__core { fill:var(--accent); stroke:none; }
-@keyframes homeScrollInstrumentDrift { to { transform:rotate(-360deg); } }
-@media (min-width:992px) and (max-width:1100px) {
-  .home-scroll-instrument { right:-22px; width:72px; }
-  .home-scroll-instrument.is-visible { opacity:.48; }
-}
-@media (max-width:991.98px) { .home-scroll-instrument { display:none; } }
-@media print { .home-scroll-instrument,.home-kinetic-dial { display:none !important; } }
+@media print { .home-kinetic-dial { display:none !important; } }
 
 .ai-hero > .container { position:relative; z-index:1; max-width:1280px; }
 .home-page .ai-hero .profile-teaser {
@@ -408,7 +377,6 @@ body.dark-mode .ai-hero .hero-image-frame:hover .profile-image { transform:none;
   .home-page .ai-hero .ai-portrait-stage { width:250px; margin:0 auto !important; align-self:center; }
 }
 @media (prefers-reduced-motion:reduce) {
-  .home-scroll-instrument { display:none; }
   .home-kinetic-dial__rotor--outer,
   .home-kinetic-dial__rotor--inner { animation:none !important; }
   .home-kinetic-dial__plane { transform:translateY(-50%) perspective(950px) rotateX(23deg) rotateY(-13deg); }
@@ -440,5 +408,81 @@ body.dark-mode .ai-hero .hero-image-frame:hover .profile-image { transform:none;
   .home-page .work-experience-panel__core {
     transform:translate3d(0,var(--home-depth-y,0px),0) rotateY(var(--home-depth-ry,-15deg)) rotateX(8deg);
     transition:transform .1s linear;
+  }
+}
+
+/* Home-only editorial gold: the DOM heading stays intact for translation and indexing. */
+html body.home-page .ai-hero {
+  background:
+    radial-gradient(ellipse at 85% 43%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 48%),
+    linear-gradient(115deg,var(--page) 0%,var(--page-alt) 78%,var(--page)) !important;
+}
+html[data-theme="dark"] body.home-page .ai-hero,
+html body.dark-mode.home-page .ai-hero {
+  background:
+    radial-gradient(ellipse at 84% 44%,rgba(181,144,88,.16),transparent 47%),
+    radial-gradient(ellipse at 25% 0%,rgba(245,186,90,.035),transparent 47%),
+    linear-gradient(112deg,#0b0d0f 0%,#0d0e0f 47%,#15130f 82%,#0b0d0f) !important;
+}
+body.home-page .ai-hero .profile-teaser .blog-name a {
+  color:var(--heading);
+  background:linear-gradient(98deg,#22211f 0%,#22211f 42%,#68481a 68%,#7e5a22 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-decoration:none;
+  transition:filter .2s ease;
+}
+html[data-theme="dark"] body.home-page .ai-hero .profile-teaser .blog-name a,
+html body.dark-mode.home-page .ai-hero .profile-teaser .blog-name a {
+  background-image:linear-gradient(98deg,#f5f5f5 0%,#f5f5f5 42%,#f8d695 70%,#e7aa50 100%);
+}
+body.home-page .ai-hero .profile-teaser .blog-name a:hover { filter:brightness(1.12); }
+html[data-theme="dark"] body.home-page .ai-hero .ai-domain,
+html body.dark-mode.home-page .ai-hero .ai-domain {
+  border-color:rgba(245,186,90,.23);
+  background:linear-gradient(145deg,rgba(27,28,29,.98),rgba(17,18,19,.98));
+  box-shadow:inset 0 1px 0 rgba(255,229,180,.06),0 12px 28px rgba(0,0,0,.17);
+}
+html[data-theme="dark"] body.home-page .ai-hero .ai-domain:hover,
+html body.dark-mode.home-page .ai-hero .ai-domain:hover {
+  border-color:rgba(248,203,123,.64);
+  box-shadow:inset 0 1px 0 rgba(255,229,180,.12),0 18px 34px rgba(0,0,0,.25),0 0 22px rgba(245,186,90,.07);
+}
+html[data-theme="dark"] body.home-page .ai-hero .hero-image-frame,
+html[data-theme="dark"] body.home-page .ai-hero .hero-image-col:hover .hero-image-frame,
+html body.dark-mode.home-page .ai-hero .hero-image-frame,
+html body.dark-mode.home-page .ai-hero .hero-image-col:hover .hero-image-frame {
+  border-color:rgba(248,203,123,.67);
+  background:linear-gradient(145deg,#f8cb7b,#6f4f22 48%,#d39e4e 80%,#f8cb7b);
+  box-shadow:0 0 0 1px rgba(248,203,123,.18),11px 17px 0 rgba(245,186,90,.07),0 24px 56px rgba(0,0,0,.34),0 0 38px rgba(245,186,90,.08);
+}
+html[data-theme="dark"] body.home-page .ai-hero .ai-portrait-layer,
+html body.dark-mode.home-page .ai-hero .ai-portrait-layer { border-color:rgba(248,203,123,.28); }
+@media (max-width:991.98px) {
+  .home-tunnel-art { top:75%; right:-18%; width:min(850px,100vw); opacity:.18; }
+  html[data-theme="dark"] .home-tunnel-art,
+  body.dark-mode .home-tunnel-art { opacity:.4; }
+}
+@media (max-width:575.98px) { .home-tunnel-art { display:none; } }
+@media (max-width:360px) {
+  body.home-page .ai-hero .profile-teaser .blog-name a {
+    display:inline-block;
+    max-width:100%;
+    background-image:linear-gradient(180deg,#22211f 0%,#22211f 43%,#68481a 68%,#7e5a22 100%);
+  }
+  html[data-theme="dark"] body.home-page .ai-hero .profile-teaser .blog-name a,
+  html body.dark-mode.home-page .ai-hero .profile-teaser .blog-name a {
+    background-image:linear-gradient(180deg,#f5f5f5 0%,#f5f5f5 43%,#f8d695 68%,#e7aa50 100%);
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  body.home-page .ai-hero .profile-teaser .blog-name a { transition:none; }
+}
+@media (forced-colors:active) {
+  body.home-page .ai-hero .profile-teaser .blog-name a {
+    color:CanvasText;
+    background:none;
+    -webkit-text-fill-color:CanvasText;
   }
 }

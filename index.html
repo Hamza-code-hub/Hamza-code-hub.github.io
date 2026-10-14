@@ -46,7 +46,7 @@
   <link rel="stylesheet" href="./css/owl.css">
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
   <link rel="stylesheet" href="./css/my.css?v=36">
-  <link rel="stylesheet" href="./css/home-ai-showcase.css?v=5">
+  <link rel="stylesheet" href="./css/home-ai-showcase.css?v=7">
   <link rel="stylesheet" href="./css/portfolio-entry.css?v=9">
 
   <!-- AOS Animation Library -->
@@ -585,6 +585,7 @@
 </style>
 
   <link rel="stylesheet" href="./css/portfolio-polish.css?v=6">
+  <link rel="stylesheet" href="./css/site-scroll-instrument.css?v=1">
 </head>
 
 <body class="home-page">
@@ -690,28 +691,61 @@
     </div>
   </header>
 
-  <div class="home-scroll-instrument" aria-hidden="true">
-    <svg viewBox="0 0 100 100" focusable="false" fill="none" stroke="currentColor">
-      <g class="home-scroll-instrument__rotor">
-        <circle class="home-scroll-instrument__ticks" cx="50" cy="50" r="45"/>
-        <path class="home-scroll-instrument__spokes" d="M50 3v9m0 76v9M3 50h9m76 0h9M17 17l6.4 6.4m53.2 53.2L83 83M83 17l-6.4 6.4M23.4 76.6 17 83"/>
-      </g>
-      <circle class="home-scroll-instrument__track" cx="50" cy="50" r="36"/>
-      <circle class="home-scroll-instrument__progress" cx="50" cy="50" r="36"/>
-      <g class="home-scroll-instrument__inner">
-        <circle cx="50" cy="50" r="25"/>
-        <circle cx="50" cy="50" r="19"/>
-        <path d="M50 25v9m0 32v9M25 50h9m32 0h9M32.3 32.3l6.4 6.4m22.6 22.6 6.4 6.4m0-35.4-6.4 6.4M38.7 61.3l-6.4 6.4"/>
-      </g>
-      <circle class="home-scroll-instrument__core" cx="50" cy="50" r="5"/>
-    </svg>
-  </div>
-
   <div class="main-wrapper">
 
     <!-- About Section -->
     <section class="about-me-section ai-hero p-3 p-lg-5 theme-bg-light" aria-label="Muhammad Hamza, AI Engineer">
       <div class="home-kinetic-dial" aria-hidden="true">
+        <svg class="home-tunnel-art" viewBox="0 0 1040 820" focusable="false" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="home-tunnel-glow" cx="0" cy="0" r="1" gradientTransform="translate(764 412) rotate(90) scale(368 438)" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F5BA5A" stop-opacity=".2"/>
+              <stop offset=".42" stop-color="#B59058" stop-opacity=".09"/>
+              <stop offset="1" stop-color="#F5BA5A" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="home-tunnel-ring" x1="346" y1="55" x2="1010" y2="760" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F8CB7B" stop-opacity=".06"/>
+              <stop offset=".45" stop-color="#F5BA5A" stop-opacity=".72"/>
+              <stop offset=".8" stop-color="#B59058" stop-opacity=".18"/>
+              <stop offset="1" stop-color="#F8CB7B" stop-opacity=".48"/>
+            </linearGradient>
+            <linearGradient id="home-tunnel-light" x1="90" y1="15" x2="984" y2="575" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F8CB7B" stop-opacity="0"/>
+              <stop offset=".28" stop-color="#F8CB7B" stop-opacity=".54"/>
+              <stop offset=".66" stop-color="#FFF1C9" stop-opacity=".95"/>
+              <stop offset="1" stop-color="#F5BA5A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="764" cy="412" rx="438" ry="368" fill="url(#home-tunnel-glow)"/>
+          <g class="home-tunnel-art__rails" stroke="#D8A95F" stroke-width="1">
+            <path d="M236 0 723 332M395 0 740 340M580 0 757 339M805 0 775 337M1040 18 794 347"/>
+            <path d="M204 820 717 498M394 820 738 486M591 820 758 482M816 820 777 482M1040 768 797 468"/>
+            <path d="M1040 255 822 391M1040 594 818 433"/>
+          </g>
+          <g class="home-tunnel-art__rings" stroke="url(#home-tunnel-ring)">
+            <ellipse cx="766" cy="412" rx="53" ry="78"/>
+            <ellipse cx="769" cy="412" rx="94" ry="129"/>
+            <ellipse cx="773" cy="411" rx="142" ry="183"/>
+            <ellipse cx="779" cy="409" rx="196" ry="239"/>
+            <ellipse cx="784" cy="406" rx="257" ry="298"/>
+            <ellipse cx="791" cy="402" rx="327" ry="356"/>
+            <ellipse cx="799" cy="397" rx="403" ry="417"/>
+          </g>
+          <g class="home-tunnel-art__segments" stroke="#F8CB7B" stroke-linecap="round">
+            <path d="M561 172c55-84 134-131 225-132M645 242c35-46 82-72 135-74M705 307c19-19 42-30 66-31"/>
+            <path d="M548 625c56 75 136 118 234 120M640 568c37 43 82 67 140 68M702 508c18 18 43 29 71 30"/>
+          </g>
+          <g class="home-tunnel-art__light" stroke="url(#home-tunnel-light)" stroke-linecap="round">
+            <path class="home-tunnel-art__light-halo" d="M92 0C236 107 306 240 471 300s236 39 350 119"/>
+            <path class="home-tunnel-art__light-line" d="M92 0C236 107 306 240 471 300s236 39 350 119"/>
+            <path class="home-tunnel-art__floor-halo" d="M167 820c182-119 277-128 418-132 116-3 201-75 349-208"/>
+            <path class="home-tunnel-art__floor-line" d="M167 820c182-119 277-128 418-132 116-3 201-75 349-208"/>
+          </g>
+          <g class="home-tunnel-art__sparks" fill="#F8CB7B" stroke="none">
+            <circle cx="498" cy="182" r="3"/><circle cx="633" cy="107" r="2"/><circle cx="918" cy="141" r="3"/>
+            <circle cx="567" cy="626" r="2"/><circle cx="932" cy="600" r="2"/><circle cx="983" cy="331" r="3"/>
+          </g>
+        </svg>
         <div class="home-kinetic-dial__plane">
           <svg class="home-kinetic-dial__rotor home-kinetic-dial__rotor--outer" viewBox="0 0 600 600" focusable="false" fill="none" stroke="currentColor">
             <circle class="home-kinetic-dial__fine" cx="300" cy="300" r="284"/>
@@ -1564,18 +1598,19 @@
   <script src="./js/cookie.js"></script>
   <script src="./js/dark.js?v=7"></script>
   <script src="./js/site-effects.js?v=3"></script>
-  <script src="./js/home-nav.js?v=4"></script>
+  <script src="./js/home-nav.js?v=6"></script>
   <script defer src="./js/portfolio-locale.js?v=14"></script>
   <script defer src="./js/portfolio-locales-extra.js?v=3"></script>
   <script defer src="./js/portfolio-controls.js?v=3"></script>
   <script defer src="./js/portfolio-entry.js?v=5"></script>
   <script defer src="./js/portfolio-narration.js?v=4"></script>
   <script defer src="./js/portfolio-tour.js?v=3"></script>
-  <script defer src="./js/portfolio-guide.js?v=24"></script>
+  <script defer src="./js/portfolio-guide.js?v=25"></script>
   <script>
     if (window.AOS) { AOS.init({ duration: 700, once: true, offset: 60 }); }
   </script>
 
 
+  <script defer src="./js/site-scroll-instrument.js?v=1"></script>
 </body>
 </html>
