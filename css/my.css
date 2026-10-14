@@ -2831,6 +2831,14 @@ body.dark-mode .testimonial-carousel .quote-content {
   padding:.1rem 0 .15rem .9rem;
   border-left:2px solid var(--accent-soft);
 }
+.resume-page .resume-wide-experience > .resume-employer-group {
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--panel-solid);
+}
 .resume-page .resume-wide-experience .item-content ul {
   columns:2;
   column-gap:2.5rem;
@@ -5390,7 +5398,8 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
 }
 
 @media print {
-  .resume-page .work-section > .resume-employer-group {
+  .resume-page .work-section > .resume-employer-group,
+  .resume-page .resume-wide-experience > .resume-employer-group {
     padding:0 0 .3rem !important;
     padding-inline-start:.55rem !important;
     overflow:visible !important;

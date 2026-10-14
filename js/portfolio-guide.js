@@ -245,8 +245,8 @@
       navTools:'.home-nav a[href$="#whatido"]', navTestimonials:'.home-nav a[href$="#testimonials"]', navFeatured:'.home-nav a[href$="#projects"]',
       navPortfolio:'.sidebar-nav a[href$="portfolio.html"]', navResume:'.sidebar-nav a[href$="resume/index.html"]', navGallery:'.sidebar-nav a[href$="gallery.html"]',
       navServices:'.sidebar-nav a[href$="services.html"], .home-nav a[href$="#services"]', navContact:'.sidebar-nav a[href$="contact.html"]',
-      portfolioHero:".cta-section h1", portfolioCards:".projects-list", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
-      serviceHero:".service-hero h1", galleryHero:".cta-section h1", projectHero:".cta-section h1",
+      portfolioHero:".cta-section h1", portfolioCards:".projects-list .project-card", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
+      serviceHero:".service-hero h1", galleryHero:".cta-section h1", galleryFirst:".photo-grid .photo-tile", projectHero:".cta-section h1",
       serviceLLM:"#llm h3", serviceRAG:"#rag h3", serviceAgents:"#agentic h3", serviceVision:"#cv h3", serviceData:"#data h3",
       contactName:"#contact-name", contactEmail:"#contact-email", contactSubject:"#contact-subject", contactMessage:"#contact-message", contactSend:'#contact-form button[type="submit"]'
     };
@@ -276,7 +276,7 @@
       if (isNavigation) {
         target.scrollIntoView({block:"nearest",inline:"nearest",behavior:behavior});
       } else if (forceMain || !clippedBounds(target)) {
-        target.scrollIntoView({block:"center",inline:"nearest",behavior:behavior});
+        target.scrollIntoView({block:target.getBoundingClientRect().height > innerHeight * .7 ? "start" : "center",inline:"nearest",behavior:behavior});
       }
     }
     function pointCue(cue) {
@@ -289,7 +289,7 @@
         if (changed) scrollCueTarget(target,true,false);
       } else {
         closeGuideMenu();
-        if (changed && (root.dataset.state === "tour" || (root.dataset.state === "intro" && page !== "home"))) scrollCueTarget(target,false,root.dataset.state === "tour");
+        if (changed && (root.dataset.state === "tour" || (root.dataset.state === "intro" && page !== "home"))) scrollCueTarget(target,false,true);
       }
       if (changed) { clearHighlights(); target.classList.add("portfolio-guide-target"); highlights = [target]; root.dataset.cue = cue.target; }
       moveTo(selector,cue.gesture || "point");
@@ -389,7 +389,7 @@
       if (page !== "home") {
         var chapterKey = {portfolio:"portfolioPage",resume:"resumePage",contact:"contactForm"}[page];
         var recording = chapterKey ? chapter(chapterKey) || (window.PortfolioCoreIntros && window.PortfolioCoreIntros[language().code] && window.PortfolioCoreIntros[language().code][page]) : page === "services" ? narration("tourServices") : window.PortfolioPageIntros && window.PortfolioPageIntros[pageIntroKey] && window.PortfolioPageIntros[pageIntroKey][language().code];
-        var cues = recording && recording.cues || (page === "services" ? [{at:0,target:"serviceHero",gesture:"wave"}] : page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
+        var cues = recording && recording.cues || (page === "services" ? [{at:0,target:"serviceHero",gesture:"wave"},{at:2.8,target:"serviceLLM",gesture:"point"}] : page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"},{at:3.8,target:"galleryFirst",gesture:"point"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
         if (!recording) { recording = narration("welcome"); chapterKey = "welcome"; cues = []; }
         if (!recording) { complete(false); return; }
         root.dataset.chapter = chapterKey || (page === "services" ? "tourServices" : pageIntroKey);
