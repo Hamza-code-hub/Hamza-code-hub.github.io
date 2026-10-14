@@ -40,6 +40,7 @@
 .portfolio-guide__start-tour:focus-visible,.portfolio-guide__language-hint:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 .portfolio-guide[data-prompt-side="right"] .portfolio-guide__start-tour { right:auto; left:calc(100% + 9px); }
 .portfolio-guide__language-hint { position:absolute; top:calc(100% + 7px); right:0; z-index:2; display:block; width:max-content; max-width:min(240px,calc(100vw - 24px)); padding:9px 12px; border:1px solid var(--accent); border-radius:11px; color:var(--text); background:var(--panel-solid); box-shadow:0 8px 25px rgba(0,0,0,.24); font:600 12px/1.45 "Space Grotesk",system-ui,sans-serif; text-align:start; cursor:pointer; pointer-events:auto; animation:guide-cue-appear .35s ease-out both; }
+.portfolio-guide.is-language-cue:not(.is-language-pointing) .portfolio-guide__language-hint { top:auto; bottom:calc(100% + 4px); right:0; left:auto; }
 .portfolio-guide__language-hint:hover { color:var(--accent-strong); border-color:var(--accent-strong); }
 .portfolio-guide[data-prompt-side="right"] .portfolio-guide__language-hint { right:auto; left:0; }
 .guide-avatar__floor { fill:var(--accent); opacity:.17; }
@@ -128,6 +129,7 @@ body.portfolio-guided-navigation .portfolio-guide { visibility:visible; z-index:
 @keyframes guide-icon-pulse { 50% { opacity:.45; transform:scale(.8); } }
 @keyframes guide-start-pulse { 50% { box-shadow:0 8px 26px rgba(245,186,90,.34),0 0 0 6px rgba(245,186,90,.09); } }
 @media (max-width:575.98px) {
+  .portfolio-guide.is-language-cue:not(.is-language-pointing) .portfolio-guide__language-hint { right:12px; max-width:min(185px,calc(100vw - 24px)); }
   .portfolio-guide.is-home-inviting .portfolio-guide__start-tour { min-height:40px; padding:7px 10px; border-radius:9px; font-size:11px; }
   .portfolio-guide.is-home-inviting .portfolio-guide__start-tour::after { font-size:14px; }
   .portfolio-guide.is-language-cue .portfolio-guide__language-hint { top:1px; right:calc(100% + 3px); left:auto; max-width:min(165px,var(--guide-hint-max,165px)); padding:7px 9px; font-size:10px; }

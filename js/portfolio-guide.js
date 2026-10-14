@@ -239,12 +239,17 @@
     }
     function clearLanguageCue() {
       clearTimeout(languageReturnTimer); languageReturnTimer = 0;
-      languageHintButton.hidden = true; root.classList.remove("is-language-cue");
+      languageHintButton.hidden = true; root.classList.remove("is-language-cue","is-language-pointing");
       root.style.removeProperty("--guide-hint-max");
       if (root.dataset.cue === "languageControl") { clearHighlights(); delete root.dataset.cue; }
     }
     function finishLanguageCue() {
       if (!root.classList.contains("is-language-cue")) return;
+      // Dismissing the cue must also stop its own speech without invalidating a
+      // paused tour's continuation token.
+      clearTimers(); activeTimeline = null;
+      if (utterance && synth) { utterance = null; synth.cancel(); }
+      root.classList.remove("is-speaking"); updateToggle(false);
       clearLanguageCue();
       root.dataset.state = homeInvitation ? "home-invite" : languageCuePreviousState;
       root.dataset.mode = homeInvitation ? "compact" : languageCuePreviousMode;
@@ -276,13 +281,31 @@
       languageCuePreviousStatus = status.textContent;
       root.dataset.state = "language-cue";
       startTourButton.hidden = true;
-      languageHintButton.textContent = homeText(1);
+      var phrase = homeText(1);
+      languageHintButton.textContent = phrase;
       languageHintButton.hidden = false;
       root.classList.add("is-language-cue");
-      root.style.setProperty("--guide-travel",".9s");
-      pointCue({target:"languageControl",gesture:"point"});
-      status.textContent = homeText(1);
-      languageReturnTimer = setTimeout(finishLanguageCue,7000);
+      status.textContent = phrase;
+      function visualFallback() {
+        if (!root.classList.contains("is-language-cue")) return;
+        root.classList.remove("is-language-pointing");
+        clearHighlights(); delete root.dataset.cue;
+        root.dataset.mode = "compact"; dock();
+        status.textContent = phrase;
+        languageReturnTimer = setTimeout(finishLanguageCue,4000);
+      }
+      // An explicit Stop mutes this page. Keep the hint visible without
+      // silently overriding that choice or moving toward the control.
+      if (muted()) { visualFallback(); return; }
+      var token = generation;
+      speak(phrase,token,function () {
+        if (root.classList.contains("is-language-cue")) languageReturnTimer = setTimeout(finishLanguageCue,550);
+      },function () {
+        if (!root.classList.contains("is-language-cue")) return;
+        root.classList.add("is-language-pointing");
+        root.style.setProperty("--guide-travel",".9s");
+        pointCue({target:"languageControl",gesture:"point"});
+      },true,{cues:[],onUnavailable:visualFallback});
     }
     function scheduleLanguageCue() {
       if (languageCueScheduled || languageCueShown || (window.PortfolioEntry && window.PortfolioEntry.active)) return;
@@ -890,7 +913,7 @@
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:startPageVoice,startTour:tour,stop:function () { stop(true); }};
     document.dispatchEvent(new CustomEvent("portfolio:guide-ready"));
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=21",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=22",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
