@@ -5,7 +5,13 @@
     var locale = window.PortfolioLocale;
     if (!locale || !document.querySelector(".main-wrapper") || document.querySelector(".portfolio-guide")) return;
     var siteUrl = new URL("../",scriptUrl).href;
-    var page = /contact\.html$/i.test(location.pathname) ? "contact" : /services\.html$/i.test(location.pathname) ? "services" : /\/resume\//i.test(location.pathname) ? "resume" : /\/portfolio\.html$/i.test(location.pathname) ? "portfolio" : document.body.classList.contains("home-page") ? "home" : "other";
+    var page = /contact\.html$/i.test(location.pathname) ? "contact" : /services\.html$/i.test(location.pathname) ? "services" : /\/resume\//i.test(location.pathname) ? "resume" : /\/portfolio\.html$/i.test(location.pathname) ? "portfolio" : /\/gallery\.html$/i.test(location.pathname) ? "gallery" : /\/projects\/[^/]+\.html$/i.test(location.pathname) ? "project" : document.body.classList.contains("home-page") ? "home" : "other";
+    var pageIntroKey = page === "gallery" ? "gallery" : page === "project" ? "project-" + location.pathname.split("/").pop().replace(/\.html$/i,"") : "";
+    var pageIntroReady = !pageIntroKey || !!window.PortfolioPageIntros;
+    var pageIntroWaiters = [];
+    var coreIntroReady = !!window.PortfolioCoreIntros;
+    var coreIntroLoading = false;
+    var coreIntroWaiters = [];
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var synth = window.speechSynthesis;
     var nativeVoice = !!(synth && window.SpeechSynthesisUtterance);
@@ -19,10 +25,15 @@
     var lastQuestion = "";
     var history = [];
     var activeTarget = null;
+    var activeGesture = null;
+    var followFrame = 0;
+    var followUntil = 0;
+    var followReset = 0;
     var highlights = [];
     var layoutFrame = 0;
     var activeTimeline = null;
     var resumeTour = null;
+    var pendingLanguageIntent = null;
     var menuOpenedByGuide = false;
     var handoffInFlight = false;
     var tourStorageKey = "portfolio-guided-tour-v2";
@@ -31,6 +42,39 @@
     function language() { return locale.languages.filter(function (item) { return item.code === locale.getLanguage(); })[0] || locale.languages[0]; }
     function muted() { try { return sessionStorage.getItem(mutedKey) === "true"; } catch (error) { return false; } }
     function saveMuted(value) { try { sessionStorage.setItem(mutedKey,String(value)); } catch (error) { /* Optional preference. */ } }
+    function pageCopyReady() { return !locale.getPageStatus || locale.getPageStatus().ready; }
+    function afterPageCopy(callback) {
+      var token = generation, code = locale.getLanguage();
+      Promise.resolve(locale.whenReady ? locale.whenReady() : false).then(function () {
+        if (token === generation && code === locale.getLanguage() && pageCopyReady() && !document.hidden) callback();
+      }).catch(function () { /* Keep narration stopped if page translation failed. */ });
+    }
+    function afterPageIntro(callback) {
+      var token = generation;
+      pageIntroWaiters.push(function () { if (token === generation) callback(); });
+    }
+    function afterCoreIntro(callback) {
+      var token = generation;
+      coreIntroWaiters.push(function () { if (token === generation) callback(); });
+      if (coreIntroLoading) return;
+      coreIntroLoading = true;
+      var script = document.createElement("script"); script.async = true;
+      script.src = new URL("../js/portfolio-core-intros.js?v=1",scriptUrl).href;
+      script.onload = script.onerror = function () {
+        coreIntroReady = true;
+        coreIntroWaiters.splice(0).forEach(function (waiter) { waiter(); });
+      };
+      document.head.appendChild(script);
+    }
+    if (!pageIntroReady) {
+      var introScript = document.createElement("script"); introScript.async = true;
+      introScript.src = new URL("../js/portfolio-page-intros.js?v=1",scriptUrl).href;
+      introScript.onload = introScript.onerror = function () {
+        pageIntroReady = true;
+        pageIntroWaiters.splice(0).forEach(function (callback) { callback(); });
+      };
+      document.head.appendChild(introScript);
+    }
     function later(callback,delay) { timers.push(window.setTimeout(callback,delay)); }
     function clearTimers() { timers.forEach(window.clearTimeout); timers = []; }
     function clearContinuation() { try { sessionStorage.removeItem(tourStorageKey); } catch (_) {} }
@@ -51,16 +95,16 @@
     </div>
     <button type="button" class="portfolio-guide__avatar" aria-haspopup="dialog" aria-expanded="false" aria-controls="portfolio-assistant-dialog">
       <svg viewBox="0 0 180 184" width="100" height="112" aria-hidden="true" focusable="false">
-        <defs><linearGradient id="guide-metal" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#eef3ff"/><stop offset=".45" stop-color="#c5d1f3"/><stop offset="1" stop-color="#6e80b2"/></linearGradient><linearGradient id="guide-trim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a1b3df"/><stop offset="1" stop-color="#586b9d"/></linearGradient><linearGradient id="guide-face" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1c304e"/><stop offset="1" stop-color="#091225"/></linearGradient></defs>
+        <defs><linearGradient id="guide-metal" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fbf5e8"/><stop offset=".45" stop-color="#d7c9a9"/><stop offset="1" stop-color="#87775a"/></linearGradient><linearGradient id="guide-trim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8cb7b"/><stop offset="1" stop-color="#9b6d2e"/></linearGradient><linearGradient id="guide-face" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#303033"/><stop offset="1" stop-color="#0b0d0f"/></linearGradient></defs>
         <ellipse class="guide-avatar__floor" cx="90" cy="173" rx="43" ry="6"/>
         <g class="guide-avatar__body">
           <g class="guide-avatar__legs" fill="url(#guide-trim)"><rect x="76" y="144" width="11" height="20" rx="5"/><rect x="96" y="144" width="11" height="20" rx="5"/><path d="M75 160h13v6H70q-3-3 5-6m20 0h13q8 3 5 6H95Z" fill="url(#guide-metal)"/></g>
           <g class="guide-avatar__arm guide-avatar__arm--left"><path d="m62 102-15 11" class="guide-avatar__limb"/><circle cx="47" cy="113" r="6" fill="url(#guide-trim)"/><g class="guide-avatar__forearm guide-avatar__forearm--left"><path d="m47 113-9 12" class="guide-avatar__limb"/><g transform="translate(30 120) rotate(15)"><rect x="0" y="0" width="16" height="18" rx="7" fill="url(#guide-metal)"/><path d="m2 6-5-4m6-1V-4m4 5V-5m4 7V-4m4 9V1" class="guide-avatar__fingers"/><path d="M4 11h7" class="guide-avatar__detail"/></g></g></g>
           <g class="guide-avatar__arm guide-avatar__arm--right"><path d="m119 102 15 8" class="guide-avatar__limb"/><circle cx="134" cy="110" r="6" fill="url(#guide-trim)"/><g class="guide-avatar__forearm guide-avatar__forearm--right"><path d="m134 110 9-18" class="guide-avatar__limb"/><g class="guide-avatar__hand" transform="translate(136 78)"><rect x="0" y="0" width="16" height="19" rx="7" fill="url(#guide-metal)"/><path class="guide-avatar__open-fingers" d="m2 7-6-3M3 3v-9M7 2V-8m4 10V-7m4 12V-3"/><path class="guide-avatar__point-finger" d="M2 7 0 3m6 0V-12m4 16v-4m4 6V2"/><path d="M4 13h7" class="guide-avatar__detail"/></g></g></g>
           <path d="M72 92h36q16 0 15 17l-5 29q-1 11-15 11H77q-14 0-15-11l-5-29q-1-17 15-17" fill="url(#guide-metal)"/>
-          <path d="M76 92h28" stroke="#edf2ff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="76" y="107" width="28" height="24" rx="8" fill="url(#guide-face)"/><path d="m81 120 4-5 5 9 6-7 3 3" fill="none" stroke="#48e0c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M78 140h24" class="guide-avatar__detail"/>
-          <g class="guide-avatar__head"><path d="M90 29V18" stroke="#b1c1e9" stroke-width="3"/><circle cx="90" cy="15" r="4" fill="#48e0c7"/><rect x="50" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="118" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="57" y="30" width="66" height="59" rx="21" fill="url(#guide-metal)"/><rect x="64" y="40" width="52" height="37" rx="14" fill="url(#guide-face)"/><g fill="#48e0c7"><rect x="75" y="50" width="7" height="9" rx="3.5"/><rect x="98" y="50" width="7" height="9" rx="3.5"/><rect class="guide-avatar__mouth" x="84" y="67" width="12" height="3" rx="1.5"/></g><path d="M73 36h26" stroke="#f1f6ff" stroke-width="2" opacity=".65" stroke-linecap="round"/></g>
+          <path d="M76 92h28" stroke="#fffaf0" stroke-width="3" stroke-linecap="round"/>
+          <rect x="76" y="107" width="28" height="24" rx="8" fill="url(#guide-face)"/><path d="m81 120 4-5 5 9 6-7 3 3" fill="none" stroke="#f5ba5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M78 140h24" class="guide-avatar__detail"/>
+          <g class="guide-avatar__head"><path d="M90 29V18" stroke="#ad905d" stroke-width="3"/><circle cx="90" cy="15" r="4" fill="#f5ba5a"/><rect x="50" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="118" y="50" width="12" height="23" rx="6" fill="url(#guide-trim)"/><rect x="57" y="30" width="66" height="59" rx="21" fill="url(#guide-metal)"/><rect x="64" y="40" width="52" height="37" rx="14" fill="url(#guide-face)"/><g fill="#f5ba5a"><rect x="75" y="50" width="7" height="9" rx="3.5"/><rect x="98" y="50" width="7" height="9" rx="3.5"/><rect class="guide-avatar__mouth" x="84" y="67" width="12" height="3" rx="1.5"/></g><path d="M73 36h26" stroke="#fff9e9" stroke-width="2" opacity=".65" stroke-linecap="round"/></g>
         </g>
       </svg><span class="portfolio-guide__notification" aria-hidden="true"></span>
     </button><span class="portfolio-guide__status sr-only" role="status" aria-live="polite" aria-atomic="true"></span>`;
@@ -93,10 +137,24 @@
       dialog.style.setProperty("--assistant-mobile-top",(offset + (keyboard ? 8 : 130)) + "px");
       dialog.style.setProperty("--assistant-mobile-height",Math.max(120,height - (keyboard ? 24 : 144)) + "px");
     }
-    function updateToggle(active) { root.classList.toggle("is-active",active); dialog.classList.toggle("is-active",active); label(play,t(active ? "stop" : "play")); label(chatPlay,t(active ? "stop" : "play")); }
+    function updateToggle(active) {
+      root.classList.toggle("is-active",active); dialog.classList.toggle("is-active",active);
+      var action = active ? "stop" : root.dataset.sound === "blocked" ? "soundBlockedShort" : "play";
+      label(play,t(action)); label(chatPlay,t(action));
+    }
+    function clearBlockedCue() { delete root.dataset.sound; delete dialog.dataset.sound; }
+    function showBlockedCue() { root.dataset.sound = dialog.dataset.sound = "blocked"; updateToggle(false); }
     function clearHighlights() { highlights.forEach(function (item) { item.classList.remove("portfolio-guide-target"); }); highlights = []; }
+    function clearTargetFollow() {
+      if (followFrame) cancelAnimationFrame(followFrame);
+      if (followReset) clearTimeout(followReset);
+      followFrame = followReset = followUntil = 0;
+      root.classList.remove("is-tracking");
+    }
     function cancel() {
       generation += 1; clearTimers(); clearHighlights(); activeTimeline = null; resumeTour = null;
+      clearBlockedCue();
+      clearTargetFollow(); activeTarget = activeGesture = null;
       if (layoutFrame) cancelAnimationFrame(layoutFrame); layoutFrame = 0;
       if (!handoffInFlight) clearContinuation();
       closeGuideMenu(); delete root.dataset.cue; delete root.dataset.chapter;
@@ -106,25 +164,77 @@
       if (utterance && synth) { utterance = null; synth.cancel(); }
     }
     function dock() {
-      root.dataset.mode = "compact"; root.dataset.gesture = "rest"; root.dataset.facing = "right"; activeTarget = null;
+      clearTargetFollow(); root.dataset.mode = root.dataset.mode === "launcher" ? "launcher" : "compact"; root.dataset.gesture = "rest"; root.dataset.facing = "right"; activeTarget = activeGesture = null;
       root.style.removeProperty("--guide-travel");
       var bottom = document.querySelector(".whatsapp-float") ? 90 : 24;
-      root.style.setProperty("--guide-x",Math.max(12,innerWidth - 96) + "px");
-      root.style.setProperty("--guide-y",Math.max(90,innerHeight - bottom - 93) + "px");
+      var contactLauncher = page === "contact" && innerWidth < 576 && root.dataset.mode === "launcher";
+      root.style.setProperty("--guide-x",(contactLauncher ? 12 : Math.max(12,innerWidth - (innerWidth < 576 ? 82 : 96))) + "px");
+      root.style.setProperty("--guide-y",Math.max(90,innerHeight - (contactLauncher ? 120 : bottom + 93)) + "px");
       dialog.style.setProperty("--assistant-bottom",(bottom + 91) + "px");
     }
-    function stop(remember) { cancel(); if (remember) saveMuted(true); root.dataset.state = "stopped"; status.textContent = t("stopped"); dock(); }
-    function hideGuide() { stop(true); closeDialog(false); root.dataset.mode = "launcher"; label(avatar,t("openAssistant","Open assistant")); }
+    function stop(remember) { if (pendingLanguageIntent) pendingLanguageIntent.interrupted = true; cancel(); if (remember) saveMuted(true); root.dataset.state = "stopped"; status.textContent = t("stopped"); dock(); }
+    function hideGuide() { stop(true); closeDialog(false); root.dataset.mode = "launcher"; dock(); label(avatar,t("openAssistant","Open assistant")); }
+    function clippedBounds(target) {
+      if (!target || !target.isConnected || !target.getClientRects().length) return null;
+      var rect = target.getBoundingClientRect();
+      var visible = {left:Math.max(0,rect.left),right:Math.min(innerWidth,rect.right),top:Math.max(0,rect.top),bottom:Math.min(innerHeight,rect.bottom)};
+      var ancestor = target.parentElement;
+      while (ancestor && ancestor !== document.documentElement) {
+        var style = getComputedStyle(ancestor);
+        if (/(auto|scroll|hidden|clip)/.test(style.overflowX + " " + style.overflowY)) {
+          var clip = ancestor.getBoundingClientRect();
+          if (style.overflowX !== "visible") { visible.left = Math.max(visible.left,clip.left); visible.right = Math.min(visible.right,clip.right); }
+          if (style.overflowY !== "visible") { visible.top = Math.max(visible.top,clip.top); visible.bottom = Math.min(visible.bottom,clip.bottom); }
+        }
+        ancestor = ancestor.parentElement;
+      }
+      if (!target.closest(".header") && innerWidth < 992) visible.top = Math.max(visible.top,document.querySelector(".header").getBoundingClientRect().bottom);
+      return visible.right - visible.left >= 8 && visible.bottom - visible.top >= 8 ? visible : null;
+    }
+    function queueTargetFollow() {
+      if (!activeTarget || root.hidden || !dialog.hidden || (window.PortfolioEntry && window.PortfolioEntry.active)) return;
+      if (!followFrame) followFrame = requestAnimationFrame(function () {
+        followFrame = 0;
+        if (activeTarget) moveTo(activeTarget,activeGesture);
+        if (followUntil > performance.now()) queueTargetFollow();
+      });
+    }
+    function followMovingTarget(duration) {
+      followUntil = Math.max(followUntil,performance.now() + duration);
+      queueTargetFollow();
+    }
+    function alignAfterScroll() {
+      if (!activeTarget) return;
+      root.classList.add("is-tracking");
+      if (followReset) clearTimeout(followReset);
+      followReset = setTimeout(function () { root.classList.remove("is-tracking"); followReset = 0; },140);
+      queueTargetFollow();
+    }
     function moveTo(selector,gesture) {
-      var target = selector && document.querySelector(selector); activeTarget = selector;
-      root.dataset.mode = "expanded"; root.dataset.gesture = gesture || "point";
+      var target = selector && document.querySelector(selector); activeTarget = selector; activeGesture = gesture || "point";
       if (!target || reducedMotion.matches) { dock(); return; }
       var bounds = target.getBoundingClientRect();
-      var x = bounds.right + 10;
-      if (x + 105 > innerWidth - 18) x = bounds.left - 110;
-      if (x < 12) x = Math.max(12,innerWidth - 112);
+      var visible = clippedBounds(target);
+      if (!visible || visible.bottom - visible.top < Math.min(36,bounds.height * .65)) {
+        root.dataset.mode = "compact"; root.dataset.gesture = "rest";
+        root.style.setProperty("--guide-x",Math.max(12,innerWidth - (innerWidth < 576 ? 82 : 96)) + "px");
+        var dockBottom = document.querySelector(".whatsapp-float") ? 90 : 24;
+        root.style.setProperty("--guide-y",Math.max(90,innerHeight - dockBottom - 93) + "px");
+        return;
+      }
+      root.dataset.mode = "expanded"; root.dataset.gesture = activeGesture;
+      var main = target.closest(".main-wrapper");
+      var leftLimit = main && innerWidth >= 992 ? Math.max(12,main.getBoundingClientRect().left + 8) : 12;
+      var rightLimit = innerWidth - 112;
+      var x = visible.right + 10;
+      if (x > rightLimit) x = visible.left - 110;
+      if (x < leftLimit) x = Math.max(leftLimit,Math.min(rightLimit,visible.left + 12));
+      if (innerWidth < 992 && target.closest(".sidebar-nav")) {
+        x = target.closest('.header[dir="rtl"]') ? Math.max(12,Math.min(rightLimit,visible.left + 8)) : rightLimit;
+      }
       var topClearance = Math.min(innerWidth < 992 ? 156 : 112,Math.max(46,innerHeight - 130));
-      var y = Math.max(topClearance,Math.min(innerHeight - 158,bounds.top + Math.min(70,bounds.height * .25)));
+      var focusY = visible.bottom - visible.top > 160 ? Math.max(visible.top + 20,Math.min(visible.bottom - 20,innerHeight * .45)) : (visible.top + visible.bottom) / 2;
+      var y = Math.max(topClearance,Math.min(innerHeight - (innerWidth < 576 ? 102 : 116),focusY - 48));
       root.dataset.facing = bounds.left + bounds.width * .5 < x + 50 ? "left" : "right";
       root.style.setProperty("--guide-x",x + "px"); root.style.setProperty("--guide-y",y + "px");
     }
@@ -135,7 +245,8 @@
       navTools:'.home-nav a[href$="#whatido"]', navTestimonials:'.home-nav a[href$="#testimonials"]', navFeatured:'.home-nav a[href$="#projects"]',
       navPortfolio:'.sidebar-nav a[href$="portfolio.html"]', navResume:'.sidebar-nav a[href$="resume/index.html"]', navGallery:'.sidebar-nav a[href$="gallery.html"]',
       navServices:'.sidebar-nav a[href$="services.html"], .home-nav a[href$="#services"]', navContact:'.sidebar-nav a[href$="contact.html"]',
-      portfolioCards:".projects-list", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
+      portfolioHero:".cta-section h1", portfolioCards:".projects-list", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
+      serviceHero:".service-hero h1", galleryHero:".cta-section h1", projectHero:".cta-section h1",
       serviceLLM:"#llm h3", serviceRAG:"#rag h3", serviceAgents:"#agentic h3", serviceVision:"#cv h3", serviceData:"#data h3",
       contactName:"#contact-name", contactEmail:"#contact-email", contactSubject:"#contact-subject", contactMessage:"#contact-message", contactSend:'#contact-form button[type="submit"]'
     };
@@ -150,6 +261,24 @@
       if (menuOpenedByGuide && menu && button && menu.classList.contains("show")) button.click();
       menuOpenedByGuide = false; document.body.classList.remove("portfolio-guided-navigation");
     }
+    function scrollCueTarget(target,isNavigation,forceMain) {
+      var behavior = reducedMotion.matches ? "instant" : "smooth";
+      if (isNavigation && innerWidth >= 992) {
+        var sidebar = target.closest(".header"), rect = target.getBoundingClientRect(), box = sidebar && sidebar.getBoundingClientRect();
+        if (sidebar && sidebar.scrollHeight > sidebar.clientHeight + 1 && box) {
+          var padding = Math.min(22,box.height * .08);
+          if (rect.top < box.top + padding || rect.bottom > box.bottom - padding) {
+            sidebar.scrollTo({top:sidebar.scrollTop + (rect.top + rect.bottom - box.top - box.bottom) / 2,behavior:behavior});
+          }
+          return;
+        }
+      }
+      if (isNavigation) {
+        target.scrollIntoView({block:"nearest",inline:"nearest",behavior:behavior});
+      } else if (forceMain || !clippedBounds(target)) {
+        target.scrollIntoView({block:"center",inline:"nearest",behavior:behavior});
+      }
+    }
     function pointCue(cue) {
       if (root.hidden || !dialog.hidden || (window.PortfolioEntry && window.PortfolioEntry.active)) return;
       var selector = targets[cue.target], target = selector && document.querySelector(selector);
@@ -157,30 +286,35 @@
       var changed = root.dataset.cue !== cue.target;
       if (/^nav/.test(cue.target)) {
         ensureGuideMenu();
-        if (changed) target.scrollIntoView({block:"nearest",inline:"nearest",behavior:reducedMotion.matches ? "instant" : "smooth"});
+        if (changed) scrollCueTarget(target,true,false);
       } else {
         closeGuideMenu();
-        if (changed && root.dataset.state === "tour") target.scrollIntoView({block:"center",inline:"nearest",behavior:reducedMotion.matches ? "instant" : "smooth"});
+        if (changed && (root.dataset.state === "tour" || (root.dataset.state === "intro" && page !== "home"))) scrollCueTarget(target,false,root.dataset.state === "tour");
       }
       if (changed) { clearHighlights(); target.classList.add("portfolio-guide-target"); highlights = [target]; root.dataset.cue = cue.target; }
       moveTo(selector,cue.gesture || "point");
+      if (changed) followMovingTarget(900);
     }
     function cueTimeline(text,cues,token) {
       var list = (cues || []).filter(function (cue) { return typeof cue.at === "number" && targets[cue.target]; }).slice().sort(function (a,b) { return a.at - b.at; }).map(function (cue,index,ordered) {
         var lead = index ? Math.min(.45,Math.max(0,cue.at - ordered[index - 1].at) * .4) : .45;
-        return {at:cue.at,target:cue.target,match:cue.match,gesture:cue.gesture,lead:lead};
+        return {at:cue.at,target:cue.target,match:cue.match,gesture:cue.gesture,lead:lead,charIndex:cue.match ? text.indexOf(cue.match) : cue.at === 0 ? 0 : -1};
       });
       var current = -1;
       function render(index,travel) { if (token !== generation || index < 0) return; current = index; root.style.setProperty("--guide-travel",(travel || Math.max(.12,list[index].lead)) + "s"); pointCue(list[index]); }
       return {
         time:function (seconds) { if (token !== generation) return; var index = -1; list.forEach(function (cue,i) { if (seconds + cue.lead >= cue.at) index = i; }); if (index >= 0) render(index); },
-        boundary:function (offset) { if (token !== generation) return; var index = -1; list.forEach(function (cue,i) { var at = cue.match ? text.toLocaleLowerCase().indexOf(cue.match.toLocaleLowerCase()) : -1; if (at >= 0 && offset >= at) index = i; }); if (index >= 0) render(index,.18); },
+        boundary:function (offset) { if (token !== generation) return; var index = -1; list.forEach(function (cue,i) { if (cue.charIndex >= 0 && offset >= cue.charIndex) index = i; }); if (index >= 0) render(index,.18); },
         refresh:function () { render(current); }
       };
     }
     function chapter(key) {
       var catalog = window.PortfolioTour;
       return catalog && catalog[language().code] && catalog[language().code][key];
+    }
+    function narration(key) {
+      var catalog = window.PortfolioNarration, entries = catalog && catalog[language().code];
+      return entries && entries.filter(function (entry) { return entry.key === key; })[0];
     }
     function welcomeCues(text) {
       var catalog = window.PortfolioTour, value = catalog && catalog.welcomeCues && catalog.welcomeCues[language().code];
@@ -190,6 +324,7 @@
       if (activeTimeline) activeTimeline.refresh();
     }
     function speak(text,token,onEnd,onStart,skipRecording,timelineOptions) {
+      if (!pageCopyReady()) { afterPageCopy(function () { if (token === generation) speak(text,token,onEnd,onStart,skipRecording,timelineOptions); }); return; }
       var entries = window.PortfolioNarration && window.PortfolioNarration[language().code];
       var recording = timelineOptions && timelineOptions.recording || (entries && entries.filter(function (entry) { return entry.text === text; })[0]);
       var timeline = cueTimeline(text,(timelineOptions && timelineOptions.cues) || (recording && recording.cues) || [],token);
@@ -198,13 +333,17 @@
       function unavailable(blocked) {
         if (token !== generation) return;
         clearTimers(); root.classList.remove("is-speaking"); updateToggle(false);
-        status.textContent = t(blocked ? "soundBlocked" : "voiceUnavailable"); label(play,t(blocked ? "soundBlocked" : "play"));
-        if (timelineOptions && timelineOptions.onUnavailable) { timelineOptions.onUnavailable(blocked); return; }
-        later(done,1200);
+        status.textContent = t(blocked ? "soundBlocked" : "voiceUnavailable");
+        if (timelineOptions && timelineOptions.onUnavailable) {
+          timelineOptions.onUnavailable(blocked);
+          if (blocked && !root.classList.contains("is-active")) showBlockedCue();
+          return;
+        }
+        later(function () { done(); if (blocked && !root.classList.contains("is-active")) showBlockedCue(); },1200);
       }
       if (muted()) { later(done,600); return; }
       updateToggle(true); status.textContent = text;
-      if (recording && !skipRecording) {
+      if (recording && recording.src && !skipRecording) {
         var player = new Audio(); audio = player; player.preload = "none"; player.src = new URL(recording.src,siteUrl).href;
         function valid() { return token === generation && audio === player; }
         function failed(blocked) {
@@ -226,12 +365,11 @@
       }
       if (!nativeVoice) { unavailable(false); return; }
       var voices = synth.getVoices().filter(function (voice) { return voice.lang.toLowerCase().split(/[-_]/)[0] === language().code; });
-      if (!voices.length && language().code !== "en") { unavailable(false); return; }
       voices.sort(function (a,b) { return (/natural|neural|premium/i.test(b.name) ? 10 : 0) - (/natural|neural|premium/i.test(a.name) ? 10 : 0); });
-      var request = new window.SpeechSynthesisUtterance(text); utterance = request;
+      var request = new window.SpeechSynthesisUtterance(recording && recording.spokenText || text); utterance = request;
       request.lang = voices[0] ? voices[0].lang : language().locale; if (voices[0]) request.voice = voices[0]; request.rate = .98; request.volume = 1;
       function validSpeech() { return token === generation && utterance === request; }
-      request.onstart = function () { if (!validSpeech()) return; clearTimers(); root.classList.add("is-speaking"); if (onStart) onStart(); later(function () { if (validSpeech()) { utterance = null; synth.cancel(); unavailable(false); } },Math.max(25000,text.length * 150)); };
+      request.onstart = function () { if (!validSpeech()) return; clearTimers(); root.classList.add("is-speaking"); if (onStart) onStart(); timeline.boundary(0); later(function () { if (validSpeech()) { utterance = null; synth.cancel(); unavailable(false); } },Math.max(25000,text.length * 150)); };
       request.onend = function () { if (validSpeech()) done(); };
       request.onboundary = function (event) { if (validSpeech()) timeline.boundary(event.charIndex || 0); };
       request.onerror = function (event) { if (validSpeech()) { utterance = null; unavailable(event.error === "not-allowed"); } };
@@ -239,9 +377,25 @@
       try { synth.speak(request); } catch (error) { utterance = null; unavailable(false); }
     }
     function intro(manual) {
-      cancel(); if (manual) saveMuted(false); lastQuestion = ""; root.hidden = !ready || (window.PortfolioEntry && window.PortfolioEntry.active); root.dataset.state = "intro";
+      if (pendingLanguageIntent) { if (manual) { saveMuted(false); pendingLanguageIntent.interrupted = false; } if (!pendingLanguageIntent.interrupted) pendingLanguageIntent.wasActive = true; return; }
+      if (!pageCopyReady()) { if (manual) saveMuted(false); root.dataset.state = "intro"; afterPageCopy(function () { intro(manual); }); return; }
+      if (!pageIntroReady) { if (manual) saveMuted(false); root.dataset.state = "intro"; afterPageIntro(function () { intro(manual); }); return; }
+      if ((page === "portfolio" || page === "resume") && !chapter(page === "portfolio" ? "portfolioPage" : "resumePage") && !coreIntroReady) {
+        if (manual) saveMuted(false); root.dataset.state = "intro"; afterCoreIntro(function () { intro(manual); }); return;
+      }
+      cancel(); if (manual) saveMuted(false); lastQuestion = ""; root.hidden = !ready || (window.PortfolioEntry && window.PortfolioEntry.active); root.dataset.state = "intro"; root.dataset.mode = "compact";
       var token = generation;
-      function complete() { if (token !== generation) return; cancel(); root.dataset.state = "complete"; dock(); }
+      function complete(blocked) { if (token !== generation) return; cancel(); root.dataset.state = "complete"; root.dataset.mode = blocked ? "compact" : "launcher"; dock(); }
+      if (page !== "home") {
+        var chapterKey = {portfolio:"portfolioPage",resume:"resumePage",contact:"contactForm"}[page];
+        var recording = chapterKey ? chapter(chapterKey) || (window.PortfolioCoreIntros && window.PortfolioCoreIntros[language().code] && window.PortfolioCoreIntros[language().code][page]) : page === "services" ? narration("tourServices") : window.PortfolioPageIntros && window.PortfolioPageIntros[pageIntroKey] && window.PortfolioPageIntros[pageIntroKey][language().code];
+        var cues = recording && recording.cues || (page === "services" ? [{at:0,target:"serviceHero",gesture:"wave"}] : page === "gallery" ? [{at:0,target:"galleryHero",gesture:"wave"}] : page === "project" ? [{at:0,target:"projectHero",gesture:"wave"}] : []);
+        if (!recording) { recording = narration("welcome"); chapterKey = "welcome"; cues = []; }
+        if (!recording) { complete(false); return; }
+        root.dataset.chapter = chapterKey || (page === "services" ? "tourServices" : pageIntroKey);
+        speak(recording.text,token,complete,null,false,{recording:recording,cues:cues,onUnavailable:complete});
+        return;
+      }
       function navigationOverview() {
         if (token !== generation) return;
         var overview = chapter("introMap");
@@ -257,11 +411,7 @@
     function planForPage() {
       function item(key,fallback,target,nextPage) { return {key:key,recording:chapter(key),text:fallback,target:target,nextPage:nextPage}; }
       if (page === "home") {
-        var home = [];
-        if (chapter("sidebarBackground")) home.push(item("sidebarBackground",null,"navAbout"));
-        if (chapter("sidebarEvidence")) home.push(item("sidebarEvidence",null,"navAchievements"));
-        if (!home.length && chapter("introMap")) home.push(item("introMap",null,"navPortfolio"));
-        home.push(item("sidebarPortfolio",t("tourProjects"),"navPortfolio","portfolio")); return home;
+        return [item("introMap",null,"navPortfolio"),item("openPortfolio",t("tourProjects"),"navPortfolio","portfolio")];
       }
       if (page === "portfolio") return [item("portfolioPage",t("tourProjects"),"portfolioCards"),item("sidebarResume",t("tourResume"),"navResume","resume")];
       if (page === "resume") return chapter("resumePage") ? [item("resumePage",null,"resumeContent","services")] : [item("resumePage",t("tourResume"),"resumeContent"),item("sidebarServices",t("tourServices"),"navServices","services")];
@@ -271,7 +421,7 @@
         services.push(item("servicesAgents",locale.answer("agentic").text,"serviceAgents"),item("servicesVision",locale.answer("computer vision").text,"serviceVision"),item("servicesML",locale.answer("data science").text,"serviceData"),item("servicesContact",t("tourContact"),"navContact","contact")); return services;
       }
       if (page === "contact") return [item("contactForm",t("tourContact"),"contactName")];
-      return [item("sidebarPortfolio",t("tourProjects"),"navPortfolio","portfolio")];
+      return [item("openPortfolio",t("tourProjects"),"navPortfolio","portfolio")];
     }
     function waitForTarget(selector,token,callback) {
       if (reducedMotion.matches || !selector) { callback(); return; }
@@ -298,15 +448,17 @@
       }
     }
     function tour() {
-      closeDialog(false); cancel(); saveMuted(false); root.hidden = !ready; root.dataset.state = "tour";
+      if (pendingLanguageIntent) { saveMuted(false); pendingLanguageIntent.wasTour = true; pendingLanguageIntent.wasActive = true; pendingLanguageIntent.interrupted = false; return; }
+      if (!pageCopyReady()) { saveMuted(false); root.dataset.state = "tour"; afterPageCopy(tour); return; }
+      closeDialog(false); cancel(); saveMuted(false); root.hidden = !ready; root.dataset.state = "tour"; root.dataset.mode = "compact";
       var steps = planForPage(), token = generation;
       function step(index) {
         if (token !== generation) return;
-        if (index >= steps.length) { cancel(); root.dataset.state = "complete"; dock(); return; }
+        if (index >= steps.length) { cancel(); root.dataset.state = "complete"; root.dataset.mode = "launcher"; dock(); return; }
         var item = steps[index], selector = targets[item.target], target = selector && document.querySelector(selector);
         root.dataset.state = "tour"; root.dataset.chapter = item.key; delete root.dataset.cue; clearHighlights(); updateToggle(true);
         if (/^nav/.test(item.target)) ensureGuideMenu(); else closeGuideMenu();
-        if (target) target.scrollIntoView({block:/^nav/.test(item.target) ? "nearest" : "center",inline:"nearest",behavior:reducedMotion.matches ? "instant" : "smooth"});
+        if (target) scrollCueTarget(target,/^nav/.test(item.target),true);
         waitForTarget(selector,token,function () {
           if (token !== generation) return;
           moveTo(selector,"wave");
@@ -344,7 +496,8 @@
       cancel(); if (remember) { history.push({question:question,display:display}); if (history.length > 8) history.shift(); }
       lastQuestion = question; renderConversation(); root.hidden = false; root.dataset.mode = "compact"; root.dataset.state = "answer"; root.dataset.gesture = "wave";
       var response = answerFor(question); var token = generation;
-      speak(response.text,token,function () { if (token === generation) { cancel(); root.dataset.state = "complete"; dock(); } });
+      function complete(blocked) { if (token === generation) { cancel(); root.dataset.state = "complete"; root.dataset.mode = blocked ? "compact" : "launcher"; dock(); } }
+      speak(response.text,token,complete,null,false,{onUnavailable:complete});
     }
     function openDialog() {
       stop(false); root.hidden = false; dialog.hidden = false; root.classList.add("is-chat-open"); avatar.setAttribute("aria-expanded","true");
@@ -354,7 +507,7 @@
       dialog.hidden = true; root.classList.remove("is-chat-open"); avatar.setAttribute("aria-expanded","false"); label(avatar,t("openAssistant","Open assistant")); if (focus) avatar.focus({preventScroll:true});
     }
     function labels() {
-      var lang = language(); root.lang = lang.code; dialog.lang = lang.code; dialog.dir = lang.dir;
+      var lang = language(); root.lang = lang.code; root.dir = "ltr"; dialog.lang = lang.code; dialog.dir = lang.dir;
       label(avatar,t(dialog.hidden ? "openAssistant" : "closeAssistant",dialog.hidden ? "Open assistant" : "Close assistant"));
       label(play,t(root.classList.contains("is-active") ? "stop" : "play")); label(chatPlay,t(root.classList.contains("is-active") ? "stop" : "play")); label(hide,t("hide")); label(close,t("closeAssistant","Close assistant"));
       dialog.querySelector("h2").textContent = t("assistant","Portfolio assistant"); dialog.querySelector(".portfolio-assistant__greeting").textContent = t("help");
@@ -366,7 +519,7 @@
       label(dialog.querySelector(".portfolio-assistant__language"),t("language"));
     }
     avatar.addEventListener("click",function () { if (dialog.hidden) openDialog(); else { stop(false); closeDialog(true); } });
-    function togglePlayback() { if (root.classList.contains("is-active")) stop(true); else { saveMuted(false); if (resumeTour) { var resume = resumeTour; resumeTour = null; resume(); } else if (lastQuestion && !dialog.hidden) answer(lastQuestion,false); else intro(true); } }
+    function togglePlayback() { if (root.classList.contains("is-active")) stop(true); else { clearBlockedCue(); saveMuted(false); if (resumeTour) { var resume = resumeTour; resumeTour = null; resume(); } else if (lastQuestion && !dialog.hidden) answer(lastQuestion,false); else intro(true); } }
     play.addEventListener("click",togglePlayback); chatPlay.addEventListener("click",togglePlayback);
     hide.addEventListener("click",hideGuide);
     close.addEventListener("click",function () { stop(false); closeDialog(true); });
@@ -374,11 +527,21 @@
     dialog.querySelectorAll("[data-assistant-topic]").forEach(function (button) { button.addEventListener("click",function () { answer(button.dataset.assistantTopic,true,button.textContent.trim()); }); });
     tourButton.addEventListener("click",tour);
     dialog.querySelector(".portfolio-assistant__language").addEventListener("click",function () { if (window.PortfolioControls) window.PortfolioControls.openLanguagePicker(); });
+    document.addEventListener("portfolio:languagechanging",function () {
+      if (!pendingLanguageIntent) pendingLanguageIntent = {wasActive:root.classList.contains("is-active") || root.dataset.state === "intro" || root.dataset.state === "complete" || (root.dataset.state === "idle" && !muted()),wasTour:root.dataset.state === "tour" || root.dataset.state === "tour-paused",interrupted:false};
+      continuation = null; cancel();
+    });
     document.addEventListener("portfolio:language",function () {
-      var wasActive = root.classList.contains("is-active"); continuation = null; cancel(); labels(); renderConversation();
+      var intent = pendingLanguageIntent || {wasActive:root.classList.contains("is-active") || root.dataset.state === "intro" || root.dataset.state === "complete" || (root.dataset.state === "idle" && !muted()),wasTour:root.dataset.state === "tour" || root.dataset.state === "tour-paused",interrupted:false};
+      pendingLanguageIntent = null; continuation = null; cancel(); labels(); renderConversation();
       if (window.PortfolioEntry && window.PortfolioEntry.active) return;
+      if (intent.interrupted) return;
       if (lastQuestion && !dialog.hidden && !muted()) answer(lastQuestion,false);
-      else if ((wasActive || page === "home") && !muted()) intro(false);
+      else if (intent.wasTour && !muted()) tour();
+      else if ((intent.wasActive || page === "home") && !muted()) intro(false);
+    });
+    document.addEventListener("portfolio:pagetranslated",function () {
+      if (ready && pageCopyReady() && !pendingLanguageIntent && root.dataset.state === "idle" && !muted() && !document.hidden && !(window.PortfolioEntry && window.PortfolioEntry.active)) intro(false);
     });
     document.addEventListener("portfolio:entering",function (event) {
       entering = true;
@@ -387,7 +550,9 @@
     });
     document.addEventListener("portfolio:entered",function () {
       root.hidden = !ready; if (entering && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
-      else if (!entering && !muted()) intro(false); entering = false;
+      else if (!entering && !muted()) intro(false);
+      else if (muted()) { root.dataset.mode = "launcher"; dock(); }
+      entering = false;
     });
     function manualControl(event) {
       if (root.contains(event.target) || dialog.contains(event.target) || (event.target.closest && event.target.closest(".portfolio-language-picker"))) return;
@@ -405,17 +570,22 @@
     document.addEventListener("visibilitychange",function () { if (document.hidden) stop(false); });
     window.addEventListener("pagehide",cancel); window.addEventListener("beforeprint",function () { stop(false); closeDialog(false); });
     window.addEventListener("pageshow",function (event) { if (event.persisted) { handoffInFlight = false; continuation = null; clearContinuation(); stop(false); } });
-    window.addEventListener("resize",function () { if (activeTarget && root.dataset.mode === "expanded") moveTo(activeTarget,root.dataset.gesture); else dock(); if (!dialog.hidden) fitWindow(); });
-    if (window.visualViewport) window.visualViewport.addEventListener("resize",function () { if (!dialog.hidden) fitWindow(); });
+    window.addEventListener("scroll",alignAfterScroll,{passive:true,capture:true});
+    window.addEventListener("resize",function () { if (activeTarget) queueTargetFollow(); else dock(); if (!dialog.hidden) fitWindow(); });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize",function () { queueTargetFollow(); if (!dialog.hidden) fitWindow(); });
+      window.visualViewport.addEventListener("scroll",queueTargetFollow,{passive:true});
+    }
     if (reducedMotion.addEventListener) reducedMotion.addEventListener("change",function () { stop(false); });
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:function () { intro(true); },startTour:tour,stop:function () { stop(true); }};
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=7",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=13",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (continuation) { continuation = null; tour(); }
       else if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
       else if (!root.hidden && root.dataset.state === "idle" && !muted() && !document.hidden) later(function () { intro(false); },450);
+      else if (!root.hidden && muted()) { root.dataset.mode = "launcher"; dock(); }
     };
     document.head.appendChild(stylesheet);
   }

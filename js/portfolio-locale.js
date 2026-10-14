@@ -1,6 +1,7 @@
 /* Local language and published-content lookup. No network requests or remote model. */
 (function () {
   'use strict';
+  var scriptUrl = document.currentScript && document.currentScript.src;
 
   var languages = [
     { code: 'en', name: 'English', locale: 'en-US', dir: 'ltr' },
@@ -257,73 +258,175 @@
   copy.forEach(function (row) { translations[row[0]] = { ur: row[1], ar: row[2] }; });
   var textRecords = [];
   var attributeRecords = [];
+  var textLookup = new WeakMap();
+  var attributeLookup = new WeakMap();
+  var pageCopies = Object.create(null);
+  var reversePageCopies = Object.create(null);
+  var pageLoads = Object.create(null);
+  var languageRequest = 0;
+  var languageReady = Promise.resolve(true);
   var main = null;
+  var header = null;
   var initialized = false;
+  var pageKey = /\/projects\//i.test(location.pathname) ? 'project-' + location.pathname.split('/').pop().replace(/\.html$/i, '') : /\/resume\//i.test(location.pathname) ? 'resume' : (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/i, '');
+  if (pageKey === 'index') pageKey = 'home';
+  var excludedCopy = 'script,style,textarea,pre,code,kbd,samp,svg,math,[translate="no"],.portfolio-language-picker,.portfolio-guide,.portfolio-assistant-dialog,#portfolio-entry,#hero-role-text';
+  var copyAttributes = ['placeholder', 'aria-label', 'title', 'alt'];
+  var heroRoles = ['production AI systems','LLM & RAG platforms','agentic AI workflows','computer vision intelligence'];
+  var heroRoleIndex = 0;
 
   function t(key) { return ui[language][key] || ui.en[key] || key; }
-  function translate(text) {
-    var match = translations[text];
-    return language === 'en' || !match ? text : match[language] || text;
+  function copyKey(text) { return String(text).replace(/\s+/g, ' ').trim(); }
+  function translate(text, code) {
+    code = code || language;
+    var match = translations[copyKey(text)];
+    return code === 'en' || !match ? text : match[code] || text;
+  }
+  function pageReady() { return language === 'en' || pageCopies[language] === true; }
+  function pageStatus() { return { page:pageKey, language:language, ready:pageReady() }; }
+  function registerPageCopy(code, key, entries) {
+    if (key !== pageKey || !languages.some(function (item) { return item.code === code; }) || !entries || typeof entries !== 'object') return false;
+    var reverse = Object.create(null);
+    Object.keys(entries).forEach(function (original) {
+      var translated = entries[original];
+      if (typeof translated !== 'string' || !translated.trim()) return;
+      var normalized = copyKey(original);
+      if (!translations[normalized]) translations[normalized] = Object.create(null);
+      translations[normalized][code] = translated;
+      if (!reverse[copyKey(translated)]) reverse[copyKey(translated)] = normalized;
+    });
+    reversePageCopies[code] = reverse;
+    pageCopies[code] = true;
+    return true;
+  }
+  function loadPageCopy(code) {
+    if (code === 'en' || pageCopies[code]) return Promise.resolve(true);
+    if (pageLoads[code]) return pageLoads[code];
+    pageLoads[code] = new Promise(function (resolve) {
+      var source = document.createElement('script');
+      source.async = true;
+      source.src = new URL('page-locales/' + encodeURIComponent(pageKey) + '/' + encodeURIComponent(code) + '.js?v=6', scriptUrl).href;
+      source.onload = function () { var loaded = pageCopies[code] === true; if (!loaded) delete pageLoads[code]; resolve(loaded); };
+      source.onerror = function () { delete pageLoads[code]; source.remove(); resolve(false); };
+      document.head.appendChild(source);
+    });
+    return pageLoads[code];
   }
   function translatePage() {
     if (!initialized) return;
-    if (main) {
-      main.setAttribute('lang', language);
-      main.setAttribute('dir', languages.find(function (item) { return item.code === language; }).dir);
-    }
+    var code = pageReady() ? language : 'en';
+    var direction = languages.find(function (item) { return item.code === code; }).dir;
+    document.documentElement.lang = code;
+    [main,header].forEach(function (element) { if (element) { element.lang = code; element.dir = direction; } });
     textRecords.forEach(function (record) {
-      var translated = translate(record.key);
-      record.node.nodeValue = language === 'en' ? record.original : record.leading + translated + record.trailing;
+      if (!record.node.isConnected) return;
+      var translated = translate(record.key, code);
+      record.rendered = code === 'en' || translated === record.key ? record.original : record.leading + translated + record.trailing;
+      if (record.node.nodeValue !== record.rendered) record.node.nodeValue = record.rendered;
     });
     attributeRecords.forEach(function (record) {
-      record.element.setAttribute(record.name, translate(record.original));
+      if (!record.element.isConnected) return;
+      record.rendered = code === 'en' ? record.original : translate(record.original, code);
+      if (record.element.getAttribute(record.name) !== record.rendered) record.element.setAttribute(record.name, record.rendered);
     });
+    var role = document.getElementById('hero-role-text');
+    var roleText = translate(heroRoles[heroRoleIndex],code);
+    if (role && role.textContent !== roleText) role.textContent = roleText;
+  }
+  function activateLanguage(notify) {
+    var code = language, token = ++languageRequest;
+    function finish(loaded) {
+      if (token !== languageRequest || code !== language) return false;
+      translatePage();
+      document.dispatchEvent(new CustomEvent(notify ? 'portfolio:language' : 'portfolio:pagetranslated', { detail:{ language:code, pageTranslated:loaded } }));
+      return loaded;
+    }
+    if (pageReady()) { finish(true); languageReady = Promise.resolve(true); }
+    else {
+      translatePage();
+      languageReady = loadPageCopy(code).then(finish);
+    }
+    return languageReady;
+  }
+  function rememberText(node) {
+    if (!node.parentElement || node.parentElement.closest(excludedCopy)) return;
+    var original = node.nodeValue, key = copyKey(original);
+    if (!key) return;
+    var record = textLookup.get(node);
+    if (record && record.rendered === original) return;
+    if (!record) { record = { node:node }; textLookup.set(node,record); textRecords.push(record); }
+    var leading = (original.match(/^\s*/) || [''])[0], trailing = (original.match(/\s*$/) || [''])[0];
+    var source = language !== 'en' && reversePageCopies[language] && reversePageCopies[language][key];
+    record.original = source ? leading + source + trailing : original; record.key = source || key; record.leading = leading; record.trailing = trailing; record.rendered = original;
+  }
+  function rememberAttributes(element) {
+    if (!element || element.closest(excludedCopy)) return;
+    var known = attributeLookup.get(element);
+    if (!known) { known = Object.create(null); attributeLookup.set(element,known); }
+    copyAttributes.forEach(function (name) {
+      var original = element.getAttribute(name), record = known[name];
+      if (!original || (record && record.rendered === original)) return;
+      if (!record) { record = {element:element,name:name}; known[name] = record; attributeRecords.push(record); }
+      var source = language !== 'en' && reversePageCopies[language] && reversePageCopies[language][copyKey(original)];
+      record.original = source || original; record.rendered = original;
+    });
+  }
+  function collectCopy(element) {
+    if (element.nodeType === Node.TEXT_NODE) { rememberText(element); return; }
+    if (element.nodeType !== Node.ELEMENT_NODE || element.closest(excludedCopy)) return;
+    rememberAttributes(element);
+    var walker = document.createTreeWalker(element,NodeFilter.SHOW_TEXT), node;
+    while ((node = walker.nextNode())) rememberText(node);
+    Array.prototype.forEach.call(element.querySelectorAll('[placeholder],[aria-label],[title],[alt]'),rememberAttributes);
   }
   function init() {
     if (initialized) return;
-    // Home content is English; the floating guide has its own localized UI.
-    var isContentPage = document.querySelector('#services-list, #contact-form');
-    main = isContentPage ? document.querySelector('.main-wrapper') : null;
-    if (main) {
-      var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
-      var node;
-      while ((node = walker.nextNode())) {
-        if (!node.parentElement || /^(SCRIPT|STYLE|TEXTAREA)$/.test(node.parentElement.tagName)) continue;
-        var original = node.nodeValue;
-        var key = original.trim();
-        if (!translations[key]) continue;
-        textRecords.push({ node: node, original: original, key: key, leading: (original.match(/^\s*/) || [''])[0], trailing: (original.match(/\s*$/) || [''])[0] });
-      }
-      var elements = main.querySelectorAll('[placeholder], [aria-label]');
-      Array.prototype.forEach.call(elements, function (element) {
-        ['placeholder', 'aria-label'].forEach(function (name) {
-          var original = element.getAttribute(name);
-          if (original && translations[original]) attributeRecords.push({ element: element, name: name, original: original });
-        });
-      });
-      // Email addresses remain readable when the surrounding form is RTL.
-      var email = document.getElementById('contact-email');
-      if (email) email.setAttribute('dir', 'ltr');
-      Array.prototype.forEach.call(main.querySelectorAll('a[href^="mailto:"]'), function (element) { element.setAttribute('dir', 'ltr'); });
-      var whatsapp = document.querySelector('.whatsapp-float');
-      if (whatsapp) {
-        ['aria-label'].forEach(function (name) {
-          attributeRecords.push({ element: whatsapp, name: name, original: whatsapp.getAttribute(name) });
-        });
-        var tooltip = whatsapp.querySelector('.whatsapp-float__tooltip');
-        if (tooltip && tooltip.firstChild) textRecords.push({ node: tooltip.firstChild, original: tooltip.firstChild.nodeValue, key: tooltip.firstChild.nodeValue.trim(), leading: '', trailing: '' });
-      }
-    }
+    main = document.querySelector('.main-wrapper'); header = document.querySelector('.header');
+    Object.keys(translations).forEach(function (key) { var normalized = copyKey(key); if (!translations[normalized]) translations[normalized] = translations[key]; });
+    var roots = [document.body,document.querySelector('title')].filter(Boolean);
+    roots.forEach(collectCopy);
+    var email = document.getElementById('contact-email');
+    if (email) email.setAttribute('dir','ltr');
+    Array.prototype.forEach.call(document.querySelectorAll('a[href^="mailto:"],a[href^="tel:"]'),function (element) { element.setAttribute('dir','ltr'); });
     initialized = true;
-    translatePage();
+    var observer = new MutationObserver(function (changes) {
+      var changed = false;
+      changes.forEach(function (change) {
+        if (change.type === 'characterData') {
+          var record = textLookup.get(change.target);
+          if (!record || record.rendered !== change.target.nodeValue) { rememberText(change.target); changed = true; }
+        } else if (change.type === 'attributes') {
+          var known = attributeLookup.get(change.target), attribute = known && known[change.attributeName];
+          if (!attribute || attribute.rendered !== change.target.getAttribute(change.attributeName)) { rememberAttributes(change.target); changed = true; }
+        } else if (change.addedNodes.length) {
+          var count = textRecords.length + attributeRecords.length;
+          Array.prototype.forEach.call(change.addedNodes,collectCopy);
+          if (textRecords.length + attributeRecords.length !== count) changed = true;
+        }
+      });
+      if (changed) {
+        textRecords = textRecords.filter(function (record) { return record.node.isConnected; });
+        attributeRecords = attributeRecords.filter(function (record) { return record.element.isConnected; });
+        translatePage();
+      }
+    });
+    roots.forEach(function (element) { observer.observe(element,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:copyAttributes}); });
+    activateLanguage(false);
+    if (document.getElementById('hero-role-text')) window.setInterval(function () {
+      if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      heroRoleIndex = (heroRoleIndex + 1) % heroRoles.length;
+      var role = document.getElementById('hero-role-text');
+      var text = translate(heroRoles[heroRoleIndex],pageReady() ? language : 'en');
+      if (role && role.textContent !== text) role.textContent = text;
+    },4000);
   }
   function setLanguage(code) {
     if (!languages.some(function (item) { return item.code === code; })) return false;
     language = code;
     savedLanguage = code;
     try { sessionStorage.setItem('portfolio-language', code); } catch (_) { /* Optional persistence. */ }
-    translatePage();
-    document.dispatchEvent(new CustomEvent('portfolio:language', { detail: { language: code } }));
+    document.dispatchEvent(new CustomEvent('portfolio:languagechanging', {detail:{language:code}}));
+    activateLanguage(true);
     return true;
   }
 
@@ -449,14 +552,13 @@
     copy.forEach(function (row) { translations[row[0]][meta.code] = definition.copy[row[0]]; });
     localeKeywords[meta.code] = definition.keywords || {};
     languages.push(meta);
-    if (savedLanguage === meta.code) language = meta.code;
-    translatePage();
+    if (savedLanguage === meta.code && language !== meta.code) { language = meta.code; if (initialized) activateLanguage(false); }
     return true;
   }
   function sourceEntries() {
     return { ui: Object.assign({}, ui.en), copy: Array.from(new Set(copy.map(function (row) { return row[0]; }))), services: serviceData.map(function (service) { return { id: service.id, rows: service.rows.map(function (row) { return row[0]; }) }; }) };
   }
-  window.PortfolioLocale = { languages: languages, getLanguage: function () { return language; }, setLanguage: setLanguage, t: t, answer: answer, narrationEntries: narrationEntries, registerLocale: registerLocale, sourceEntries: sourceEntries };
+  window.PortfolioLocale = { languages: languages, getLanguage: function () { return language; }, setLanguage: setLanguage, t: t, answer: answer, narrationEntries: narrationEntries, registerLocale: registerLocale, sourceEntries: sourceEntries, registerPageCopy:registerPageCopy, getPageStatus:pageStatus, whenReady:function () { return languageReady; } };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
   else init();
 }());

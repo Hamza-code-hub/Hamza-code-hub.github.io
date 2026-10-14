@@ -1,4 +1,5 @@
 .portfolio-guide { position:fixed; left:0; top:0; z-index:1080; width:90px; color:var(--text); transform:translate3d(var(--guide-x,calc(100vw - 96px)),var(--guide-y,calc(100dvh - 117px)),0); transition:transform var(--guide-travel,.48s) cubic-bezier(.22,.7,.15,1); pointer-events:none; }
+.portfolio-guide.is-tracking { transition-duration:.08s; }
 .portfolio-guide[hidden],.portfolio-guide [hidden],.portfolio-assistant-dialog[hidden],.portfolio-assistant-dialog [hidden] { display:none !important; }
 .portfolio-guide *, .portfolio-assistant-dialog * { box-sizing:border-box; }
 .portfolio-guide__avatar { position:relative; display:grid; place-items:center; width:78px; height:82px; padding:0; border:0; background:transparent; cursor:pointer; pointer-events:auto; }
@@ -20,10 +21,12 @@
 .portfolio-guide.is-active .portfolio-guide__play { color:#ff526b; background:color-mix(in srgb,#ff334f 14%,var(--panel-solid)); border-color:#ef4961; }
 .portfolio-guide.is-active .guide-icon-play { display:none; }
 .portfolio-guide.is-active .guide-icon-stop { display:block; }
+.portfolio-guide[data-sound="blocked"] .portfolio-guide__play,
+.portfolio-assistant-dialog[data-sound="blocked"] .portfolio-assistant__play { outline:2px solid var(--accent); outline-offset:3px; animation:guide-enable-sound 1.7s ease-in-out 3; }
 .guide-avatar__floor { fill:var(--accent); opacity:.17; }
-.guide-avatar__limb { fill:none; stroke:#adbee7; stroke-width:11; stroke-linecap:round; }
-.guide-avatar__detail { fill:none; stroke:#697da8; stroke-width:1.8; stroke-linecap:round; }
-.guide-avatar__fingers,.guide-avatar__open-fingers,.guide-avatar__point-finger { fill:none; stroke:#d2dfff; stroke-width:3.4; stroke-linecap:round; }
+.guide-avatar__limb { fill:none; stroke:#b5a17b; stroke-width:11; stroke-linecap:round; }
+.guide-avatar__detail { fill:none; stroke:#6f5c42; stroke-width:1.8; stroke-linecap:round; }
+.guide-avatar__fingers,.guide-avatar__open-fingers,.guide-avatar__point-finger { fill:none; stroke:#eee0c1; stroke-width:3.4; stroke-linecap:round; }
 .guide-avatar__point-finger { display:none; }
 .guide-avatar__body { transform-origin:90px 128px; }
 .guide-avatar__head { transform-origin:90px 87px; }
@@ -99,6 +102,7 @@ body.portfolio-guided-navigation .portfolio-guide { visibility:visible; z-index:
 @keyframes guide-talk { to { transform:scaleY(2.3) scaleX(.85); } }
 @keyframes guide-breathe { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
 @keyframes guide-wave { 0%,100% { transform:rotate(-5deg); } 30% { transform:rotate(14deg); } 70% { transform:rotate(-14deg); } }
+@keyframes guide-enable-sound { 50% { box-shadow:0 0 0 8px color-mix(in srgb,var(--accent) 16%,transparent); } }
 @media (max-width:575.98px) {
   .portfolio-assistant-dialog { top:var(--assistant-mobile-top,130px); right:12px; bottom:auto; left:12px; width:auto; height:var(--assistant-mobile-height,calc(100dvh - 144px)); max-height:none; }
   .portfolio-assistant__header { padding:12px 15px; } .portfolio-assistant__intro { padding-top:11px; }
@@ -108,6 +112,8 @@ body.portfolio-guided-navigation .portfolio-guide { visibility:visible; z-index:
   .portfolio-assistant-dialog.is-keyboard .portfolio-assistant__header h2 { margin:0; font-size:14px; }
   .portfolio-assistant-dialog.is-keyboard .portfolio-assistant__conversation { min-height:20px; }
   .portfolio-guide[data-mode="expanded"] .portfolio-guide__avatar { width:86px; height:98px; } .portfolio-guide[data-mode="expanded"] .portfolio-guide__avatar svg { width:86px; height:98px; }
+  .portfolio-guide[data-mode="compact"] .portfolio-guide__avatar { width:58px; height:60px; border-radius:18px; }
+  .portfolio-guide[data-mode="compact"] .portfolio-guide__avatar svg { width:51px; height:57px; }
 }
-@media (prefers-reduced-motion:reduce) { .portfolio-guide,.portfolio-guide * { animation:none !important; transition:none !important; } }
+@media (prefers-reduced-motion:reduce) { .portfolio-guide,.portfolio-guide *, .portfolio-assistant-dialog[data-sound="blocked"] .portfolio-assistant__play { animation:none !important; transition:none !important; } }
 @media print { .portfolio-guide,.portfolio-assistant-dialog { display:none !important; } }

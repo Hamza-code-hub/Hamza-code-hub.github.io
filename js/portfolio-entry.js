@@ -5,9 +5,7 @@
   var api = { active:false, enter:enter };
   window.PortfolioEntry = api;
   if (!entry || !document.body.classList.contains("home-page")) return;
-  var remembered = false;
-  try { remembered = sessionStorage.getItem("portfolio-entered") === "1"; } catch (_) {}
-  if (window.location.hash || remembered) return;
+  if (window.location.hash) return;
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   var tilt = entry.querySelector(".entry-world-tilt");
@@ -15,12 +13,12 @@
   var backgrounds = Array.prototype.map.call(document.querySelectorAll("body > .header, body > .main-wrapper"),function (element) {
     return { element:element, inert:element.inert };
   });
-  var frame = 0, exitTimer = 0, entering = false, pointerX = 0, pointerY = 0;
+  var frame = 0, exitTimer = 0, revealTimer = 0, autoTimer = 0, entering = false, autoEntryEnabled = true, pointerX = 0, pointerY = 0;
   var fallbacks = {
     entryTitle:"Muhammad Hamza", entrySubtitle:"AI Engineer",
     exploreAI:"Explore the engineering behind intelligent systems.",
     agents:"Agentic AI", vision:"Computer Vision", generative:"Generative AI", classicalLabel:"Classical ML",
-    enterPortfolio:"Enter portfolio", skipIntro:"Skip introduction", entryHint:"Click to enter · Move to explore"
+    enterPortfolio:"Enter portfolio", skipIntro:"Skip introduction"
   };
   function ownGlobalControls() {
     if (!api.active) return;
@@ -68,12 +66,22 @@
     pointerX = pointerY = 0;
     if (!frame) frame = requestAnimationFrame(renderTilt);
   }
-  function updateVisibility() { entry.classList.toggle("is-paused",document.hidden); }
+  function cancelAutomaticEntry() { clearTimeout(autoTimer); autoTimer = 0; }
+  function preserveControlInteraction(event) {
+    if (event.target.closest && event.target.closest(".mobile-theme-toggle,.portfolio-language-picker,.portfolio-language-control,#darkmode,[for='darkmode']")) { autoEntryEnabled = false; cancelAutomaticEntry(); }
+  }
+  function updateVisibility() {
+    entry.classList.toggle("is-paused",document.hidden);
+    if (document.hidden) cancelAutomaticEntry();
+    else if (autoEntryEnabled && api.active && !entering && !autoTimer) autoTimer = window.setTimeout(function () { enter({automatic:true}); },motionAllowed() ? 1850 : 250);
+  }
   function complete() {
     if (!api.active) return;
     clearTimeout(exitTimer);
+    clearTimeout(revealTimer); cancelAutomaticEntry();
     api.active = false;
     entry.hidden = true;
+    entry.classList.remove("is-revealing");
     entry.removeAttribute("aria-owns");
     document.body.classList.remove("portfolio-entry-active","portfolio-entry-transition");
     document.documentElement.classList.remove("portfolio-entry-active");
@@ -81,6 +89,7 @@
     document.removeEventListener("keydown",keyboard);
     document.removeEventListener("portfolio:language",translate);
     document.removeEventListener("visibilitychange",updateVisibility);
+    document.removeEventListener("pointerdown",preserveControlInteraction,true);
     entry.removeEventListener("pointermove",move);
     entry.removeEventListener("pointerleave",resetTilt);
     if (frame) cancelAnimationFrame(frame);
@@ -94,19 +103,22 @@
   }
   function enter(options) {
     if (!api.active || entering) return;
-    entering = true;
+    entering = true; autoEntryEnabled = false;
+    clearTimeout(revealTimer); cancelAutomaticEntry(); entry.classList.remove("is-revealing");
     try { sessionStorage.setItem("portfolio-entered","1"); } catch (_) {}
-    // Fired inside the click handler so narration can unlock audio with user activation.
-    document.dispatchEvent(new CustomEvent("portfolio:entering",{detail:{source:"entry",skipNarration:!!(options && options.skipNarration)}}));
+    // Click entry dispatches synchronously for audio activation; automatic entry may require Play.
+    document.dispatchEvent(new CustomEvent("portfolio:entering",{detail:{source:"entry",automatic:!!(options && options.automatic),skipNarration:!!(options && options.skipNarration)}}));
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
     if (!motionAllowed() || (options && options.instant)) { complete(); return; }
     entry.classList.add("is-entering");
     document.body.classList.add("portfolio-entry-transition");
-    exitTimer = window.setTimeout(complete,900);
+    exitTimer = window.setTimeout(complete,650);
   }
   function keyboard(event) {
     if (entering) return;
+    autoEntryEnabled = false;
+    cancelAutomaticEntry();
     // Language search owns its Escape, Enter and Tab behavior while open.
     if (event.defaultPrevented || (event.target.closest && event.target.closest(".portfolio-language-picker,.portfolio-language-menu"))) return;
     if (event.key === "Escape") { event.preventDefault(); enter({instant:true,skipNarration:true}); return; }
@@ -126,6 +138,10 @@
 
   api.active = true;
   entry.hidden = false;
+  if (motionAllowed()) {
+    entry.classList.add("is-revealing");
+    revealTimer = window.setTimeout(function () { entry.classList.remove("is-revealing"); },950);
+  }
   backgrounds.forEach(function (item) { item.element.inert = true; });
   document.body.classList.add("portfolio-entry-active");
   document.documentElement.classList.add("portfolio-entry-active");
@@ -138,8 +154,10 @@
   document.addEventListener("keydown",keyboard);
   document.addEventListener("portfolio:language",translate);
   document.addEventListener("visibilitychange",updateVisibility);
+  document.addEventListener("pointerdown",preserveControlInteraction,{capture:true,passive:true});
   entry.addEventListener("pointermove",move,{passive:true});
   entry.addEventListener("pointerleave",resetTilt,{passive:true});
   window.addEventListener("pageshow",function (event) { if (event.persisted && entering) complete(); });
   entry.querySelector(".entry-enter").focus({preventScroll:true});
+  updateVisibility();
 }());

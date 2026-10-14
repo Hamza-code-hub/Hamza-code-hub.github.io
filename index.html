@@ -10,7 +10,7 @@
   <meta name="description" content="Official portfolio of Muhammad Hamza, an AI Engineer owning client-to-production delivery across LLM applications, RAG, agentic AI, computer vision, and production systems.">
   <meta name="author" content="Muhammad Hamza">
   <meta name="language" content="English">
-  <meta name="theme-color" content="#070d18">
+  <meta name="theme-color" content="#0b0d0f">
 
   <link rel="canonical" href="https://hamza-code-hub.github.io/">
   <link rel="icon" type="image/png" sizes="512x512" href="images/muhammad-hamza-profile-favicon.png">
@@ -36,6 +36,8 @@
   <meta name="twitter:image" content="https://hamza-code-hub.github.io/images/muhammad-hamza-ai-developer-software-engineer.jpg">
   <meta name="twitter:image:alt" content="Muhammad Hamza, AI Engineer, AI Developer and Software Engineer">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -43,16 +45,14 @@
   <link rel="stylesheet" href="./css/carousel.css">
   <link rel="stylesheet" href="./css/owl.css">
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
-  <link rel="stylesheet" href="./css/my.css?v=26">
+  <link rel="stylesheet" href="./css/my.css?v=31">
   <link rel="stylesheet" href="./css/home-ai-showcase.css?v=2">
-  <link rel="stylesheet" href="./css/portfolio-entry.css?v=4">
+  <link rel="stylesheet" href="./css/portfolio-entry.css?v=9">
 
   <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <script async src="https://unpkg.com/aos@2.3.4/dist/aos.js" onload="if(window.AOS)AOS.init({duration:700,once:true,offset:60})"></script>
 
-  <!-- Typed.js for typing animation -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
   <!-- FontAwesome -->
   <script defer src="./js/all.js"></script>
@@ -111,7 +111,7 @@
         },
         "worksFor": {
           "@type": "Organization",
-          "name": "CyberZeus Software Systems"
+          "name": "CyberZeus"
         },
         "award": [
           "Fully Funded Scholar — Design & Development of Unmanned Aerial Systems, Samara National Research University (2025)",
@@ -214,18 +214,33 @@
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Featured AI and Software Projects by Muhammad Hamza",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Enterprise RAG Chatbot Platform", "url": "https://hamza-code-hub.github.io/portfolio.html"},
-      {"@type": "ListItem", "position": 2, "name": "AI Cybersecurity Threat Detection", "url": "https://hamza-code-hub.github.io/portfolio.html"},
-      {"@type": "ListItem", "position": 3, "name": "Agentic AI Workflow Automation", "url": "https://hamza-code-hub.github.io/portfolio.html"},
-      {"@type": "ListItem", "position": 4, "name": "Medical AI — Alzheimer’s Detection", "url": "https://www.sciencedirect.com/science/article/pii/S2090447925004551"},
-      {"@type": "ListItem", "position": 5, "name": "Computer Vision QC System", "url": "https://hamza-code-hub.github.io/portfolio.html"}
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Featured AI and Software Projects by Muhammad Hamza",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://hamza-code-hub.github.io/projects/visionguard-ai.html",
+      "name": "VisionGuard AI"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://hamza-code-hub.github.io/projects/neuroinsight-ai.html",
+      "name": "NeuroInsight AI"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "url": "https://hamza-code-hub.github.io/projects/flood-prediction-lightgbm.html",
+      "name": "Flood Prediction with LightGBM"
+    }
+  ],
+  "numberOfItems": 3,
+  "@id": "https://hamza-code-hub.github.io/#featured-projects"
+}
   </script>
 
   <script type="application/ld+json">
@@ -569,7 +584,7 @@
 }
 </style>
 
-  <link rel="stylesheet" href="./css/portfolio-polish.css?v=1">
+  <link rel="stylesheet" href="./css/portfolio-polish.css?v=6">
 </head>
 
 <body class="home-page">
@@ -585,88 +600,36 @@
       <div class="entry-world" aria-label="Connected AI engineering specializations">
         <div class="entry-world-tilt">
           <div class="entry-ground" aria-hidden="true"><span></span></div>
-          <svg class="entry-connections" viewBox="0 0 1000 440" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <path class="entry-route" d="M270 125C380 125 372 215 500 215S632 130 750 130M320 340C400 340 385 215 500 215S610 340 705 340"/>
-            <path class="entry-route entry-route--signal" d="M270 125C380 125 372 215 500 215S632 130 750 130M320 340C400 340 385 215 500 215S610 340 705 340"/>
-            <circle class="entry-route-node" cx="270" cy="125" r="4"/><circle class="entry-route-node" cx="750" cy="130" r="4"/>
-            <circle class="entry-route-node" cx="320" cy="340" r="4"/><circle class="entry-route-node" cx="705" cy="340" r="4"/>
-          </svg>
           <div class="entry-station entry-station--agents">
             <span class="entry-station-title" data-entry-copy="agents">Agentic AI</span>
-            <svg viewBox="0 0 240 145" aria-hidden="true" focusable="false">
-              <path class="entry-svg-shadow" d="m10 108 102-52 115 52-115 33Z"/>
-              <path class="entry-svg-line" d="M55 74h35l32-40h38m-38 40h54m-54-40v74h43"/>
-              <path class="entry-svg-side" d="m28 65 25 13 25-13v26l-25 14-25-14Z"/><path class="entry-svg-top" d="m28 65 25-14 25 14-25 13Z"/>
-              <path class="entry-svg-side" d="m99 20 23 13 23-13v26l-23 13-23-13Z"/><path class="entry-svg-top" d="m99 20 23-13 23 13-23 13Z"/>
-              <path class="entry-svg-side" d="m166 66 22 12 22-12v24l-22 13-22-13Z"/><path class="entry-svg-top" d="m166 66 22-12 22 12-22 12Z"/>
-              <path class="entry-svg-glass" d="m155 109 21-12 21 12-21 12Z"/>
-              <path class="entry-svg-symbol" d="m44 85 7 5 12-7M119 40h6m-3-3v6m62 42 4 3 5-5"/>
-              <circle class="entry-agent-signal" cx="89" cy="74" r="4"/><circle class="entry-agent-signal entry-agent-signal--second" cx="152" cy="74" r="4"/>
-            </svg>
-            <div class="entry-station-meta" aria-hidden="true"><span>PLAN</span><i></i><span>TOOLS</span><i></i><span>EXECUTE</span></div>
           </div>
           <div class="entry-station entry-station--vision">
             <span class="entry-station-title" data-entry-copy="vision">Computer Vision</span>
-            <svg viewBox="0 0 240 165" aria-hidden="true" focusable="false">
-              <path class="entry-svg-shadow" d="m12 124 105-53 113 53-110 36Z"/>
-              <path class="entry-vision-surface" d="M22 22h198v117H22Z"/>
-              <path class="entry-vision-grid" d="M22 60h198M22 100h198M70 22v117M120 22v117M170 22v117"/>
-              <path class="entry-svg-side" d="m58 72 31 15 30-15v36l-30 16-31-16Z"/><path class="entry-svg-top" d="m58 72 31-16 30 16-30 15Z"/>
-              <path class="entry-svg-side" d="m144 65 21 11 21-11v39l-21 12-21-12Z"/><path class="entry-svg-top" d="m144 65 21-12 21 12-21 11Z"/>
-              <path class="entry-vision-box" d="M49 46h79v83H49ZM137 43h59v79h-59Z"/>
-              <path class="entry-svg-symbol" d="M48 38v-5h9m71 5v-5h-9m-71 96v5h9m71-5v5h-9"/>
-              <path class="entry-vision-scan" d="M23 28h196"/>
-              <rect class="entry-vision-tag" x="49" y="37" width="25" height="9" rx="2"/><rect class="entry-vision-tag" x="137" y="34" width="25" height="9" rx="2"/>
-            </svg>
-            <div class="entry-station-meta" aria-hidden="true"><span>DETECT</span><i></i><span>SEGMENT</span></div>
           </div>
           <div class="entry-station entry-station--generative">
             <span class="entry-station-title" data-entry-copy="generative">Generative AI</span>
-            <svg viewBox="0 0 210 130" aria-hidden="true" focusable="false">
-              <path class="entry-svg-shadow" d="m25 96 80-42 80 42-80 31Z"/>
-              <path class="entry-svg-side" d="m49 75 56 27 56-27v9l-56 27-56-27Z"/><path class="entry-svg-top" d="m49 75 56-28 56 28-56 27Z"/>
-              <path class="entry-svg-side" d="m49 60 56 27 56-27v8l-56 28-56-28Z"/><path class="entry-svg-top" d="m49 60 56-28 56 28-56 27Z"/>
-              <path class="entry-svg-glass" d="m49 43 56-28 56 28-56 28Z"/>
-              <path class="entry-svg-line" d="m74 40 37-18m-26 25 43-21m-31 28 31-15"/>
-              <path class="entry-gen-spark" d="m164 18 3 8 12 4-12 4-3 9-3-9-12-4 12-4Z"/>
-              <circle class="entry-svg-dot" cx="39" cy="40" r="3"/>
-            </svg>
-            <div class="entry-station-meta" aria-hidden="true"><span>KNOWLEDGE</span><i></i><span>RAG</span></div>
           </div>
           <div class="entry-station entry-station--classical">
             <span class="entry-station-title" data-entry-copy="classicalLabel">Classical ML</span>
-            <svg viewBox="0 0 210 130" aria-hidden="true" focusable="false">
-              <path class="entry-svg-shadow" d="m15 91 86-43 92 43-92 34Z"/>
-              <path class="entry-svg-top" d="m24 84 77-39 83 39-83 29Z"/>
-              <path class="entry-svg-side" d="m51 72 14 7 14-7v23l-14 7-14-7Z"/><path class="entry-svg-top" d="m51 72 14-7 14 7-14 7Z"/>
-              <path class="entry-svg-side" d="m92 48 14 7 14-7v37l-14 7-14-7Z"/><path class="entry-svg-top" d="m92 48 14-7 14 7-14 7Z"/>
-              <path class="entry-svg-side" d="m133 23 14 7 14-7v52l-14 7-14-7Z"/><path class="entry-svg-top" d="m133 23 14-7 14 7-14 7Z"/>
-              <path class="entry-ml-curve" d="M39 60q26 2 48-29t67-18"/>
-              <circle class="entry-svg-dot" cx="39" cy="60" r="3"/><circle class="entry-svg-dot" cx="87" cy="31" r="3"/><circle class="entry-svg-dot" cx="154" cy="13" r="3"/>
-            </svg>
-            <div class="entry-station-meta" aria-hidden="true"><span>LEARN</span><i></i><span>PREDICT</span></div>
           </div>
           <button class="entry-core" type="button" data-entry-enter aria-label="Enter Muhammad Hamza's portfolio">
             <span class="entry-core-aura" aria-hidden="true"></span>
-            <svg viewBox="0 0 220 240" aria-hidden="true" focusable="false">
-              <defs><linearGradient id="entry-core-glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38bdf8" stop-opacity=".28"/><stop offset="1" stop-color="#a78bfa" stop-opacity=".04"/></linearGradient></defs>
-              <ellipse class="entry-core-shadow" cx="110" cy="220" rx="77" ry="13"/>
-              <path class="entry-core-back" d="m32 69 78-45 78 45v99l-78 44-78-44Z"/>
-              <path class="entry-core-facet" d="m32 69 78 45 78-45-78-45Z"/>
-              <path class="entry-core-facet" d="m32 69 78 45v98l-78-44Z"/>
-              <path class="entry-core-facet entry-core-facet--right" d="m188 69-78 45v98l78-44Z"/>
-              <path class="entry-core-network" d="m64 89 47-22 46 24-21 45-26 29-37-26-9-50Zm0 0 46 76m1-98 25 69m-63 3 84-48m-84 48 63-3"/>
-              <circle class="entry-core-neuron" cx="64" cy="89" r="4"/><circle class="entry-core-neuron" cx="111" cy="67" r="5"/><circle class="entry-core-neuron" cx="157" cy="91" r="4"/>
-              <circle class="entry-core-neuron" cx="136" cy="136" r="4"/><circle class="entry-core-neuron" cx="110" cy="165" r="5"/><circle class="entry-core-neuron" cx="73" cy="139" r="4"/>
-              <path class="entry-core-edge" d="m32 69 78 45 78-45M110 114v98"/>
-            </svg>
-            <span class="entry-core-mark" aria-hidden="true">AI</span>
+            <span class="entry-core-volume" aria-hidden="true">
+              <span class="entry-cube">
+                <span class="entry-cube-face entry-cube-face--front"><svg viewBox="0 0 100 100" focusable="false"><path d="M18 25 50 12 82 25v50L50 88 18 75Zm0 0 64 50M82 25 18 75M50 12v76"/><circle cx="18" cy="25" r="3"/><circle cx="82" cy="25" r="3"/><circle cx="18" cy="75" r="3"/><circle cx="82" cy="75" r="3"/><circle cx="50" cy="12" r="3"/><circle cx="50" cy="88" r="3"/></svg><span>AI</span></span>
+                <span class="entry-cube-face entry-cube-face--back"></span>
+                <span class="entry-cube-face entry-cube-face--right"><svg viewBox="0 0 100 100" focusable="false"><path d="M20 26h24v25h36M20 74h24V51M44 26V12M44 74v14"/><circle cx="20" cy="26" r="4"/><circle cx="20" cy="74" r="4"/><circle cx="80" cy="51" r="4"/><circle cx="44" cy="51" r="6"/></svg></span>
+                <span class="entry-cube-face entry-cube-face--left"></span>
+                <span class="entry-cube-face entry-cube-face--top"><svg viewBox="0 0 100 100" focusable="false"><path d="M24 24h52v52H24ZM24 50h52M50 24v52"/><circle cx="24" cy="24" r="3"/><circle cx="76" cy="24" r="3"/><circle cx="50" cy="50" r="5"/><circle cx="24" cy="76" r="3"/><circle cx="76" cy="76" r="3"/></svg></span>
+                <span class="entry-cube-face entry-cube-face--bottom"></span>
+              </span>
+            </span>
+            <span class="entry-core-base" aria-hidden="true"></span>
           </button>
         </div>
       </div>
       <div class="entry-actions">
         <button class="entry-enter" type="button" data-entry-enter><span data-entry-copy="enterPortfolio">Enter portfolio</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-        <span class="entry-hint" data-entry-copy="entryHint">Click to enter · Move to explore</span>
         <button class="entry-skip" type="button" data-entry-enter data-entry-instant data-entry-copy="skipIntro">Skip introduction</button>
       </div>
     </div>
@@ -683,7 +646,7 @@
 
         <div id="navigation" class="collapse navbar-collapse flex-column">
           <div class="profile-section pt-3 pt-lg-0">
-            <img class="profile-image sidebar-profile-image mb-3 rounded-circle mx-auto" src="images/muhammad-hamza-ai-developer-software-engineer.jpg" alt="Muhammad Hamza, AI Engineer, AI Developer and Software Engineer" width="160" height="160" loading="eager">
+            <img class="profile-image sidebar-profile-image mb-3 rounded-circle mx-auto" src="images/muhammad-hamza-ai-developer-software-engineer.jpg" alt="Muhammad Hamza, AI Engineer, AI Developer and Software Engineer" width="160" height="160" loading="eager" decoding="async">
             <div class="bio mb-3">
               Hi, I am <strong>Muhammad Hamza.</strong>
             </div>
@@ -704,18 +667,10 @@
           <ul class="navbar-nav flex-column text-left sidebar-nav home-nav" aria-label="Home page sections">
             <li class="nav-item active"><a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Home</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#aboutme"><i class="fas fa-address-card fa-fw mr-2"></i>About Me</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#delivery"><i class="fas fa-route fa-fw mr-2"></i>How I Deliver</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#skills"><i class="fas fa-brain fa-fw mr-2"></i>Core Skills</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#services"><i class="fas fa-cogs fa-fw mr-2"></i>AI Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#achievements"><i class="fas fa-award fa-fw mr-2"></i>Achievements</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#publications"><i class="fas fa-book fa-fw mr-2"></i>Publications</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#platforms"><i class="fas fa-briefcase fa-fw mr-2"></i>Work Platforms</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#whatido"><i class="fas fa-tools fa-fw mr-2"></i>Development Tools</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#testimonials"><i class="fas fa-comment-dots fa-fw mr-2"></i>Testimonials</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#projects"><i class="fas fa-layer-group fa-fw mr-2"></i>Featured Projects</a></li>
             <li class="nav-item"><a class="nav-link" href="portfolio.html"><i class="fas fa-laptop-code fa-fw mr-2"></i>Portfolio</a></li>
-            <li class="nav-item"><a class="nav-link" href="resume/index.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a></li>
             <li class="nav-item"><a class="nav-link" href="gallery.html"><i class="fas fa-images fa-fw mr-2"></i>Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="services.html"><i class="fas fa-cogs fa-fw mr-2"></i>AI Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="resume/index.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Contact</a></li>
           </ul>
 
@@ -870,6 +825,86 @@
     </div>
   </section>
 
+  <!-- Featured projects follow the introduction. -->
+  <section id="projects" class="featured-section p-3 p-lg-5">
+				<div class="container">
+					<p class="section-kicker">Selected work</p>
+					<h2 class="section-title font-weight-bold mb-3">Selected AI systems</h2>
+					<p class="section-intro mb-5">Selected AI case studies in computer vision, clinical intelligence, and predictive machine learning. Explore the complete portfolio for RAG, agentic AI, and software engineering projects.</p>
+					<div class="row">
+						<!-- Latest Projects -->
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-vision" role="img" aria-label="Animated warehouse safety detection interface"><div class="visual-top"><span>VISIONGUARD / LIVE</span><b>RISK 28</b></div><div class="vision-zone"></div><i class="vision-person"></i><i class="vision-forklift"></i><i class="vision-beam"></i><div class="visual-footer"><span>YOLO</span><span>TRACKING</span><span>TTC</span></div></div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-success mb-2">Computer Vision</span>
+											<h5 class="card-title"><a href="projects/visionguard-ai.html" class="theme-link">VisionGuard — Warehouse Safety AI</a></h5>
+											<p class="card-text">YOLO + ByteTrack system detecting forklift–pedestrian collision risk with real-world distance, TTC and explainable risk scoring.</p>
+											<p class="card-text"><small class="text-muted">YOLO | ByteTrack | Computer Vision</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/visionguard-ai.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/visionguard-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-neuro" role="img" aria-label="Animated neuroimaging intelligence network"><div class="visual-top"><span>NEURO / MRI</span><b>CASE 042</b></div><div class="brain-core"><i></i><i></i><i></i><i></i><strong>3D</strong></div><div class="neuro-wave"></div><div class="visual-footer"><span>RAG</span><span>XAI</span><span>BIOMARKERS</span></div></div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-primary mb-2">Medical AI</span>
+											<h5 class="card-title"><a href="projects/neuroinsight-ai.html" class="theme-link">NeuroInsight AI</a></h5>
+											<p class="card-text">Agentic Flutter clinical intelligence platform exploring 3D neuroimaging, explainable AI and case-aware RAG for Alzheimer's MRI analysis.</p>
+											<p class="card-text"><small class="text-muted">Agentic AI | RAG | Flutter</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/neuroinsight-ai.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/neuroinsight-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
+							<div class="card project-card">
+								<div class="row no-gutters">
+									<div class="col-md-6 card-img-holder">
+										<div class="project-visual visual-flood" role="img" aria-label="Animated flood prediction analytics"><div class="visual-top"><span>FLOOD / FORECAST</span><b>LIVE MODEL</b></div><div class="flood-chart"><i></i><i></i><i></i><i></i><i></i><i></i><span></span></div><div class="flood-metric"><strong>0.97</strong><small>MODEL SCORE</small></div><div class="visual-footer"><span>LIGHTGBM</span><span>REGRESSION</span></div></div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-body">
+											<span class="badge badge-success mb-2">Machine Learning</span>
+											<h5 class="card-title"><a href="projects/flood-prediction-lightgbm.html" class="theme-link">Flood Prediction with LightGBM</a></h5>
+											<p class="card-text">End-to-end regression pipeline predicting flood-related outcomes from environmental data, with full feature-importance analysis.</p>
+											<p class="card-text"><small class="text-muted">LightGBM | Regression | Kaggle</small></p>
+										</div>
+									</div>
+								</div>
+								<div class="link-mask">
+									<a class="link-mask-link" href="projects/flood-prediction-lightgbm.html"></a>
+									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/flood-prediction-lightgbm.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
+								</div>
+							</div>
+						</div>
+					<!--//row-->
+					<div class="portfolio-cta py-3"><a href="portfolio.html" class="btn btn-primary"><i
+								class="fas fa-arrow-alt-circle-right mr-2"></i>View Portfolio</a></div>
+				</div>
+				<!--//container-->
+			</section>
+
   <!-- Client-to-Production Delivery -->
   <section id="delivery" class="delivery-section overview-section p-3 p-lg-5 theme-bg-light">
     <div class="container">
@@ -935,7 +970,7 @@
       <!-- GitHub -->
       <div class="col-6 col-md-3 mb-4">
         <a href="https://github.com/Hamza-code-hub" target="_blank" class="platform-card" rel="noopener noreferrer">
-          <img src="images/githubb.png" alt="GitHub profile and open-source AI projects" class="platform-logo mb-2" loading="lazy">
+          <img src="images/githubb.png" alt="GitHub profile and open-source AI projects" class="platform-logo mb-2" loading="lazy" width="225" height="225" decoding="async">
           <h5 class="platform-name">GitHub</h5>
         </a>
       </div>
@@ -943,7 +978,7 @@
       <!-- Google Scholar -->
       <div class="col-6 col-md-3 mb-4">
         <a href="https://scholar.google.com/citations?user=akj6QK0AAAAJ&hl=en" target="_blank" class="platform-card" rel="noopener noreferrer">
-          <img src="images/Google_Scholar.png" alt="Google Scholar" class="platform-logo mb-2" loading="lazy">
+          <img src="images/Google_Scholar.png" alt="Google Scholar" class="platform-logo mb-2" loading="lazy" width="1024" height="1024" decoding="async">
           <h5 class="platform-name">Google Scholar</h5>
         </a>
       </div>
@@ -951,7 +986,7 @@
       <!-- ResearchGate -->
       <div class="col-6 col-md-3 mb-4">
         <a href="https://www.researchgate.net/profile/Muhammad-Hamza-328" target="_blank" class="platform-card" rel="noopener noreferrer">
-          <img src="https://play-lh.googleusercontent.com/w3Dmiu3TAlgESmsO9cx77mK1SLnwtpGNTX0MJ1bkGUnJe4OVGs9DmW1Yl6aOXAdAsHp1qchjoZkhmkKiAa4awQ" alt="ResearchGate of Muhammad Hamza" class="platform-logo mb-2" loading="lazy">
+          <img src="https://play-lh.googleusercontent.com/w3Dmiu3TAlgESmsO9cx77mK1SLnwtpGNTX0MJ1bkGUnJe4OVGs9DmW1Yl6aOXAdAsHp1qchjoZkhmkKiAa4awQ" alt="ResearchGate of Muhammad Hamza" class="platform-logo mb-2" loading="lazy" width="48" height="48" decoding="async">
           <h5 class="platform-name">ResearchGate</h5>
         </a>
       </div>
@@ -959,7 +994,7 @@
       <!-- Kaggle -->
       <div class="col-6 col-md-3 mb-4">
         <a href="https://www.kaggle.com/muhammadhamzamaher" target="_blank" class="platform-card" rel="noopener noreferrer">
-          <img src="images/kaggle.png" alt="Kaggle machine learning and data science profile" class="platform-logo mb-2" loading="lazy">
+          <img src="images/kaggle.png" alt="Kaggle machine learning and data science profile" class="platform-logo mb-2" loading="lazy" width="225" height="225" decoding="async">
           <h5 class="platform-name">Kaggle</h5>
         </a>
       </div>
@@ -967,7 +1002,7 @@
       <!-- Fiverr -->
       <div class="col-6 col-md-3 mb-4">
         <a href="https://www.fiverr.com/maher_hamza4616" target="_blank" class="platform-card" rel="noopener noreferrer">
-          <img src="images/Fiverr.png" alt="Fiverr" class="platform-logo mb-2" loading="lazy">
+          <img src="images/Fiverr.png" alt="Fiverr" class="platform-logo mb-2" loading="lazy" width="225" height="225" decoding="async">
           <h5 class="platform-name">Fiverr</h5>
         </a>
       </div>
@@ -975,7 +1010,7 @@
       <!-- Instagram -->
       <div class="col-6 col-md-3 mb-4">
         <a href="https://www.instagram.com/hmza_mahr/" target="_blank" class="platform-card" rel="noopener noreferrer">
-          <img src="images/Instagram_icon.png" alt="Instagram" class="platform-logo mb-2" loading="lazy">
+          <img src="images/Instagram_icon.png" alt="Instagram" class="platform-logo mb-2" loading="lazy" width="500" height="500" decoding="async">
           <h5 class="platform-name">Instagram</h5>
         </a>
       </div>
@@ -983,7 +1018,7 @@
       <!-- Facebook -->
       <div class="col-6 col-md-3 mb-4">
         <a href="https://www.facebook.com/people/Muhammad-Hamza/61580252272534/" target="_blank" class="platform-card" rel="noopener noreferrer">
-          <img src="images/Facebook.png" alt="Facebook" class="platform-logo mb-2" loading="lazy">
+          <img src="images/Facebook.png" alt="Facebook" class="platform-logo mb-2" loading="lazy" width="512" height="512" decoding="async">
           <h5 class="platform-name">Facebook</h5>
         </a>
       </div>
@@ -1138,6 +1173,77 @@
 
 </div> </div> </section>
 
+    <section id="experience" class="work-experience-section p-3 p-lg-5 theme-bg-light" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="work-experience-section__heading">
+          <div>
+            <span class="work-experience-section__eyebrow">Experience</span>
+            <h2 id="experience-title" class="section-title font-weight-bold mb-3">From architecture to delivery</h2>
+          </div>
+          <p>AI systems built from client requirements through implementation, evaluation, deployment, and production support.</p>
+        </div>
+        <div class="work-experience-section__grid">
+          <ol class="work-experience-timeline" aria-label="Professional experience">
+            <li class="work-experience-timeline__item work-experience-timeline__item--group">
+              <span class="work-experience-timeline__date">Aug 2025 – Present</span>
+              <div class="work-experience-timeline__body">
+                <h3>CyberZeus</h3>
+                <ol class="work-experience-timeline__roles" aria-label="CyberZeus departments and roles">
+                  <li>
+                    <div class="work-experience-timeline__role-heading">
+                      <h4>AI Engineer <span translate="no">Software Systems</span></h4>
+                      <span class="work-experience-timeline__role-date">Jan 2026 – Present</span>
+                    </div>
+                    <p>Lead end-to-end AI/ML delivery, client discussions, and a four-person team. Build LangGraph multi-agent, RAG, and cybersecurity workflows.</p>
+                  </li>
+                  <li>
+                    <div class="work-experience-timeline__role-heading">
+                      <h4>AI Developer <span translate="no">Games</span></h4>
+                      <span class="work-experience-timeline__role-date">Aug 2025 – Dec 2025</span>
+                    </div>
+                    <p>Developed and fine-tuned AI/ML models for web and software products, including integration, evaluation, and testing.</p>
+                  </li>
+                </ol>
+              </div>
+            </li>
+            <li class="work-experience-timeline__item">
+              <span class="work-experience-timeline__date">Apr 2024 – Aug 2025</span>
+              <div class="work-experience-timeline__body">
+                <h3>AI Developer</h3>
+                <p class="work-experience-timeline__company">Minhaj Solutions</p>
+                <p>Built an agentic RAG support assistant and contributed to computer-vision pipelines for client-facing features.</p>
+              </div>
+            </li>
+            <li class="work-experience-timeline__item">
+              <span class="work-experience-timeline__date">Jul 2023 – Present</span>
+              <div class="work-experience-timeline__body">
+                <h3>Freelance AI/ML Engineer &amp; Python Developer</h3>
+                <p class="work-experience-timeline__company">Fiverr</p>
+                <p>Delivered 12+ international AI/ML and Python engagements across RAG, AI agents, workflow automation, data analysis, and computer vision.</p>
+              </div>
+            </li>
+          </ol>
+          <aside class="work-experience-panel" aria-label="Experience at a glance">
+            <div class="work-experience-panel__visual" aria-hidden="true">
+              <div class="work-experience-panel__orbit work-experience-panel__orbit--outer"></div>
+              <div class="work-experience-panel__orbit work-experience-panel__orbit--inner"></div>
+              <div class="work-experience-panel__core"><span>AI</span><small>ENGINEERING</small></div>
+              <span class="work-experience-panel__node work-experience-panel__node--agents">AGENTS</span>
+              <span class="work-experience-panel__node work-experience-panel__node--rag">RAG</span>
+              <span class="work-experience-panel__node work-experience-panel__node--vision">VISION</span>
+              <span class="work-experience-panel__node work-experience-panel__node--security">SECURITY</span>
+            </div>
+            <div class="work-experience-panel__stats">
+              <div><strong>12+</strong><span>International AI/ML and Python engagements</span></div>
+              <div><strong>4</strong><span>Team members led</span></div>
+              <div><strong>4.8/5</strong><span>Fiverr rating across 13 client reviews</span></div>
+            </div>
+            <a class="work-experience-panel__link" href="resume/index.html">Read the full resume <span aria-hidden="true">&rarr;</span></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="overview-section p-3 p-lg-5">
       <div class="container">
@@ -1202,7 +1308,7 @@
 						<div class="item col-dd-6 col-gg-3">
 							<div class="item-inner">
   <div class="do-row">
-    <img src="images/icons8-visual-studio-code-2019-512.png" alt="Visual Studio Code for AI and Python development" loading="lazy">
+    <img src="images/icons8-visual-studio-code-2019-512.png" alt="Visual Studio Code for AI and Python development" loading="lazy" width="512" height="512" decoding="async">
     <h3 class="do-title">Visual Studio Code</h3>
   </div>
   <div class="item-desc">Visual Studio Code is a free source-code editor made by Microsoft
@@ -1214,7 +1320,7 @@
 						<div class="item col-dd-6 col-gg-3">
 							<div class="item-inner">
   <div class="do-row">
-    <img src="images/githubb.png" alt="GitHub profile and open-source AI projects" loading="lazy">
+    <img src="images/githubb.png" alt="GitHub profile and open-source AI projects" loading="lazy" width="225" height="225" decoding="async">
     <h3 class="do-title">GitHub</h3>
   </div>
   <div class="item-desc">GitHub, Inc. is a subsidiary of Microsoft which provides hosting
@@ -1228,7 +1334,7 @@
 						<div class="item col-dd-6 col-gg-3">
  <div class="item-inner">
   <div class="do-row">
-    <img src="images/android-studio.png" alt="Android Studio for mobile app development" loading="lazy">
+    <img src="images/android-studio.png" alt="Android Studio for mobile app development" loading="lazy" width="512" height="512" decoding="async">
     <h3 class="do-title">Android Studio</h3>
   </div>
   <div class="item-desc">
@@ -1240,7 +1346,7 @@
 <div class="item col-dd-6 col-gg-3">
   <div class="item-inner">
   <div class="do-row">
-    <img src="images/kaggle.png" alt="Kaggle machine learning and data science profile" loading="lazy">
+    <img src="images/kaggle.png" alt="Kaggle machine learning and data science profile" loading="lazy" width="225" height="225" decoding="async">
     <h3 class="do-title">Kaggle Platform</h3>
   </div>
   <div class="item-desc">
@@ -1251,7 +1357,7 @@
 
 <div class="item col-dd-6 col-gg-3">
 <div class="item-inner">
-  <div class="do-row"> <img src="images/colab.png" alt="Google Colab for Python AI experiments" loading="lazy">
+  <div class="do-row"> <img src="images/colab.png" alt="Google Colab for Python AI experiments" loading="lazy" width="225" height="225" decoding="async">
     <h3 class="do-title">Google colab</h3>
   </div>
   <div class="item-desc">
@@ -1263,7 +1369,7 @@
 
 <div class="item col-dd-6 col-gg-3">
  <div class="item-inner">
-  <div class="do-row"> <img src="images/unity.png" alt="Unity engine for simulation and interactive applications" loading="lazy">
+  <div class="do-row"> <img src="images/unity.png" alt="Unity engine for simulation and interactive applications" loading="lazy" width="225" height="225" decoding="async">
     <h3 class="do-title">Unity Engine</h3>
   </div>
   <div class="item-desc">
@@ -1274,7 +1380,7 @@
 
 <div class="item col-dd-6 col-gg-3">
  <div class="item-inner">
-  <div class="do-row"> <img src="images/arduino.png" alt="Arduino IDE for embedded systems and IoT projects" loading="lazy">
+  <div class="do-row"> <img src="images/arduino.png" alt="Arduino IDE for embedded systems and IoT projects" loading="lazy" width="225" height="225" decoding="async">
     <h3 class="do-title">Arduino IDE</h3>
   </div>
   <div class="item-desc">
@@ -1285,7 +1391,7 @@
 
 <div class="item col-dd-6 col-gg-3">
    <div class="item-inner">
-  <div class="do-row"> <img src="images/postman.png" alt="Postman for API testing and backend development" loading="lazy">
+  <div class="do-row"> <img src="images/postman.png" alt="Postman for API testing and backend development" loading="lazy" width="225" height="225" decoding="async">
     <h3 class="do-title">Postman (API)</h3>
   </div>
   <div class="item-desc">
@@ -1316,7 +1422,7 @@
 							<!--//quote-holder-->
 							<div class="source-holder">
 								<div class="source-profile">
-									<img src="images/Fan Cutt.jpg" alt="Fiverr client testimonial for Muhammad Hamza" loading="lazy">
+									<img src="images/Fan Cutt.jpg" alt="Fiverr client testimonial for Muhammad Hamza" loading="lazy" width="100" height="100" decoding="async">
 								</div>
 								<div class="meta">
 									<div class="name">Fan Cut</div>
@@ -1336,7 +1442,7 @@
 							<!--//quote-holder-->
 							<div class="source-holder">
 								<div class="source-profile">
-									<img src="images/keishaallen.jpeg" alt="Professional testimonial for Muhammad Hamza" loading="lazy">
+									<img src="images/keishaallen.jpeg" alt="Professional testimonial for Muhammad Hamza" loading="lazy" width="3000" height="2494" decoding="async">
 								</div>
 								<div class="meta">
 									<div class="name">Keisha Allen</div>
@@ -1356,7 +1462,7 @@
 							<!--//quote-holder-->
 							<div class="source-holder">
 								<div class="source-profile">
-									<img src="images/Adriana Fasano.jpg" alt="Machine learning testimonial for Muhammad Hamza" loading="lazy">
+									<img src="images/Adriana Fasano.jpg" alt="Machine learning testimonial for Muhammad Hamza" loading="lazy" width="100" height="100" decoding="async">
 								</div>
 								<div class="meta">
 									<div class="name">Adriana Fasano</div>
@@ -1375,7 +1481,7 @@
 							<!--//quote-holder-->
 							<div class="source-holder">
 								<div class="source-profile">
-									<img src="images/Review1.jpg" alt="Client review testimonial for Muhammad Hamza" loading="lazy">
+									<img src="images/Review1.jpg" alt="Client review testimonial for Muhammad Hamza" loading="lazy" width="100" height="100" decoding="async">
 								</div>
 								<div class="meta">
 									<div class="name">Chrismk Night</div>
@@ -1392,92 +1498,20 @@
 				<!--//container-->
 			</section>
 			<!--//testimonials-section-->
-			<div class="container">
-				<hr>
-			</div>
-<!-- Featured Projects Section -->
-	  <section id="projects" class="featured-section p-3 p-lg-5">
+			<section class="home-final-cta p-3 p-lg-5" aria-labelledby="home-final-cta-title">
 				<div class="container">
-					<p class="section-kicker">Selected work / 01–08</p>
-					<h2 class="section-title font-weight-bold mb-3">Selected AI systems</h2>
-					<p class="section-intro mb-5">Eight complete case studies spanning production computer vision, clinical intelligence, predictive machine learning, retrieval-augmented generation, AI security analytics, and agentic automation.</p>
-					<div class="row">
-						<!-- Latest Projects -->
-						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
-							<div class="card project-card">
-								<div class="row no-gutters">
-									<div class="col-md-6 card-img-holder">
-										<div class="project-visual visual-vision" role="img" aria-label="Animated warehouse safety detection interface"><div class="visual-top"><span>VISIONGUARD / LIVE</span><b>RISK 28</b></div><div class="vision-zone"></div><i class="vision-person"></i><i class="vision-forklift"></i><i class="vision-beam"></i><div class="visual-footer"><span>YOLO</span><span>TRACKING</span><span>TTC</span></div></div>
-									</div>
-									<div class="col-md-6">
-										<div class="card-body">
-											<span class="badge badge-success mb-2">Computer Vision</span>
-											<h5 class="card-title"><a href="projects/visionguard-ai.html" class="theme-link">VisionGuard — Warehouse Safety AI</a></h5>
-											<p class="card-text">YOLO + ByteTrack system detecting forklift–pedestrian collision risk with real-world distance, TTC and explainable risk scoring.</p>
-											<p class="card-text"><small class="text-muted">YOLO | ByteTrack | Computer Vision</small></p>
-										</div>
-									</div>
-								</div>
-								<div class="link-mask">
-									<a class="link-mask-link" href="projects/visionguard-ai.html"></a>
-									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/visionguard-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
-								</div>
-							</div>
+					<div class="home-final-cta__inner">
+						<div class="home-final-cta__copy">
+							<span class="home-final-cta__eyebrow">Explore &amp; connect</span>
+							<h2 id="home-final-cta-title">See more of the story</h2>
 						</div>
-
-						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
-							<div class="card project-card">
-								<div class="row no-gutters">
-									<div class="col-md-6 card-img-holder">
-										<div class="project-visual visual-neuro" role="img" aria-label="Animated neuroimaging intelligence network"><div class="visual-top"><span>NEURO / MRI</span><b>CASE 042</b></div><div class="brain-core"><i></i><i></i><i></i><i></i><strong>3D</strong></div><div class="neuro-wave"></div><div class="visual-footer"><span>RAG</span><span>XAI</span><span>BIOMARKERS</span></div></div>
-									</div>
-									<div class="col-md-6">
-										<div class="card-body">
-											<span class="badge badge-primary mb-2">Medical AI</span>
-											<h5 class="card-title"><a href="projects/neuroinsight-ai.html" class="theme-link">NeuroInsight AI</a></h5>
-											<p class="card-text">Agentic Flutter clinical intelligence platform exploring 3D neuroimaging, explainable AI and case-aware RAG for Alzheimer's MRI analysis.</p>
-											<p class="card-text"><small class="text-muted">Agentic AI | RAG | Flutter</small></p>
-										</div>
-									</div>
-								</div>
-								<div class="link-mask">
-									<a class="link-mask-link" href="projects/neuroinsight-ai.html"></a>
-									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/neuroinsight-ai.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
-								</div>
-							</div>
+						<div class="home-final-cta__actions">
+							<a class="home-final-cta__action home-final-cta__action--gallery" href="gallery.html"><i class="fas fa-images" aria-hidden="true"></i><span>View Gallery</span><span class="home-final-cta__arrow" aria-hidden="true">&rarr;</span></a>
+							<a class="home-final-cta__action home-final-cta__action--contact" href="contact.html"><i class="fas fa-paper-plane" aria-hidden="true"></i><span>Contact Me</span><span class="home-final-cta__arrow" aria-hidden="true">&rarr;</span></a>
 						</div>
-
-						<div class="col-md-6 mb-5 showcase-project" data-aos="fade-up">
-							<div class="card project-card">
-								<div class="row no-gutters">
-									<div class="col-md-6 card-img-holder">
-										<div class="project-visual visual-flood" role="img" aria-label="Animated flood prediction analytics"><div class="visual-top"><span>FLOOD / FORECAST</span><b>LIVE MODEL</b></div><div class="flood-chart"><i></i><i></i><i></i><i></i><i></i><i></i><span></span></div><div class="flood-metric"><strong>0.97</strong><small>MODEL SCORE</small></div><div class="visual-footer"><span>LIGHTGBM</span><span>REGRESSION</span></div></div>
-									</div>
-									<div class="col-md-6">
-										<div class="card-body">
-											<span class="badge badge-success mb-2">Machine Learning</span>
-											<h5 class="card-title"><a href="projects/flood-prediction-lightgbm.html" class="theme-link">Flood Prediction with LightGBM</a></h5>
-											<p class="card-text">End-to-end regression pipeline predicting flood-related outcomes from environmental data, with full feature-importance analysis.</p>
-											<p class="card-text"><small class="text-muted">LightGBM | Regression | Kaggle</small></p>
-										</div>
-									</div>
-								</div>
-								<div class="link-mask">
-									<a class="link-mask-link" href="projects/flood-prediction-lightgbm.html"></a>
-									<div class="link-mask-text"><a class="btn btn-secondary" href="projects/flood-prediction-lightgbm.html"><i class="fas fa-eye mr-2"></i>View Case Study</a></div>
-								</div>
-							</div>
-						</div>
-					<!--//row-->
-					<div class="portfolio-cta py-3"><a href="portfolio.html" class="btn btn-primary"><i
-								class="fas fa-arrow-alt-circle-right mr-2"></i>View Portfolio</a></div>
+					</div>
 				</div>
-				<!--//container-->
 			</section>
-			<!--//featured-section-->
-			<div class="container">
-				<hr>
-			</div>
 
     <!-- Footer -->
     <footer class="footer text-center py-4">
@@ -1492,35 +1526,19 @@
   <script src="./js/m.js"></script>
   <script src="./js/testimo.js"></script>
   <script src="./js/cookie.js"></script>
-  <script src="./js/dark.js?v=3"></script>
+  <script src="./js/dark.js?v=7"></script>
   <script src="./js/site-effects.js?v=3"></script>
   <script src="./js/home-nav.js?v=1"></script>
-  <script defer src="./js/portfolio-locale.js?v=5"></script>
+  <script defer src="./js/portfolio-locale.js?v=10"></script>
   <script defer src="./js/portfolio-locales-extra.js?v=3"></script>
   <script defer src="./js/portfolio-controls.js?v=3"></script>
-  <script defer src="./js/portfolio-entry.js?v=2"></script>
+  <script defer src="./js/portfolio-entry.js?v=5"></script>
   <script defer src="./js/portfolio-narration.js?v=4"></script>
-  <script defer src="./js/portfolio-tour.js?v=1"></script>
-  <script defer src="./js/portfolio-guide.js?v=7"></script>
+  <script defer src="./js/portfolio-tour.js?v=3"></script>
+  <script defer src="./js/portfolio-guide.js?v=14"></script>
   <script>
     if (window.AOS) { AOS.init({ duration: 700, once: true, offset: 60 }); }
   </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var target = document.querySelector("#hero-role-text");
-    if (!target || !window.Typed || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
-    new Typed("#hero-role-text", {
-      strings: ["production AI systems", "LLM &amp; RAG platforms", "agentic AI workflows", "computer vision intelligence"],
-      typeSpeed: 48,
-      backSpeed: 24,
-      backDelay: 1450,
-      startDelay: 350,
-      loop: true,
-      showCursor: true,
-      cursorChar: "_"
-    });
-  });
-</script>
 
 
 </body>

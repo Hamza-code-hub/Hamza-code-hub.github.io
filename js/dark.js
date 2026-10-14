@@ -17,6 +17,8 @@
     var dark = theme === "dark";
     root.dataset.theme = theme;
     document.body.classList.toggle("dark-mode", dark);
+    var themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) themeColor.setAttribute("content", dark ? "#0b0d0f" : "#f6f3ec");
     var toggle = document.getElementById("darkmode");
     if (toggle) {
       toggle.checked = dark;

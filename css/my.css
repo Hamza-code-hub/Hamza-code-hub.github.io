@@ -987,6 +987,95 @@ body.generate-pdf .resume-wrapper {
   .no-print, .no-print * { display: none !important; }
 }
 
+/* Compact home-page exit: two clear next steps after the testimonials. */
+.home-page .home-final-cta {
+  padding-top:clamp(1.5rem,3vw,2.5rem) !important;
+  padding-bottom:clamp(2.75rem,5vw,4.5rem) !important;
+}
+.home-page .home-final-cta__inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem 2rem;
+  padding:clamp(1.4rem,3vw,2.5rem);
+  border:1px solid var(--border);
+  border-radius:1.5rem;
+  background:linear-gradient(115deg,var(--panel-solid),var(--page-alt));
+  box-shadow:var(--shadow);
+}
+.home-page .home-final-cta__copy { min-width:0; }
+.home-page .home-final-cta__eyebrow {
+  display:block;
+  margin-bottom:.45rem;
+  color:var(--accent-strong);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.home-page .home-final-cta h2 {
+  margin:0;
+  color:var(--heading);
+  font-size:clamp(1.45rem,2.4vw,2rem);
+  font-weight:750;
+  letter-spacing:-.035em;
+  line-height:1.15;
+}
+.home-page .home-final-cta__actions { display:flex; flex-wrap:wrap; gap:.75rem; }
+.home-page .home-final-cta__action {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.75rem;
+  min-height:3.25rem;
+  padding:.8rem 1.1rem;
+  border:1px solid var(--border);
+  border-radius:.8rem;
+  color:var(--heading);
+  background:var(--panel-solid);
+  font-weight:700;
+  line-height:1.2;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.home-page .home-final-cta__action--contact {
+  border-color:var(--accent);
+  color:#fff;
+  background:var(--accent-strong);
+}
+html[data-theme="dark"] .home-page .home-final-cta__action--contact,
+.dark-mode.home-page .home-final-cta__action--contact { color:var(--page); }
+.home-page .home-final-cta__action:hover,
+.home-page .home-final-cta__action:focus-visible {
+  transform:translateY(-2px);
+  border-color:var(--accent);
+  box-shadow:0 8px 20px color-mix(in srgb,var(--accent) 16%,transparent);
+  text-decoration:none;
+}
+.home-page .home-final-cta__action--gallery:hover,
+.home-page .home-final-cta__action--gallery:focus-visible { color:var(--heading); background:var(--accent-soft); }
+.home-page .home-final-cta__action--contact:hover,
+.home-page .home-final-cta__action--contact:focus-visible { color:#fff; background:var(--accent); }
+html[data-theme="dark"] .home-page .home-final-cta__action--contact:hover,
+html[data-theme="dark"] .home-page .home-final-cta__action--contact:focus-visible,
+.dark-mode.home-page .home-final-cta__action--contact:hover,
+.dark-mode.home-page .home-final-cta__action--contact:focus-visible { color:var(--page); }
+.home-page .home-final-cta__arrow { margin-inline-start:.25rem; font-size:1.2em; line-height:1; }
+[dir="rtl"] .home-final-cta__arrow { transform:scaleX(-1); }
+@media (max-width:900px) {
+  .home-page .home-final-cta__inner { align-items:stretch; flex-direction:column; }
+}
+@media (max-width:540px) {
+  .home-page .home-final-cta__actions { display:grid; grid-template-columns:1fr; }
+  .home-page .home-final-cta__action { justify-content:space-between; white-space:normal; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .home-page .home-final-cta__action { transition:none; }
+  .home-page .home-final-cta__action:hover,
+  .home-page .home-final-cta__action:focus-visible { transform:none; }
+}
+
 /* Homepage profile imagery: three crawlable, high-resolution photos support
    the Person/ProfilePage image metadata without overwhelming the page. */
 .home-about-section {
@@ -1767,7 +1856,7 @@ body.dark-mode .about-me-section .profile-image { box-shadow:18px 18px 0 var(--a
 @media (max-width:991.98px) { .resume-snapshot__grid { grid-template-columns:repeat(2,1fr); } }
 @media (max-width:650px) { .systems-map__frame { display:grid; grid-template-columns:1fr; min-height:0; padding:1rem; }.systems-map__heading,.systems-map__core,.systems-map__legend { grid-column:1; }.systems-map__heading { padding:.5rem; }.systems-map__core { min-height:240px; }.system-node { width:auto; min-height:0; padding:1.2rem; }.system-node p { margin:.6rem 0 0 2.7rem; }.systems-map__legend { flex-wrap:wrap; gap:.7rem; }.resume-wrapper { padding:1.5rem !important; border-radius:16px; }.resume-snapshot__grid { grid-template-columns:1fr; } }
 @media (prefers-reduced-motion:reduce) { .motion-reveal { opacity:1; transform:none; }.systems-map__frame::after,.systems-map__core::before { animation:none; } }
-@media print { .header,.cta-section,.resume-snapshot,.footer,.scroll-progress { display:none !important; }.main-wrapper { margin:0 !important; }.resume-wrapper { max-width:none; margin:0 !important; padding:0 !important; border:0 !important; box-shadow:none !important; background:#fff !important; color:#111 !important; break-after:page; }.resume-wrapper:last-of-type { break-after:auto; }.resume-wrapper * { color:#111 !important; }.resume-wrapper a { text-decoration:none !important; }.resume-wrapper .resume-section-heading,.resume-wrapper .resume-name { color:#4141bc !important; }.motion-reveal { opacity:1 !important; transform:none !important; } }
+@media print { .header,.cta-section,.resume-snapshot,.footer,.scroll-progress { display:none !important; }.main-wrapper { margin:0 !important; }.resume-wrapper { max-width:none; margin:0 !important; padding:0 !important; border:0 !important; box-shadow:none !important; background:#fff !important; color:#111 !important; break-after:page; }.resume-wrapper:last-of-type { break-after:auto; }.resume-wrapper * { color:#111 !important; }.resume-wrapper a { text-decoration:none !important; }.resume-wrapper .resume-section-heading,.resume-wrapper .resume-name { color:#795726 !important; }.motion-reveal { opacity:1 !important; transform:none !important; } }
 
 /* ============================================================
    Project motion studio + spacing and contrast repair
@@ -2616,6 +2705,64 @@ body.dark-mode .testimonial-carousel .quote-content {
   border-bottom:1px solid var(--border);
 }
 .resume-page .work-section > .item:last-child { border-bottom:0; }
+.resume-page .work-section > .resume-employer-group {
+  margin-bottom:1.2rem !important;
+  padding:0 !important;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--panel-solid);
+}
+.resume-page .resume-employer-group > .item-heading {
+  margin:0 !important;
+  padding:.85rem 1rem;
+  background:linear-gradient(120deg,#191b1d,#262624);
+}
+.resume-page .resume-employer-group > .item-heading .item-title {
+  color:#fffdf5 !important;
+  font-size:1.12rem !important;
+  font-weight:800;
+  letter-spacing:-.025em;
+}
+.resume-page .resume-employer-group > .item-heading .item-meta {
+  color:#f8cb7b !important;
+  font-size:.69rem;
+  font-weight:700;
+}
+.resume-page .resume-employer-group__role {
+  margin:.75rem 1rem;
+  padding:.05rem 0;
+  padding-inline-start:.8rem;
+  border-inline-start:2px solid color-mix(in srgb,var(--accent) 63%,var(--border));
+}
+.resume-page .resume-employer-group__role + .resume-employer-group__role {
+  margin-top:.15rem;
+  padding-top:.7rem;
+  border-top:1px solid var(--border);
+}
+.resume-page .resume-employer-group__role .item-heading { gap:.2rem .8rem; margin-bottom:.4rem !important; }
+.resume-page .resume-employer-group__role .item-title {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.18rem;
+  margin:0;
+  color:var(--heading) !important;
+  font-size:.92rem !important;
+}
+.resume-page .resume-employer-group__department {
+  display:block;
+  margin:0;
+  color:var(--accent-strong);
+  font-size:.61rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+.resume-page .resume-employer-group__role-title { display:block; font-size:.95rem; line-height:1.25; }
+.resume-page .resume-employer-group__role .item-meta { color:var(--subtle) !important; }
+.resume-page .resume-employer-group .item-meta { text-align:end !important; }
 .resume-page .item-heading {
   display:grid !important;
   grid-template-columns:minmax(0,1fr) minmax(150px,240px);
@@ -2640,6 +2787,7 @@ body.dark-mode .testimonial-carousel .quote-content {
 @media (max-width:575.98px) {
   .resume-page .item-heading { grid-template-columns:1fr; }
   .resume-page .resume-wrapper .item-meta { text-align:left !important; margin-top:.15rem; }
+  .resume-page .resume-employer-group .item-meta { text-align:start !important; }
 }
 .resume-page .resume-wrapper p,
 .resume-page .resume-wrapper li,
@@ -2767,7 +2915,7 @@ body.dark-mode .testimonial-carousel .quote-content {
   .resume-page .resume-wrapper * { color:#171a22 !important; }
   .resume-page .resume-name,
   .resume-page .resume-section-heading,
-  .resume-page .resume-wrapper a { color:#30358f !important; }
+  .resume-page .resume-wrapper a { color:#795726 !important; }
   .resume-page .resume-section-heading,
   .resume-page .resume-contact,
   .resume-page .resume-aside,
@@ -4460,23 +4608,238 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   body.resume-page { padding-top:0 !important; }
 }
 
-/* Home content follows the same professional narrative as its sidebar:
-   introduction, capabilities, services, proof, then supporting context. */
+/* Home content: introduction, About, Projects, Delivery, Skills and Services,
+   followed by supporting evidence and context. */
 .home-page .main-wrapper { display:flex; flex-direction:column; }
 .home-page .main-wrapper > .about-me-section { order:0; }
 .home-page .main-wrapper > #aboutme { order:1; }
-.home-page .main-wrapper > #delivery { order:2; }
-.home-page .main-wrapper > #skills { order:3; }
-.home-page .main-wrapper > #services { order:4; }
-.home-page .main-wrapper > #achievements { order:5; }
-.home-page .main-wrapper > #publications { order:6; }
-.home-page .main-wrapper > #platforms { order:7; }
-.home-page .main-wrapper > #whatido { order:8; }
-.home-page .main-wrapper > #testimonials { order:9; }
-.home-page .main-wrapper > #projects { order:10; }
-.home-page .main-wrapper > .footer { order:11; }
+.home-page .main-wrapper > #projects { order:2; }
+.home-page .main-wrapper > #delivery { order:3; }
+.home-page .main-wrapper > #skills { order:4; }
+.home-page .main-wrapper > #experience { order:5; }
+.home-page .main-wrapper > #services { order:6; }
+.home-page .main-wrapper > #achievements { order:7; }
+.home-page .main-wrapper > #publications { order:8; }
+.home-page .main-wrapper > #platforms { order:9; }
+.home-page .main-wrapper > #whatido { order:10; }
+.home-page .main-wrapper > #testimonials { order:11; }
+.home-page .main-wrapper > .home-final-cta { order:12; }
+.home-page .main-wrapper > .footer { order:13; }
 .home-page .main-wrapper > .container,
 .home-page .main-wrapper > .overview-section:not([id]) { display:none; }
+
+/* Experience is a readable timeline paired with a compact visual evidence panel. */
+.home-page .work-experience-section { background:var(--page-alt); }
+.home-page .work-experience-section__heading {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:1rem 2.5rem;
+  margin-bottom:2rem;
+}
+.home-page .work-experience-section__heading > div { max-width:32rem; }
+.home-page .work-experience-section__eyebrow {
+  display:block;
+  margin-bottom:.55rem;
+  color:var(--accent-strong);
+  font-size:.72rem;
+  font-weight:750;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.home-page .work-experience-section__heading h2 { margin-bottom:0 !important; }
+.home-page .work-experience-section__heading > p {
+  max-width:30rem;
+  margin:0 0 .25rem;
+  color:var(--subtle);
+  font-size:1rem;
+  line-height:1.65;
+}
+.home-page .work-experience-section__grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);
+  align-items:stretch;
+  gap:clamp(1.5rem,3vw,3rem);
+}
+.home-page .work-experience-timeline {
+  display:grid;
+  gap:.85rem;
+  margin:0;
+  padding:0;
+  padding-inline-start:1.5rem;
+  border-inline-start:1px solid color-mix(in srgb,var(--accent) 36%,var(--border));
+  list-style:none;
+}
+.home-page .work-experience-timeline__item {
+  position:relative;
+  padding:1.1rem 1.3rem 1.2rem;
+  border:1px solid var(--border);
+  border-radius:1rem;
+  background:var(--panel-solid);
+  box-shadow:0 10px 28px color-mix(in srgb,var(--heading) 5%,transparent);
+}
+.home-page .work-experience-timeline__item::before {
+  content:"";
+  position:absolute;
+  inset-inline-start:-2rem;
+  top:1.4rem;
+  width:.9rem;
+  height:.9rem;
+  border:3px solid var(--page-alt);
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 1px var(--accent);
+}
+.home-page .work-experience-timeline__date {
+  display:inline-block;
+  margin-bottom:.4rem;
+  color:var(--accent-strong);
+  font-size:.76rem;
+  font-weight:750;
+  letter-spacing:.03em;
+}
+.home-page .work-experience-timeline h3 {
+  margin:0;
+  color:var(--heading);
+  font-size:clamp(1.04rem,1.5vw,1.2rem);
+  font-weight:750;
+  line-height:1.3;
+}
+.home-page .work-experience-timeline__item--group {
+  border-color:color-mix(in srgb,var(--accent) 33%,var(--border));
+}
+.home-page .work-experience-timeline__item--group h3 { margin-bottom:.9rem; font-size:1.3rem; }
+.home-page .work-experience-timeline__roles {
+  display:grid;
+  gap:.9rem;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.home-page .work-experience-timeline__roles > li {
+  padding-inline-start:1rem;
+  border-inline-start:2px solid color-mix(in srgb,var(--accent) 47%,var(--border));
+}
+.home-page .work-experience-timeline__role-heading {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:.25rem .75rem;
+  margin-bottom:.35rem;
+}
+.home-page .work-experience-timeline__role-heading h4 { margin:0; color:var(--heading); font-size:.94rem; font-weight:750; line-height:1.35; }
+.home-page .work-experience-timeline__role-heading h4 span { margin-inline-start:.35rem; color:var(--accent-strong); font-size:.78rem; font-weight:650; }
+.home-page .work-experience-timeline__role-date { color:var(--subtle); font-size:.72rem; font-weight:600; white-space:nowrap; }
+.home-page .work-experience-timeline__roles p { margin:0; color:var(--subtle); font-size:.86rem; line-height:1.55; }
+.home-page .work-experience-timeline__company { margin:.18rem 0 .65rem !important; color:var(--heading) !important; font-weight:600; }
+.home-page .work-experience-timeline__body > p:last-child { margin:0; color:var(--subtle); font-size:.89rem; line-height:1.57; }
+.home-page .work-experience-panel {
+  display:flex;
+  flex-direction:column;
+  align-self:stretch;
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:1.25rem;
+  background:var(--panel-solid);
+  box-shadow:var(--shadow);
+}
+.home-page .work-experience-panel__visual {
+  position:relative;
+  display:grid;
+  flex:1 1 310px;
+  min-height:310px;
+  place-items:center;
+  overflow:hidden;
+  isolation:isolate;
+  background:radial-gradient(circle at 50% 50%,var(--accent-soft),transparent 48%),linear-gradient(145deg,var(--panel-soft),var(--panel-solid));
+  perspective:800px;
+}
+.home-page .work-experience-panel__visual::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  opacity:.25;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(circle,black,transparent 72%);
+}
+.home-page .work-experience-panel__orbit {
+  position:absolute;
+  width:225px;
+  height:225px;
+  border:1px solid color-mix(in srgb,var(--accent) 38%,var(--border));
+  border-radius:50%;
+  transform:rotateX(68deg) rotate(-24deg);
+}
+.home-page .work-experience-panel__orbit--outer { width:325px; height:325px; border-style:dashed; opacity:.6; }
+.home-page .work-experience-panel__core {
+  display:flex;
+  width:132px;
+  height:132px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border:1px solid color-mix(in srgb,var(--accent) 55%,var(--border));
+  border-radius:28px;
+  color:var(--heading);
+  background:linear-gradient(150deg,var(--panel-solid),var(--accent-soft));
+  box-shadow:16px 18px 0 color-mix(in srgb,var(--accent) 9%,transparent),0 24px 45px color-mix(in srgb,var(--heading) 12%,transparent);
+  transform:rotateY(-15deg) rotateX(8deg);
+}
+.home-page .work-experience-panel__core span { font-size:3rem; font-weight:800; letter-spacing:-.09em; line-height:1; }
+.home-page .work-experience-panel__core small { margin-top:.35rem; color:var(--accent-strong); font-size:.62rem; font-weight:800; letter-spacing:.13em; }
+.home-page .work-experience-panel__node {
+  position:absolute;
+  padding:.45rem .7rem;
+  border:1px solid var(--border);
+  border-radius:.55rem;
+  color:var(--accent-strong);
+  background:var(--panel-solid);
+  box-shadow:0 8px 22px color-mix(in srgb,var(--heading) 8%,transparent);
+  font-size:.62rem;
+  font-weight:750;
+  letter-spacing:.06em;
+}
+.home-page .work-experience-panel__node--agents { top:17%; left:10%; }
+.home-page .work-experience-panel__node--rag { top:19%; right:13%; }
+.home-page .work-experience-panel__node--vision { bottom:17%; left:12%; }
+.home-page .work-experience-panel__node--security { bottom:16%; right:9%; }
+.home-page .work-experience-panel__stats { display:grid; padding:.3rem 1.4rem; }
+.home-page .work-experience-panel__stats > div { display:flex; align-items:center; gap:1rem; padding:.9rem 0; border-bottom:1px solid var(--border); }
+.home-page .work-experience-panel__stats strong { min-width:4.8rem; color:var(--heading); font-size:1.55rem; font-weight:800; line-height:1; white-space:nowrap; }
+.home-page .work-experience-panel__stats span { color:var(--subtle); font-size:.84rem; line-height:1.4; }
+.home-page .work-experience-panel__link {
+  display:flex;
+  min-height:3.2rem;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  margin:0 1.4rem .9rem;
+  color:var(--accent-strong);
+  font-weight:700;
+  text-decoration:none;
+}
+.home-page .work-experience-panel__link:hover { color:var(--accent); text-decoration:underline; text-underline-offset:.2em; }
+.home-page .work-experience-panel__link span { font-size:1.25rem; }
+[dir="rtl"] .work-experience-panel__link span { transform:scaleX(-1); }
+@media (max-width:1040px) {
+  .home-page .work-experience-section__grid { grid-template-columns:minmax(0,1fr) minmax(275px,.76fr); gap:1.2rem; }
+}
+@media (max-width:780px) {
+  .home-page .work-experience-section__heading { align-items:start; flex-direction:column; }
+  .home-page .work-experience-section__grid { grid-template-columns:1fr; }
+  .home-page .work-experience-panel { display:grid; grid-template-columns:minmax(0,1fr) minmax(220px,.85fr); }
+  .home-page .work-experience-panel__visual { grid-row:1 / 3; height:100%; min-height:270px; }
+}
+@media (max-width:560px) {
+  .home-page .work-experience-timeline { padding-inline-start:1.15rem; }
+  .home-page .work-experience-timeline__item::before { inset-inline-start:-1.63rem; }
+  .home-page .work-experience-panel { display:block; }
+  .home-page .work-experience-panel__visual { height:245px; min-height:0; }
+  .home-page .work-experience-panel__orbit--outer { width:275px; height:275px; }
+}
 
 /* Client-to-production delivery narrative on the home page. */
 .about-me-section .profile-teaser {
@@ -5019,4 +5382,29 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   .resume-page .resume-wrapper > .project-section .mb-4 { margin-bottom:.5rem !important; }
   .resume-page .resume-wrapper > .project-section .mt-2 { margin-top:.2rem !important; }
   .resume-page .resume-wrapper > .project-section .mb-1 { margin-bottom:.12rem !important; }
+}
+
+/* Leave a clear mobile footer line beside the persistent assistant launcher. */
+@media (max-width:575.98px) {
+  .home-page .footer { padding-bottom:calc(11rem + env(safe-area-inset-bottom)) !important; }
+}
+
+@media print {
+  .resume-page .work-section > .resume-employer-group {
+    padding:0 0 .3rem !important;
+    padding-inline-start:.55rem !important;
+    overflow:visible !important;
+    border:0 !important;
+    border-inline-start:2px solid #b59058 !important;
+    border-radius:0;
+    background:#fff !important;
+  }
+  .resume-page .resume-employer-group > .item-heading { padding:0 0 .25rem !important; background:#fff !important; }
+  .resume-page .resume-employer-group > .item-heading .item-title { color:#795726 !important; font-size:8pt !important; }
+  .resume-page .resume-employer-group > .item-heading .item-meta { color:#514a3f !important; }
+  .resume-page .resume-employer-group__role { margin:.2rem 0; padding:.1rem 0; padding-inline-start:.4rem; }
+  .resume-page .resume-employer-group__role + .resume-employer-group__role { margin-top:.15rem; padding-top:.25rem; }
+  .resume-page .resume-employer-group__role .item-title { font-size:7.3pt !important; }
+  .resume-page .resume-employer-group__department { color:#795726 !important; font-size:6pt; }
+  .resume-page .resume-employer-group__role-title { font-size:7.3pt; }
 }
