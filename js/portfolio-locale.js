@@ -267,10 +267,11 @@
   var languageReady = Promise.resolve(true);
   var main = null;
   var header = null;
+  var nameGradientHeadings = [];
   var initialized = false;
   var pageKey = /\/projects\//i.test(location.pathname) ? 'project-' + location.pathname.split('/').pop().replace(/\.html$/i, '') : /\/resume\//i.test(location.pathname) ? 'resume' : (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/i, '');
   if (pageKey === 'index') pageKey = 'home';
-  var excludedCopy = 'script,style,textarea,pre,code,kbd,samp,svg,math,[translate="no"],.portfolio-language-picker,.portfolio-guide,.portfolio-assistant-dialog,#portfolio-entry,#hero-role-text';
+  var excludedCopy = 'script,style,textarea,pre,code,kbd,samp,svg,math,[translate="no"],[data-name-gradient],.portfolio-language-picker,.portfolio-guide,.portfolio-assistant-dialog,#portfolio-entry,#hero-role-text';
   var copyAttributes = ['placeholder', 'aria-label', 'title', 'alt'];
   var heroRoles = ['production AI systems','LLM & RAG platforms','agentic AI workflows','computer vision intelligence'];
   var heroRoleIndex = 0;
@@ -312,6 +313,24 @@
     });
     return pageLoads[code];
   }
+  function renderNameGradientHeadings(code) {
+    nameGradientHeadings.forEach(function (record) {
+      var element = record.element;
+      if (!element.isConnected) return;
+      var translated = translate(record.source, code);
+      if (element.textContent === translated && element.querySelector('.hamza-name-gradient')) return;
+      var name = 'Muhammad Hamza', index = translated.indexOf(name);
+      if (index < 0) { element.textContent = translated; return; }
+      var fragment = document.createDocumentFragment();
+      fragment.appendChild(document.createTextNode(translated.slice(0,index)));
+      var span = document.createElement('span');
+      span.className = 'hamza-name-gradient';
+      span.textContent = name;
+      fragment.appendChild(span);
+      fragment.appendChild(document.createTextNode(translated.slice(index + name.length)));
+      element.replaceChildren(fragment);
+    });
+  }
   function translatePage() {
     if (!initialized) return;
     var code = pageReady() ? language : 'en';
@@ -329,6 +348,7 @@
       record.rendered = code === 'en' ? record.original : translate(record.original, code);
       if (record.element.getAttribute(record.name) !== record.rendered) record.element.setAttribute(record.name, record.rendered);
     });
+    renderNameGradientHeadings(code);
     var role = document.getElementById('hero-role-text');
     var roleText = translate(heroRoles[heroRoleIndex],code);
     if (role && role.textContent !== roleText) role.textContent = roleText;
@@ -382,6 +402,9 @@
   function init() {
     if (initialized) return;
     main = document.querySelector('.main-wrapper'); header = document.querySelector('.header');
+    nameGradientHeadings = Array.prototype.map.call(document.querySelectorAll('[data-name-gradient]'),function (element) {
+      return { element:element, source:copyKey(element.textContent) };
+    });
     Object.keys(translations).forEach(function (key) { var normalized = copyKey(key); if (!translations[normalized]) translations[normalized] = translations[key]; });
     var roots = [document.body,document.querySelector('title')].filter(Boolean);
     roots.forEach(collectCopy);

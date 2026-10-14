@@ -51,10 +51,10 @@
     var homeInvitation = false;
     var languageCueTimer = 0;
     var languageReturnTimer = 0;
-    var languageCueRetry = 0;
-    var languageCueScheduled = false;
+    var languageCueRetryTimer = 0;
     var languageCueDue = false;
-    var languageCueShown = false;
+    var languageCueSuspended = false;
+    var languagePickerObserver = null;
     var languageCuePreviousState = "idle";
     var languageCuePreviousMode = "compact";
     var languageCuePreviousStatus = "";
@@ -245,11 +245,6 @@
     }
     function finishLanguageCue() {
       if (!root.classList.contains("is-language-cue")) return;
-      // Dismissing the cue must also stop its own speech without invalidating a
-      // paused tour's continuation token.
-      clearTimers(); activeTimeline = null;
-      if (utterance && synth) { utterance = null; synth.cancel(); }
-      root.classList.remove("is-speaking"); updateToggle(false);
       clearLanguageCue();
       root.dataset.state = homeInvitation ? "home-invite" : languageCuePreviousState;
       root.dataset.mode = homeInvitation ? "compact" : languageCuePreviousMode;
@@ -257,25 +252,62 @@
       status.textContent = homeInvitation ? homeText(0) : languageCuePreviousStatus;
       startTourButton.hidden = !homeInvitation;
       dock();
+      scheduleLanguageCue();
     }
     function acknowledgeLanguageChoice() {
-      finishLanguageCue();
-      languageCueShown = true;
+      // Opening the picker dismisses the current reminder. Begin a fresh
+      // ten-second interval once the visitor closes it or picks a language.
+      languageCueSuspended = true;
+      languageCueDue = false;
+      clearTimeout(languageCueRetryTimer); languageCueRetryTimer = 0;
       clearTimeout(languageCueTimer); languageCueTimer = 0;
+      finishLanguageCue();
+      observeLanguagePicker();
+      setTimeout(resumeLanguageCueAfterPicker,0);
+    }
+    function resumeLanguageCueAfterPicker() {
+      var control = document.querySelector('.portfolio-language-picker:not([hidden]) .portfolio-language-control');
+      if (!languageCueSuspended || (control && control.getAttribute("aria-expanded") === "true")) return;
+      languageCueSuspended = false;
+      scheduleLanguageCue();
+    }
+    function observeLanguagePicker() {
+      if (languagePickerObserver) return;
+      var control = document.querySelector('.portfolio-language-picker .portfolio-language-control');
+      if (!control) return;
+      languagePickerObserver = new MutationObserver(function () {
+        if (control.getAttribute("aria-expanded") === "true") {
+          if (root.classList.contains("is-language-cue")) acknowledgeLanguageChoice();
+        } else resumeLanguageCueAfterPicker();
+      });
+      languagePickerObserver.observe(control,{attributes:true,attributeFilter:["aria-expanded"]});
+    }
+    function retryLanguageCue() {
+      if (languageCueRetryTimer || languageCueSuspended || document.hidden) return;
+      languageCueRetryTimer = setTimeout(function () {
+        languageCueRetryTimer = 0;
+        maybeShowLanguageCue();
+      },500);
     }
     function maybeShowLanguageCue() {
-      if (!languageCueDue || languageCueShown || !ready || document.hidden || !dialog.hidden ||
-          root.hidden || root.classList.contains("is-active") || pendingLanguageIntent ||
-          ["intro","tour","answer"].indexOf(root.dataset.state) !== -1 ||
-          (window.PortfolioEntry && window.PortfolioEntry.active)) return;
+      if (!languageCueDue || languageCueSuspended || !ready || document.hidden) return;
+      // Never interrupt a narrated step, a paused tour target, an answer, or
+      // the assistant. A due reminder waits until the guide is truly idle.
+      if (!dialog.hidden || root.hidden || root.classList.contains("is-active") ||
+          root.classList.contains("is-speaking") || root.classList.contains("is-language-cue") ||
+          pendingLanguageIntent || activeTarget ||
+          ["intro","tour","tour-paused","answer"].indexOf(root.dataset.state) !== -1 ||
+          (window.PortfolioEntry && window.PortfolioEntry.active) ||
+          document.body.classList.contains("mobile-menu-open")) {
+        retryLanguageCue(); return;
+      }
       var control = document.querySelector('.portfolio-language-picker:not([hidden]) .portfolio-language-control');
       if (!control || !control.getClientRects().length || control.getAttribute("aria-expanded") === "true" ||
           getComputedStyle(control).visibility !== "visible") {
-        if (++languageCueRetry < 20 && !languageCueTimer) languageCueTimer = setTimeout(function () { languageCueTimer = 0; maybeShowLanguageCue(); },700);
-        return;
+        retryLanguageCue(); return;
       }
-      clearTimeout(languageCueTimer); languageCueTimer = 0;
-      languageCueShown = true;
+      languageCueDue = false;
+      clearTimeout(languageCueRetryTimer); languageCueRetryTimer = 0;
       languageCuePreviousState = root.dataset.state;
       languageCuePreviousMode = root.dataset.mode;
       languageCuePreviousStatus = status.textContent;
@@ -284,33 +316,25 @@
       var phrase = homeText(1);
       languageHintButton.textContent = phrase;
       languageHintButton.hidden = false;
-      root.classList.add("is-language-cue");
+      root.classList.add("is-language-cue","is-language-pointing");
       status.textContent = phrase;
-      function visualFallback() {
-        if (!root.classList.contains("is-language-cue")) return;
-        root.classList.remove("is-language-pointing");
-        clearHighlights(); delete root.dataset.cue;
-        root.dataset.mode = "compact"; dock();
-        status.textContent = phrase;
-        languageReturnTimer = setTimeout(finishLanguageCue,4000);
-      }
-      // An explicit Stop mutes this page. Keep the hint visible without
-      // silently overriding that choice or moving toward the control.
-      if (muted()) { visualFallback(); return; }
-      var token = generation;
-      speak(phrase,token,function () {
-        if (root.classList.contains("is-language-cue")) languageReturnTimer = setTimeout(finishLanguageCue,550);
-      },function () {
-        if (!root.classList.contains("is-language-cue")) return;
-        root.classList.add("is-language-pointing");
-        root.style.setProperty("--guide-travel",".9s");
-        pointCue({target:"languageControl",gesture:"point"});
-      },true,{cues:[],onUnavailable:visualFallback});
+      root.style.setProperty("--guide-travel",".9s");
+      clearHighlights(); control.classList.add("portfolio-guide-target"); highlights = [control];
+      root.dataset.cue = "languageControl";
+      moveTo(targets.languageControl,"point");
+      followMovingTarget(1200);
+      languageReturnTimer = setTimeout(finishLanguageCue,3500);
+      // The reminder is visual only, so browser sound policy and Stop do not
+      // prevent the avatar from pointing. Ten seconds are measured between starts.
+      scheduleLanguageCue();
     }
     function scheduleLanguageCue() {
-      if (languageCueScheduled || languageCueShown || (window.PortfolioEntry && window.PortfolioEntry.active)) return;
-      languageCueScheduled = true;
-      languageCueTimer = setTimeout(function () { languageCueTimer = 0; languageCueDue = true; maybeShowLanguageCue(); },5000);
+      if (languageCueTimer || languageCueDue || languageCueSuspended ||
+          !ready || (window.PortfolioEntry && window.PortfolioEntry.active)) return;
+      observeLanguagePicker();
+      languageCueTimer = setTimeout(function () {
+        languageCueTimer = 0; languageCueDue = true; maybeShowLanguageCue();
+      },10000);
     }
     function showHomeInvitation(offerLanguage) {
       if (page !== "home" || !ready || root.classList.contains("is-active") || !dialog.hidden ||
@@ -352,7 +376,7 @@
       window.scrollTo({top:window.scrollY,left:window.scrollX,behavior:"instant"});
       if (audio) { var previous = audio; audio = null; previous.pause(); previous.removeAttribute("src"); previous.load(); }
       if (utterance && synth) { utterance = null; synth.cancel(); }
-      if (languageCueDue && !languageCueShown) setTimeout(maybeShowLanguageCue,0);
+      if (languageCueDue) setTimeout(maybeShowLanguageCue,0);
     }
     function dock() {
       clearTargetFollow(); root.dataset.mode = root.dataset.mode === "launcher" ? "launcher" : "compact"; root.dataset.gesture = "rest"; root.dataset.facing = "right"; activeTarget = activeGesture = null;
@@ -440,7 +464,8 @@
         var offset = tipOffset();
         return {x:(side === "right" ? visible.right + 6 : visible.left - 6) - offset.x,offset:offset};
       }
-      var side = visible.right + 100 < innerWidth ? "right" : "left";
+      // The picker sits at the viewport edge; keep the avatar beside it.
+      var side = selector === targets.languageControl ? "left" : visible.right + 100 < innerWidth ? "right" : "left";
       var placement = atSide(side);
       if ((side === "right" && placement.x > rightLimit) || (side === "left" && placement.x < leftLimit)) {
         side = side === "right" ? "left" : "right";
@@ -557,7 +582,7 @@
         if (timelineOptions && timelineOptions.onUnavailable) {
           timelineOptions.onUnavailable(blocked);
           if (blocked && !root.classList.contains("is-active")) showBlockedCue();
-          if (languageCueDue && !languageCueShown) setTimeout(maybeShowLanguageCue,0);
+          if (languageCueDue) setTimeout(maybeShowLanguageCue,0);
           return;
         }
         later(function () { done(); if (blocked && !root.classList.contains("is-active")) showBlockedCue(); },1200);
@@ -797,7 +822,7 @@
     }
     function closeDialog(focus) {
       dialog.hidden = true; root.classList.remove("is-chat-open"); avatar.setAttribute("aria-expanded","false"); label(avatar,t("openAssistant","Open assistant")); if (focus) avatar.focus({preventScroll:true});
-      if (languageCueDue && !languageCueShown) setTimeout(maybeShowLanguageCue,0);
+      if (languageCueDue) setTimeout(maybeShowLanguageCue,0);
     }
     function labels() {
       var lang = language(); root.lang = lang.code; root.dir = "ltr"; dialog.lang = lang.code; dialog.dir = lang.dir;
@@ -818,7 +843,7 @@
     avatar.addEventListener("click",function () { if (dialog.hidden) openDialog(); else { stop(false); closeDialog(true); } });
     startTourButton.addEventListener("click",function () { startPageVoice(); });
     languageHintButton.addEventListener("click",function () {
-      finishLanguageCue();
+      acknowledgeLanguageChoice();
       if (window.PortfolioControls) window.PortfolioControls.openLanguagePicker();
     });
     function togglePlayback() { if (root.classList.contains("is-active")) stop(true); else { clearBlockedCue(); saveMuted(false); if (resumeTour) { var resume = resumeTour; resumeTour = null; resume(); } else if (lastQuestion && !dialog.hidden) answer(lastQuestion,false); else startPageVoice(); } }
@@ -892,7 +917,7 @@
     });
     document.addEventListener("visibilitychange",function () {
       if (document.hidden && (root.dataset.state === "intro" || root.dataset.state === "tour")) stop(false);
-      if (!document.hidden) { scheduleLanguageCue(); if (languageCueDue && !languageCueShown) maybeShowLanguageCue(); }
+      if (!document.hidden) { scheduleLanguageCue(); if (languageCueDue) maybeShowLanguageCue(); }
     });
     window.addEventListener("pagehide",cancel); window.addEventListener("beforeprint",function () { stop(false); closeDialog(false); });
     window.addEventListener("pageshow",function (event) {
@@ -901,7 +926,7 @@
       if (root.dataset.state === "intro" || root.dataset.state === "tour") return;
       cancel(); saveMuted(false);
       root.hidden = !ready || !!(window.PortfolioEntry && window.PortfolioEntry.active);
-      if (!root.hidden) { root.dataset.mode = "compact"; dock(); scheduleLanguageCue(); if (languageCueDue && !languageCueShown) maybeShowLanguageCue(); }
+      if (!root.hidden) { root.dataset.mode = "compact"; dock(); scheduleLanguageCue(); if (languageCueDue) maybeShowLanguageCue(); }
     });
     window.addEventListener("scroll",alignAfterScroll,{passive:true,capture:true});
     window.addEventListener("resize",function () { if (activeTarget) queueTargetFollow(); else dock(); if (!dialog.hidden) fitWindow(); });
@@ -913,7 +938,7 @@
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:startPageVoice,startTour:tour,stop:function () { stop(true); }};
     document.dispatchEvent(new CustomEvent("portfolio:guide-ready"));
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=22",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=23",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
@@ -924,7 +949,7 @@
                !window.PortfolioEntry.suppressed && !hasVoicedThisPage()) startPageVoice();
       else if (!root.hidden && page === "home" && window.PortfolioEntry && !window.PortfolioEntry.suppressed &&
                !hasVoicedThisPage() && !root.classList.contains("is-active") && !homeInvitation) showHomeInvitation(true);
-      if (!root.hidden) { scheduleLanguageCue(); if (languageCueDue && !languageCueShown) maybeShowLanguageCue(); }
+      if (!root.hidden) { scheduleLanguageCue(); if (languageCueDue) maybeShowLanguageCue(); }
     };
     document.head.appendChild(stylesheet);
   }
