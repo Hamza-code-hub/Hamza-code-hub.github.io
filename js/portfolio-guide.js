@@ -21,8 +21,8 @@
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var synth = window.speechSynthesis;
     var nativeVoice = !!(synth && window.SpeechSynthesisUtterance);
-    // A Stop applies to this document only; each new page waits for its own
-    // Enter or Play click.
+    // A Stop applies to this document only. A same-tab navigation after Enter
+    // can continue with the new page's narration when the entry handoff says so.
     var mutedForPage = false;
     var currentIntroAutomatic = false;
     var currentTourAutomatic = false;
@@ -563,7 +563,9 @@
       if (!paths[nextPage]) return;
       try {
         sessionStorage.setItem(tourStorageKey,JSON.stringify({version:2,page:nextPage,language:locale.getLanguage(),expires:Date.now() + 120000}));
-        handoffInFlight = true; window.location.assign(new URL(paths[nextPage],siteUrl).href);
+        var destination = new URL(paths[nextPage],siteUrl).href;
+        if (window.PortfolioEntry) window.PortfolioEntry.handoff(destination);
+        handoffInFlight = true; window.location.assign(destination);
       } catch (_) {
         root.dataset.state = "tour-paused"; updateToggle(false); status.textContent = t("soundBlocked");
         resumeTour = function () { navigateTour(nextPage); };
@@ -725,6 +727,7 @@
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
       else if (!root.hidden && (root.dataset.state === "idle" || root.dataset.state === "stopped")) { root.dataset.mode = "compact"; dock(); }
+      if (window.PortfolioEntry && window.PortfolioEntry.suppressed && window.PortfolioEntry.autoNarrate === true) startPageVoice();
     };
     document.head.appendChild(stylesheet);
   }

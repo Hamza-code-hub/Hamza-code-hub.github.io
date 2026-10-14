@@ -2,7 +2,45 @@
 (function () {
   "use strict";
   var scriptUrl = document.currentScript && document.currentScript.src;
-  var portraitUrl = new URL("../images/muhammad-hamza-ai-engineer.jpg",scriptUrl || location.href).href;
+  var siteRootUrl = new URL("../",scriptUrl || location.href);
+  var portraitUrl = new URL("../images/muhammad-hamza-entry-portrait.webp",scriptUrl || location.href).href;
+  var handoffKey = "portfolio-entry-handoff-v1";
+  var hasEntered = false, narrationEnabled = false;
+  function pageUrl(input) {
+    try {
+      var url = new URL(input,location.href);
+      if (!url.href.startsWith(siteRootUrl.href) || !/(?:\/|\.html)$/i.test(url.pathname)) return null;
+      return url;
+    } catch (_) { return null; }
+  }
+  function navigationType() {
+    var record = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    return record && record.type || (performance.navigation && performance.navigation.type === 1 ? "reload" : "navigate");
+  }
+  function consumeHandoff() {
+    var raw;
+    try { raw = sessionStorage.getItem(handoffKey); sessionStorage.removeItem(handoffKey); } catch (_) { return null; }
+    if (!raw || navigationType() === "reload") return null;
+    try {
+      var pending = JSON.parse(raw);
+      return pending.expires > Date.now() && pending.target === location.pathname + location.search && pending.source !== location.pathname + location.search ? pending : null;
+    } catch (_) { return null; }
+  }
+  function handoff(input) {
+    if (!hasEntered) return false;
+    var url = pageUrl(input);
+    if (!url || url.pathname + url.search === location.pathname + location.search) return false;
+    try {
+      sessionStorage.setItem(handoffKey,JSON.stringify({source:location.pathname + location.search,target:url.pathname + url.search,narrate:narrationEnabled,expires:Date.now() + 15000}));
+      return true;
+    } catch (_) { return false; }
+  }
+  function markLinkHandoff(event) {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    var link = event.target.closest && event.target.closest("a[href]");
+    if (!link || link.hasAttribute("download") || (link.target && link.target.toLowerCase() !== "_self")) return;
+    handoff(link.href);
+  }
   function createEntry() {
     var section = document.createElement("section");
     section.className = "portfolio-entry";
@@ -20,16 +58,18 @@
           <h2 id="entry-title" data-entry-copy="entryTitle">Muhammad Hamza</h2>
           <p id="entry-description" data-entry-copy="exploreAI">Explore the engineering behind intelligent systems.</p>
         </div>
-        <div class="entry-world" aria-label="Four connected AI engineering specializations">
+        <div class="entry-world">
           <div class="entry-world-tilt">
             <div class="entry-orbit" aria-hidden="true"><span></span></div>
-            <div class="entry-station entry-station--agents"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 5 23h22L16 4ZM5 23l11-6 11 6M16 4v13"/><circle cx="16" cy="4" r="2"/><circle cx="5" cy="23" r="2"/><circle cx="27" cy="23" r="2"/><circle cx="16" cy="17" r="2"/></svg></span><span class="entry-station-title" data-entry-copy="agents">Agentic AI</span></div>
-            <div class="entry-station entry-station--vision"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 16c4-6 8-9 13-9s9 3 13 9c-4 6-8 9-13 9S7 22 3 16Z"/><circle cx="16" cy="16" r="5"/><circle cx="16" cy="16" r="1"/></svg></span><span class="entry-station-title" data-entry-copy="vision">Computer Vision</span></div>
-            <div class="entry-station entry-station--generative"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m16 3 2.5 10.5L29 16l-10.5 2.5L16 29l-2.5-10.5L3 16l10.5-2.5L16 3Z"/><path d="M23 4v5M20.5 6.5h5M7 23v5M4.5 25.5h5"/></svg></span><span class="entry-station-title" data-entry-copy="generative">Generative AI</span></div>
-            <div class="entry-station entry-station--classical"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 27h24M7 23v-7h4v7M14 23V9h4v14M21 23v-11h4v11"/><path d="m6 11 8-5 5 3 7-6"/></svg></span><span class="entry-station-title" data-entry-copy="classicalLabel">Classical ML</span></div>
+            <svg class="entry-links entry-links--compact" viewBox="0 0 1440 450" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M380 128 C450 128 465 179 535 179M380 322 C450 322 465 271 535 271M1060 128 C990 128 975 179 905 179M1060 322 C990 322 975 271 905 271"/><circle cx="535" cy="179" r="3"/><circle cx="535" cy="271" r="3"/><circle cx="905" cy="179" r="3"/><circle cx="905" cy="271" r="3"/></svg>
+            <svg class="entry-links entry-links--wide" viewBox="0 0 1440 450" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M380 88 C455 88 480 174 545 174M380 268 C455 268 480 265 545 265M1060 88 C985 88 960 174 895 174M1060 268 C985 268 960 265 895 265"/><circle cx="545" cy="174" r="3"/><circle cx="545" cy="265" r="3"/><circle cx="895" cy="174" r="3"/><circle cx="895" cy="265" r="3"/></svg>
+            <div class="entry-station entry-station--agents"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 5 23h22L16 4ZM5 23l11-6 11 6M16 4v13"/><circle cx="16" cy="4" r="2"/><circle cx="5" cy="23" r="2"/><circle cx="27" cy="23" r="2"/><circle cx="16" cy="17" r="2"/></svg></span><span class="entry-station-title" data-entry-copy="agents">Agentic AI</span><span class="entry-station-arrow" aria-hidden="true">↗</span></div>
+            <div class="entry-station entry-station--vision"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 16c4-6 8-9 13-9s9 3 13 9c-4 6-8 9-13 9S7 22 3 16Z"/><circle cx="16" cy="16" r="5"/><circle cx="16" cy="16" r="1"/></svg></span><span class="entry-station-title" data-entry-copy="vision">Computer Vision</span><span class="entry-station-arrow" aria-hidden="true">↗</span></div>
+            <div class="entry-station entry-station--generative"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m16 3 2.5 10.5L29 16l-10.5 2.5L16 29l-2.5-10.5L3 16l10.5-2.5L16 3Z"/><path d="M23 4v5M20.5 6.5h5M7 23v5M4.5 25.5h5"/></svg></span><span class="entry-station-title" data-entry-copy="generative">Generative AI</span><span class="entry-station-arrow" aria-hidden="true">↗</span></div>
+            <div class="entry-station entry-station--classical"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 27h24M7 23v-7h4v7M14 23V9h4v14M21 23v-11h4v11"/><path d="m6 11 8-5 5 3 7-6"/></svg></span><span class="entry-station-title" data-entry-copy="classicalLabel">Classical ML</span><span class="entry-station-arrow" aria-hidden="true">↗</span></div>
             <button class="entry-core" type="button" data-entry-enter aria-label="Enter Muhammad Hamza's portfolio">
               <span class="entry-portrait-ring" aria-hidden="true"></span>
-              <span class="entry-portrait"><img alt="Portrait of Muhammad Hamza" width="1097" height="1434" loading="eager" decoding="async" fetchpriority="high"></span>
+              <span class="entry-portrait"><img alt="Portrait of Muhammad Hamza" width="768" height="1004" loading="eager" decoding="async" fetchpriority="high"></span>
             </button>
           </div>
         </div>
@@ -42,9 +82,13 @@
     document.body.insertBefore(section,document.body.firstChild);
     return section;
   }
-  var entry = document.getElementById("portfolio-entry") || (document.querySelector(".main-wrapper") && createEntry());
-  var api = { active:false, skipped:false, enter:enter };
+  var handoffState = consumeHandoff(), suppressed = !!handoffState;
+  hasEntered = suppressed;
+  narrationEnabled = suppressed && handoffState.narrate !== false;
+  var entry = !suppressed && (document.getElementById("portfolio-entry") || (document.querySelector(".main-wrapper") && createEntry()));
+  var api = { active:false, skipped:false, suppressed:suppressed, autoNarrate:narrationEnabled, enter:enter, handoff:handoff };
   window.PortfolioEntry = api;
+  document.addEventListener("click",markLinkHandoff);
   if (!entry) { document.documentElement.classList.remove("portfolio-entry-pending"); return; }
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -123,6 +167,7 @@
     clearTimeout(revealTimer);
     clearTimeout(readyTimer);
     api.active = false;
+    hasEntered = true;
     entry.hidden = true;
     entry.classList.remove("is-revealing","is-entering");
     entry.removeAttribute("aria-owns");
@@ -153,8 +198,11 @@
     if (!api.active || entering) return;
     if (!(options && options.skipNarration) && !enterReady) return;
     entering = true;
+    hasEntered = true;
     clearTimeout(revealTimer); entry.classList.remove("is-revealing");
     api.skipped = !!(options && options.skipNarration);
+    narrationEnabled = !api.skipped;
+    api.autoNarrate = narrationEnabled;
     // Dispatch synchronously during the visitor's click so voice can use that activation.
     document.dispatchEvent(new CustomEvent("portfolio:entering",{detail:{source:"entry",automatic:false,skipNarration:!!(options && options.skipNarration)}}));
     if (frame) cancelAnimationFrame(frame);
@@ -188,7 +236,7 @@
   document.documentElement.classList.remove("portfolio-entry-pending");
   if (motionAllowed()) {
     entry.classList.add("is-revealing");
-    revealTimer = window.setTimeout(function () { entry.classList.remove("is-revealing"); },950);
+    revealTimer = window.setTimeout(function () { entry.classList.remove("is-revealing"); },1250);
   }
   backgrounds.forEach(function (item) { item.element.inert = true; });
   document.body.classList.add("portfolio-entry-active");
