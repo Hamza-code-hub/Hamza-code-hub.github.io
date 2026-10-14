@@ -51,6 +51,7 @@
     var homeInvitation = false;
     var homeLanguageTimer = 0;
     var homeReturnTimer = 0;
+    var homeLanguageRetry = 0;
     var restoreHomeInvitation = false;
     var tourStorageKey = "portfolio-guided-tour-v2";
     var voiceVisitsKey = "portfolio-guide-voice-visits-v1";
@@ -226,8 +227,9 @@
     };
     function homeText(index) { return (homeCopy[language().code] || homeCopy.en)[index]; }
     function clearHomeInvitation() {
-      clearTimeout(homeLanguageTimer); clearTimeout(homeReturnTimer); homeLanguageTimer = homeReturnTimer = 0;
+      clearTimeout(homeLanguageTimer); clearTimeout(homeReturnTimer); homeLanguageTimer = homeReturnTimer = homeLanguageRetry = 0;
       homeInvitation = false; startTourButton.hidden = true; languageHintButton.hidden = true;
+      root.style.removeProperty("--guide-hint-max");
       root.classList.remove("is-home-inviting","is-language-cue");
       if (root.dataset.cue === "languageControl") { clearHighlights(); delete root.dataset.cue; }
       if (root.dataset.state === "home-invite") status.textContent = "";
@@ -241,17 +243,19 @@
     function showHomeLanguageCue() {
       homeLanguageTimer = 0;
       if (!homeInvitation || document.hidden || !dialog.hidden || root.classList.contains("is-active") ||
-          (window.PortfolioEntry && window.PortfolioEntry.active) || window.scrollY > 80) return;
+          (window.PortfolioEntry && window.PortfolioEntry.active)) return;
       var control = document.querySelector('.portfolio-language-picker:not([hidden]) .portfolio-language-control');
-      if (!control || !control.getClientRects().length || control.getAttribute("aria-expanded") === "true") return;
+      if (!control || !control.getClientRects().length || control.getAttribute("aria-expanded") === "true" ||
+          getComputedStyle(control).visibility !== "visible") {
+        if (++homeLanguageRetry < 20) homeLanguageTimer = setTimeout(showHomeLanguageCue,700);
+        return;
+      }
       startTourButton.hidden = true;
       languageHintButton.textContent = homeText(1);
       languageHintButton.hidden = false;
       root.classList.add("is-language-cue");
       root.style.setProperty("--guide-travel",".9s");
       pointCue({target:"languageControl",gesture:"point"});
-      var x = parseFloat(root.style.getPropertyValue("--guide-x")) || 0;
-      root.dataset.promptSide = x < 190 ? "right" : "left";
       status.textContent = homeText(1);
       homeReturnTimer = setTimeout(resetHomeInvitationPosition,7000);
     }
@@ -320,7 +324,7 @@
         }
         ancestor = ancestor.parentElement;
       }
-      if (!target.closest(".header") && innerWidth < 992) visible.top = Math.max(visible.top,document.querySelector(".header").getBoundingClientRect().bottom);
+      if (!target.matches(".portfolio-language-control") && !target.closest(".header") && innerWidth < 992) visible.top = Math.max(visible.top,document.querySelector(".header").getBoundingClientRect().bottom);
       return visible.right - visible.left >= 8 && visible.bottom - visible.top >= 8 ? visible : null;
     }
     function queueTargetFollow() {
@@ -341,6 +345,10 @@
       if (followReset) clearTimeout(followReset);
       followReset = setTimeout(function () { root.classList.remove("is-tracking"); followReset = 0; },140);
       queueTargetFollow();
+    }
+    function fitLanguageHint(x) {
+      root.dataset.promptSide = innerWidth < 576 ? (x >= 94 ? "left" : "right") : (x < 190 ? "right" : "left");
+      root.style.setProperty("--guide-hint-max",Math.max(64,Math.floor(x - 10)) + "px");
     }
     function moveTo(selector,gesture) {
       var target = selector && document.querySelector(selector); activeTarget = selector; activeGesture = gesture || "point";
@@ -383,6 +391,7 @@
       var x = Math.max(leftLimit,Math.min(rightLimit,placement.x));
       var y = Math.max(topClearance,Math.min(innerHeight - (innerWidth < 576 ? 102 : 116),focusY - placement.offset.y));
       root.style.setProperty("--guide-x",x + "px"); root.style.setProperty("--guide-y",y + "px");
+      if (selector === targets.languageControl && root.classList.contains("is-language-cue")) fitLanguageHint(x);
     }
     var targets = {
       generative:".ai-domain--generative", agents:".ai-domain--agents", vision:".ai-domain--vision", ml:".ai-domain--ml",
@@ -794,7 +803,8 @@
         if (homeInvitation) resetHomeInvitationPosition();
         return;
       }
-      if (homeInvitation) { clearHomeInvitation(); root.dataset.state = "idle"; dock(); }
+      // The invitation stays available while visitors scroll the page; the
+      // language control is fixed to the viewport and can still be pointed to.
       if (event.target.closest && event.target.closest(".header .navbar-toggler,.header #navigation,.mobile-menu-backdrop")) menuOpenedByGuide = false;
       if (continuation || root.dataset.state === "intro" || root.dataset.state === "tour" || root.dataset.state === "tour-paused") { continuation = null; stop(true); }
     }
@@ -829,7 +839,7 @@
     labels(); dock(); document.body.append(root,dialog);
     window.PortfolioGuide = {openAssistant:openDialog,startIntro:startPageVoice,startTour:tour,stop:function () { stop(true); }};
     document.dispatchEvent(new CustomEvent("portfolio:guide-ready"));
-    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=19",scriptUrl).href;
+    var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=20",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
       if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);

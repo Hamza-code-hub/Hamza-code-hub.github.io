@@ -5044,6 +5044,29 @@ html[data-theme="dark"] .resume-page .resume-wrapper {
   }
 }
 
+/* Card placement is intrinsic, so filter changes and late visual/font loads
+   cannot retain stale absolute coordinates from the previous layout. */
+.portfolio-page .projects-list .project-cards {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.3rem;
+  align-items:stretch;
+  margin-left:0;
+  margin-right:0;
+}
+.portfolio-page .projects-list .project-cards > .isotope-item {
+  position:relative;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  flex:none !important;
+}
+.portfolio-page .projects-list .project-cards > .isotope-item[hidden] { display:none !important; }
+@media (max-width:1199.98px) {
+  .portfolio-page .projects-list .project-cards { grid-template-columns:minmax(0,1fr); }
+}
+
 /* A balanced résumé masthead: centered identity, readable summary and one
    orderly contact rail instead of two visually competing columns. */
 .resume-page .resume-header { text-align:center; }

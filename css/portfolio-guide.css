@@ -128,7 +128,8 @@ body.portfolio-guided-navigation .portfolio-guide { visibility:visible; z-index:
 @media (max-width:575.98px) {
   .portfolio-guide.is-home-inviting .portfolio-guide__start-tour { min-height:40px; padding:7px 10px; border-radius:9px; font-size:11px; }
   .portfolio-guide.is-home-inviting .portfolio-guide__start-tour::after { font-size:14px; }
-  .portfolio-guide.is-language-cue .portfolio-guide__language-hint { top:1px; right:calc(100% + 3px); left:auto; max-width:165px; padding:7px 9px; font-size:10px; }
+  .portfolio-guide.is-language-cue .portfolio-guide__language-hint { top:1px; right:calc(100% + 3px); left:auto; max-width:min(165px,var(--guide-hint-max,165px)); padding:7px 9px; font-size:10px; }
+  .portfolio-guide.is-language-cue[data-prompt-side="right"] .portfolio-guide__language-hint { top:calc(100% + 4px); right:auto; left:0; max-width:min(165px,calc(100vw - 24px)); }
   .portfolio-assistant-dialog { top:var(--assistant-mobile-top,130px); right:12px; bottom:auto; left:12px; width:auto; height:var(--assistant-mobile-height,calc(100dvh - 144px)); max-height:none; }
   .portfolio-assistant__header { padding:12px 15px; } .portfolio-assistant__intro { padding-top:11px; }
   #portfolio-assistant-question { font-size:16px; }
