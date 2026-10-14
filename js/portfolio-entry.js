@@ -1,11 +1,51 @@
-/* Lightweight spatial entry. No rendering loop runs while the portfolio is open. */
+/* Lightweight shared spatial entry. The indexable page remains in the HTML below it. */
 (function () {
   "use strict";
-  var entry = document.getElementById("portfolio-entry");
-  var api = { active:false, enter:enter };
+  var scriptUrl = document.currentScript && document.currentScript.src;
+  var portraitUrl = new URL("../images/muhammad-hamza-ai-engineer.jpg",scriptUrl || location.href).href;
+  function createEntry() {
+    var section = document.createElement("section");
+    section.className = "portfolio-entry";
+    section.id = "portfolio-entry";
+    section.setAttribute("role","dialog");
+    section.setAttribute("aria-modal","true");
+    section.setAttribute("aria-labelledby","entry-title");
+    section.setAttribute("aria-describedby","entry-description");
+    section.hidden = true;
+    section.innerHTML = `
+      <div class="entry-atmosphere" aria-hidden="true"></div>
+      <div class="entry-shell">
+        <div class="entry-copy">
+          <div class="entry-eyebrow"><span aria-hidden="true"></span><span data-entry-copy="entrySubtitle">AI Engineer</span></div>
+          <h2 id="entry-title" data-entry-copy="entryTitle">Muhammad Hamza</h2>
+          <p id="entry-description" data-entry-copy="exploreAI">Explore the engineering behind intelligent systems.</p>
+        </div>
+        <div class="entry-world" aria-label="Four connected AI engineering specializations">
+          <div class="entry-world-tilt">
+            <div class="entry-orbit" aria-hidden="true"><span></span></div>
+            <div class="entry-station entry-station--agents"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 5 23h22L16 4ZM5 23l11-6 11 6M16 4v13"/><circle cx="16" cy="4" r="2"/><circle cx="5" cy="23" r="2"/><circle cx="27" cy="23" r="2"/><circle cx="16" cy="17" r="2"/></svg></span><span class="entry-station-title" data-entry-copy="agents">Agentic AI</span></div>
+            <div class="entry-station entry-station--vision"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 16c4-6 8-9 13-9s9 3 13 9c-4 6-8 9-13 9S7 22 3 16Z"/><circle cx="16" cy="16" r="5"/><circle cx="16" cy="16" r="1"/></svg></span><span class="entry-station-title" data-entry-copy="vision">Computer Vision</span></div>
+            <div class="entry-station entry-station--generative"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m16 3 2.5 10.5L29 16l-10.5 2.5L16 29l-2.5-10.5L3 16l10.5-2.5L16 3Z"/><path d="M23 4v5M20.5 6.5h5M7 23v5M4.5 25.5h5"/></svg></span><span class="entry-station-title" data-entry-copy="generative">Generative AI</span></div>
+            <div class="entry-station entry-station--classical"><span class="entry-station-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 27h24M7 23v-7h4v7M14 23V9h4v14M21 23v-11h4v11"/><path d="m6 11 8-5 5 3 7-6"/></svg></span><span class="entry-station-title" data-entry-copy="classicalLabel">Classical ML</span></div>
+            <button class="entry-core" type="button" data-entry-enter aria-label="Enter Muhammad Hamza's portfolio">
+              <span class="entry-portrait-ring" aria-hidden="true"></span>
+              <span class="entry-portrait"><img alt="Portrait of Muhammad Hamza" width="1097" height="1434" loading="eager" decoding="async" fetchpriority="high"></span>
+            </button>
+          </div>
+        </div>
+        <div class="entry-actions">
+          <button class="entry-enter" type="button" data-entry-enter><span data-entry-copy="enterPortfolio">Enter portfolio</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          <button class="entry-skip" type="button" data-entry-enter data-entry-instant data-entry-copy="skipIntro">Skip introduction</button>
+        </div>
+      </div>`;
+    section.querySelector(".entry-portrait img").src = portraitUrl;
+    document.body.insertBefore(section,document.body.firstChild);
+    return section;
+  }
+  var entry = document.getElementById("portfolio-entry") || (document.querySelector(".main-wrapper") && createEntry());
+  var api = { active:false, skipped:false, enter:enter };
   window.PortfolioEntry = api;
-  if (!entry || !document.body.classList.contains("home-page")) return;
-  if (window.location.hash) return;
+  if (!entry) { document.documentElement.classList.remove("portfolio-entry-pending"); return; }
 
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   var tilt = entry.querySelector(".entry-world-tilt");
@@ -13,7 +53,7 @@
   var backgrounds = Array.prototype.map.call(document.querySelectorAll("body > .header, body > .main-wrapper"),function (element) {
     return { element:element, inert:element.inert };
   });
-  var frame = 0, exitTimer = 0, revealTimer = 0, autoTimer = 0, entering = false, autoEntryEnabled = true, pointerX = 0, pointerY = 0;
+  var frame = 0, exitTimer = 0, revealTimer = 0, readyTimer = 0, entering = false, enterReady = !!window.PortfolioGuide, pointerX = 0, pointerY = 0;
   var fallbacks = {
     entryTitle:"Muhammad Hamza", entrySubtitle:"AI Engineer",
     exploreAI:"Explore the engineering behind intelligent systems.",
@@ -66,22 +106,25 @@
     pointerX = pointerY = 0;
     if (!frame) frame = requestAnimationFrame(renderTilt);
   }
-  function cancelAutomaticEntry() { clearTimeout(autoTimer); autoTimer = 0; }
-  function preserveControlInteraction(event) {
-    if (event.target.closest && event.target.closest(".mobile-theme-toggle,.portfolio-language-picker,.portfolio-language-control,#darkmode,[for='darkmode']")) { autoEntryEnabled = false; cancelAutomaticEntry(); }
-  }
   function updateVisibility() {
     entry.classList.toggle("is-paused",document.hidden);
-    if (document.hidden) cancelAutomaticEntry();
-    else if (autoEntryEnabled && api.active && !entering && !autoTimer) autoTimer = window.setTimeout(function () { enter({automatic:true}); },motionAllowed() ? 1850 : 250);
+  }
+  function unlockActions() {
+    clearTimeout(readyTimer);
+    readyTimer = 0;
+    enterReady = true;
+    entry.querySelectorAll(".entry-enter,.entry-core").forEach(function (button) { button.disabled = false; });
+    document.removeEventListener("portfolio:guide-ready",unlockActions);
+    if (api.active && (document.activeElement === document.body || document.activeElement === document.documentElement)) entry.querySelector(".entry-enter").focus({preventScroll:true});
   }
   function complete() {
     if (!api.active) return;
     clearTimeout(exitTimer);
-    clearTimeout(revealTimer); cancelAutomaticEntry();
+    clearTimeout(revealTimer);
+    clearTimeout(readyTimer);
     api.active = false;
     entry.hidden = true;
-    entry.classList.remove("is-revealing");
+    entry.classList.remove("is-revealing","is-entering");
     entry.removeAttribute("aria-owns");
     document.body.classList.remove("portfolio-entry-active","portfolio-entry-transition");
     document.documentElement.classList.remove("portfolio-entry-active");
@@ -89,25 +132,31 @@
     document.removeEventListener("keydown",keyboard);
     document.removeEventListener("portfolio:language",translate);
     document.removeEventListener("visibilitychange",updateVisibility);
-    document.removeEventListener("pointerdown",preserveControlInteraction,true);
+    document.removeEventListener("portfolio:guide-ready",unlockActions);
     entry.removeEventListener("pointermove",move);
     entry.removeEventListener("pointerleave",resetTilt);
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
-    var heading = document.querySelector(".ai-hero h1");
-    if (heading) {
-      heading.setAttribute("tabindex","-1");
-      heading.focus({preventScroll:true});
+    var hashId = "";
+    try { hashId = decodeURIComponent(location.hash.slice(1)); } catch (_) { hashId = location.hash.slice(1); }
+    var anchor = hashId && document.getElementById(hashId);
+    if (anchor && entry.contains(anchor)) anchor = null;
+    var focusTarget = anchor || document.querySelector(".main-wrapper h1,.main-wrapper [role='heading'][aria-level='1'],.main-wrapper");
+    if (focusTarget) {
+      if (!focusTarget.hasAttribute("tabindex")) focusTarget.setAttribute("tabindex","-1");
+      focusTarget.focus({preventScroll:true});
+      if (anchor) anchor.scrollIntoView({behavior:"auto",block:"start"});
     }
     document.dispatchEvent(new CustomEvent("portfolio:entered",{detail:{source:"entry"}}));
   }
   function enter(options) {
     if (!api.active || entering) return;
-    entering = true; autoEntryEnabled = false;
-    clearTimeout(revealTimer); cancelAutomaticEntry(); entry.classList.remove("is-revealing");
-    try { sessionStorage.setItem("portfolio-entered","1"); } catch (_) {}
-    // Click entry dispatches synchronously for audio activation; automatic entry may require Play.
-    document.dispatchEvent(new CustomEvent("portfolio:entering",{detail:{source:"entry",automatic:!!(options && options.automatic),skipNarration:!!(options && options.skipNarration)}}));
+    if (!(options && options.skipNarration) && !enterReady) return;
+    entering = true;
+    clearTimeout(revealTimer); entry.classList.remove("is-revealing");
+    api.skipped = !!(options && options.skipNarration);
+    // Dispatch synchronously during the visitor's click so voice can use that activation.
+    document.dispatchEvent(new CustomEvent("portfolio:entering",{detail:{source:"entry",automatic:false,skipNarration:!!(options && options.skipNarration)}}));
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
     if (!motionAllowed() || (options && options.instant)) { complete(); return; }
@@ -117,12 +166,10 @@
   }
   function keyboard(event) {
     if (entering) return;
-    autoEntryEnabled = false;
-    cancelAutomaticEntry();
     // Language search owns its Escape, Enter and Tab behavior while open.
     if (event.defaultPrevented || (event.target.closest && event.target.closest(".portfolio-language-picker,.portfolio-language-menu"))) return;
     if (event.key === "Escape") { event.preventDefault(); enter({instant:true,skipNarration:true}); return; }
-    if ((event.key === "Enter" || event.key === " ") && (event.target === entry || event.target === document.body)) {
+    if (enterReady && (event.key === "Enter" || event.key === " ") && (event.target === entry || event.target === document.body)) {
       event.preventDefault(); enter(); return;
     }
     if (event.key !== "Tab") return;
@@ -138,6 +185,7 @@
 
   api.active = true;
   entry.hidden = false;
+  document.documentElement.classList.remove("portfolio-entry-pending");
   if (motionAllowed()) {
     entry.classList.add("is-revealing");
     revealTimer = window.setTimeout(function () { entry.classList.remove("is-revealing"); },950);
@@ -148,16 +196,21 @@
   translate();
   ownGlobalControls();
   if (document.readyState !== "complete") document.addEventListener("DOMContentLoaded",ownGlobalControls,{once:true});
+  if (!enterReady) {
+    entry.querySelectorAll(".entry-enter,.entry-core").forEach(function (button) { button.disabled = true; });
+    document.addEventListener("portfolio:guide-ready",unlockActions);
+    // Keep the portfolio accessible if a voice asset or the guide fails to load.
+    readyTimer = window.setTimeout(unlockActions,4000);
+  }
   entry.querySelectorAll("[data-entry-enter]").forEach(function (button) {
     button.addEventListener("click",function () { var skip = button.hasAttribute("data-entry-instant"); enter({instant:skip,skipNarration:skip}); });
   });
   document.addEventListener("keydown",keyboard);
   document.addEventListener("portfolio:language",translate);
   document.addEventListener("visibilitychange",updateVisibility);
-  document.addEventListener("pointerdown",preserveControlInteraction,{capture:true,passive:true});
   entry.addEventListener("pointermove",move,{passive:true});
   entry.addEventListener("pointerleave",resetTilt,{passive:true});
   window.addEventListener("pageshow",function (event) { if (event.persisted && entering) complete(); });
-  entry.querySelector(".entry-enter").focus({preventScroll:true});
+  if (enterReady) entry.querySelector(".entry-enter").focus({preventScroll:true});
   updateVisibility();
 }());

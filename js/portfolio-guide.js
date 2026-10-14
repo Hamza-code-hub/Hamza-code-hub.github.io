@@ -21,19 +21,9 @@
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var synth = window.speechSynthesis;
     var nativeVoice = !!(synth && window.SpeechSynthesisUtterance);
-    // A Stop applies to this document only. Persisting it in sessionStorage also
-    // muted the next page and every refresh in the same tab, which made the
-    // requested automatic introduction appear broken.
+    // A Stop applies to this document only; each new page waits for its own
+    // Enter or Play click.
     var mutedForPage = false;
-    // A normal navigation introduces each page once per tab. A browser reload
-    // introduces this document again, without clearing the visit history used
-    // to keep a later navigation back to the page quiet.
-    // Normalize directory index URLs so / and /index.html share a visit.
-    var visitPath = location.pathname.replace(/\/index\.html$/i,"/").replace(/\/$/,"") || "/";
-    var autoVisitKey = "portfolio-guide-auto-visit-v1:" + visitPath.toLowerCase();
-    var navigationEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
-    var reloadedDocument = navigationEntry ? navigationEntry.type === "reload" : !!(performance.navigation && performance.navigation.type === 1);
-    var autoVisitClaimed = false;
     var currentIntroAutomatic = false;
     var currentTourAutomatic = false;
     var currentTourContinuation = false;
@@ -43,9 +33,7 @@
     var utterance = null;
     var ready = false;
     var entering = false;
-    var deferredAutomaticHomeIntro = false;
-    var skippedHomeEntry = false;
-    var restartAfterVisibility = null;
+    var skippedEntry = false;
     var lastQuestion = "";
     var history = [];
     var activeTarget = null;
@@ -62,26 +50,11 @@
     var handoffInFlight = false;
     var tourStorageKey = "portfolio-guided-tour-v2";
     var continuation = consumeContinuation();
+    if (window.PortfolioEntry && window.PortfolioEntry.skipped) continuation = null;
     function t(key,fallback) { var result = locale.t(key); return result === key ? (fallback || key) : result; }
     function language() { return locale.languages.filter(function (item) { return item.code === locale.getLanguage(); })[0] || locale.languages[0]; }
     function muted() { return mutedForPage; }
     function saveMuted(value) { mutedForPage = !!value; }
-    function hasAutoVisit() {
-      if (autoVisitClaimed) return true;
-      try { return sessionStorage.getItem(autoVisitKey) === "1"; } catch (_) { return false; }
-    }
-    function canAutoStartVisit() {
-      return !autoVisitClaimed && (reloadedDocument || !hasAutoVisit());
-    }
-    function rememberAutoVisit() {
-      autoVisitClaimed = true;
-      try { sessionStorage.setItem(autoVisitKey,"1"); } catch (_) { /* This document still remembers its visit. */ }
-    }
-    function claimAutoVisit() {
-      if (!canAutoStartVisit()) return false;
-      rememberAutoVisit();
-      return true;
-    }
     function pageCopyReady() { return !locale.getPageStatus || locale.getPageStatus().ready; }
     function afterPageCopy(callback) {
       var token = generation, code = locale.getLanguage();
@@ -106,6 +79,9 @@
       };
       document.head.appendChild(script);
     }
+    // Fetch the small page-specific recordings while the entry scene is open,
+    // so the first trusted Enter click can begin the correct narration promptly.
+    if ((page === "portfolio" || page === "resume") && !coreIntroReady) afterCoreIntro(function () {});
     if (!pageIntroReady) {
       var introScript = document.createElement("script"); introScript.async = true;
       introScript.src = new URL("../js/portfolio-page-intros.js?v=1",scriptUrl).href;
@@ -484,7 +460,6 @@
       if ((page === "portfolio" || page === "resume") && !chapter(page === "portfolio" ? "portfolioPage" : "resumePage") && !coreIntroReady) {
         if (manual) saveMuted(false); root.dataset.state = "intro"; afterCoreIntro(function () { intro(manual,automaticVisit); }); return;
       }
-      if (automaticVisit && !claimAutoVisit()) { currentIntroAutomatic = false; root.dataset.state = "idle"; root.dataset.mode = "launcher"; dock(); return; }
       cancel(); currentIntroAutomatic = !!automaticVisit; if (manual) saveMuted(false); lastQuestion = ""; root.hidden = !ready || (window.PortfolioEntry && window.PortfolioEntry.active); root.dataset.state = "intro"; root.dataset.mode = "compact";
       var token = generation;
       function complete(blocked) { if (token !== generation) return; cancel(); root.dataset.state = "complete"; root.dataset.mode = blocked ? "compact" : "launcher"; dock(); }
@@ -516,11 +491,11 @@
         if (!root.hidden && page === "home" && !reducedMotion.matches && dialog.hidden) moveTo(".hero-kicker","wave");
       },false,{cues:welcomeCues(text),onUnavailable:complete});
     }
-    function autoStart() {
-      if (muted() || document.hidden || root.hidden || root.dataset.state !== "idle") return;
-      if (!canAutoStartVisit()) { root.dataset.mode = "launcher"; dock(); return; }
-      if (page === "services") tour({automatic:true});
-      else intro(false,true);
+    function startPageVoice() {
+      clearBlockedCue(); saveMuted(false);
+      if (continuation) { continuation = null; tour({continuation:true}); }
+      else if (page === "services") tour({automatic:true});
+      else intro(true,false);
     }
     function planForPage() {
       function item(key,fallback,target,nextPage) { return {key:key,recording:chapter(key),text:fallback,target:target,nextPage:nextPage}; }
@@ -599,8 +574,6 @@
       if (pendingLanguageIntent) { saveMuted(false); pendingLanguageIntent.wasTour = true; pendingLanguageIntent.wasActive = true; pendingLanguageIntent.interrupted = false; return; }
       currentTourAutomatic = options.automatic; currentTourContinuation = options.continuation;
       if (!pageCopyReady()) { saveMuted(false); root.dataset.state = "tour"; afterPageCopy(function () { tour(options); }); return; }
-      if (options.automatic) rememberAutoVisit();
-      if (options.continuation) rememberAutoVisit();
       closeDialog(false); cancel(); saveMuted(false); currentTourAutomatic = options.automatic; currentTourContinuation = options.continuation; root.hidden = !ready; root.dataset.state = "tour"; root.dataset.mode = "compact";
       var steps = planForPage().filter(function (step) { return !options.automatic || !step.nextPage; }), token = generation;
       function step(index) {
@@ -675,7 +648,7 @@
       label(dialog.querySelector(".portfolio-assistant__language"),t("language"));
     }
     avatar.addEventListener("click",function () { if (dialog.hidden) openDialog(); else { stop(false); closeDialog(true); } });
-    function togglePlayback() { if (root.classList.contains("is-active")) stop(true); else { clearBlockedCue(); saveMuted(false); if (resumeTour) { var resume = resumeTour; resumeTour = null; resume(); } else if (lastQuestion && !dialog.hidden) answer(lastQuestion,false); else intro(true); } }
+    function togglePlayback() { if (root.classList.contains("is-active")) stop(true); else { clearBlockedCue(); saveMuted(false); if (resumeTour) { var resume = resumeTour; resumeTour = null; resume(); } else if (lastQuestion && !dialog.hidden) answer(lastQuestion,false); else startPageVoice(); } }
     play.addEventListener("click",togglePlayback); chatPlay.addEventListener("click",togglePlayback);
     hide.addEventListener("click",hideGuide);
     close.addEventListener("click",function () { stop(false); closeDialog(true); });
@@ -695,27 +668,21 @@
       if (intent.interrupted) return;
       if (lastQuestion && !dialog.hidden && !muted()) answer(lastQuestion,false);
       else if (intent.wasTour && !muted()) tour({automatic:intent.wasAutomatic,continuation:intent.wasContinuation});
-      else if (intent.wasActive && !muted()) intro(false,intent.wasIntroAutomatic && !hasAutoVisit());
-    });
-    document.addEventListener("portfolio:pagetranslated",function () {
-      if (ready && pageCopyReady() && !pendingLanguageIntent && root.dataset.state === "idle" && !muted() && !document.hidden && !(window.PortfolioEntry && window.PortfolioEntry.active)) autoStart();
+      else if (intent.wasActive && !muted()) intro(true,false);
     });
     document.addEventListener("portfolio:entering",function (event) {
       entering = true;
-      deferredAutomaticHomeIntro = false;
-      skippedHomeEntry = !!(event.detail && event.detail.skipNarration);
-      if (skippedHomeEntry) { stop(false); root.dataset.mode = "launcher"; dock(); }
-      else if (page === "home" && event.detail && event.detail.automatic) deferredAutomaticHomeIntro = canAutoStartVisit();
-      else if (!muted() && canAutoStartVisit()) intro(true,true);
+      skippedEntry = !!(event.detail && event.detail.skipNarration);
+      if (skippedEntry) { continuation = null; stop(false); root.dataset.mode = "compact"; dock(); }
+      else startPageVoice();
     });
     document.addEventListener("portfolio:entered",function () {
       root.hidden = !ready;
-      if (skippedHomeEntry) rememberAutoVisit();
-      skippedHomeEntry = false;
-      if (deferredAutomaticHomeIntro) { deferredAutomaticHomeIntro = false; if (!muted()) autoStart(); }
-      else if (entering && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
-      else if (!entering && !muted()) autoStart();
-      else if ((muted() || hasAutoVisit()) && (root.dataset.state === "idle" || root.dataset.state === "stopped")) { root.dataset.mode = "launcher"; dock(); }
+      // Early narration cues fire while the entry scene covers the page.
+      // Reapply the current cue once the page is visible on every route.
+      if (entering && (root.dataset.state === "intro" || root.dataset.state === "tour") && root.classList.contains("is-speaking")) welcomeMotion(generation);
+      else if (skippedEntry || root.dataset.state === "idle" || root.dataset.state === "stopped") { root.dataset.mode = "compact"; dock(); }
+      skippedEntry = false;
       entering = false;
     });
     function manualControl(event) {
@@ -732,29 +699,16 @@
       else if (["ArrowDown","ArrowUp","PageDown","PageUp","Home","End"," "].indexOf(event.key) >= 0 && !/INPUT|TEXTAREA|BUTTON/.test(event.target.tagName)) manualControl(event);
     });
     document.addEventListener("visibilitychange",function () {
-      if (document.hidden) {
-        restartAfterVisibility = !muted() && (root.dataset.state === "intro" || root.dataset.state === "tour") ? {type:root.dataset.state,introAutomatic:currentIntroAutomatic,tourAutomatic:currentTourAutomatic,tourContinuation:currentTourContinuation} : null;
-        if (restartAfterVisibility) stop(false);
-      } else if (!muted() && ready && !root.hidden) {
-        var interrupted = restartAfterVisibility;
-        restartAfterVisibility = null;
-        if (interrupted) later(function () {
-          if (document.hidden || muted() || root.hidden) return;
-          if (interrupted.type === "tour") tour({automatic:interrupted.tourAutomatic,continuation:interrupted.tourContinuation});
-          else intro(false,interrupted.introAutomatic && !hasAutoVisit());
-        },250);
-        else if (root.dataset.state === "idle") later(autoStart,250);
-      }
+      if (document.hidden && (root.dataset.state === "intro" || root.dataset.state === "tour")) stop(false);
     });
     window.addEventListener("pagehide",cancel); window.addEventListener("beforeprint",function () { stop(false); closeDialog(false); });
     window.addEventListener("pageshow",function (event) {
       if (!event.persisted) return;
-      restartAfterVisibility = null;
       handoffInFlight = false; continuation = null; clearContinuation();
       if (root.dataset.state === "intro" || root.dataset.state === "tour") return;
       cancel(); saveMuted(false);
       root.hidden = !ready || !!(window.PortfolioEntry && window.PortfolioEntry.active);
-      if (!root.hidden && !document.hidden) later(autoStart,450);
+      if (!root.hidden) { root.dataset.mode = "compact"; dock(); }
     });
     window.addEventListener("scroll",alignAfterScroll,{passive:true,capture:true});
     window.addEventListener("resize",function () { if (activeTarget) queueTargetFollow(); else dock(); if (!dialog.hidden) fitWindow(); });
@@ -764,14 +718,13 @@
     }
     if (reducedMotion.addEventListener) reducedMotion.addEventListener("change",function () { stop(false); });
     labels(); dock(); document.body.append(root,dialog);
-    window.PortfolioGuide = {openAssistant:openDialog,startIntro:function () { intro(true); },startTour:tour,stop:function () { stop(true); }};
+    window.PortfolioGuide = {openAssistant:openDialog,startIntro:startPageVoice,startTour:tour,stop:function () { stop(true); }};
+    document.dispatchEvent(new CustomEvent("portfolio:guide-ready"));
     var stylesheet = document.createElement("link"); stylesheet.rel = "stylesheet"; stylesheet.href = new URL("../css/portfolio-guide.css?v=15",scriptUrl).href;
     stylesheet.onload = function () {
       ready = true; root.hidden = !!(window.PortfolioEntry && window.PortfolioEntry.active);
-      if (continuation) { continuation = null; tour({continuation:true}); }
-      else if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
-      else if (!root.hidden && root.dataset.state === "idle" && !muted() && !document.hidden) later(autoStart,450);
-      else if (!root.hidden && muted()) { root.dataset.mode = "launcher"; dock(); }
+      if (!root.hidden && root.dataset.state === "intro" && root.classList.contains("is-speaking")) welcomeMotion(generation);
+      else if (!root.hidden && (root.dataset.state === "idle" || root.dataset.state === "stopped")) { root.dataset.mode = "compact"; dock(); }
     };
     document.head.appendChild(stylesheet);
   }

@@ -47,7 +47,8 @@
   <link id="theme-style" rel="stylesheet" href="./css/theme.css">
   <link rel="stylesheet" href="./css/my.css?v=36">
   <link rel="stylesheet" href="./css/home-ai-showcase.css?v=7">
-  <link rel="stylesheet" href="./css/portfolio-entry.css?v=9">
+  <script>document.documentElement.classList.add('portfolio-entry-pending');setTimeout(function(){document.documentElement.classList.remove('portfolio-entry-pending')},4000);</script>
+  <link rel="stylesheet" href="./css/portfolio-entry.css?v=10">
 
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
@@ -589,52 +590,6 @@
 </head>
 
 <body class="home-page">
-  <!-- An optional native 3D entry; the portfolio remains accessible without JavaScript. -->
-  <section class="portfolio-entry" id="portfolio-entry" role="dialog" aria-modal="true" aria-labelledby="entry-title" aria-describedby="entry-description" hidden>
-    <div class="entry-atmosphere" aria-hidden="true"></div>
-    <div class="entry-shell">
-      <div class="entry-copy">
-        <div class="entry-eyebrow"><span aria-hidden="true"></span><span data-entry-copy="entrySubtitle">AI Engineer</span></div>
-        <h2 id="entry-title" data-entry-copy="entryTitle">Muhammad Hamza</h2>
-        <p id="entry-description" data-entry-copy="exploreAI">Explore the engineering behind intelligent systems.</p>
-      </div>
-      <div class="entry-world" aria-label="Connected AI engineering specializations">
-        <div class="entry-world-tilt">
-          <div class="entry-ground" aria-hidden="true"><span></span></div>
-          <div class="entry-station entry-station--agents">
-            <span class="entry-station-title" data-entry-copy="agents">Agentic AI</span>
-          </div>
-          <div class="entry-station entry-station--vision">
-            <span class="entry-station-title" data-entry-copy="vision">Computer Vision</span>
-          </div>
-          <div class="entry-station entry-station--generative">
-            <span class="entry-station-title" data-entry-copy="generative">Generative AI</span>
-          </div>
-          <div class="entry-station entry-station--classical">
-            <span class="entry-station-title" data-entry-copy="classicalLabel">Classical ML</span>
-          </div>
-          <button class="entry-core" type="button" data-entry-enter aria-label="Enter Muhammad Hamza's portfolio">
-            <span class="entry-core-aura" aria-hidden="true"></span>
-            <span class="entry-core-volume" aria-hidden="true">
-              <span class="entry-cube">
-                <span class="entry-cube-face entry-cube-face--front"><svg viewBox="0 0 100 100" focusable="false"><path d="M18 25 50 12 82 25v50L50 88 18 75Zm0 0 64 50M82 25 18 75M50 12v76"/><circle cx="18" cy="25" r="3"/><circle cx="82" cy="25" r="3"/><circle cx="18" cy="75" r="3"/><circle cx="82" cy="75" r="3"/><circle cx="50" cy="12" r="3"/><circle cx="50" cy="88" r="3"/></svg><span>AI</span></span>
-                <span class="entry-cube-face entry-cube-face--back"></span>
-                <span class="entry-cube-face entry-cube-face--right"><svg viewBox="0 0 100 100" focusable="false"><path d="M20 26h24v25h36M20 74h24V51M44 26V12M44 74v14"/><circle cx="20" cy="26" r="4"/><circle cx="20" cy="74" r="4"/><circle cx="80" cy="51" r="4"/><circle cx="44" cy="51" r="6"/></svg></span>
-                <span class="entry-cube-face entry-cube-face--left"></span>
-                <span class="entry-cube-face entry-cube-face--top"><svg viewBox="0 0 100 100" focusable="false"><path d="M24 24h52v52H24ZM24 50h52M50 24v52"/><circle cx="24" cy="24" r="3"/><circle cx="76" cy="24" r="3"/><circle cx="50" cy="50" r="5"/><circle cx="24" cy="76" r="3"/><circle cx="76" cy="76" r="3"/></svg></span>
-                <span class="entry-cube-face entry-cube-face--bottom"></span>
-              </span>
-            </span>
-            <span class="entry-core-base" aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
-      <div class="entry-actions">
-        <button class="entry-enter" type="button" data-entry-enter><span data-entry-copy="enterPortfolio">Enter portfolio</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-        <button class="entry-skip" type="button" data-entry-enter data-entry-instant data-entry-copy="skipIntro">Skip introduction</button>
-      </div>
-    </div>
-  </section>
   <header class="header text-center">
     <div class="force-overflow">
       <div class="blog-name pt-lg-4 mb-0"><a href="index.html">Muhammad Hamza</a></div>
@@ -1602,10 +1557,10 @@
   <script defer src="./js/portfolio-locale.js?v=14"></script>
   <script defer src="./js/portfolio-locales-extra.js?v=3"></script>
   <script defer src="./js/portfolio-controls.js?v=3"></script>
-  <script defer src="./js/portfolio-entry.js?v=5"></script>
+  <script defer src="./js/portfolio-entry.js?v=6"></script>
   <script defer src="./js/portfolio-narration.js?v=4"></script>
   <script defer src="./js/portfolio-tour.js?v=3"></script>
-  <script defer src="./js/portfolio-guide.js?v=26"></script>
+  <script defer src="./js/portfolio-guide.js?v=27"></script>
   <script>
     if (window.AOS) { AOS.init({ duration: 700, once: true, offset: 60 }); }
   </script>
