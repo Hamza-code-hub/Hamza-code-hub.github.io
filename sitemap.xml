@@ -51,7 +51,7 @@
       <image:loc>https://hamza-code-hub.github.io/images/aerorul-ai-dashboard.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/alzheimer's desiease.jpg</image:loc>
+      <image:loc>https://hamza-code-hub.github.io/images/alzheimer%27s%20desiease.jpg</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/ams1.jpeg</image:loc>
@@ -66,16 +66,16 @@
       <image:loc>https://hamza-code-hub.github.io/images/flood-prediction-lightgbm-hero.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/introsion detection.jpg</image:loc>
+      <image:loc>https://hamza-code-hub.github.io/images/introsion%20detection.jpg</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/neuroinsigt11.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/stalite image cls.jpg</image:loc>
+      <image:loc>https://hamza-code-hub.github.io/images/stalite%20image%20cls.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/technical chatbot.png</image:loc>
+      <image:loc>https://hamza-code-hub.github.io/images/technical%20chatbot.png</image:loc>
     </image:image>
   </url>
   <url>
@@ -144,9 +144,6 @@
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg</image:loc>
     </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/hamza black suite crop.png</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://hamza-code-hub.github.io/resume/</loc>
@@ -169,7 +166,7 @@
       <image:loc>https://hamza-code-hub.github.io/images/3d-mobibrainnet-dashboard.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/alzheimer's desiease.jpg</image:loc>
+      <image:loc>https://hamza-code-hub.github.io/images/alzheimer%27s%20desiease.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -185,18 +182,12 @@
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/technical%20chatbot.png</image:loc>
     </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/technical chatbot.png</image:loc>
-    </image:image>
   </url>
   <url>
     <loc>https://hamza-code-hub.github.io/projects/ai-intrusion-detection.html</loc>
     <lastmod>2026-10-14</lastmod>
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/introsion%20detection.jpg</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/introsion detection.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -298,7 +289,7 @@
       <image:loc>https://hamza-code-hub.github.io/images/land.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/stalite image cls.jpg</image:loc>
+      <image:loc>https://hamza-code-hub.github.io/images/stalite%20image%20cls.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -325,9 +316,6 @@
     </image:image>
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/events.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/hero (1).png</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://hamza-code-hub.github.io/images/livemonitring.png</image:loc>
