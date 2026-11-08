@@ -8,15 +8,15 @@
 
 <img width="100%" alt="Muhammad Hamza — senior AI and machine learning engineer" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0ea5e9,50:14b8a6,100:f97316&amp;height=220&amp;section=header&amp;text=Muhammad%20Hamza&amp;fontSize=56&amp;fontColor=ffffff&amp;fontAlignY=38&amp;desc=AI%20Engineer%20%E2%80%A2%20Agentic%20Systems%20%E2%80%A2%20Applied%20Research&amp;descAlignY=60&amp;animation=fadeIn" />
 
-<a href="https://hamza-code-hub.github.io/">
+<a href="https://hamza-ai-engineer.vercel.app/">
   <img alt="Professional introduction: AI/ML Engineer, Agentic AI and RAG Architect, Production AI Builder" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=600&amp;size=22&amp;pause=900&amp;color=22D3EE&amp;center=true&amp;vCenter=true&amp;width=820&amp;lines=AI%2FML+Engineer;Agentic+AI+%26+RAG+Architect;Computer+Vision+%26+Applied+ML;Building+Production-Ready+AI+Systems" />
 </a>
 
 <p>
-  <a href="https://hamza-code-hub.github.io/"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Explore_my_work-0ea5e9?style=for-the-badge&amp;logo=googlechrome&amp;logoColor=white" /></a>
+  <a href="https://hamza-ai-engineer.vercel.app/"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Explore_my_work-0ea5e9?style=for-the-badge&amp;logo=googlechrome&amp;logoColor=white" /></a>
   <a href="https://www.linkedin.com/in/hamzzaz"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white" /></a>
   <a href="mailto:hamza.ai.official@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-Let's_build-EA4335?style=for-the-badge&amp;logo=gmail&amp;logoColor=white" /></a>
-  <a href="https://hamza-code-hub.github.io/resume/"><img alt="Resume" src="https://img.shields.io/badge/Resume-View_online-f97316?style=for-the-badge&amp;logo=readdotcv&amp;logoColor=white" /></a>
+  <a href="https://hamza-ai-engineer.vercel.app/resume/"><img alt="Resume" src="https://img.shields.io/badge/Resume-View_online-f97316?style=for-the-badge&amp;logo=readdotcv&amp;logoColor=white" /></a>
 </p>
 
 **I design intelligent systems that move from research and prototypes to reliable production software.**
@@ -68,18 +68,18 @@ I am **Muhammad Hamza**, an AI/ML engineer and applied AI researcher from Pakist
 
 | Project | Engineering impact | Case study |
 | :--- | :--- | :---: |
-| **VisionGuard AI** | Real-time warehouse risk intelligence using detection, tracking, and safety analytics | [View](https://hamza-code-hub.github.io/projects/visionguard-ai.html) |
-| **NeuroInsight AI** | Agentic clinical intelligence with 3D neuroimaging, explainability, biomarkers, and RAG | [View](https://hamza-code-hub.github.io/projects/neuroinsight-ai.html) |
-| **Agentic Cybersecurity Assistant** | Multi-agent vulnerability triage, security retrieval, scheduled scans, and reporting | [View](https://hamza-code-hub.github.io/projects/agentic-cybersecurity-ai-assistant.html) |
-| **Agentic RAG Support Assistant** | Knowledge-grounded technical support with autonomous reasoning and retrieval | [View](https://hamza-code-hub.github.io/projects/agentic-rag-support-assistant.html) |
-| **AeroRUL AI** | Predictive aircraft-engine remaining-useful-life modeling and operational analytics | [View](https://hamza-code-hub.github.io/projects/aircraft-engine-rul-prediction.html) |
+| **VisionGuard AI** | Real-time warehouse risk intelligence using detection, tracking, and safety analytics | [View](https://hamza-ai-engineer.vercel.app/projects/visionguard-ai.html) |
+| **NeuroInsight AI** | Agentic clinical intelligence with 3D neuroimaging, explainability, biomarkers, and RAG | [View](https://hamza-ai-engineer.vercel.app/projects/neuroinsight-ai.html) |
+| **Agentic Cybersecurity Assistant** | Multi-agent vulnerability triage, security retrieval, scheduled scans, and reporting | [View](https://hamza-ai-engineer.vercel.app/projects/agentic-cybersecurity-ai-assistant.html) |
+| **Agentic RAG Support Assistant** | Knowledge-grounded technical support with autonomous reasoning and retrieval | [View](https://hamza-ai-engineer.vercel.app/projects/agentic-rag-support-assistant.html) |
+| **AeroRUL AI** | Predictive aircraft-engine remaining-useful-life modeling and operational analytics | [View](https://hamza-ai-engineer.vercel.app/projects/aircraft-engine-rul-prediction.html) |
 
 <div align="center">
 
 ### Explore the complete portfolio
 
-[![View all AI projects](https://img.shields.io/badge/View_All_AI_Projects-Portfolio-14b8a6?style=for-the-badge&logo=github&logoColor=white)](https://hamza-code-hub.github.io/portfolio.html)
-[![Discuss a project](https://img.shields.io/badge/Discuss_A_Project-Contact_Me-f97316?style=for-the-badge&logo=minutemailer&logoColor=white)](https://hamza-code-hub.github.io/contact.html)
+[![View all AI projects](https://img.shields.io/badge/View_All_AI_Projects-Portfolio-14b8a6?style=for-the-badge&logo=github&logoColor=white)](https://hamza-ai-engineer.vercel.app/portfolio.html)
+[![Discuss a project](https://img.shields.io/badge/Discuss_A_Project-Contact_Me-f97316?style=for-the-badge&logo=minutemailer&logoColor=white)](https://hamza-ai-engineer.vercel.app/contact.html)
 
 </div>
 
@@ -104,7 +104,7 @@ My research in volumetric brain MRI and 3D deep learning informs how I approach 
 
 ### Let's build an intelligent system that creates measurable value
 
-**[Portfolio](https://hamza-code-hub.github.io/)** · **[LinkedIn](https://www.linkedin.com/in/hamzzaz)** · **[Resume](https://hamza-code-hub.github.io/resume/)** · **[Email](mailto:hamza.ai.official@gmail.com)**
+**[Portfolio](https://hamza-ai-engineer.vercel.app/)** · **[LinkedIn](https://www.linkedin.com/in/hamzzaz)** · **[Resume](https://hamza-ai-engineer.vercel.app/resume/)** · **[Email](mailto:hamza.ai.official@gmail.com)**
 
 <img width="100%" alt="Gradient profile footer" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:f97316,50:14b8a6,100:0ea5e9&amp;height=120&amp;section=footer" />
 

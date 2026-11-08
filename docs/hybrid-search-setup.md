@@ -1,5 +1,9 @@
 # Search visibility across GitHub Pages and Vercel
 
+> Superseded on 8 November 2026: Vercel is now the preferred host for **all**
+> pages, and GitHub Pages is a canonical mirror. Follow
+> [the current search setup](search-setup.md). The split below is historical.
+
 Configured on 8 November 2026. These source changes take effect only after the
 same revision is deployed to both existing hosts.
 

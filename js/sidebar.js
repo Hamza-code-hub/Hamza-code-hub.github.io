@@ -4,11 +4,11 @@
    profile block and working dark-mode switch (bound by js/dark.js to #darkmode). */
 (function () {
   var navItems = [
-    { href: "index.html", url: "https://hamza-code-hub.github.io/", icon: "fa-user", label: "Home" },
+    { href: "index.html", url: "https://hamza-ai-engineer.vercel.app/", icon: "fa-user", label: "Home" },
     { href: "portfolio.html", url: "https://hamza-ai-engineer.vercel.app/portfolio.html", icon: "fa-laptop-code", label: "Portfolio" },
     { href: "services.html", url: "https://hamza-ai-engineer.vercel.app/services.html", icon: "fa-cogs", label: "Services" },
-    { href: "resume/index.html", url: "https://hamza-code-hub.github.io/resume/", icon: "fa-file-alt", label: "Resume" },
-    { href: "gallery.html", url: "https://hamza-code-hub.github.io/gallery.html", icon: "fa-images", label: "Gallery" },
+    { href: "resume/index.html", url: "https://hamza-ai-engineer.vercel.app/resume/", icon: "fa-file-alt", label: "Resume" },
+    { href: "gallery.html", url: "https://hamza-ai-engineer.vercel.app/gallery.html", icon: "fa-images", label: "Gallery" },
     { href: "contact.html", url: "https://hamza-ai-engineer.vercel.app/contact.html", icon: "fa-envelope-open-text", label: "Contact" }
   ];
 
@@ -33,7 +33,7 @@
   var html =
     '<header class="header text-center">' +
       '<div class="force-overflow">' +
-        '<div class="blog-name pt-lg-4 mb-0"><a href="https://hamza-code-hub.github.io/">Muhammad Hamza</a></div>' +
+        '<div class="blog-name pt-lg-4 mb-0"><a href="https://hamza-ai-engineer.vercel.app/">Muhammad Hamza</a></div>' +
         '<nav class="navbar navbar-expand-lg navbar-dark">' +
           '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>' +
           '<div id="navigation" class="collapse navbar-collapse flex-column">' +

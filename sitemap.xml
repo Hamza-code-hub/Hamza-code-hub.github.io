@@ -1,108 +1,493 @@
 <?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://hamza-code-hub.github.io/</loc>
+    <loc>https://hamza-ai-engineer.vercel.app/contact.html</loc>
     <lastmod>2026-11-08</lastmod>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-ai-developer-software-engineer.jpg</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-ai-engineer.jpg</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-ai-developer.jpg</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Facebook.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Google_Scholar.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Instagram_icon.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/android-studio.png</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/icons8-visual-studio-code-2019-512.png</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
     </image:image>
   </url>
   <url>
-    <loc>https://hamza-code-hub.github.io/gallery.html</loc>
+    <loc>https://hamza-ai-engineer.vercel.app/gallery.html</loc>
     <lastmod>2026-11-08</lastmod>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-ai-developer.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Russian_scholarship.png</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-ai-developer.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/teamatcyberzeus.jpg.jpeg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Russian_scholarship.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/minhaj-solutions-industry-expert-session.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Final%20Welcome%20post%20Hamza.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/hamza%20black%20suite%20crop.png</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/teamatcyberzeus.jpg.jpeg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-company-recognition-upright.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/minhaj-solutions-industry-expert-session.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-indoor-side-portrait.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/hamza%20black%20suite%20crop.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki1.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-company-recognition-upright.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/hamza-restrunent.jpeg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-indoor-side-portrait.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-black-shirt-outdoor.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_from_pattoki1.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-university-of-okara.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/hamza-restrunent.jpeg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai3.jpeg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-black-shirt-outdoor.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai4.png</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-university-of-okara.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki11.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_ai3.jpeg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki10.jpeg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_ai4.png</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-software-engineer.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_from_pattoki11.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki9.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_from_pattoki10.jpeg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_ai2.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-software-engineer.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-ai-researcher.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_from_pattoki9.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/hamza-forntpose.jpeg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_from_pattoki13.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Muhammad_Hamza_from_pattoki13.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-ai-researcher.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/Final%20Welcome%20post%20Hamza.png</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Muhammad_Hamza_ai2.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/hamza-forntpose.jpeg</image:loc>
     </image:image>
   </url>
   <url>
-    <loc>https://hamza-code-hub.github.io/resume/</loc>
+    <loc>https://hamza-ai-engineer.vercel.app/</loc>
     <lastmod>2026-11-08</lastmod>
     <image:image>
-      <image:loc>https://hamza-code-hub.github.io/images/muhammad-hamza-ai-developer-software-engineer.jpg</image:loc>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-ai-engineer.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-ai-developer.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/githubb.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Google_Scholar.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/kaggle.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Fiverr.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Instagram_icon.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Facebook.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/icons8-visual-studio-code-2019-512.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/android-studio.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/colab.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/unity.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/arduino.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/postman.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Fan%20Cutt.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/keishaallen.jpeg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Adriana%20Fasano.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Review1.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/portfolio.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/dashboard.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/neuroinsigt11.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/flood-prediction-lightgbm-hero.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/ams1.jpeg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/drone-simulation-hero.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/computervison.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/aerorul-ai-dashboard.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/AI_cybersec.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/technical%20chatbot.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/introsion%20detection.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/alzheimer%27s%20desiease.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Ticketdrop.jfif</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Timetable.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/linkedin%20automation%20bot.jfif</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/stalite%20image%20cls.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/3d-mobibrainnet.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/3d-mobibrainnet-dashboard.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/alzheimer%27s%20desiease.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/agentic-cybersecurity-ai-assistant.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/AI_cybersec.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/agentic-rag-support-assistant.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/technical%20chatbot.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/ai-intrusion-detection.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/introsion%20detection.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/ai-ticket-scalping-prevention.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Ticketdrop.jfif</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/ai-virtual-painter.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/computervison.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/aircraft-engine-rul-prediction.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/aerorul-ai-dashboard.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/p3.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/attendance-management-system.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/ams1.jpeg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/ams2.jpeg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/ams3.jpeg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/ams4.jpeg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/ams5.jpeg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/drone-flight-simulation.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/drone-simulation-hero.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/drone-simulation-overview.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/flood-prediction-lightgbm.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/flood-prediction-lightgbm-hero.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/flood-prediction-lightgbm-model-overview.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/linkedin-automation-bot.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/linkedin%20automation%20bot.jfif</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/neuroinsight-ai.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/neuroinsigt11.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/neuroinsigt12.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/neuroinsigt13.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/neuroinsigt15.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/neuroinsigt16.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/neuroinsigt17.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/satellite-image-classification.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/land.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/stalite%20image%20cls.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/university-timetable-system.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/Timetable.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/projects/visionguard-ai.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/hero%20%281%29.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/dashboard.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/livemonitring.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/events.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/analytics.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/zone-configuration.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/architecture.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/near-miss-replay.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/research/3d-mobibrainnet.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/research/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/research/resilient-uav-network-security.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/research/widenet.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/resume/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/services/agentic-ai-development.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/services/ai-automation-mcp.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/services/ai-cybersecurity-engineering.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/services/computer-vision-development.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/services/enterprise-rag-development.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hamza-ai-engineer.vercel.app/services.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
     </image:image>
   </url>
 </urlset>

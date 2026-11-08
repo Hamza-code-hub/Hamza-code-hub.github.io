@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://hamza-code-hub.github.io/sitemap.xml
-Sitemap: https://hamza-ai-engineer.vercel.app/sitemap-vercel.xml
+
+Sitemap: https://hamza-ai-engineer.vercel.app/sitemap.xml

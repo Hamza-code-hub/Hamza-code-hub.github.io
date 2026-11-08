@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hierarchical Diabetic Retinopathy Classification — Research Summary | Muhammad Hamza</title>
+  <meta name="description" content="Research summary of hierarchical diabetic retinopathy classification: APTOS data, normalization, regularization, reported metrics and single-dataset limitations.">
+  <meta name="author" content="Muhammad Hamza">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#0b0d0f">
+  <link rel="canonical" href="https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Hamza — AI Engineer">
+  <meta property="og:url" content="https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html">
+  <meta property="og:title" content="Hierarchical Diabetic Retinopathy Classification — Research Summary | Muhammad Hamza">
+  <meta property="og:description" content="Research summary of hierarchical diabetic retinopathy classification: APTOS data, normalization, regularization, reported metrics and single-dataset limitations.">
+  <meta property="og:image" content="https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-ai-developer-software-engineer.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hierarchical Diabetic Retinopathy Classification — Research Summary | Muhammad Hamza">
+  <meta name="twitter:description" content="Research summary of hierarchical diabetic retinopathy classification: APTOS data, normalization, regularization, reported metrics and single-dataset limitations.">
+  <meta name="twitter:image" content="https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-ai-developer-software-engineer.jpg">
+  <link rel="icon" type="image/png" href="../images/muhammad-hamza-profile-favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link id="theme-style" href="../css/theme.css" rel="stylesheet">
+  <link href="../css/my.css?v=38" rel="stylesheet">
+  <link href="./research.css" rel="stylesheet">
+  <script async src="../js/all.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html#webpage",
+      "url": "https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html",
+      "name": "Hierarchical deep learning with stability-driven normalization and regularization for accurate multi-class diabetic retinopathy diagnosis",
+      "description": "Research summary of hierarchical diabetic retinopathy classification: APTOS data, normalization, regularization, reported metrics and single-dataset limitations.",
+      "inLanguage": "en",
+      "dateModified": "2026-11-08",
+      "author": {
+        "@id": "https://hamza-ai-engineer.vercel.app/#person"
+      },
+      "isPartOf": {
+        "@id": "https://hamza-ai-engineer.vercel.app/#website"
+      },
+      "about": {
+        "@id": "https://doi.org/10.1016/j.asej.2026.104453"
+      },
+      "breadcrumb": {
+        "@id": "https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html#breadcrumbs"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://hamza-ai-engineer.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://hamza-ai-engineer.vercel.app/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Hierarchical Diabetic Retinopathy Classification",
+          "item": "https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html"
+        }
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.1016/j.asej.2026.104453",
+      "headline": "Hierarchical deep learning with stability-driven normalization and regularization for accurate multi-class diabetic retinopathy diagnosis",
+      "name": "Hierarchical deep learning with stability-driven normalization and regularization for accurate multi-class diabetic retinopathy diagnosis",
+      "datePublished": "2026",
+      "url": "https://doi.org/10.1016/j.asej.2026.104453",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.1016/j.asej.2026.104453"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Ghulam Ali"
+        },
+        {
+          "@type": "Person",
+          "name": "Mohd Khalid Awang"
+        },
+        {
+          "@type": "Person",
+          "name": "Tariq Ali"
+        },
+        {
+          "@type": "Person",
+          "name": "Mohammad Hijji"
+        },
+        {
+          "@type": "Person",
+          "name": "Muhammad Ayaz"
+        },
+        {
+          "@id": "https://hamza-ai-engineer.vercel.app/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Azqa Jafar"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "name": "Elsevier"
+      },
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Ain Shams Engineering Journal"
+      },
+      "subjectOf": {
+        "@id": "https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html#webpage"
+      }
+    }
+  ]
+}
+  </script>
+  <noscript><style>.header #navigation { display:flex; }.header .navbar-toggler,.dark-mode-toggle { display:none; }</style></noscript>
+  <link rel="stylesheet" href="../css/search-content.css?v=1">
+  <link rel="stylesheet" href="../css/portfolio-polish.css?v=8">
+</head>
+<body class="dark-mode research-page">
+  <a class="research-skip" href="#main-content">Skip to content</a>
+  <!-- Static navigation: generated by scripts/sync_search.py. -->
+  <header class="header text-center">
+    <div class="force-overflow">
+      <div class="blog-name pt-lg-4 mb-0"><a href="https://hamza-ai-engineer.vercel.app/">Muhammad Hamza</a></div>
+      <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div id="navigation" class="collapse navbar-collapse flex-column">
+          <div class="profile-section pt-3 pt-lg-0">
+            <img class="profile-image sidebar-profile-image mb-3 rounded-circle mx-auto" src="../images/muhammad-hamza-entry-portrait.webp" alt="Muhammad Hamza, AI Engineer" width="160" height="160" loading="eager" decoding="async">
+            <div class="bio mb-3">Hi, I am <strong>Muhammad Hamza.</strong></div>
+            <ul class="social-list list-inline py-2 mx-auto">
+              <li class="list-inline-item"><a href="https://www.linkedin.com/in/hamzzaz" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in fa-fw" aria-hidden="true"></i></a></li>
+              <li class="list-inline-item"><a href="https://github.com/Hamza-code-hub" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a></li>
+              <li class="list-inline-item"><a href="mailto:hamza.ai.official@gmail.com" aria-label="Email Muhammad Hamza"><i class="fas fa-envelope fa-fw" aria-hidden="true"></i></a></li>
+            </ul><hr>
+          </div>
+          <ul class="navbar-nav flex-column text-left sidebar-nav">
+              <li class="nav-item"><a class="nav-link" href="https://hamza-ai-engineer.vercel.app/"><i class="fas fa-user fa-fw mr-2" aria-hidden="true"></i>Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://hamza-ai-engineer.vercel.app/portfolio.html"><i class="fas fa-laptop-code fa-fw mr-2" aria-hidden="true"></i>Portfolio</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://hamza-ai-engineer.vercel.app/services.html"><i class="fas fa-cogs fa-fw mr-2" aria-hidden="true"></i>Services</a></li>
+              <li class="nav-item active"><a class="nav-link" href="https://hamza-ai-engineer.vercel.app/research/" aria-current="location"><i class="fas fa-book fa-fw mr-2" aria-hidden="true"></i>Research</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://hamza-ai-engineer.vercel.app/resume/"><i class="fas fa-file-alt fa-fw mr-2" aria-hidden="true"></i>Resume</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://hamza-ai-engineer.vercel.app/gallery.html"><i class="fas fa-images fa-fw mr-2" aria-hidden="true"></i>Gallery</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://hamza-ai-engineer.vercel.app/contact.html"><i class="fas fa-envelope-open-text fa-fw mr-2" aria-hidden="true"></i>Contact</a></li>
+          </ul>
+          <div class="my-2"><a class="btn btn-primary" href="https://hamza-ai-engineer.vercel.app/contact.html"><i class="fas fa-paper-plane mr-2" aria-hidden="true"></i>Hire Me</a></div>
+          <div class="dark-mode-toggle text-center w-100"><hr class="mb-4"><h4 class="toggle-name mb-3"><i class="fas fa-adjust mr-1" aria-hidden="true"></i>Theme</h4><input class="toggle" id="darkmode" type="checkbox"><label class="toggle-btn mx-auto mb-0" for="darkmode"></label></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div class="main-wrapper">
+    <main id="main-content" class="research-shell">
+      <nav class="research-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="https://hamza-ai-engineer.vercel.app/">Home</a></li><li><a href="https://hamza-ai-engineer.vercel.app/research/">Research</a></li><li aria-current="page">Hierarchical Diabetic Retinopathy Classification</li></ol></nav>
+      <article>
+        <header class="research-hero">
+          <p class="research-kicker">Medical imaging · Retinal classification</p>
+          <h1>Hierarchical deep learning with stability-driven normalization and regularization for accurate multi-class diabetic retinopathy diagnosis</h1>
+          <p class="research-lead">This paper investigates five-class diabetic retinopathy grading from retinal images. It addresses training instability, imbalanced classes and visually similar disease stages.</p>
+          <p class="research-byline">Research co-authored by <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a> · Paper: <time datetime="2026">2026</time></p>
+          <p class="research-update">Summary updated <time datetime="2026-11-08">8 November 2026</time></p>
+          <a class="btn btn-primary" href="https://doi.org/10.1016/j.asej.2026.104453">Read the original paper</a>
+        </header>
+        <div class="research-grid">
+          <section class="research-panel" aria-labelledby="method-heading">
+            <h2 id="method-heading">Method</h2><p>A compact hierarchical vision encoder combines convolutional features with tailored normalization, structural-risk regularization and pooling for subtle retinal details.</p>
+            <h2 id="data-heading">Data and evaluation</h2><p>Training and evaluation use APTOS. The reported analysis includes accuracy, ROC curves, confusion matrices and an ablation study.</p>
+          </section>
+          <section class="research-panel research-results" aria-labelledby="results-heading">
+            <h2 id="results-heading">Reported findings</h2>
+            <dl class="research-metrics"><div><dt>Reported APTOS accuracy</dt><dd>98.91%</dd></div><div><dt>Reported micro-averaged F1</dt><dd>98.91%</dd></div><div><dt>Reported macro-averaged measures</dt><dd>&gt;97.8%</dd></div><div><dt>Reported class-wise AUC</dt><dd>0.99–1.00</dd></div></dl>
+            <p>The micro-averaged precision and recall are also 98.91%. Macro-averaged measures help interpret performance across classes rather than relying on the overall accuracy alone.</p>
+          </section>
+        </div>
+        <section class="research-panel research-scope" aria-labelledby="scope-heading"><h2 id="scope-heading">Scope and limitations</h2><p>The publisher explicitly notes evaluation on APTOS only. External datasets, prospective testing and clinical workflow evaluation remain necessary before making wider screening or deployment claims.</p><p class="research-note">Figures above are findings reported by the publication. This summary is not an independent replication or a deployment report.</p></section>
+        <section class="research-panel" aria-labelledby="authorship-heading"><h2 id="authorship-heading">Authorship</h2><p>Muhammad Hamza is a co-author. This page summarizes the research and does not assert a specific individual implementation role.</p><p class="research-note">Full author list: Ghulam Ali, Mohd Khalid Awang, Tariq Ali, Mohammad Hijji, Muhammad Ayaz, <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a>, Azqa Jafar.</p></section>
+        <section class="research-panel research-citation" aria-labelledby="citation-heading">
+          <h2 id="citation-heading">Publication and sources</h2>
+          <p>Ain Shams Engineering Journal, 17(12), 2026, Article 104453.</p>
+          <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.asej.2026.104453">10.1016/j.asej.2026.104453</a></p>
+          <p><a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">Publisher abstract and evaluation</a> · <a href="https://api.crossref.org/works/10.1016/j.asej.2026.104453">Publisher-deposited citation metadata</a></p>
+        </section>
+        
+        <p class="research-return"><a href="https://hamza-ai-engineer.vercel.app/research/">← All research publications</a> · <a href="https://hamza-ai-engineer.vercel.app/contact.html">Discuss research or AI engineering</a></p>
+      </article>
+    </main>
+    <footer class="footer text-center py-4"><small>© 2026 <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a> · AI Engineer &amp; Research Co-author</small></footer>
+  </div>
+  <script src="../js/dark.js?v=7"></script>
+  <script defer src="../js/site-analytics.js?v=1"></script>
+</body>
+</html>
+

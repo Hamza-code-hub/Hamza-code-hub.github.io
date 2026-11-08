@@ -1,10 +1,10 @@
 # GitHub Pages sitemap investigation
 
-> Historical investigation of the earlier all-GitHub canonical setup. The
-> 8 November 2026 source update assigns three preferred pages to GitHub and 18 to
-> Vercel. Follow [the current hybrid search setup](hybrid-search-setup.md) for
-> sitemap submissions and deployment verification. The older identical-sitemap
-> workaround below does not describe the new source configuration.
+> Historical investigation of the earlier all-GitHub canonical setup. It was
+> followed by a temporary split-domain setup. Vercel is now the preferred host
+> for every page; follow [the current search setup](search-setup.md) for sitemap
+> submissions and deployment verification. The older workaround below does not
+> describe the current source configuration.
 
 Investigation date: 2026-10-15 (Asia/Karachi).
 

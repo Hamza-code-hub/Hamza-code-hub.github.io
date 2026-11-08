@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     AOS.init({ duration: 700, once: true, offset: 60 });
   }
 
+  if ("IntersectionObserver" in window) {
   var revealObserver = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
@@ -136,6 +137,11 @@ document.addEventListener("DOMContentLoaded", function () {
           var target = parseFloat(el.getAttribute("data-count"));
           var suffix = el.getAttribute("data-suffix") || "";
           var raw = el.getAttribute("data-count") || "0";
+          if (reduceMotion) {
+            el.textContent = raw + suffix;
+            revealObserver.unobserve(el);
+            return;
+          }
           var decimals = (raw.split(".")[1] || "").length;
           var duration = 1200;
           var start = null;
@@ -158,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".progress-row, .stat-number[data-count]").forEach(function (el) {
     revealObserver.observe(el);
   });
+  }
 
   var pageSections = document.querySelectorAll(".project-section, .project-meta, .benefit-card, .workflow-step, .project-hero, .resume-wrapper");
   pageSections.forEach(function (section, index) {
