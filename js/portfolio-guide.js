@@ -481,7 +481,7 @@
       navAbout:'.home-nav a[href$="#aboutme"]', navDelivery:'.home-nav a[href$="#delivery"]', navSkills:'.home-nav a[href$="#skills"]',
       navAchievements:'.home-nav a[href$="#achievements"]', navPublications:'.home-nav a[href$="#publications"]', navPlatforms:'.home-nav a[href$="#platforms"]',
       navTools:'.home-nav a[href$="#whatido"]', navTestimonials:'.home-nav a[href$="#testimonials"]', navFeatured:'.home-nav a[href$="#projects"]',
-      navPortfolio:'.sidebar-nav a[href$="portfolio.html"]', navResume:'.sidebar-nav a[href$="resume/index.html"]', navGallery:'.sidebar-nav a[href$="gallery.html"]',
+      navPortfolio:'.sidebar-nav a[href$="portfolio.html"]', navResume:'.sidebar-nav a[href$="resume/index.html"], .sidebar-nav a[href$="/resume/"]', navGallery:'.sidebar-nav a[href$="gallery.html"]',
       navServices:'.sidebar-nav a[href$="services.html"], .home-nav a[href$="#services"]', navContact:'.sidebar-nav a[href$="contact.html"]',
       portfolioHero:".cta-section h1", portfolioCards:".project-cards > .isotope-item:first-child .card-title", resumeHeading:".resume-wrapper .resume-name", resumeContent:".resume-wrapper", resumeDownload:"#resume-download-btn",
       serviceHero:".service-hero h1", galleryHero:".cta-section h1", galleryFirst:".photo-grid .photo-tile", projectHero:".cta-section h1",

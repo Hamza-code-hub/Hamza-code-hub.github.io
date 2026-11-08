@@ -2643,7 +2643,7 @@ body.dark-mode .testimonial-carousel .quote-content {
   border:0;
   border-top:1px solid var(--border);
 }
-.resume-page .resume-body > .row { align-items:stretch; }
+.resume-page .resume-body > .row { align-items:flex-start; }
 .resume-page .resume-main { padding-right:2.2rem !important; }
 .resume-page .resume-aside {
   padding-left:2rem !important;
@@ -2808,6 +2808,9 @@ body.dark-mode .testimonial-carousel .quote-content {
   border:1px solid var(--border);
   border-radius:12px;
   background:var(--panel-solid);
+}
+.resume-page .resume-wide-experience > .resume-employer-group + .resume-employer-group {
+  margin-top:1.2rem !important;
 }
 .resume-page .resume-wide-experience .item-content ul {
   columns:2;

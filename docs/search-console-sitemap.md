@@ -1,5 +1,11 @@
 # GitHub Pages sitemap investigation
 
+> Historical investigation of the earlier all-GitHub canonical setup. The
+> 8 November 2026 source update assigns three preferred pages to GitHub and 18 to
+> Vercel. Follow [the current hybrid search setup](hybrid-search-setup.md) for
+> sitemap submissions and deployment verification. The older identical-sitemap
+> workaround below does not describe the new source configuration.
+
 Investigation date: 2026-10-15 (Asia/Karachi).
 
 ## Finding

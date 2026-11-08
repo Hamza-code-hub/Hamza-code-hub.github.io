@@ -4,12 +4,12 @@
    profile block and working dark-mode switch (bound by js/dark.js to #darkmode). */
 (function () {
   var navItems = [
-    { href: "index.html", icon: "fa-user", label: "Home" },
-    { href: "portfolio.html", icon: "fa-laptop-code", label: "Portfolio" },
-    { href: "services.html", icon: "fa-cogs", label: "Services" },
-    { href: "resume/index.html", icon: "fa-file-alt", label: "Resume" },
-    { href: "gallery.html", icon: "fa-images", label: "Gallery" },
-    { href: "contact.html", icon: "fa-envelope-open-text", label: "Contact" }
+    { href: "index.html", url: "https://hamza-code-hub.github.io/", icon: "fa-user", label: "Home" },
+    { href: "portfolio.html", url: "https://hamza-ai-engineer.vercel.app/portfolio.html", icon: "fa-laptop-code", label: "Portfolio" },
+    { href: "services.html", url: "https://hamza-ai-engineer.vercel.app/services.html", icon: "fa-cogs", label: "Services" },
+    { href: "resume/index.html", url: "https://hamza-code-hub.github.io/resume/", icon: "fa-file-alt", label: "Resume" },
+    { href: "gallery.html", url: "https://hamza-code-hub.github.io/gallery.html", icon: "fa-images", label: "Gallery" },
+    { href: "contact.html", url: "https://hamza-ai-engineer.vercel.app/contact.html", icon: "fa-envelope-open-text", label: "Contact" }
   ];
 
   var currentPath = window.location.pathname.replace(/\\/g, "/").toLowerCase();
@@ -22,7 +22,7 @@
     var isActive = currentPage === item.href.toLowerCase();
     return (
       '<li class="nav-item' + (isActive ? " active" : "") + '">' +
-        '<a class="nav-link" href="' + base + item.href + '">' +
+        '<a class="nav-link" href="' + item.url + '">' +
           '<i class="fas ' + item.icon + ' fa-fw mr-2"></i>' + item.label +
           (isActive ? '<span class="sr-only">(current)</span>' : "") +
         "</a>" +
@@ -33,7 +33,7 @@
   var html =
     '<header class="header text-center">' +
       '<div class="force-overflow">' +
-        '<div class="blog-name pt-lg-4 mb-0"><a href="' + base + 'index.html">Muhammad Hamza</a></div>' +
+        '<div class="blog-name pt-lg-4 mb-0"><a href="https://hamza-code-hub.github.io/">Muhammad Hamza</a></div>' +
         '<nav class="navbar navbar-expand-lg navbar-dark">' +
           '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>' +
           '<div id="navigation" class="collapse navbar-collapse flex-column">' +
@@ -48,7 +48,7 @@
               "<hr>" +
             "</div>" +
             '<ul class="navbar-nav flex-column text-left sidebar-nav">' + navHtml + "</ul>" +
-            '<div class="my-2"><a class="btn btn-primary" href="' + base + 'contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a></div>' +
+            '<div class="my-2"><a class="btn btn-primary" href="https://hamza-ai-engineer.vercel.app/contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a></div>' +
             '<div class="dark-mode-toggle text-center w-100">' +
               '<hr class="mb-4">' +
               '<h4 class="toggle-name mb-3"><i class="fas fa-adjust mr-1"></i>Theme</h4>' +

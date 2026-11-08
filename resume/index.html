@@ -30,7 +30,7 @@
 
   <script async src="../js/all.js"></script>
   <link id="theme-style" rel="stylesheet" href="../css/theme.css">
-  <link rel="stylesheet" href="../css/my.css?v=34">
+  <link rel="stylesheet" href="../css/my.css?v=38">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -43,7 +43,8 @@
       "@type":"Person",
       "@id":"https://hamza-code-hub.github.io/#person",
       "name":"Muhammad Hamza",
-      "jobTitle":"AI Systems Engineer",
+      "jobTitle":"AI Engineer (SE)",
+      "worksFor":{"@type":"Organization","name":"CodingCops"},
       "email":"mailto:hamza.ai.official@gmail.com",
       "telephone":"+92 341 7215920",
       "address":{
@@ -62,6 +63,15 @@
       ]
     },
     "about":[
+      {
+        "@type":"ScholarlyArticle",
+        "@id":"https://doi.org/10.1016/j.vehcom.2026.101094",
+        "name":"Resilient UAV Network Security: Cross-Attentive Alignment of Sparse and Temporal Features for Adversarial Intrusion Detection",
+        "datePublished":"2026-10-28",
+        "isPartOf":{"@type":"Periodical","name":"Vehicular Communications"},
+        "identifier":{"@type":"PropertyValue","propertyID":"DOI","value":"10.1016/j.vehcom.2026.101094"},
+        "url":"https://doi.org/10.1016/j.vehcom.2026.101094"
+      },
       {
         "@type":"ScholarlyArticle",
         "@id":"https://doi.org/10.1016/j.asej.2025.103714",
@@ -95,7 +105,7 @@
 </head>
 
 <body class="resume-page">
-  <script src="../js/sidebar.js?v=11"></script>
+  <script src="../js/sidebar.js?v=12"></script>
 
   <div class="main-wrapper">
     <section class="resume-toolbar no-print" aria-labelledby="resume-page-title">
@@ -107,7 +117,7 @@
         </div>
         <div class="resume-toolbar__actions">
           <a id="resume-download-btn" class="btn btn-primary" href="Muhammad-Hamza-Resume.pdf" download="Muhammad-Hamza-Resume.pdf"><i class="fas fa-file-pdf mr-2"></i>Download PDF</a>
-          <a class="btn btn-secondary" href="../contact.html"><i class="fas fa-paper-plane mr-2"></i>Contact Me</a>
+          <a class="btn btn-secondary" href="https://hamza-ai-engineer.vercel.app/contact.html"><i class="fas fa-paper-plane mr-2"></i>Contact Me</a>
         </div>
       </div>
     </section>
@@ -177,6 +187,28 @@
               <section class="work-section py-3">
                 <h2 class="text-uppercase resume-section-heading mb-4">Experience</h2>
 
+                <div class="item resume-employer-group mb-3" id="codingcops-experience">
+                  <div class="item-heading row align-items-center mb-2">
+                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0" translate="no">CodingCops</h3>
+                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">2026 – Present</div>
+                  </div>
+                  <div class="resume-employer-group__role">
+                    <div class="item-heading row align-items-center mb-2">
+                      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0"><span class="resume-employer-group__role-title">AI Engineer (SE)</span></h4>
+                    </div>
+                    <div class="item-content">
+                      <ul>
+                        <li>Build agentic AI applications using DeepAgents and LangGraph, combining task planning, tool use, and multi-step execution.</li>
+                        <li>Develop agent harnesses to coordinate execution, manage context, and connect agents with application tools and services.</li>
+                        <li>Work with Memgraph to model and query graph-based data for AI application workflows.</li>
+                        <li>Integrate Amazon DynamoDB for persistent application data and agent state management.</li>
+                        <li>Connect agent workflows with backend services and data stores to deliver end-to-end AI product functionality.</li>
+                        <li>Deploy production-grade AI projects, supporting application integration and ongoing improvements.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="item resume-employer-group mb-3">
                   <div class="item-heading row align-items-center mb-2">
                     <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">CyberZeus</h3>
@@ -192,9 +224,6 @@
                         <li>Own end-to-end delivery of production-grade AI/ML solutions, from direct client requirements and solution architecture through implementation, evaluation, deployment, and production support.</li>
                         <li>Lead direct client discussions to understand business requirements, translate functional and technical needs into AI solutions, present demos and progress updates, gather feedback, and communicate delivery expectations.</li>
                         <li>Lead a four-person development team of two junior developers and two interns, providing task planning, technical mentoring, code and implementation reviews, integration support, troubleshooting, and delivery coordination.</li>
-                        <li>Architect and implement LangGraph-based multi-agent and RAG systems, including agent state management, tool orchestration, context handling, retrieval strategy, and FAISS/ChromaDB-based knowledge workflows.</li>
-                        <li>Develop AI-driven cybersecurity workflows spanning host discovery, port and DNS analysis, OS/service fingerprinting, CVE intelligence, API/web security checks, and vulnerability prioritization.</li>
-                        <li>Combine scan results, retrieved security knowledge, and LLM reasoning to correlate and deduplicate findings, prioritize risk, and generate analyst-ready remediation reports; evaluate AI/ML components using accuracy, precision, recall, and F1-score.</li>
                       </ul>
                     </div>
                   </div>
@@ -212,26 +241,6 @@
                   </div>
                 </div>
 
-                <div class="item resume-employer-group mb-3">
-                  <div class="item-heading row align-items-center mb-2">
-                    <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0" translate="no">Minhaj Solutions</h3>
-                    <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right" translate="no">04/2024 – 08/2025</div>
-                  </div>
-                  <div class="resume-employer-group__role">
-                    <div class="item-heading row align-items-center mb-2">
-                      <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0"><span class="resume-employer-group__role-title">AI Developer</span></h4>
-                    </div>
-                    <div class="item-content">
-                    <ul>
-                      <li>Built an agentic RAG-based support assistant using LLM reasoning to understand and resolve technical product queries.</li>
-                      <li>Designed the knowledge pipeline from document chunking and embeddings through vector indexing, semantic retrieval, context selection, and response generation.</li>
-                      <li>Implemented retrieval-augmented, context-aware query handling to produce real-time answers grounded in product knowledge instead of relying on fixed rule-based flows.</li>
-                      <li>Contributed to computer-vision workflows covering image preprocessing, object detection/classification, model inference, evaluation, and backend integration for client-facing AI features.</li>
-                    </ul>
-                    </div>
-                  </div>
-                </div>
-
               </section>
             </main>
 
@@ -239,13 +248,13 @@
               <section class="skills-section py-3">
                 <h2 class="resume-section-heading mb-4 text-uppercase">Core Technical Skills</h2>
                 <strong>Agentic AI &amp; LLM Engineering</strong>
-                <ul class="list-unstyled"><li>LLMs, LangChain, LangGraph</li><li>Multi-Agent Workflows, Tool Calling</li><li>State &amp; Memory Management, MCP</li><li>Prompt Engineering</li></ul>
+                <ul class="list-unstyled"><li>LLMs, LangChain, LangGraph, DeepAgents</li><li>Agent Harnesses, Multi-Agent Workflows, Tool Calling</li><li>State &amp; Memory Management, MCP</li><li>Prompt Engineering</li></ul>
                 <strong>ML, Deep Learning &amp; Computer Vision</strong>
                 <ul class="list-unstyled"><li>Machine Learning, Deep Learning, NLP</li><li>YOLO, OpenCV, ByteTrack</li><li>Object Detection &amp; Tracking</li><li>CNNs, Transformers</li></ul>
                 <strong>RAG &amp; Retrieval Systems</strong>
                 <ul class="list-unstyled"><li>RAG Architecture, Embeddings</li><li>Document Chunking &amp; Indexing</li><li>Semantic &amp; Vector Search</li><li>FAISS, ChromaDB, LlamaIndex</li><li>Retrieval Evaluation</li></ul>
                 <strong>Programming, Backend &amp; Data</strong>
-                <ul class="list-unstyled"><li>Python, FastAPI, REST APIs</li><li>NumPy, Pandas, SQL, PostgreSQL</li></ul>
+                <ul class="list-unstyled"><li>Python, FastAPI, REST APIs</li><li>NumPy, Pandas, SQL, PostgreSQL</li><li>Memgraph, Amazon DynamoDB</li></ul>
                 <strong>Cloud, DevOps &amp; Deployment</strong>
                 <ul class="list-unstyled"><li>AWS, Docker, Kubernetes</li><li>GitHub Actions, CI/CD, Git</li></ul>
                 <strong>Cybersecurity &amp; VAPT</strong>
@@ -260,8 +269,28 @@
             </aside>
           </div>
 
-          <section class="resume-wide-experience" aria-label="Freelance experience">
-            <div class="item resume-employer-group">
+          <section class="resume-wide-experience" aria-label="Additional professional experience">
+            <div class="item resume-employer-group mb-3" id="minhaj-experience">
+              <div class="item-heading row align-items-center mb-2">
+                <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0" translate="no">Minhaj Solutions</h3>
+                <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right" translate="no">04/2024 – 08/2025</div>
+              </div>
+              <div class="resume-employer-group__role">
+                <div class="item-heading row align-items-center mb-2">
+                  <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0"><span class="resume-employer-group__role-title">AI Developer</span></h4>
+                </div>
+                <div class="item-content">
+                <ul>
+                  <li>Built an agentic RAG-based support assistant using LLM reasoning to understand and resolve technical product queries.</li>
+                  <li>Designed the knowledge pipeline from document chunking and embeddings through vector indexing, semantic retrieval, context selection, and response generation.</li>
+                  <li>Implemented retrieval-augmented, context-aware query handling to produce real-time answers grounded in product knowledge instead of relying on fixed rule-based flows.</li>
+                  <li>Contributed to computer-vision workflows covering image preprocessing, object detection/classification, model inference, evaluation, and backend integration for client-facing AI features.</li>
+                </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="item resume-employer-group" id="fiverr-experience">
               <div class="item-heading row align-items-center mb-2">
                 <h3 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0" translate="no">Fiverr</h3>
                 <div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right" translate="no">07/2023 – Present</div>
@@ -291,7 +320,7 @@
           <h2 class="resume-section-heading text-uppercase mb-4">Projects</h2>
 
           <div class="item mb-3">
-            <strong><a href="../projects/agentic-cybersecurity-ai-assistant.html">AI Agents for Cybersecurity Operations &amp; Vulnerability Intelligence</a></strong>
+            <strong><a href="https://hamza-ai-engineer.vercel.app/projects/agentic-cybersecurity-ai-assistant.html">AI Agents for Cybersecurity Operations &amp; Vulnerability Intelligence</a></strong>
             <p><strong>Problem solved:</strong> fragmented network, web, API, CVE, and compliance findings force analysts to correlate evidence manually, slowing vulnerability prioritization, remediation, and reporting.</p>
             <ul>
               <li>Built a full-stack security operations platform combining LangGraph/LiteLLM agents, RAG knowledge enrichment, FastAPI orchestration, a Go/gRPC high-throughput execution engine, and a Flutter analyst desktop for scans, findings, vulnerabilities, reports, and AI-assisted analysis.</li>
@@ -353,6 +382,13 @@
         <section class="project-section py-3">
           <h2 class="resume-section-heading text-uppercase mb-4">Research &amp; Publications</h2>
 
+          <div class="item mb-4" id="resilient-uav-network-security">
+            <strong>Resilient UAV Network Security: Cross-Attentive Alignment of Sparse and Temporal Features for Adversarial Intrusion Detection</strong>
+            <p class="mb-1"><em>Vehicular Communications</em>, 2026, Article 101094 | Available online 28/10/2026 (in press)</p>
+            <a href="https://doi.org/10.1016/j.vehcom.2026.101094" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.vehcom.2026.101094</a>
+            <p class="mb-0 mt-2">Co-authored an adversarial hybrid framework combining TabNet and a Transformer Encoder through Multi-Head Cross-Attention (MHCA), with FGSM adversarial training. Achieved 99.47% accuracy on CIC-IDS2017 and 98.24% on UNSW-NB15, improved minority Botnet recall by 33.07% over standalone baselines, and retained a 0.37&ndash;1.24 MB footprint for resource-constrained edge deployment.</p>
+          </div>
+
           <div class="item mb-4">
             <strong>3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D brain magnetic resonance imaging</strong>
             <p class="mb-1"><em>Ain Shams Engineering Journal</em>, 16(11), 2025, Article 103714 | Published 27/08/2025</p>
@@ -391,7 +427,7 @@
   <script defer src="../js/portfolio-entry.js?v=13"></script>
   <script defer src="../js/portfolio-narration.js?v=4"></script>
   <script defer src="../js/portfolio-tour.js?v=3"></script>
-  <script defer src="../js/portfolio-guide.js?v=35"></script>
+  <script defer src="../js/portfolio-guide.js?v=36"></script>
   <script defer src="../js/site-scroll-instrument.js?v=2"></script>
 </body>
 </html>
