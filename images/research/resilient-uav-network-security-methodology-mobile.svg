@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="2090" viewBox="0 0 680 2090" role="img" aria-labelledby="title description">
+<title id="title">Resilient UAV network security: methodology flowchart</title>
+<desc id="description">CIC-IDS2017 and UNSW-NB15 traffic feed TabNet for sparse tabular representation and a Transformer encoder for temporal representation. Reciprocal multi-head cross-attention aligns the two streams, followed by residual refinement, temporal aggregation and fusion to classify intrusions. FGSM augments training. These are general network benchmarks, not real UAV flight traffic.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L9 4.5 L0 9 Z" fill="#f0c46d"/></marker></defs>
+<rect width="680" height="2090" rx="24" fill="#121816"/>
+<g font-family="Arial, Helvetica, sans-serif"><text x="26" y="43" fill="#f0c46d" font-size="16" font-weight="600" text-anchor="start">RESEARCH / METHODOLOGY</text><text x="26" y="89" fill="#f1f5ee" font-size="32" font-weight="600" text-anchor="start">Resilient UAV network security</text><text x="26" y="134" fill="#b8c8bb" font-size="21" font-weight="400" text-anchor="start">Align sparse attributes with temporal traffic</text><text x="26" y="163" fill="#b8c8bb" font-size="21" font-weight="400" text-anchor="start">context</text><rect x="26" y="219" width="628" height="220" rx="18" fill="#1c2621" stroke="#f0c46d" stroke-width="1.5"/>
+<text x="50" y="258" fill="#f0c46d" font-size="27" font-weight="600" text-anchor="start">Network traffic benchmarks</text>
+<text x="50" y="295" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">CIC-IDS2017 + UNSW-NB15</text>
+<text x="50" y="324" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Current flow attributes + synchronized</text>
+<text x="50" y="353" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">traffic history</text><path d="M340.0,439 L340.0,479" fill="none" stroke="#f0c46d" stroke-width="2.5" marker-end="url(#arrow)"/><text x="26" y="508" fill="#a0dfc1" font-size="16" font-weight="600" text-anchor="start">COMPLEMENTARY REPRESENTATION STREAMS</text><rect x="26" y="534" width="628" height="436" rx="22" fill="none" stroke="#a0dfc1" stroke-dasharray="5 7"/><rect x="38" y="546" width="604" height="196" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="62" y="585" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">TabNet</text>
+<text x="62" y="622" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Sparse, attribute-aware representation</text>
+<text x="62" y="651" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Current traffic features</text><rect x="38" y="758" width="604" height="196" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="62" y="797" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Transformer encoder</text>
+<text x="62" y="834" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Temporal sequence representation</text>
+<text x="62" y="863" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Dynamic traffic context</text><path d="M340.0,974 L340.0,1014" fill="none" stroke="#f0c46d" stroke-width="2.5" marker-end="url(#arrow)"/><rect x="26" y="1023" width="628" height="230" rx="18" fill="#1c2621" stroke="#f0c46d" stroke-width="1.5"/>
+<text x="50" y="1062" fill="#f0c46d" font-size="27" font-weight="600" text-anchor="start">Reciprocal multi-head cross-attention</text>
+<text x="50" y="1099" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Align sparse and temporal features</text>
+<text x="50" y="1128" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Residual refinement → temporal aggregation +</text>
+<text x="50" y="1157" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">fusion</text><path d="M340.0,1253 L340.0,1293" fill="none" stroke="#f0c46d" stroke-width="2.5" marker-end="url(#arrow)"/><rect x="26" y="1302" width="628" height="198" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="50" y="1341" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Intrusion classification</text>
+<text x="50" y="1378" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Predict benign or attack class</text>
+<text x="50" y="1407" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Assess minority-attack recall and robustness</text><text x="26" y="1525" fill="#a0dfc1" font-size="16" font-weight="600" text-anchor="start">TRAINING + EVALUATION CONTEXT</text><rect x="26" y="1546" width="628" height="202" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="50" y="1585" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Adversarial training branch</text>
+<text x="50" y="1622" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">FGSM perturbations</text>
+<text x="50" y="1651" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Focal + adversarial + sparsity objectives</text><rect x="26" y="1764" width="628" height="202" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="50" y="1803" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">General-network evaluation</text>
+<text x="50" y="1840" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Clean and adversarial performance</text>
+<text x="50" y="1869" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">UAV-specific flight validation remains future</text>
+<text x="50" y="1898" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">work</text><text x="26" y="1999" fill="#b8c8bb" font-size="18" font-weight="400" text-anchor="start">Original conceptual redraw. Arrows summarize</text><text x="26" y="2024" fill="#b8c8bb" font-size="18" font-weight="400" text-anchor="start">information flow; consult the paper for the complete</text><text x="26" y="2049" fill="#b8c8bb" font-size="18" font-weight="400" text-anchor="start">architecture and protocol.</text></g>
+</svg>

@@ -1,6 +1,6 @@
 # Vercel primary website and AI search setup
 
-Updated: 8 November 2026. This replaces the earlier split-domain plan.
+Updated: 9 November 2026. This replaces the earlier split-domain plan.
 
 ## Primary and mirror
 
@@ -38,6 +38,15 @@ have visible attribution, appropriate headings and breadcrumb structured data.
 Research summaries distinguish paper results from deployed capabilities and
 include dataset limitations and primary DOI sources.
 
+Each paper follows the same 12-section case-study sequence, from the problem
+through proposed improvements. Methodology SVGs have desktop and mobile versions,
+accessible descriptions, and full-size/download links. They are original
+conceptual redraws. Regenerate them with:
+
+```powershell
+python scripts/build_research_diagrams.py
+```
+
 The shared layout and search metadata are maintained by:
 
 ```powershell
@@ -72,6 +81,40 @@ If Bing supplies an HTML verification value, put it in `bingVerification` inside
 `site-config.json`, run the sync script and deploy. No fake token is installed.
 Account dashboards and their ownership cannot be configured through public
 source alone.
+
+### When Test live URL reports a quota limit
+
+Google documents a **per-property daily limit for live URL inspections**. It does
+not publish a numeric cap or an exact reset time on the URL Inspection help page.
+A quota message after selecting **Test live URL** concerns that diagnostic tool;
+it does not establish that the site is blocked, unindexed or over its Vercel plan.
+See [Google's live inspection guidance](https://support.google.com/webmasters/answer/9012289#test_live_page).
+
+Stop repeatedly retrying the live test. Retry once the daily allowance is
+available again, for example the next day, and use it for a few representative
+pages after meaningful changes. Keep the primary sitemap submitted so Google
+can discover the full collection without a separate manual live test for every
+URL. The indexed URL report shows Google's last processed version; it does not
+prove that today's deployment has already been crawled.
+
+These limits are different:
+
+- **Test live URL:** a daily live-inspection allowance per Search Console
+  property. This is the relevant limit when that action reports quota exceeded.
+- **Request indexing:** a separate manual submission limit. Repeating a request
+  does not accelerate crawling; use the sitemap for many URLs.
+- **URL Inspection API:** reads Google's indexed URL information. Its documented
+  2,000 requests per site per day are not the live-test allowance and do not
+  provide a live-testing or indexing-submission workaround.
+- **Vercel hosting:** serving limits and firewall rules belong to the hosting
+  service, not Search Console's inspection quota.
+
+If the live test instead reports **Hostload exceeded**, **Robots.txt unreachable**
+or a DNS/connection failure under **Page fetch**, investigate that exact
+availability error. Google documents these separately from the inspection
+quota. A successful browser fetch alone cannot establish what Google received.
+The live test also cannot confirm Google's selected canonical or guarantee
+indexing.
 
 ## AI search crawling
 
@@ -145,6 +188,9 @@ enabled. A single personalized answer is not a universal ranking measurement.
 - [Google canonical URL guidance](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
 - [Google AI features and websites](https://developers.google.com/search/docs/appearance/ai-features)
 - [Google Generative AI performance report](https://support.google.com/webmasters/answer/16984139)
+- [Google URL Inspection and live testing](https://support.google.com/webmasters/answer/9012289)
+- [Google recrawl requests and sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl)
+- [Search Console API usage limits](https://developers.google.com/webmaster-tools/limits)
 - [OpenAI crawler documentation](https://developers.openai.com/api/docs/bots)
 - [Bing AI Performance](https://blogs.bing.com/webmaster/2026/2/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview/)
 - [IndexNow documentation](https://www.indexnow.org/documentation)

@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link id="theme-style" href="../css/theme.css" rel="stylesheet">
   <link href="../css/my.css?v=38" rel="stylesheet">
-  <link href="./research.css" rel="stylesheet">
+  <link href="./research.css?v=2" rel="stylesheet">
   <script async src="../js/all.js"></script>
   <script type="application/ld+json">
 {
@@ -38,7 +38,7 @@
       "name": "3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D brain magnetic resonance imaging",
       "description": "3D-MobiBrainNet research summary: multi-plane MRI classification, ADNI evaluation, reported accuracy, cross-validation results and limitations.",
       "inLanguage": "en",
-      "dateModified": "2026-11-08",
+      "dateModified": "2026-11-09",
       "author": {
         "@id": "https://hamza-ai-engineer.vercel.app/#person"
       },
@@ -50,7 +50,8 @@
       },
       "breadcrumb": {
         "@id": "https://hamza-ai-engineer.vercel.app/research/3d-mobibrainnet.html#breadcrumbs"
-      }
+      },
+      "image": "https://hamza-ai-engineer.vercel.app/images/research/3d-mobibrainnet-methodology.svg"
     },
     {
       "@type": "BreadcrumbList",
@@ -131,6 +132,7 @@
     }
   ]
 }
+
   </script>
   <noscript><style>.header #navigation { display:flex; }.header .navbar-toggler,.dark-mode-toggle { display:none; }</style></noscript>
   <link rel="stylesheet" href="../css/search-content.css?v=1">
@@ -178,27 +180,77 @@
           <h1>3D-MobiBrainNet: Multi-class Alzheimer's disease classification using 3D brain magnetic resonance imaging</h1>
           <p class="research-lead">3D-MobiBrainNet examines multi-class Alzheimer's classification from volumetric brain MRI. Its multi-plane design preserves complementary anatomical views for distinguishing Alzheimer's disease, mild cognitive impairment and cognitively normal cases.</p>
           <p class="research-byline">Research co-authored by <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a> · Paper: <time datetime="2025-08-27">27 August 2025</time></p>
-          <p class="research-update">Summary updated <time datetime="2026-11-08">8 November 2026</time></p>
+          <p class="research-update">Case study updated <time datetime="2026-11-09">9 November 2026</time></p>
           <a class="btn btn-primary" href="https://doi.org/10.1016/j.asej.2025.103714">Read the original paper</a>
         </header>
-        <div class="research-grid">
-          <section class="research-panel" aria-labelledby="method-heading">
-            <h2 id="method-heading">Method</h2><p>Separate axial, coronal and sagittal branches use depth-wise separable bottlenecks. Feature recalibration and ReLU6 support feature selection before fusion into a shared representation.</p>
-            <h2 id="data-heading">Data and evaluation</h2><p>Evaluation uses the Alzheimer's Disease Neuroimaging Initiative (ADNI) dataset. The paper also reports five-fold cross-validation separately from its headline test results.</p>
-          </section>
-          <section class="research-panel research-results" aria-labelledby="results-heading">
-            <h2 id="results-heading">Reported findings</h2>
-            <dl class="research-metrics"><div><dt>Reported test accuracy</dt><dd>97.33%</dd></div><div><dt>Reported test F1-score</dt><dd>97.33%</dd></div><div><dt>Reported test AUC</dt><dd>99.92%</dd></div><div><dt>Reported five-fold success rate</dt><dd>90.162%</dd></div></dl>
-            <p>The model has 34,145,099 parameters. The 97.33% headline result and 90.162% cross-validation result describe different evaluation settings and should be read separately.</p>
-          </section>
-        </div>
-        <section class="research-panel research-scope" aria-labelledby="scope-heading"><h2 id="scope-heading">Scope and limitations</h2><p>ADNI benchmark results alone do not establish performance across hospitals, scanners or prospective clinical populations. This research summary makes no claim of clinical authorization or routine diagnostic deployment.</p><p class="research-note">Figures above are findings reported by the publication. This summary is not an independent replication or a deployment report.</p></section>
-        <section class="research-panel" aria-labelledby="authorship-heading"><h2 id="authorship-heading">Authorship</h2><p>Muhammad Hamza is a co-author. The linked implementation page and repository provide additional engineering context.</p><p class="research-note">Full author list: Zia-ur Rehman, Mohd Khalid Awang, Ghulam Ali, <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a>, Tariq Ali, Muhammad Ayaz, Mohammad Hijji.</p></section>
+        <nav class="research-toc" aria-label="Case study sections"><ol>
+          <li><a href="#problem-heading">Problem</a></li>
+          <li><a href="#importance-heading">Why this matters</a></li>
+          <li><a href="#data-heading">Dataset</a></li>
+          <li><a href="#method-heading">Method / model</a></li>
+          <li><a href="#rationale-heading">Why this model</a></li>
+          <li><a href="#loss-heading">Loss function</a></li>
+          <li><a href="#metrics-heading">Evaluation metrics</a></li>
+          <li><a href="#baseline-heading">Baseline comparison</a></li>
+          <li><a href="#results-heading">Results</a></li>
+          <li><a href="#contribution-heading">My exact contribution</a></li>
+          <li><a href="#limitations-heading">Limitations</a></li>
+          <li><a href="#improvements-heading">What I would improve now</a></li>
+        </ol></nav>
+        <section class="research-panel" aria-labelledby="problem-heading">
+          <h2 id="problem-heading"><span class="research-step-index" aria-hidden="true">01</span> Problem</h2>
+          <p>Classify Alzheimer's disease (AD), mild cognitive impairment (MCI) and cognitively normal (CN) cases from brain MRI while retaining information across anatomical views. The research combines multi-class prediction with the memory and computation required to process volumetric images.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="importance-heading">
+          <h2 id="importance-heading"><span class="research-step-index" aria-hidden="true">02</span> Why this matters</h2>
+          <p>Including MCI makes the intermediate category part of the prediction task. It also exposes errors between adjacent categories that an overall disease-versus-normal result can hide.</p><p>Preserving complementary MRI views while controlling model size makes this a useful study of the balance between spatial information and computational cost.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="data-heading">
+          <h2 id="data-heading"><span class="research-step-index" aria-hidden="true">03</span> Dataset</h2>
+          <p><strong>Source:</strong> ADNI brain MRI; <strong>labels:</strong> AD, MCI and CN. The paper reports an <strong>80% / 20%</strong> training/test split and a separate five-fold analysis.</p><p>A participant can contribute many correlated slices. Patient-level separation is therefore important when interpreting generalization; the available evidence for this case study does not independently establish a subject-disjoint split.</p><p class="research-note">Evidence: full paper, Sections 3&ndash;5 and Table 2.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="method-heading">
+          <h2 id="method-heading"><span class="research-step-index" aria-hidden="true">04</span> Method / model</h2>
+          <p>Axial, coronal and sagittal branches use depth-wise separable bottlenecks and feature recalibration. Their features are fused, processed with 3D convolutions, then passed to a three-class softmax head.</p><p>The branches extract complementary views of the same scan before the shared classifier integrates their features.</p><figure class="research-methodology"><picture><source media="(max-width: 575px)" srcset="../images/research/3d-mobibrainnet-methodology-mobile.svg"><img src="../images/research/3d-mobibrainnet-methodology.svg" alt="Conceptual 3D-MobiBrainNet pipeline: MRI preprocessing, axial coronal and sagittal feature branches, recalibration, multi-view fusion, 3D convolutions and AD MCI CN predictions." width="1200" height="1394" loading="lazy" decoding="async"></picture><figcaption>Conceptual redrawing of the published methodology. The paper provides the full architecture and tensor details.<span class="research-figure-links"><a href="../images/research/3d-mobibrainnet-methodology.svg" target="_blank" rel="noopener">Open full-size diagram<span class="sr-only"> (opens in a new tab)</span></a><a href="../images/research/3d-mobibrainnet-methodology.svg" download>Download SVG diagram</a></span></figcaption></figure>
+        </section>
+        <section class="research-panel" aria-labelledby="rationale-heading">
+          <h2 id="rationale-heading"><span class="research-step-index" aria-hidden="true">05</span> Why this model</h2>
+          <p>Depth-wise separable convolutions separate spatial filtering from channel mixing, reducing the work of a dense convolution. Plane-specific branches capture anatomical patterns from different orientations, while feature recalibration adjusts the emphasis on informative channels.</p><p>Fusion brings those representations together before 3D convolution learns their combined spatial structure. This connects efficient local extraction with a shared multi-view classification head.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="loss-heading">
+          <h2 id="loss-heading"><span class="research-step-index" aria-hidden="true">06</span> Loss function</h2>
+          <p><strong>Reported objective:</strong> categorical cross-entropy. The reported setup uses Adam, a 0.001 learning rate, batch size 32 and 20 epochs.</p><p class="research-formula" role="math" aria-label="For one example, cross entropy equals the negative sum over three classes of the reference indicator times the logarithm of the predicted probability."><strong>Definition for one example:</strong> L = &minus;&sum;<sub>k=1</sub><sup>3</sup> y<sub>k</sub> log(p<sub>k</sub>), where y is the one-hot reference label and p is the softmax probability.</p><p>Cross-entropy penalizes low probability for the reference category. A confident wrong prediction receives a larger penalty, connecting the probability output directly to the training label.</p><p class="research-note">Evidence: full paper, Table 2 and Section 4.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="metrics-heading">
+          <h2 id="metrics-heading"><span class="research-step-index" aria-hidden="true">07</span> Evaluation metrics</h2>
+          <p>The study reports accuracy, precision, recall, F1-score, ROC AUC and parameter count.</p><p>Accuracy describes overall correctness. Precision and recall expose different error patterns; F1 combines them. AUC describes discrimination across thresholds rather than confidence calibration. Parameter count measures model capacity, while latency and memory require measurements on the intended hardware.</p><p>Metric averaging and the unit of evaluation matter when comparing slice-level and subject-level findings.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="baseline-heading">
+          <h2 id="baseline-heading"><span class="research-step-index" aria-hidden="true">08</span> Baseline comparison</h2>
+          <p>The implemented comparisons include 3D-R(2+1)D, 3D-MC3, 3D-MobileNetV3 and 3D-DenseNet121. Table 6 reports <strong>96.50%</strong> accuracy for 3D-MC3 against <strong>97.33%</strong> for the proposed model.</p><p>The difference is <strong>0.83 percentage points</strong> in the paper's test setting. The comparison covers the implemented models, dataset and labels reported in that experiment.</p><p class="research-note">Evidence: full paper, Section 7 and Table 6.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="results-heading">
+          <h2 id="results-heading"><span class="research-step-index" aria-hidden="true">09</span> Results</h2>
+          <dl class="research-metrics"><div><dt>Reported test accuracy</dt><dd>97.33%</dd></div><div><dt>Reported test precision</dt><dd>97.41%</dd></div><div><dt>Reported test recall / F1</dt><dd>97.33%</dd></div><div><dt>Reported test AUC</dt><dd>99.92%</dd></div><div><dt>Reported five-fold result</dt><dd>90.162%</dd></div><div><dt>Reported parameters</dt><dd>34,145,099</dd></div></dl><p>The headline test result and five-fold result belong to different evaluation settings. Keeping both visible shows how the reported performance changes with the evaluation protocol.</p><p class="research-note">Source: publisher abstract and full-paper Table 6.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="contribution-heading">
+          <h2 id="contribution-heading"><span class="research-step-index" aria-hidden="true">10</span> My exact contribution</h2>
+          <p><strong>I worked on implementation and experiments.</strong> The paper's CRediT statement lists my roles as <strong>Software</strong> and <strong>Investigation</strong>.</p>
+        </section>
+        <section class="research-panel research-scope" aria-labelledby="limitations-heading">
+          <h2 id="limitations-heading"><span class="research-step-index" aria-hidden="true">11</span> Limitations</h2>
+          <p>The evidence is centered on ADNI. Performance across independent institutions, acquisition settings and patient populations needs separate validation. Processing multiple views with 3D layers also leaves a meaningful resource cost, even when the parameter count is lower than the compared implementations.</p><p>Patient-level separation, input-volume construction and preprocessing consistency remain important evidence requirements for reuse. Clinical application also requires evaluation on independent patient cohorts and acquisition settings.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="improvements-heading">
+          <h2 id="improvements-heading"><span class="research-step-index" aria-hidden="true">12</span> What I would improve now</h2>
+          <p><strong>Proposed next work:</strong> build a reproducible evaluation package with subject-level split manifests, saved configurations, repeated seeds and confidence intervals. Keep preprocessing fitted inside each training fold.</p><p>I would test on an external cohort, report class-wise errors and calibration, and measure CPU/GPU latency and peak memory. Only after that evaluation would I compare compression or distillation approaches under the same partitions. These proposals extend the published evaluation.</p>
+        </section>
         <section class="research-panel research-citation" aria-labelledby="citation-heading">
           <h2 id="citation-heading">Publication and sources</h2>
           <p>Ain Shams Engineering Journal, 16(11), 2025, Article 103714.</p>
           <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.asej.2025.103714">10.1016/j.asej.2025.103714</a></p>
           <p><a href="https://www.sciencedirect.com/science/article/pii/S2090447925004551">Publisher abstract and results</a> · <a href="https://api.crossref.org/works/10.1016/j.asej.2025.103714">Publisher-deposited citation metadata</a></p>
+          <p><a href="https://www.researchgate.net/publication/395025519_3D-MobiBrainNet_Multi-class_Alzheimer%27s_disease_classification_using_3D_brain_magnetic_resonance_imaging">Author-uploaded full paper: methods, experiments and contribution evidence</a></p>
         </section>
         <section class="research-panel" aria-labelledby="related-heading"><h2 id="related-heading">Related engineering work</h2><ul class="research-link-list"><li><a href="https://hamza-ai-engineer.vercel.app/projects/3d-mobibrainnet.html">3D-MobiBrainNet implementation case study</a></li><li><a href="https://github.com/Hamza-code-hub/3D-MobiBrainNet-Alzheimers-Classification">Public implementation repository</a></li></ul></section>
         <p class="research-return"><a href="https://hamza-ai-engineer.vercel.app/research/">← All research publications</a> · <a href="https://hamza-ai-engineer.vercel.app/contact.html">Discuss research or AI engineering</a></p>

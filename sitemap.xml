@@ -82,7 +82,7 @@
   </url>
   <url>
     <loc>https://hamza-ai-engineer.vercel.app/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <image:image>
       <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
     </image:image>
@@ -408,37 +408,49 @@
   </url>
   <url>
     <loc>https://hamza-ai-engineer.vercel.app/research/3d-mobibrainnet.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <image:image>
       <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/research/3d-mobibrainnet-methodology.svg</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <image:image>
       <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/research/diabetic-retinopathy-methodology.svg</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://hamza-ai-engineer.vercel.app/research/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <image:image>
       <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://hamza-ai-engineer.vercel.app/research/resilient-uav-network-security.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <image:image>
       <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/research/resilient-uav-network-security-methodology.svg</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://hamza-ai-engineer.vercel.app/research/widenet.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <image:image>
       <image:loc>https://hamza-ai-engineer.vercel.app/images/muhammad-hamza-entry-portrait.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://hamza-ai-engineer.vercel.app/images/research/widenet-methodology.svg</image:loc>
     </image:image>
   </url>
   <url>

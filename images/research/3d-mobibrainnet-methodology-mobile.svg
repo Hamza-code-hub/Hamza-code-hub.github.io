@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="2302" viewBox="0 0 680 2302" role="img" aria-labelledby="title description">
+<title id="title">3D-MobiBrainNet: methodology flowchart</title>
+<desc id="description">ADNI brain MRI is processed in parallel axial, coronal and sagittal branches. Depthwise-separable bottlenecks, pooling and feature recalibration feed feature fusion, 3D convolution and pooling, followed by a three-class softmax output. Training uses categorical cross-entropy; test and cross-validation findings are separate.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L9 4.5 L0 9 Z" fill="#f0c46d"/></marker></defs>
+<rect width="680" height="2302" rx="24" fill="#121816"/>
+<g font-family="Arial, Helvetica, sans-serif"><text x="26" y="43" fill="#f0c46d" font-size="16" font-weight="600" text-anchor="start">RESEARCH / METHODOLOGY</text><text x="26" y="89" fill="#f1f5ee" font-size="32" font-weight="600" text-anchor="start">3D-MobiBrainNet</text><text x="26" y="134" fill="#b8c8bb" font-size="21" font-weight="400" text-anchor="start">Three anatomical views, one volumetric</text><text x="26" y="163" fill="#b8c8bb" font-size="21" font-weight="400" text-anchor="start">classifier</text><rect x="26" y="219" width="628" height="220" rx="18" fill="#1c2621" stroke="#f0c46d" stroke-width="1.5"/>
+<text x="50" y="258" fill="#f0c46d" font-size="27" font-weight="600" text-anchor="start">ADNI volumetric MRI</text>
+<text x="50" y="295" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Three complementary anatomical views</text>
+<text x="50" y="324" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Research labels: AD, MCI and cognitively</text>
+<text x="50" y="353" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">normal</text><path d="M340.0,439 L340.0,479" fill="none" stroke="#f0c46d" stroke-width="2.5" marker-end="url(#arrow)"/><text x="26" y="508" fill="#a0dfc1" font-size="16" font-weight="600" text-anchor="start">PARALLEL ANATOMICAL BRANCHES</text><rect x="26" y="534" width="628" height="648" rx="22" fill="none" stroke="#a0dfc1" stroke-dasharray="5 7"/><rect x="38" y="546" width="604" height="196" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="62" y="585" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Axial view</text>
+<text x="62" y="622" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Depthwise-separable bottlenecks</text>
+<text x="62" y="651" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Pooling + feature recalibration</text><rect x="38" y="758" width="604" height="196" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="62" y="797" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Coronal view</text>
+<text x="62" y="834" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Depthwise-separable bottlenecks</text>
+<text x="62" y="863" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Pooling + feature recalibration</text><rect x="38" y="970" width="604" height="196" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="62" y="1009" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Sagittal view</text>
+<text x="62" y="1046" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Depthwise-separable bottlenecks</text>
+<text x="62" y="1075" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Pooling + feature recalibration</text><path d="M340.0,1186 L340.0,1226" fill="none" stroke="#f0c46d" stroke-width="2.5" marker-end="url(#arrow)"/><rect x="26" y="1235" width="628" height="230" rx="18" fill="#1c2621" stroke="#f0c46d" stroke-width="1.5"/>
+<text x="50" y="1274" fill="#f0c46d" font-size="27" font-weight="600" text-anchor="start">Multi-view feature fusion</text>
+<text x="50" y="1311" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Combine branch features</text>
+<text x="50" y="1340" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">3D convolution + pooling</text><path d="M340.0,1465 L340.0,1505" fill="none" stroke="#f0c46d" stroke-width="2.5" marker-end="url(#arrow)"/><rect x="26" y="1514" width="628" height="198" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="50" y="1553" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Three-class softmax</text>
+<text x="50" y="1590" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Alzheimer’s disease / Mild cognitive</text>
+<text x="50" y="1619" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">impairment</text>
+<text x="50" y="1648" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Cognitively normal</text><text x="26" y="1737" fill="#a0dfc1" font-size="16" font-weight="600" text-anchor="start">TRAINING + EVALUATION CONTEXT</text><rect x="26" y="1758" width="628" height="202" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="50" y="1797" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Training objective</text>
+<text x="50" y="1834" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Categorical cross-entropy</text>
+<text x="50" y="1863" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Adam optimization</text><rect x="26" y="1976" width="628" height="202" rx="18" fill="#1c2621" stroke="#435348" stroke-width="1.5"/>
+<text x="50" y="2015" fill="#f1f5ee" font-size="27" font-weight="600" text-anchor="start">Separate evaluation settings</text>
+<text x="50" y="2052" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Reported test accuracy: 97.33%</text>
+<text x="50" y="2081" fill="#b8c8bb" font-size="24" font-weight="400" text-anchor="start">Five-fold success rate: 90.162%</text><text x="26" y="2211" fill="#b8c8bb" font-size="18" font-weight="400" text-anchor="start">Original conceptual redraw. Arrows summarize</text><text x="26" y="2236" fill="#b8c8bb" font-size="18" font-weight="400" text-anchor="start">information flow; consult the paper for the complete</text><text x="26" y="2261" fill="#b8c8bb" font-size="18" font-weight="400" text-anchor="start">architecture and protocol.</text></g>
+</svg>

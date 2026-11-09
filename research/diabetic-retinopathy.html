@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link id="theme-style" href="../css/theme.css" rel="stylesheet">
   <link href="../css/my.css?v=38" rel="stylesheet">
-  <link href="./research.css" rel="stylesheet">
+  <link href="./research.css?v=2" rel="stylesheet">
   <script async src="../js/all.js"></script>
   <script type="application/ld+json">
 {
@@ -38,7 +38,7 @@
       "name": "Hierarchical deep learning with stability-driven normalization and regularization for accurate multi-class diabetic retinopathy diagnosis",
       "description": "Research summary of hierarchical diabetic retinopathy classification: APTOS data, normalization, regularization, reported metrics and single-dataset limitations.",
       "inLanguage": "en",
-      "dateModified": "2026-11-08",
+      "dateModified": "2026-11-09",
       "author": {
         "@id": "https://hamza-ai-engineer.vercel.app/#person"
       },
@@ -50,7 +50,8 @@
       },
       "breadcrumb": {
         "@id": "https://hamza-ai-engineer.vercel.app/research/diabetic-retinopathy.html#breadcrumbs"
-      }
+      },
+      "image": "https://hamza-ai-engineer.vercel.app/images/research/diabetic-retinopathy-methodology.svg"
     },
     {
       "@type": "BreadcrumbList",
@@ -131,6 +132,7 @@
     }
   ]
 }
+
   </script>
   <noscript><style>.header #navigation { display:flex; }.header .navbar-toggler,.dark-mode-toggle { display:none; }</style></noscript>
   <link rel="stylesheet" href="../css/search-content.css?v=1">
@@ -176,31 +178,61 @@
         <header class="research-hero">
           <p class="research-kicker">Medical imaging · Retinal classification</p>
           <h1>Hierarchical deep learning with stability-driven normalization and regularization for accurate multi-class diabetic retinopathy diagnosis</h1>
-          <p class="research-lead">This paper investigates five-class diabetic retinopathy grading from retinal images. It addresses training instability, imbalanced classes and visually similar disease stages.</p>
+          <p class="research-lead">CHiVE (Compact Hierarchical Vision Encoder) grades five diabetic retinopathy classes from retinal images. It combines hierarchical feature learning with normalization and regularization to address training instability, class imbalance and visually similar disease stages.</p>
           <p class="research-byline">Research co-authored by <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a> · Paper: <time datetime="2026">2026</time></p>
-          <p class="research-update">Summary updated <time datetime="2026-11-08">8 November 2026</time></p>
+          <p class="research-update">Case study updated <time datetime="2026-11-09">9 November 2026</time></p>
           <a class="btn btn-primary" href="https://doi.org/10.1016/j.asej.2026.104453">Read the original paper</a>
         </header>
-        <div class="research-grid">
-          <section class="research-panel" aria-labelledby="method-heading">
-            <h2 id="method-heading">Method</h2><p>A compact hierarchical vision encoder combines convolutional features with tailored normalization, structural-risk regularization and pooling for subtle retinal details.</p>
-            <h2 id="data-heading">Data and evaluation</h2><p>Training and evaluation use APTOS. The reported analysis includes accuracy, ROC curves, confusion matrices and an ablation study.</p>
-          </section>
-          <section class="research-panel research-results" aria-labelledby="results-heading">
-            <h2 id="results-heading">Reported findings</h2>
-            <dl class="research-metrics"><div><dt>Reported APTOS accuracy</dt><dd>98.91%</dd></div><div><dt>Reported micro-averaged F1</dt><dd>98.91%</dd></div><div><dt>Reported macro-averaged measures</dt><dd>&gt;97.8%</dd></div><div><dt>Reported class-wise AUC</dt><dd>0.99–1.00</dd></div></dl>
-            <p>The micro-averaged precision and recall are also 98.91%. Macro-averaged measures help interpret performance across classes rather than relying on the overall accuracy alone.</p>
-          </section>
-        </div>
-        <section class="research-panel research-scope" aria-labelledby="scope-heading"><h2 id="scope-heading">Scope and limitations</h2><p>The publisher explicitly notes evaluation on APTOS only. External datasets, prospective testing and clinical workflow evaluation remain necessary before making wider screening or deployment claims.</p><p class="research-note">Figures above are findings reported by the publication. This summary is not an independent replication or a deployment report.</p></section>
-        <section class="research-panel" aria-labelledby="authorship-heading"><h2 id="authorship-heading">Authorship</h2><p>Muhammad Hamza is a co-author. This page summarizes the research and does not assert a specific individual implementation role.</p><p class="research-note">Full author list: Ghulam Ali, Mohd Khalid Awang, Tariq Ali, Mohammad Hijji, Muhammad Ayaz, <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a>, Azqa Jafar.</p></section>
-        <section class="research-panel research-citation" aria-labelledby="citation-heading">
-          <h2 id="citation-heading">Publication and sources</h2>
-          <p>Ain Shams Engineering Journal, 17(12), 2026, Article 104453.</p>
-          <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.asej.2026.104453">10.1016/j.asej.2026.104453</a></p>
-          <p><a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">Publisher abstract and evaluation</a> · <a href="https://api.crossref.org/works/10.1016/j.asej.2026.104453">Publisher-deposited citation metadata</a></p>
+        <nav class="research-toc" aria-label="Case study sections"><p class="research-kicker">Explore this paper</p><ol><li><a href="#problem-heading">Problem</a></li><li><a href="#importance-heading">Why important</a></li><li><a href="#data-heading">Dataset</a></li><li><a href="#method-heading">Method / model</a></li><li><a href="#rationale-heading">Why that model</a></li><li><a href="#loss-heading">Loss function</a></li><li><a href="#metrics-heading">Evaluation metrics</a></li><li><a href="#baseline-heading">Baseline</a></li><li><a href="#results-heading">Results</a></li><li><a href="#contribution-heading">My exact contribution</a></li><li><a href="#limitations-heading">Limitations</a></li><li><a href="#improvements-heading">What I would improve now</a></li></ol></nav>
+        <section class="research-panel" aria-labelledby="problem-heading">
+          <h2 id="problem-heading"><span class="research-step-index" aria-hidden="true">01</span> Problem</h2>
+          <p>Five-class retinal grading must distinguish visually similar disease stages despite class imbalance and overfitting. <a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">The publisher's abstract</a> identifies those challenges as the starting point.</p>
         </section>
-        
+        <section class="research-panel" aria-labelledby="importance-heading">
+          <h2 id="importance-heading"><span class="research-step-index" aria-hidden="true">02</span> Why important</h2>
+          <p>Diabetic retinopathy can cause permanent vision loss, making early recognition an important screening goal. The difficult modeling task is to distinguish disease stages that share subtle retinal features while learning from imbalanced examples. <a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">The paper frames these as practical challenges for retinal-image analysis.</a></p><p>A useful grading model needs sensitivity to those small visual differences and stable learning across the severity classes. This connects the architectural choices directly to the task: preserve retinal detail, reduce overfitting and examine errors by class.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="data-heading">
+          <h2 id="data-heading"><span class="research-step-index" aria-hidden="true">03</span> Dataset</h2>
+          <p>The study uses <strong>APTOS</strong> for five-class retinal classification. <a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">Source: publisher abstract.</a> The <a href="https://www.kaggle.com/competitions/aptos2019-blindness-detection/data">official competition data page</a> provides dataset access.</p><p class="research-note">Protocol details requiring the full methods: selected image counts, per-class partitions, input resolution, augmentation and patient-level split rules.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="method-heading">
+          <h2 id="method-heading"><span class="research-step-index" aria-hidden="true">04</span> Method / model</h2>
+          <p><strong>CHiVE (Compact Hierarchical Vision Encoder)</strong> combines convolutional features, training-stability normalization, structural-risk regularization and pooling for retinal detail. <a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">Source: published method summary.</a></p><p>Ablation experiments examined the <strong>Swish-inspired Nonlinear Unit</strong>, <strong>Layer-wise Normalization Scheme</strong> and <strong>Stochastic Regularization Module</strong>. <a href="#author-clarification">Source: author-supplied experimental clarification.</a></p><figure class="research-methodology"><picture><source media="(max-width: 575px)" srcset="../images/research/diabetic-retinopathy-methodology-mobile.svg"><img src="../images/research/diabetic-retinopathy-methodology.svg" alt="Conceptual retinal grading pipeline: APTOS fundus images enter a compact hierarchical convolutional encoder with normalization, regularization and pooling, producing five diabetic retinopathy classes." width="1200" height="1394" loading="lazy" decoding="async"></picture><figcaption>Conceptual redraw of the reported components, not an original paper figure.<span class="research-figure-links"><a href="../images/research/diabetic-retinopathy-methodology.svg" target="_blank" rel="noopener">Open full-size diagram<span class="sr-only"> (opens in a new tab)</span></a><a href="../images/research/diabetic-retinopathy-methodology.svg" download>Download SVG diagram</a></span></figcaption></figure>
+        </section>
+        <section class="research-panel" aria-labelledby="rationale-heading">
+          <h2 id="rationale-heading"><span class="research-step-index" aria-hidden="true">05</span> Why that model</h2>
+          <p><strong>My interpretation of the CHiVE design:</strong> convolutional feature learning addresses local retinal patterns, while the hierarchy combines visual evidence for severity grading. Normalization targets training stability; regularization targets generalization; pooling contributes the detail used to separate nearby grades.</p><p>The Swish-inspired Nonlinear Unit, Layer-wise Normalization Scheme and Stochastic Regularization Module make nonlinear feature learning, normalization and regularization explicit parts of the design. The ablations examine these components alongside the complete encoder; individual ablation scores are outside the supplied experimental clarification.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="loss-heading">
+          <h2 id="loss-heading"><span class="research-step-index" aria-hidden="true">06</span> Loss function</h2>
+          <p>CHiVE trains with <strong>label-smoothed cross-entropy plus L2 regularization</strong>. The label-smoothing coefficient is <strong>0.01</strong>. <a href="#author-clarification">Source: author-supplied implementation clarification.</a></p><p class="research-equation" role="math" aria-label="Training loss equals label-smoothed cross-entropy plus lambda times the squared L2 norm of the weights"><code>L = CE<sub>smoothed</sub> + λ ‖W‖<sub>2</sub><sup>2</sup></code></p><p class="research-note">The L2 coefficient λ was not supplied. The objective above leaves that value symbolic and does not assume a particular distribution for smoothing the class targets.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="metrics-heading">
+          <h2 id="metrics-heading"><span class="research-step-index" aria-hidden="true">07</span> Evaluation metrics</h2>
+          <p>The paper reports accuracy, precision, recall, F1, ROC analysis, confusion matrices and an ablation study. <a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">Source: publisher evaluation summary.</a></p><dl class="research-metric-explanations"><div><dt>Precision and recall</dt><dd>Precision asks how often a predicted class is correct; recall asks how much of that true class is recovered.</dd></div><div><dt>Micro and macro averaging</dt><dd>Micro averaging pools class counts. Macro averaging treats each class equally, making it useful when class frequencies differ.</dd></div><div><dt>F1</dt><dd>The harmonic mean of precision and recall provides a combined summary, but the two underlying measures still matter.</dd></div></dl><p class="research-note">Definitions: <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html">classification-metrics reference</a>.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="baseline-heading">
+          <h2 id="baseline-heading"><span class="research-step-index" aria-hidden="true">08</span> Baseline</h2>
+          <p>The experimental baselines are <strong>VGG16-BN, ResNet-50, DenseNet-121, EfficientNet-B0 and Swin-T</strong>. The strongest direct accuracy baseline is <strong>Swin-T at 83.45%</strong>. <a href="#author-clarification">Source: author-supplied experimental clarification.</a></p><div class="research-table-scroll"><table class="research-table"><caption>Direct APTOS accuracy comparison supplied by the co-author on 9 November 2026.</caption><thead><tr><th scope="col">Model</th><th scope="col">Accuracy</th></tr></thead><tbody><tr><th scope="row">Swin-T · strongest direct baseline</th><td>83.45%</td></tr><tr><th scope="row">CHiVE · proposed model</th><td>98.91%</td></tr></tbody></table></div><p class="research-note">Individual scores for the other baselines and the fine-tuning settings were not included in this clarification.</p>
+        </section>
+        <section class="research-panel research-results" aria-labelledby="results-heading">
+          <h2 id="results-heading"><span class="research-step-index" aria-hidden="true">09</span> Results</h2>
+          <dl class="research-metrics"><div><dt>CHiVE · APTOS accuracy</dt><dd>98.91%</dd></div><div><dt>Micro precision / recall / F1</dt><dd>98.91%</dd></div><div><dt>Macro-averaged measures</dt><dd>&gt;97.8%</dd></div><div><dt>Class-wise AUC</dt><dd>0.99–1.00</dd></div></dl><p><a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">The publisher reports these APTOS evaluation results.</a> The author-supplied direct comparison places CHiVE <strong>15.46 percentage points</strong> above Swin-T in accuracy (98.91% − 83.45%). The macro averages complement the overall score by treating the severity classes equally.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="contribution-heading">
+          <h2 id="contribution-heading"><span class="research-step-index" aria-hidden="true">10</span> My exact contribution</h2>
+          <p><strong>I worked on implementation and experiments as a co-author.</strong></p>
+        </section>
+        <section class="research-panel research-scope" aria-labelledby="limitations-heading">
+          <h2 id="limitations-heading"><span class="research-step-index" aria-hidden="true">11</span> Limitations</h2>
+          <p><strong>Single-dataset evaluation:</strong> the study reports results on APTOS. <a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">The publisher identifies this scope explicitly.</a> Generalization to other image sources and clinical populations therefore remains an open question.</p><p>External evaluation should examine image quality, acquisition differences, calibration and which severity classes are confused. Prospective clinical use would also require expert review and evidence from the intended screening workflow.</p><p>The protocol details listed above are needed to audit partitioning and reproduce the experiment. Reported accuracy alone cannot resolve those questions.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="improvements-heading">
+          <h2 id="improvements-heading"><span class="research-step-index" aria-hidden="true">12</span> What I would improve now</h2>
+          <p><strong>Proposed extensions:</strong></p><ul><li><strong>Publish a reproducibility manifest:</strong> document selected files, preprocessing, the complete loss configuration including the L2 coefficient, model settings, seeds and the partitioning procedure.</li><li><strong>Test beyond the development source:</strong> evaluate a separately sourced, appropriately authorized cohort and report results by severity and image quality.</li><li><strong>Audit partitions:</strong> use patient or acquisition identifiers where available to prevent related samples crossing evaluation boundaries.</li><li><strong>Make uncertainty visible:</strong> evaluate calibration, class-wise confidence intervals and a review or abstention policy for uncertain images.</li><li><strong>Measure the complete pipeline:</strong> document preprocessing time, inference cost and the evidence an expert needs to review an output.</li></ul>
+        </section>
+        <section class="research-panel research-citation" aria-labelledby="citation-heading"><h2 id="citation-heading">Publication and primary sources</h2><p>Ain Shams Engineering Journal, 17(12), 2026, Article 104453.</p><ul class="research-link-list"><li><a href="https://doi.org/10.1016/j.asej.2026.104453">Original publication and DOI: 10.1016/j.asej.2026.104453</a></li><li><a href="https://www.sciencedirect.com/science/article/pii/S2090447926004843">Publisher abstract, reported metrics and author list</a></li><li id="author-clarification">Muhammad Hamza's author-supplied implementation and experimental clarification, 9 November 2026: training objective, smoothing coefficient, baseline roster, direct accuracy comparison and ablation components.</li><li><a href="https://www.kaggle.com/competitions/aptos2019-blindness-detection/data">Official APTOS data page</a></li><li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html">Classification-metric definitions</a></li></ul><p class="research-note">Source coverage combines the publisher's abstract and metrics with the author's implementation and experimental clarification. Dataset partitions, remaining baseline scores and the full ablation table still require the complete protocol.</p></section>
         <p class="research-return"><a href="https://hamza-ai-engineer.vercel.app/research/">← All research publications</a> · <a href="https://hamza-ai-engineer.vercel.app/contact.html">Discuss research or AI engineering</a></p>
       </article>
     </main>

@@ -14,6 +14,16 @@ MIRROR = 'https://hamza-code-hub.github.io'
 PERSON = PRIMARY + '/#person'
 DATE = '2026-11-08'
 
+# Dates reflect substantive page changes, rather than every maintenance run.
+LASTMOD_OVERRIDES = {
+    '/': '2026-11-09',
+    '/research/': '2026-11-09',
+    '/research/3d-mobibrainnet.html': '2026-11-09',
+    '/research/widenet.html': '2026-11-09',
+    '/research/diabetic-retinopathy.html': '2026-11-09',
+    '/research/resilient-uav-network-security.html': '2026-11-09',
+}
+
 def pages():
     return sorted([*ROOT.glob('*.html'), *[p for folder in ['projects', 'resume', 'services', 'research'] for p in (ROOT / folder).glob('*.html')]])
 
@@ -96,7 +106,6 @@ for path in pages():
     source = source.replace('mailto:maherhamza4616@gmail.com', 'mailto:hamza.ai.official@gmail.com')
     source = source.replace('"name": "University of Management and Technology",\n          "alternateName": "UMT"', '"name": "University of Okara"')
     source = source.replace('"datePublished": "2026-09-15"', '"datePublished": "2026"').replace('"datePublished":"2026-09-21"', '"datePublished":"2026"')
-    source = source.replace('"datePublished": "2026-04-14"', '"datePublished": "2026"').replace('"datePublished":"2026-04-14"', '"datePublished":"2026"')
     source = source.replace('Article 104453 | Published 21/09/2026', 'Article 104453')
     source = source.replace(' | Published 14/04/2026', '')
     # Pin descriptive model names only when useful; avoid presenting old examples as latest.
@@ -160,7 +169,7 @@ for path in pages():
     url = PRIMARY + route(path)
     item = ET.SubElement(root, '{' + NS + '}url')
     ET.SubElement(item, '{' + NS + '}loc').text = url
-    ET.SubElement(item, '{' + NS + '}lastmod').text = DATE
+    ET.SubElement(item, '{' + NS + '}lastmod').text = LASTMOD_OVERRIDES.get(route(path), DATE)
     parser = Images(); parser.feed(path.read_text(encoding='utf-8'))
     seen = set()
     for image in parser.paths:

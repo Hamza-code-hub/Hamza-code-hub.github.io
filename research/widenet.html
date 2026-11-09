@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link id="theme-style" href="../css/theme.css" rel="stylesheet">
   <link href="../css/my.css?v=38" rel="stylesheet">
-  <link href="./research.css" rel="stylesheet">
+  <link href="./research.css?v=2" rel="stylesheet">
   <script async src="../js/all.js"></script>
   <script type="application/ld+json">
 {
@@ -38,7 +38,7 @@
       "name": "WIDENet: A Novel Lightweight CNN for Robust Skin Lesion Segmentation",
       "description": "WIDENet research summary covering wavelet decomposition, contextual encoding, skin lesion segmentation benchmarks and reported Dice results.",
       "inLanguage": "en",
-      "dateModified": "2026-11-08",
+      "dateModified": "2026-11-09",
       "author": {
         "@id": "https://hamza-ai-engineer.vercel.app/#person"
       },
@@ -50,7 +50,8 @@
       },
       "breadcrumb": {
         "@id": "https://hamza-ai-engineer.vercel.app/research/widenet.html#breadcrumbs"
-      }
+      },
+      "image": "https://hamza-ai-engineer.vercel.app/images/research/widenet-methodology.svg"
     },
     {
       "@type": "BreadcrumbList",
@@ -81,7 +82,7 @@
       "@id": "https://doi.org/10.1109/ACCESS.2026.3683571",
       "headline": "WIDENet: A Novel Lightweight CNN for Robust Skin Lesion Segmentation",
       "name": "WIDENet: A Novel Lightweight CNN for Robust Skin Lesion Segmentation",
-      "datePublished": "2026",
+      "datePublished": "2026-04-14",
       "url": "https://doi.org/10.1109/ACCESS.2026.3683571",
       "identifier": {
         "@type": "PropertyValue",
@@ -127,6 +128,7 @@
     }
   ]
 }
+
   </script>
   <noscript><style>.header #navigation { display:flex; }.header .navbar-toggler,.dark-mode-toggle { display:none; }</style></noscript>
   <link rel="stylesheet" href="../css/search-content.css?v=1">
@@ -173,28 +175,78 @@
           <p class="research-kicker">Medical imaging · Lesion segmentation</p>
           <h1>WIDENet: A Novel Lightweight CNN for Robust Skin Lesion Segmentation</h1>
           <p class="research-lead">WIDENet studies efficient segmentation of skin lesions in dermoscopic images. The focus is the lesion boundary, including fine structures that can disappear during conventional downsampling.</p>
-          <p class="research-byline">Research co-authored by <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a> · Paper: <time datetime="2026">2026</time></p>
-          <p class="research-update">Summary updated <time datetime="2026-11-08">8 November 2026</time></p>
+          <p class="research-byline">Research co-authored by <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a> · Paper: <time datetime="2026-04-14">14 April 2026</time></p>
+          <p class="research-update">Case study updated <time datetime="2026-11-09">9 November 2026</time></p>
           <a class="btn btn-primary" href="https://doi.org/10.1109/ACCESS.2026.3683571">Read the original paper</a>
         </header>
-        <div class="research-grid">
-          <section class="research-panel" aria-labelledby="method-heading">
-            <h2 id="method-heading">Method</h2><p>Wavelet decomposition retains multiscale frequency information. A Transformer-based contextual encoder models wider relationships, while attentive feature refinement emphasizes boundaries and reduces background interference.</p>
-            <h2 id="data-heading">Data and evaluation</h2><p>Experiments use PH², ISIC 2017 and ISIC 2018, with comparisons to U-Net, U-Net++, DeepLabV3(+), PAN, PSPNet and LinkNet.</p>
-          </section>
-          <section class="research-panel research-results" aria-labelledby="results-heading">
-            <h2 id="results-heading">Reported findings</h2>
-            <dl class="research-metrics"><div><dt>Reported Dice · PH²</dt><dd>0.9384</dd></div><div><dt>Reported Dice · ISIC 2017</dt><dd>0.8752</dd></div><div><dt>Dermoscopic benchmarks</dt><dd>3</dd></div><div><dt>Task · lesion boundaries</dt><dd>Segmentation</dd></div></dl>
-            <p>The reported Dice values measure overlap between predicted masks and reference annotations. They are segmentation results, rather than diagnostic accuracy percentages.</p>
-          </section>
-        </div>
-        <section class="research-panel research-scope" aria-labelledby="scope-heading"><h2 id="scope-heading">Scope and limitations</h2><p>Benchmark mask overlap does not by itself demonstrate melanoma diagnosis, prospective clinical benefit or robustness across every skin tone and imaging device. Those questions require their own evaluation before clinical use.</p><p class="research-note">Figures above are findings reported by the publication. This summary is not an independent replication or a deployment report.</p></section>
-        <section class="research-panel" aria-labelledby="authorship-heading"><h2 id="authorship-heading">Authorship</h2><p>Muhammad Hamza is a co-author. See the original paper for the complete experimental protocol and authorship record.</p><p class="research-note">Full author list: Ghulam Ali, Mohd Khalid Awang, Javed Rashid, <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a>, Osama A. Khashan, Anwar Ghani.</p></section>
+        <nav class="research-toc" aria-label="Case study sections"><ol>
+          <li><a href="#problem-heading">Problem</a></li>
+          <li><a href="#importance-heading">Why this matters</a></li>
+          <li><a href="#data-heading">Dataset</a></li>
+          <li><a href="#method-heading">Method / model</a></li>
+          <li><a href="#rationale-heading">Why this model</a></li>
+          <li><a href="#loss-heading">Loss function</a></li>
+          <li><a href="#metrics-heading">Evaluation metrics</a></li>
+          <li><a href="#baseline-heading">Baseline comparison</a></li>
+          <li><a href="#results-heading">Results</a></li>
+          <li><a href="#contribution-heading">My exact contribution</a></li>
+          <li><a href="#limitations-heading">Limitations</a></li>
+          <li><a href="#improvements-heading">What I would improve now</a></li>
+        </ol></nav>
+        <section class="research-panel" aria-labelledby="problem-heading">
+          <h2 id="problem-heading"><span class="research-step-index" aria-hidden="true">01</span> Problem</h2>
+          <p>Skin-lesion segmentation asks which pixels belong to a lesion. WIDENet addresses uncertain borders and the loss of fine detail during downsampling in a compact segmentation model.</p><p>The output is a mask, so the engineering problem concerns both coverage and boundary placement. A model can recover much of the lesion while still drawing an unhelpful contour.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="importance-heading">
+          <h2 id="importance-heading"><span class="research-step-index" aria-hidden="true">02</span> Why this matters</h2>
+          <p>A predicted mask can be compared directly with an expert annotation, exposing missed regions and extra background pixels. Reliable localization also provides a consistent region for later measurements of lesion shape and extent.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="data-heading">
+          <h2 id="data-heading"><span class="research-step-index" aria-hidden="true">03</span> Dataset</h2>
+          <p>The paper reports the following train / validation / test image counts:</p><div class="research-table-scroll"><table class="research-table"><caption>Reported benchmark partitions</caption><thead><tr><th scope="col">Dataset</th><th scope="col">Train</th><th scope="col">Validation</th><th scope="col">Test</th></tr></thead><tbody><tr><th scope="row">PH&sup2;</th><td>140</td><td>30</td><td>30</td></tr><tr><th scope="row">ISIC 2017</th><td>2,000</td><td>150</td><td>600</td></tr><tr><th scope="row">ISIC 2018</th><td>2,594</td><td>100</td><td>1,000</td></tr></tbody></table></div><p>Inputs and binary reference masks are resized to <strong>256 &times; 256</strong>. The partitions describe the paper's benchmark setup.</p><p class="research-note">Evidence: full paper, Sections III-A and III-B.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="method-heading">
+          <h2 id="method-heading"><span class="research-step-index" aria-hidden="true">04</span> Method / model</h2>
+          <p>An edge-aware detail extractor feeds wavelet-Transformer dual-encoder stages. Parallel frequency-detail and self-attention features are fused; an upsampling decoder uses encoder skips, adaptive variance fusion and a binary segmentation head.</p><p>Within each dual-encoder stage, wavelet and attention representations are concatenated and projected. Decoder skip connections carry encoder detail into the reconstructed mask.</p><figure class="research-methodology"><picture><source media="(max-width: 575px)" srcset="../images/research/widenet-methodology-mobile.svg"><img src="../images/research/widenet-methodology.svg" alt="Conceptual WIDENet pipeline: dermoscopic image preprocessing, edge-aware extractor, parallel wavelet and self-attention encoder branches, decoder with skip connections, adaptive variance fusion and binary lesion mask." width="1200" height="1585" loading="lazy" decoding="async"></picture><figcaption>Conceptual redrawing of the published methodology. Blocks and arrows summarize the information flow; the paper supplies the complete architecture.<span class="research-figure-links"><a href="../images/research/widenet-methodology.svg" target="_blank" rel="noopener">Open full-size diagram<span class="sr-only"> (opens in a new tab)</span></a><a href="../images/research/widenet-methodology.svg" download>Download SVG diagram</a></span></figcaption></figure>
+        </section>
+        <section class="research-panel" aria-labelledby="rationale-heading">
+          <h2 id="rationale-heading"><span class="research-step-index" aria-hidden="true">05</span> Why this model</h2>
+          <p>Wavelet decomposition separates low-frequency structure from horizontal, vertical and diagonal detail, preserving signals useful for lesion edges. Self-attention connects distant image regions so the encoder can represent the broader lesion shape.</p><p>The decoder restores spatial resolution using encoder skips. Adaptive variance fusion weights features from several decoder levels, connecting fine detail with the reconstructed context before the final prediction.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="loss-heading">
+          <h2 id="loss-heading"><span class="research-step-index" aria-hidden="true">06</span> Loss function</h2>
+          <p><strong>Reported objective:</strong> Dice loss with smoothing <strong>10<sup>&minus;5</sup></strong>. Inference uses a sigmoid and a <strong>0.5</strong> threshold.</p><p class="research-formula" role="math" aria-label="Dice overlap equals twice the intersection of predicted and reference masks divided by the sum of their sizes."><strong>Overlap definition:</strong> Dice(P, G) = 2 |P &cap; G| / (|P| + |G|).</p><p>Dice loss minimizes one minus differentiable overlap. Smoothing stabilizes the calculation when the overlap or region size is small; the paper's named objective and smoothing value are verified, while its exact reduction over pixels and images is an implementation detail.</p><p>The inference threshold converts the probability map into a hard mask. Adjusting it changes the balance of missed lesion pixels and included background.</p><p class="research-note">Evidence: full paper, Sections III-D and III-E.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="metrics-heading">
+          <h2 id="metrics-heading"><span class="research-step-index" aria-hidden="true">07</span> Evaluation metrics</h2>
+          <p>The main reported measures are Dice, intersection over union (IoU), precision and recall.</p><p>Dice and IoU compare a predicted region with its reference mask. Precision concerns extra pixels incorrectly included as lesion; recall concerns lesion pixels that were missed. Their balance is easier to assess alongside representative failure masks than from one aggregate score.</p><p>The unit of evaluation is overlap and pixel classification within lesion masks.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="baseline-heading">
+          <h2 id="baseline-heading"><span class="research-step-index" aria-hidden="true">08</span> Baseline comparison</h2>
+          <p>Comparisons include U-Net, U-Net++, DeepLabV3(+), PAN, PSPNet and LinkNet. For ISIC 2018, the paper reports U-Net Dice <strong>0.8872</strong> and WIDENet Dice <strong>0.8970</strong>.</p><p>The absolute Dice difference is <strong>0.0098</strong> in that benchmark setting. The reported comparison covers mask overlap under the paper's data partitions and training protocol.</p><p class="research-note">Evidence: full paper, Section IV-C and Table 6; difference calculated from the reported values.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="results-heading">
+          <h2 id="results-heading"><span class="research-step-index" aria-hidden="true">09</span> Results</h2>
+          <dl class="research-metrics"><div><dt>Reported Dice &middot; PH&sup2;</dt><dd>0.9384</dd></div><div><dt>Reported Dice &middot; ISIC 2017</dt><dd>0.8752</dd></div><div><dt>Reported Dice &middot; ISIC 2018</dt><dd>0.8970</dd></div><div><dt>Reported IoU &middot; ISIC 2018</dt><dd>0.7992</dd></div><div><dt>Reported precision &middot; ISIC 2018</dt><dd>0.8524</dd></div><div><dt>Reported recall &middot; ISIC 2018</dt><dd>0.9299</dd></div></dl><p>The higher recall than precision on ISIC 2018 indicates a useful error tradeoff to inspect: recovering more lesion pixels can also include additional background. The paper reports approximately <strong>2.27 million</strong> trainable parameters.</p><p class="research-note">Sources: publication abstract and full paper, Sections III-E and IV-C.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="contribution-heading">
+          <h2 id="contribution-heading"><span class="research-step-index" aria-hidden="true">10</span> My exact contribution</h2>
+          <p><strong>I worked on implementation and experiments.</strong></p>
+        </section>
+        <section class="research-panel research-scope" aria-labelledby="limitations-heading">
+          <h2 id="limitations-heading"><span class="research-step-index" aria-hidden="true">11</span> Limitations</h2>
+          <p>Label variability and complex imaging conditions remain generalization challenges. Public benchmark masks and cross-dataset experiments need to be complemented by prospective clinical evaluation.</p><p>Average overlap can hide failures on small lesions or ambiguous edges. Runtime and memory also depend on the target hardware, preprocessing and input size, beyond the model's parameter count.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="improvements-heading">
+          <h2 id="improvements-heading"><span class="research-step-index" aria-hidden="true">12</span> What I would improve now</h2>
+          <p><strong>Proposed next work:</strong> publish split manifests, preprocessing settings, seeds and per-image predictions so each table can be reproduced. Add uncertainty intervals and analyze failures by lesion size, border contrast and available acquisition metadata.</p><p>I would compare boundary-specific metrics, calibration and threshold selection, then benchmark runtime and memory on a defined target device. Any change to the loss or fusion mechanism would use the same held-out partitions. These proposals extend the published evaluation.</p>
+        </section>
         <section class="research-panel research-citation" aria-labelledby="citation-heading">
           <h2 id="citation-heading">Publication and sources</h2>
           <p>IEEE Access, 14, 2026, pp. 57763–57781.</p>
           <p><strong>DOI:</strong> <a href="https://doi.org/10.1109/ACCESS.2026.3683571">10.1109/ACCESS.2026.3683571</a></p>
           <p><a href="https://research.nu.edu.kz/en/publications/widenet-a-novel-lightweight-cnn-for-robust-skin-lesion-segmentati/">Co-author institution's publication record</a> · <a href="https://api.crossref.org/works/10.1109/ACCESS.2026.3683571">Publisher-deposited citation metadata</a></p>
+          <p><a href="https://www.researchgate.net/publication/403702662_WIDENet_A_Novel_Lightweight_CNN_for_Robust_Skin_Lesion_Segmentation">Author-uploaded full paper: methods, experiments and contribution evidence</a></p>
         </section>
         
         <p class="research-return"><a href="https://hamza-ai-engineer.vercel.app/research/">← All research publications</a> · <a href="https://hamza-ai-engineer.vercel.app/contact.html">Discuss research or AI engineering</a></p>

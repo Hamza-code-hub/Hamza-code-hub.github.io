@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link id="theme-style" href="../css/theme.css" rel="stylesheet">
   <link href="../css/my.css?v=38" rel="stylesheet">
-  <link href="./research.css" rel="stylesheet">
+  <link href="./research.css?v=2" rel="stylesheet">
   <script async src="../js/all.js"></script>
   <script type="application/ld+json">
 {
@@ -38,7 +38,7 @@
       "name": "Resilient UAV Network Security: Cross-Attentive Alignment of Sparse and Temporal Features for Adversarial Intrusion Detection",
       "description": "Research summary of TabNet–Transformer cross-attention and adversarial training for intrusion detection, co-authored by Muhammad Hamza.",
       "inLanguage": "en",
-      "dateModified": "2026-11-08",
+      "dateModified": "2026-11-09",
       "author": {
         "@id": "https://hamza-ai-engineer.vercel.app/#person"
       },
@@ -50,7 +50,8 @@
       },
       "breadcrumb": {
         "@id": "https://hamza-ai-engineer.vercel.app/research/resilient-uav-network-security.html#breadcrumbs"
-      }
+      },
+      "image": "https://hamza-ai-engineer.vercel.app/images/research/resilient-uav-network-security-methodology.svg"
     },
     {
       "@type": "BreadcrumbList",
@@ -127,6 +128,7 @@
     }
   ]
 }
+
   </script>
   <noscript><style>.header #navigation { display:flex; }.header .navbar-toggler,.dark-mode-toggle { display:none; }</style></noscript>
   <link rel="stylesheet" href="../css/search-content.css?v=1">
@@ -174,29 +176,59 @@
           <h1>Resilient UAV Network Security: Cross-Attentive Alignment of Sparse and Temporal Features for Adversarial Intrusion Detection</h1>
           <p class="research-lead">A hybrid intrusion detector brings sparse network attributes and temporal traffic context together through cross-attention. This publication studies adversarial robustness and minority-attack detection.</p>
           <p class="research-byline">Research co-authored by <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a> · Paper: <time datetime="2026-10-28">28 October 2026</time></p>
-          <p class="research-update">Summary updated <time datetime="2026-11-08">8 November 2026</time></p>
+          <p class="research-update">Case study updated <time datetime="2026-11-09">9 November 2026</time></p>
           <a class="btn btn-primary" href="https://doi.org/10.1016/j.vehcom.2026.101094">Read the original paper</a>
         </header>
-        <div class="research-grid">
-          <section class="research-panel" aria-labelledby="method-heading">
-            <h2 id="method-heading">Method</h2><p>TabNet selects tabular features, a Transformer encoder models sequences, and multi-head cross-attention connects their representations. FGSM adversarial training adds perturbed examples to learning.</p>
-            <h2 id="data-heading">Data and evaluation</h2><p>CIC-IDS2017 and UNSW-NB15 are general-purpose intrusion benchmarks, rather than UAV-specific traffic captures.</p>
-          </section>
-          <section class="research-panel research-results" aria-labelledby="results-heading">
-            <h2 id="results-heading">Reported findings</h2>
-            <dl class="research-metrics"><div><dt>Accuracy · CIC-IDS2017</dt><dd>99.47%</dd></div><div><dt>Accuracy · UNSW-NB15</dt><dd>98.24%</dd></div><div><dt>Reported Botnet recall improvement</dt><dd>33.07%</dd></div><div><dt>Reported model footprint</dt><dd>0.37–1.24 MB</dd></div></dl>
-            <p>The paper reports a 33.07% Botnet recall improvement over standalone baselines; this is the paper's comparison, rather than a percentage-point claim.</p>
-          </section>
-        </div>
-        <section class="research-panel research-scope" aria-labelledby="scope-heading"><h2 id="scope-heading">Scope and limitations</h2><p>MAVLink attacks, GPS spoofing, jamming and blackhole attacks are not directly represented in these datasets. UAV-specific validation remains future work; benchmark robustness does not establish operational flight-network protection.</p><p class="research-note">Figures above are findings reported by the publication. This summary is not an independent replication or a deployment report.</p></section>
-        <section class="research-panel" aria-labelledby="authorship-heading"><h2 id="authorship-heading">Authorship</h2><p>The publisher's contribution statement credits Muhammad Hamza with methodology, formal analysis, validation, and writing review and editing.</p><p class="research-note">Full author list: Ghulam Ali, Mohd Khalid Awang, Javed Rashid, <a href="https://hamza-ai-engineer.vercel.app/" rel="author">Muhammad Hamza</a>, Khalid Yahya, Anwar Ghani.</p></section>
-        <section class="research-panel research-citation" aria-labelledby="citation-heading">
-          <h2 id="citation-heading">Publication and sources</h2>
-          <p>Vehicular Communications, 2026, Article 101094.</p>
-          <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.vehcom.2026.101094">10.1016/j.vehcom.2026.101094</a></p>
-          <p><a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Publisher abstract and limitations</a> · <a href="https://api.crossref.org/works/10.1016/j.vehcom.2026.101094">Publisher-deposited citation metadata</a></p>
+        <nav class="research-toc" aria-label="Case study sections"><p class="research-kicker">Explore this paper</p><ol><li><a href="#problem-heading">Problem</a></li><li><a href="#importance-heading">Why important</a></li><li><a href="#data-heading">Dataset</a></li><li><a href="#method-heading">Method / model</a></li><li><a href="#rationale-heading">Why that model</a></li><li><a href="#loss-heading">Loss function</a></li><li><a href="#metrics-heading">Evaluation metrics</a></li><li><a href="#baseline-heading">Baseline</a></li><li><a href="#results-heading">Results</a></li><li><a href="#contribution-heading">My exact contribution</a></li><li><a href="#limitations-heading">Limitations</a></li><li><a href="#improvements-heading">What I would improve now</a></li></ol></nav>
+        <section class="research-panel" aria-labelledby="problem-heading">
+          <h2 id="problem-heading"><span class="research-step-index" aria-hidden="true">01</span> Problem</h2>
+          <p>The paper targets three interacting problems: heterogeneous network features, adversarial evasion and rare attack classes. An observation can contain useful sparse attributes while the surrounding sequence supplies different context. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher introduction.</a></p>
         </section>
-        <section class="research-panel" aria-labelledby="related-heading"><h2 id="related-heading">Related engineering work</h2><ul class="research-link-list"><li><a href="https://hamza-ai-engineer.vercel.app/projects/ai-intrusion-detection.html">Separate network intrusion-detection project</a></li><li><a href="https://hamza-ai-engineer.vercel.app/projects/agentic-cybersecurity-ai-assistant.html">Agentic cybersecurity engineering case study</a></li></ul></section>
+        <section class="research-panel" aria-labelledby="importance-heading">
+          <h2 id="importance-heading"><span class="research-step-index" aria-hidden="true">02</span> Why important</h2>
+          <p>UAV communication networks support tasks such as surveillance, logistics and emergency response, while open wireless links expose them to disruption and intrusion. The paper focuses on a detector that can combine sparse traffic attributes with changing temporal behavior under adversarial pressure. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher introduction.</a></p><p>Rare attacks are especially important: high average accuracy can coexist with missed minority cases. The task therefore requires class-wise detection analysis, robustness testing and a resource budget suited to edge operation.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="data-heading">
+          <h2 id="data-heading"><span class="research-step-index" aria-hidden="true">03</span> Dataset</h2>
+          <p>The study evaluates <strong>CIC-IDS2017 and UNSW-NB15</strong>, two general-purpose intrusion benchmarks. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher introduction.</a></p><ul><li><strong>CIC-IDS2017:</strong> its <a href="https://www.unb.ca/cic/datasets/ids-2017.html">official documentation</a> describes labeled network flows with benign activity and attacks including Botnet, DoS, DDoS and web attacks.</li><li><strong>UNSW-NB15:</strong> its <a href="https://research.unsw.edu.au/projects/unsw-nb15-dataset">official documentation</a> describes normal activity and synthetic attack behavior generated in a cyber range.</li></ul><p class="research-note">Protocol details requiring the full methods: selected record counts, split rules, feature preprocessing and sequence-window length. The UAV-specific coverage gap is discussed below.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="method-heading">
+          <h2 id="method-heading"><span class="research-step-index" aria-hidden="true">04</span> Method / model</h2>
+          <p>TabNet processes current attributes; a Transformer processes synchronized history. Bidirectional multi-head cross-attention exchanges their representations, followed by residual refinement, temporal aggregation and fusion. Training includes FGSM perturbations. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher method description.</a></p><figure class="research-methodology"><picture><source media="(max-width: 575px)" srcset="../images/research/resilient-uav-network-security-methodology-mobile.svg"><img src="../images/research/resilient-uav-network-security-methodology.svg" alt="Conceptual dual-stream intrusion detector: current traffic attributes enter TabNet and traffic history enters a Transformer; bidirectional cross-attention aligns the streams before fusion and classification, with FGSM adversarial training." width="1200" height="1394" loading="lazy" decoding="async"></picture><figcaption>Conceptual redraw of the dual-stream method and FGSM training branch, not an original paper figure.<span class="research-figure-links"><a href="../images/research/resilient-uav-network-security-methodology.svg" target="_blank" rel="noopener">Open full-size diagram<span class="sr-only"> (opens in a new tab)</span></a><a href="../images/research/resilient-uav-network-security-methodology.svg" download>Download SVG diagram</a></span></figcaption></figure>
+        </section>
+        <section class="research-panel" aria-labelledby="rationale-heading">
+          <h2 id="rationale-heading"><span class="research-step-index" aria-hidden="true">05</span> Why that model</h2>
+          <p><strong>My interpretation of the design:</strong> TabNet selects useful attributes from the current observation, while the Transformer supplies context from the traffic history. Cross-attention makes those representations interact: a sparse attribute can be interpreted in relation to the sequence in which it appears.</p><p>That alignment is the paper's alternative to simple feature concatenation. FGSM-based training addresses a separate concern—how the decision changes when the input is perturbed. The <a href="https://arxiv.org/abs/1908.07442">original TabNet paper</a> provides background on its step-wise feature selection.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="loss-heading">
+          <h2 id="loss-heading"><span class="research-step-index" aria-hidden="true">06</span> Loss function</h2>
+          <p>The joint objective combines <strong>focal classification loss, adversarial loss and TabNet sparsity regularization</strong>. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher optimization summary.</a></p><p><a href="https://arxiv.org/abs/1708.02002">Focal loss</a> reduces the influence of easy examples so harder cases receive more attention. The adversarial component trains with perturbed inputs, while the sparsity component supports selective feature use. The <a href="https://arxiv.org/abs/1412.6572">original adversarial-examples paper</a> explains the perturbation-training background.</p><p class="research-note">Exact term weights, focal parameters, the objective equation and the perturbation budget require the full methods.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="metrics-heading">
+          <h2 id="metrics-heading"><span class="research-step-index" aria-hidden="true">07</span> Evaluation metrics</h2>
+          <p>The evaluation discusses aggregate and class-wise detection, adversarial resilience and model footprint. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher experimental overview.</a></p><dl class="research-metric-explanations"><div><dt>Recall</dt><dd>The proportion of true examples of a class that the detector recovers. It is useful for discussing missed minority attacks.</dd></div><div><dt>Precision and F1</dt><dd>Precision describes how often a class prediction is correct; F1 combines precision and recall. Higher recall should be interpreted together with false alarms.</dd></div><div><dt>Resource measurements</dt><dd>A stored model size and an end-to-end runtime measurement answer different deployment questions. A footprint alone cannot establish throughput, peak memory or energy use.</dd></div></dl><p class="research-note">Definitions: <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html">classification-metrics reference</a>.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="baseline-heading">
+          <h2 id="baseline-heading"><span class="research-step-index" aria-hidden="true">08</span> Baseline</h2>
+          <p>The paper reports comparisons with <strong>standalone baselines</strong> to assess the hybrid framework's detection and robustness gains. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher abstract.</a></p><p class="research-note">The complete comparison table is needed for the baseline roster, training settings, class-wise scores and the denominator behind the reported Botnet recall improvement.</p>
+        </section>
+        <section class="research-panel research-results" aria-labelledby="results-heading">
+          <h2 id="results-heading"><span class="research-step-index" aria-hidden="true">09</span> Results</h2>
+          <dl class="research-metrics"><div><dt>Accuracy · CIC-IDS2017</dt><dd>99.47%</dd></div><div><dt>Accuracy · UNSW-NB15</dt><dd>98.24%</dd></div><div><dt>Reported Botnet recall improvement</dt><dd>33.07%</dd></div><div><dt>Reported model footprint</dt><dd>0.37–1.24 MB</dd></div></dl><p><a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">The publication reports these results.</a> The 33.07% figure is its reported recall improvement over standalone baselines; it is retained in those terms.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="contribution-heading">
+          <h2 id="contribution-heading"><span class="research-step-index" aria-hidden="true">10</span> My exact contribution</h2>
+          <p><strong>I worked on implementation and experiments as a co-author.</strong></p><p>The published CRediT statement also credits me with <strong>methodology, formal analysis, validation, and writing review and editing</strong>. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Source: publisher contribution statement.</a></p>
+        </section>
+        <section class="research-panel research-scope" aria-labelledby="limitations-heading">
+          <h2 id="limitations-heading"><span class="research-step-index" aria-hidden="true">11</span> Limitations</h2>
+          <p><strong>UAV-domain validation:</strong> CIC-IDS2017 and UNSW-NB15 do not directly cover MAVLink attacks, GPS spoofing, jamming or blackhole attacks. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">The paper identifies this gap.</a> Dedicated UAV traffic is needed to test the intended application.</p><p><strong>Threat-model coverage:</strong> robustness depends on the attack construction, perturbation budget and whether the modified features correspond to feasible traffic changes. Evaluation under one construction leaves other attack capabilities open.</p><p><strong>Operational evidence:</strong> sequence boundaries and split rules need a reproducibility audit. Model footprint also needs to be complemented by measured latency, peak memory, energy use and false alarms on the intended hardware and traffic.</p>
+        </section>
+        <section class="research-panel" aria-labelledby="improvements-heading">
+          <h2 id="improvements-heading"><span class="research-step-index" aria-hidden="true">12</span> What I would improve now</h2>
+          <p><strong>Proposed extensions:</strong></p><ul><li><strong>Publish the reproducibility package:</strong> include selected records, split manifests, sequence boundaries, exact loss, attack settings, seeds and baseline configurations.</li><li><strong>Isolate the architectural gains:</strong> compare single branches, simple concatenation, cross-attention and adversarial training under the same split and tuning budget.</li><li><strong>Validate the intended domain:</strong> evaluate authorized UAV-specific traffic and protocol-relevant scenarios separately from general intrusion benchmarks.</li><li><strong>Expand robustness testing:</strong> compare additional attacks under stated capabilities and feasible feature constraints, alongside clean-data performance.</li><li><strong>Test deployment end to end:</strong> measure preprocessing, peak memory, latency, throughput and energy on the intended edge hardware.</li><li><strong>Design for an operator:</strong> report class-wise confidence and false alarms, explain relevant features and define when a finding requires analyst review.</li></ul>
+        </section>
+        <section class="research-panel research-citation" aria-labelledby="citation-heading"><h2 id="citation-heading">Publication and primary sources</h2><p>Vehicular Communications, 2026, Article 101094; available online 28 October 2026.</p><ul class="research-link-list"><li><a href="https://doi.org/10.1016/j.vehcom.2026.101094">Original publication and DOI: 10.1016/j.vehcom.2026.101094</a></li><li><a href="https://www.sciencedirect.com/science/article/abs/pii/S2214209626000951">Publisher abstract, introduction, limitations and CRediT statement</a></li><li><a href="https://www.unb.ca/cic/datasets/ids-2017.html">CIC-IDS2017: original dataset documentation</a></li><li><a href="https://research.unsw.edu.au/projects/unsw-nb15-dataset">UNSW-NB15: original dataset documentation</a></li><li><a href="https://arxiv.org/abs/1908.07442">TabNet: original architecture paper</a></li><li><a href="https://arxiv.org/abs/1708.02002">Focal loss: original method paper</a></li><li><a href="https://arxiv.org/abs/1412.6572">Adversarial examples: original method paper</a></li></ul><p class="research-note">Source coverage checked 9 November 2026: publisher abstract, indexed introduction, experimental overview and CRediT statement. The complete methods and results tables remain unavailable; background papers explain the individual components.</p></section><section class="research-panel" aria-labelledby="related-heading"><h2 id="related-heading">Related engineering work</h2><ul class="research-link-list"><li><a href="https://hamza-ai-engineer.vercel.app/projects/ai-intrusion-detection.html">Separate network intrusion-detection project</a></li><li><a href="https://hamza-ai-engineer.vercel.app/projects/agentic-cybersecurity-ai-assistant.html">Agentic cybersecurity engineering case study</a></li></ul></section>
         <p class="research-return"><a href="https://hamza-ai-engineer.vercel.app/research/">← All research publications</a> · <a href="https://hamza-ai-engineer.vercel.app/contact.html">Discuss research or AI engineering</a></p>
       </article>
     </main>
